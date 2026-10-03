@@ -1,0 +1,30 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper authentication functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // User Profile Documents (users/{userId})
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+
+      // User Legal & Incident Notes (users/{userId}/notes/{noteId})
+      match /notes/{noteId} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+
+    // Fallback: Default deny any unmatched document
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
