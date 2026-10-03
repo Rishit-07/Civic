@@ -33,6 +33,11 @@ class _SituationListScreenState extends State<SituationListScreen> {
   @override
   void initState() {
     super.initState();
+    final cached = _repository.categoriesCache;
+    if (cached != null && cached.isNotEmpty) {
+      _categories = cached;
+      _isLoading = false;
+    }
     if (widget.initialSearchQuery != null &&
         widget.initialSearchQuery!.isNotEmpty) {
       _searchQuery = widget.initialSearchQuery!;
@@ -160,6 +165,25 @@ class _SituationListScreenState extends State<SituationListScreen> {
       return sc.label.toLowerCase().contains(query) ||
           sc.description.toLowerCase().contains(query);
     }).toList();
+  }
+
+  /// Live matching scenarios across all loaded categories
+  List<({Scenario scenario, Category category})> get _matchingScenarios {
+    if (_searchQuery.isEmpty) return const [];
+    final q = _searchQuery.toLowerCase();
+    final results = <({Scenario scenario, Category category})>[];
+    for (final cat in _categories) {
+      if (_selectedCategoryId != 'all' && cat.id != _selectedCategoryId) continue;
+      for (final sc in cat.scenarios) {
+        if (sc.label.toLowerCase().contains(q) ||
+            sc.description.toLowerCase().contains(q) ||
+            sc.id.toLowerCase().contains(q) ||
+            cat.label.toLowerCase().contains(q)) {
+          results.add((scenario: sc, category: cat));
+        }
+      }
+    }
+    return results;
   }
 
   /// Map category IDs to representative icons
@@ -435,6 +459,8 @@ class _SituationListScreenState extends State<SituationListScreen> {
 
   Widget _buildBody() {
     final filtered = _filteredCategories;
+    final isSearching = _searchQuery.isNotEmpty;
+    final matchingScenarios = _matchingScenarios;
 
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
@@ -448,42 +474,302 @@ class _SituationListScreenState extends State<SituationListScreen> {
 
           // Search Bar
           _buildSearchBar(),
-          const SizedBox(height: 12),
-
-          // Section Label
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'SELECT SCENARIO',
-                style: GoogleFonts.montserrat(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w800,
-                  color: const Color(0xFF5B4137),
-                  letterSpacing: 1.4,
-                ),
-              ),
-              Text(
-                'CrPC & BNS Verified',
-                style: GoogleFonts.montserrat(
-                  fontSize: 10.5,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.primary,
-                  letterSpacing: 0.3,
-                ),
-              ),
-            ],
-          ),
           const SizedBox(height: 14),
 
-          // Category Grid — 2 columns
-          if (filtered.isEmpty) _buildEmptyState() else _buildCategoryGrid(filtered),
-          const SizedBox(height: 20),
+          // Quick Category Filter Chips
+          _buildCategoryFilterChips(),
+          const SizedBox(height: 16),
+
+          // Search Results or Category Section Header
+          if (isSearching) ...[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'MATCHING PROTOCOLS (${matchingScenarios.length})',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w800,
+                    color: const Color(0xFF5B4137),
+                    letterSpacing: 1.4,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _searchQuery = '';
+                      _searchController.clear();
+                    });
+                  },
+                  child: Text(
+                    'Clear Search',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.primary,
+                      letterSpacing: 0.3,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            if (matchingScenarios.isEmpty)
+              _buildEmptyState()
+            else
+              _buildMatchingScenariosList(matchingScenarios),
+          ] else ...[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'SELECT SCENARIO CATEGORY',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w800,
+                    color: const Color(0xFF5B4137),
+                    letterSpacing: 1.4,
+                  ),
+                ),
+                Text(
+                  'CrPC & BNS Verified',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 10.5,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.primary,
+                    letterSpacing: 0.3,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 14),
+            if (filtered.isEmpty) _buildEmptyState() else _buildCategoryGrid(filtered),
+          ],
+
+          const SizedBox(height: 24),
 
           // Legal Compliance Footer
           _buildLegalComplianceFooter(),
         ],
       ),
+    );
+  }
+
+  Widget _buildCategoryFilterChips() {
+    final categories = [
+      (id: 'all', label: 'All'),
+      (id: 'police_criminal', label: 'Police'),
+      (id: 'campus', label: 'Campus'),
+      (id: 'couples_public', label: 'Couples'),
+      (id: 'online_money', label: 'Cyber Fraud'),
+      (id: 'work', label: 'Workplace'),
+      (id: 'housing', label: 'Housing'),
+      (id: 'family_safety', label: 'Family'),
+      (id: 'consumer_documents', label: 'Consumer'),
+    ];
+
+    return SizedBox(
+      height: 34,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
+        itemCount: categories.length,
+        separatorBuilder: (context, index) => const SizedBox(width: 8),
+        itemBuilder: (context, index) {
+          final item = categories[index];
+          final isSelected = _selectedCategoryId == item.id;
+          return Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () {
+                setState(() {
+                  _selectedCategoryId = item.id;
+                });
+              },
+              borderRadius: BorderRadius.circular(10),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: isSelected
+                      ? AppColors.primary
+                      : Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: isSelected
+                        ? AppColors.primary
+                        : const Color(0xFFE8E8E8),
+                  ),
+                  boxShadow: isSelected
+                      ? [
+                          BoxShadow(
+                            color: AppColors.primary.withValues(alpha: 0.25),
+                            blurRadius: 6,
+                            offset: const Offset(0, 2),
+                          ),
+                        ]
+                      : const [
+                          BoxShadow(
+                            color: Color(0x04000000),
+                            blurRadius: 4,
+                            offset: Offset(0, 1),
+                          ),
+                        ],
+                ),
+                child: Center(
+                  child: Text(
+                    item.label,
+                    style: GoogleFonts.montserrat(
+                      fontSize: 11,
+                      fontWeight: isSelected ? FontWeight.w800 : FontWeight.w600,
+                      color: isSelected ? Colors.white : const Color(0xFF5B4137),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildMatchingScenariosList(List<({Scenario scenario, Category category})> matches) {
+    return ListView.separated(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: matches.length,
+      separatorBuilder: (context, index) => const SizedBox(height: 10),
+      itemBuilder: (context, index) {
+        final match = matches[index];
+        final sc = match.scenario;
+        final cat = match.category;
+        final tagColor = _getTagColor(cat.id);
+        final tagLabel = _getCategoryShortTitle(cat.id, cat.label).toUpperCase();
+        final urgencyColor = _getUrgencyColor(sc.urgency);
+        final urgencyLabel = _getUrgencyLabel(sc.urgency);
+
+        return Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => TriageScreen(scenario: sc),
+                ),
+              );
+            },
+            borderRadius: BorderRadius.circular(14),
+            child: Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(color: const Color(0xFFE8E8E8)),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x06000000),
+                    blurRadius: 8,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                            decoration: BoxDecoration(
+                              color: tagColor.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Text(
+                              tagLabel,
+                              style: GoogleFonts.montserrat(
+                                fontSize: 9.5,
+                                fontWeight: FontWeight.w800,
+                                color: tagColor,
+                                letterSpacing: 0.5,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                            decoration: BoxDecoration(
+                              color: urgencyColor.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Text(
+                              urgencyLabel,
+                              style: GoogleFonts.montserrat(
+                                fontSize: 9,
+                                fontWeight: FontWeight.w800,
+                                color: urgencyColor,
+                                letterSpacing: 0.5,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        '${sc.branches.length} BRANCHES',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 9.5,
+                          fontWeight: FontWeight.w700,
+                          color: const Color(0xFF907065),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    sc.label,
+                    style: GoogleFonts.montserrat(
+                      fontSize: 14.5,
+                      fontWeight: FontWeight.w800,
+                      color: const Color(0xFF1A1C1C),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    sc.description,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 12,
+                      color: const Color(0xFF5B4137),
+                      height: 1.35,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        'OPEN PROTOCOL',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w800,
+                          color: AppColors.primary,
+                          letterSpacing: 0.8,
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      const Icon(Icons.arrow_forward_rounded, size: 14, color: AppColors.primary),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -555,13 +841,20 @@ class _SituationListScreenState extends State<SituationListScreen> {
       child: TextField(
         controller: _searchController,
         onChanged: (val) => setState(() => _searchQuery = val.trim()),
+        textInputAction: TextInputAction.search,
+        onSubmitted: (val) => setState(() => _searchQuery = val.trim()),
         style: GoogleFonts.plusJakartaSans(
           fontSize: 14,
           color: const Color(0xFF1A1C1C),
         ),
         decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.search_rounded,
-              color: Color(0xFF907065), size: 22),
+          prefixIcon: IconButton(
+            icon: const Icon(Icons.search_rounded,
+                color: AppColors.primary, size: 22),
+            onPressed: () {
+              setState(() => _searchQuery = _searchController.text.trim());
+            },
+          ),
           hintText: 'Search scenarios (e.g. traffic, FIR, ragging)...',
           hintStyle: GoogleFonts.plusJakartaSans(
             fontSize: 13.5,

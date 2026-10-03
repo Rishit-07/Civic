@@ -1517,6 +1517,423 @@ class CivicAiService {
       );
     }
 
+    // 25. Emergency Hospital Care & Unpaid Bill Hostage / Blood Bank Coercion
+    if (normalized.contains('hospital') ||
+        normalized.contains('emergency') ||
+        normalized.contains('admit') ||
+        normalized.contains('admission') ||
+        normalized.contains('dead body') ||
+        normalized.contains('hostage') ||
+        normalized.contains('patient detained') ||
+        normalized.contains('bill pending') ||
+        normalized.contains('advance deposit') ||
+        normalized.contains('replacement donor') ||
+        normalized.contains('blood bank') ||
+        normalized.contains('अस्पताल') ||
+        normalized.contains('इमरजेंसी')) {
+      return CivicAiMessage(
+        id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
+        text: 'Emergency Medical Denial & Patient Detention',
+        isUser: false,
+        timestamp: DateTime.now(),
+        relatedCardId: 'traffic_stop_default',
+        verdict: CivicAiVerdict(
+          verdictTitle: 'Statutory Verdict: Strictly Unlawful',
+          verdictColor: const Color(0xFFBA1A1A),
+          verdictBgColor: const Color(0xFFFFDAD6),
+          directAnswer:
+              'NO. Hospitals CANNOT refuse emergency medical stabilization over money, nor can they detain patients or withhold a dead body over unpaid bills.',
+          legalReasoning:
+              'In Pt. Parmanand Katara v. Union of India (1989), the Supreme Court ruled that Article 21 imposes an unconditional obligation on every hospital and doctor—public or private—to provide emergency treatment without demanding advance deposits or police clearances. Under the Clinical Establishments Act 2010 and Charter of Patients\' Rights, detaining a patient or dead body is criminal wrongful confinement under Sec 127 BNS (Sec 342 IPC). Mandatory replacement donors are banned under National Blood Transfusion Council guidelines.',
+          sourceTitle: 'Based on: Pt. Parmanand Katara SC Precedent & Clinical Establishments Act 2010',
+          statutoryCitation: 'Article 21 Constitution; Sec 127 BNS 2023 / Sec 342 IPC; Clinical Establishments Act 2010',
+          citizenActionSteps: [
+            'State firmly: "Under Supreme Court rulings, emergency medical stabilization is mandatory without advance payment."',
+            'If staff detains a patient or body, demand the Medical Superintendent and dial 112 immediately.',
+            'File a written complaint before the State Medical Council and District Clinical Establishments Authority.',
+            'For illegal blood donor demands, file a report under National Blood Transfusion Council norms.',
+          ],
+          criticalDonts: [
+            'DO NOT sign unconditional promissory notes or hand over property documents under duress.',
+            'DO NOT delay seeking alternative medical stabilization while arguing billing details.',
+          ],
+        ),
+        triageOptions: [
+          'Hospital demanding advance for emergency ICU',
+          'Hospital withholding dead body over bills',
+          'Blood bank demanding replacement donor',
+          'Call 112 for hospital hostage dispute',
+        ],
+      );
+    }
+
+    // 26. DigiLocker & mParivahan Digital Documents Rejection
+    if (normalized.contains('digilocker') ||
+        normalized.contains('mparivahan') ||
+        normalized.contains('parivahan') ||
+        normalized.contains('digital rc') ||
+        normalized.contains('digital dl') ||
+        normalized.contains('soft copy') ||
+        normalized.contains('original document') ||
+        normalized.contains('hard copy') ||
+        normalized.contains('डिजीलॉकर') ||
+        normalized.contains('ड्राइविंग लाइसेंस')) {
+      return CivicAiMessage(
+        id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
+        text: 'DigiLocker & mParivahan Acceptance Rights',
+        isUser: false,
+        timestamp: DateTime.now(),
+        relatedCardId: 'traffic_stop_default',
+        verdict: CivicAiVerdict(
+          verdictTitle: 'Statutory Verdict: Strictly Unlawful to Reject',
+          verdictColor: const Color(0xFFBA1A1A),
+          verdictBgColor: const Color(0xFFFFDAD6),
+          directAnswer:
+              'NO. Traffic police CANNOT reject driving licenses or registration certificates presented via DigiLocker or mParivahan apps.',
+          legalReasoning:
+              'Under Rule 139 of the Central Motor Vehicles Rules 1989 (amended) and Ministry of Road Transport & Highways (MoRTH) Notifications RT-11036/64/2017-MVL dated 08.08.2018 and 17.12.2018, electronic certificates shown on official government platforms (DigiLocker and mParivahan) carry full statutory parity with original physical documents under Section 4 of the Information Technology Act 2000. Officers demanding physical originals are acting ultra vires.',
+          sourceTitle: 'Based on: Rule 139 Central Motor Vehicles Rules 1989 & MoRTH Circulars',
+          statutoryCitation: 'Rule 139 CMVR 1989; Sec 4 IT Act 2000; MoRTH Notification RT-11036/64/2017-MVL',
+          citizenActionSteps: [
+            'Show the verified green tick on your official DigiLocker or mParivahan app screen.',
+            'Cite MoRTH Circular dated 17.12.2018 confirming electronic certificates have legal parity.',
+            'If an officer insists on issuing an improper challan, do not pay cash; contest it on the Virtual Court portal.',
+            'Note the officer\'s name, rank, and traffic precinct for reporting to the Traffic Helpline (1095 / 112).',
+          ],
+          criticalDonts: [
+            'DO NOT rely on ordinary mobile gallery screenshots or WhatsApp photos; documents must be in DigiLocker/mParivahan.',
+            'DO NOT pay spot cash penalties if your electronic documents are verified on government apps.',
+          ],
+        ),
+        triageOptions: [
+          'Officer demanding physical driving license',
+          'Challan issued despite DigiLocker shown',
+          'Verify document on Parivahan portal',
+          'Contest traffic challan in Virtual Court',
+        ],
+      );
+    }
+
+    // 27. Vehicle Towing with Passenger Seated Inside
+    if (normalized.contains('towing') ||
+        normalized.contains('towed') ||
+        normalized.contains('crane') ||
+        normalized.contains('seated inside') ||
+        normalized.contains('inside vehicle') ||
+        normalized.contains('occupant inside') ||
+        normalized.contains('टोइंग') ||
+        normalized.contains('क्रेन')) {
+      return CivicAiMessage(
+        id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
+        text: 'Vehicle Towing with Occupants Inside',
+        isUser: false,
+        timestamp: DateTime.now(),
+        relatedCardId: 'traffic_stop_default',
+        verdict: CivicAiVerdict(
+          verdictTitle: 'Statutory Verdict: Strictly Unlawful',
+          verdictColor: const Color(0xFFBA1A1A),
+          verdictBgColor: const Color(0xFFFFDAD6),
+          directAnswer:
+              'NO. Police or towing contractors CANNOT tow any vehicle while a driver, passenger, or child is seated inside.',
+          legalReasoning:
+              'Towing a vehicle occupied by human beings is a severe safety violation, reckless endangerment under Section 106 and 125 BNS (Sec 279 & 336 IPC), and prohibited by state traffic department Standard Operating Procedures. Furthermore, under traffic regulations in major cities, if the driver arrives on the spot before the crane hooks the vehicle, the vehicle cannot be towed; only a no-parking e-challan may be issued.',
+          sourceTitle: 'Based on: Motor Vehicles Act 1988 & Traffic Towing Standard Operating Procedures',
+          statutoryCitation: 'Sec 125 & 106 BNS 2023 / Sec 279 & 336 IPC; State Traffic Towing SOPs',
+          citizenActionSteps: [
+            'Remain calm inside, turn on hazard lights, and state clearly: "Stop towing immediately; vehicle is occupied."',
+            'If you arrived before the vehicle was lifted, demand only an on-the-spot no-parking challan without towing fee.',
+            'Film the towing vehicle number plate and crane operator details as evidence of endangerment.',
+            'Dial 112 immediately to report hazardous towing with passengers.',
+          ],
+          criticalDonts: [
+            'DO NOT attempt to jump out or cling onto a moving crane.',
+            'DO NOT engage in physical violence with towing contractor laborers.',
+          ],
+        ),
+        triageOptions: [
+          'Car towed with family or pet inside',
+          'Arrived before towing crane hooked car',
+          'High towing fee demanded in cash',
+          'Vehicle damaged during towing',
+        ],
+      );
+    }
+
+    // 28. Out-of-State Vehicle (11-Month Rule & BH Series)
+    if (normalized.contains('out of state') ||
+        normalized.contains('other state') ||
+        normalized.contains('different state') ||
+        normalized.contains('11 month') ||
+        normalized.contains('12 month') ||
+        normalized.contains('bh series') ||
+        normalized.contains('bharat series') ||
+        normalized.contains('road tax') ||
+        normalized.contains('rto transfer') ||
+        normalized.contains('का रजिस्ट्रेशन')) {
+      return CivicAiMessage(
+        id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
+        text: 'Out-of-State Vehicle 11-Month Rule & BH-Series',
+        isUser: false,
+        timestamp: DateTime.now(),
+        relatedCardId: 'traffic_stop_default',
+        verdict: CivicAiVerdict(
+          verdictTitle: 'Statutory Verdict: Procedural Rights Protected',
+          verdictColor: const Color(0xFF006A4E),
+          verdictBgColor: const Color(0xFFE8F5E9),
+          directAnswer:
+              'YES, you can legally drive an out-of-state vehicle for up to 11 months (under 12 months) without re-registering or paying local road tax. BH series vehicles need no re-registration at all.',
+          legalReasoning:
+              'Under Section 47 of the Motor Vehicles Act 1988, a vehicle registered in one state can be kept and used in another state for a period of up to 12 months without requiring local re-registration or local state road tax payment. After 12 months, you must obtain an NOC from the parent RTO and apply for assignment of a new registration mark under Section 47(1). For BH-series (Bharat Series) registrations under CMVR Amendment 2021, road tax is paid biennially online and vehicles operate seamlessly nationwide without local transfer.',
+          sourceTitle: 'Based on: Section 47 Motor Vehicles Act 1988 & BH-Series CMVR Notification 2021',
+          statutoryCitation: 'Sec 46 & 47 Motor Vehicles Act 1988; Central Motor Vehicles (20th Amendment) Rules 2021',
+          citizenActionSteps: [
+            'Keep proof of the date your vehicle entered the state (toll receipts, FASTag log, transport bill, or fuel invoice).',
+            'State to the RTO inspector: "Section 47 MVA permits out-of-state vehicles for up to 12 months without local re-registration."',
+            'If questioned on BH series, show the valid Bharat Series RC; it is exempt from state-wise registration.',
+            'If moving permanently beyond 12 months, apply for Form 28 (NOC) on the Parivahan Sewa portal.',
+          ],
+          criticalDonts: [
+            'DO NOT pay cash fines on the spot to local transport flying squads without an official compounding receipt.',
+            'DO NOT surrender your original RC card on the road; show DigiLocker/mParivahan verified credentials.',
+          ],
+        ),
+        triageOptions: [
+          'RTO stopped out-of-state car in new city',
+          'FASTag proof of state entry date',
+          'BH series registration police check',
+          'NOC Form 28 application on Parivahan',
+        ],
+      );
+    }
+
+    // 29. Loan Recovery Agent Doorstep Threats & Harassment
+    if (normalized.contains('recovery agent') ||
+        normalized.contains('recovery') ||
+        normalized.contains('loan harassment') ||
+        normalized.contains('collection agent') ||
+        normalized.contains('emi agent') ||
+        normalized.contains('bank threatening') ||
+        normalized.contains('recovery calls') ||
+        normalized.contains('doorstep threat') ||
+        normalized.contains('abusing for loan') ||
+        normalized.contains('रिकवरी') ||
+        normalized.contains('लोन एजेंट')) {
+      return CivicAiMessage(
+        id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
+        text: 'Loan Recovery Agent Harassment & RBI Code',
+        isUser: false,
+        timestamp: DateTime.now(),
+        relatedCardId: 'traffic_stop_default',
+        verdict: CivicAiVerdict(
+          verdictTitle: 'Statutory Verdict: Strictly Unlawful',
+          verdictColor: const Color(0xFFBA1A1A),
+          verdictBgColor: const Color(0xFFFFDAD6),
+          directAnswer:
+              'NO. Recovery agents CANNOT visit your home outside 8 AM - 7 PM, threaten you, use abusive language, or contact your relatives or employers.',
+          legalReasoning:
+              'The Reserve Bank of India (RBI) Fair Practices Code for Lenders and August 2022 Circular explicitly prohibits banks and NBFCs from using musclemen or intimidating collection practices. Agents are strictly barred from: (1) calling before 8 AM or after 7 PM, (2) using foul language or verbal abuse, (3) publicly shaming or visiting employers/relatives, and (4) entering premises without prior authorization and official ID cards. Violations constitute Criminal Intimidation under Section 351 BNS (Sec 503/506 IPC).',
+          sourceTitle: 'Based on: RBI Master Directions on Fair Practices Code & Section 351 BNS',
+          statutoryCitation: 'RBI Circular DOR.CRE.REC.No.62/03.10.001/2022-23; Sec 351 & 352 BNS 2023',
+          citizenActionSteps: [
+            'Demand the agent\'s official Bank/NBFC Recovery Authorization Letter and valid Employee ID.',
+            'Record audio/video of any abusive language, late-night calls, or unauthorized doorstep threats.',
+            'File a formal complaint to the Principal Nodal Officer of the bank giving 30 days to resolve.',
+            'If unresolved in 30 days, escalate to the RBI Banking Ombudsman (cms.rbi.org.in or dial 14448).',
+            'Dial 112 or file an FIR if an agent attempts physical trespass, threats, or assault.',
+          ],
+          criticalDonts: [
+            'DO NOT pay cash directly to field agents without an official bank acknowledgment receipt.',
+            'DO NOT sign blank agreements, promissory notes, or surrender vehicle keys under intimidation.',
+          ],
+        ),
+        triageOptions: [
+          'Recovery agents visiting house late night',
+          'Threatening calls to family or employer',
+          'File RBI Ombudsman complaint (cms.rbi.org.in)',
+          'Police FIR for criminal intimidation (Sec 351 BNS)',
+        ],
+      );
+    }
+
+    // 30. Cheque Bounce & Section 138 NI Act
+    if (normalized.contains('cheque bounce') ||
+        normalized.contains('check bounce') ||
+        normalized.contains('section 138') ||
+        normalized.contains('dishonour of cheque') ||
+        normalized.contains('insufficient funds') ||
+        normalized.contains('138 notice') ||
+        normalized.contains('चेक बाउंस')) {
+      return CivicAiMessage(
+        id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
+        text: 'Section 138 NI Act Cheque Dishonour',
+        isUser: false,
+        timestamp: DateTime.now(),
+        relatedCardId: 'traffic_stop_default',
+        verdict: CivicAiVerdict(
+          verdictTitle: 'Statutory Verdict: Mandatory Timelines Apply',
+          verdictColor: const Color(0xFFA83900),
+          verdictBgColor: const Color(0xFFFFDBCF),
+          directAnswer:
+              'Cheque bounce carries criminal liability under Section 138 NI Act, but only IF strict statutory timelines (30-day notice and 15-day payment cure period) are followed.',
+          legalReasoning:
+              'Under Section 138 of the Negotiable Instruments Act 1881, when a cheque is dishonoured due to insufficient funds, the payee must issue a formal Statutory Legal Notice in writing within 30 days of receiving the bank dishonour memo. The drawer then gets a mandatory 15-day grace period from notice receipt to pay the amount. A criminal complaint before the Magistrate can ONLY be filed within 30 days after the 15-day cure period expires.',
+          sourceTitle: 'Based on: Section 138 to 142 Negotiable Instruments Act 1881',
+          statutoryCitation: 'Sec 138, 141 & 142 Negotiable Instruments Act 1881',
+          citizenActionSteps: [
+            'Check the date on the bank memo: legal notice must be issued within 30 days of memo receipt.',
+            'If you received a 138 notice, pay within 15 days of receipt to extinguish all criminal liability.',
+            'If there was no legally enforceable debt (e.g. security cheque misuse), consult an advocate to draft a point-by-point reply.',
+            'For settlement or compromise, matters can be resolved amicably in the National Lok Adalat.',
+          ],
+          criticalDonts: [
+            'DO NOT ignore a Section 138 legal notice; silence can be treated as an adverse inference in court.',
+            'DO NOT stop payment on a cheque without documenting valid dispute grounds prior to stoppage.',
+          ],
+        ),
+        triageOptions: [
+          'Received 138 legal notice from lawyer',
+          'Cheque issued to me bounced at bank',
+          'Reply to 138 notice within 15 days',
+          'Security cheque misused by lender',
+        ],
+      );
+    }
+
+    // 31. Right to Information (RTI Act 2005)
+    if (normalized.contains('rti') ||
+        normalized.contains('right to information') ||
+        normalized.contains('pio') ||
+        normalized.contains('first appeal') ||
+        normalized.contains('30 days rti') ||
+        normalized.contains('life and liberty rti') ||
+        normalized.contains('सूचना का अधिकार')) {
+      return CivicAiMessage(
+        id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
+        text: 'Right to Information (RTI Act 2005)',
+        isUser: false,
+        timestamp: DateTime.now(),
+        relatedCardId: 'traffic_stop_default',
+        verdict: CivicAiVerdict(
+          verdictTitle: 'Statutory Verdict: Statutory Duty Enforceable',
+          verdictColor: const Color(0xFF006A4E),
+          verdictBgColor: const Color(0xFFE8F5E9),
+          directAnswer:
+              'Public Information Officers (PIO) are legally bound to supply information within 30 days, or within 48 HOURS if concerning life or liberty.',
+          legalReasoning:
+              'Under Section 7(1) of the Right to Information Act 2005, the Public Information Officer (PIO) must either provide information or reject the application within 30 days of receipt. Crucially, where the information sought concerns the life or liberty of a person, it must be provided within forty-eight hours of application receipt. If no reply is given within 30 days, it is deemed a refusal under Sec 7(2), and the citizen has the statutory right to file a First Appeal under Section 19(1).',
+          sourceTitle: 'Based on: Section 6, 7 & 19 Right to Information Act 2005',
+          statutoryCitation: 'Sec 6, 7(1), 19(1) & 20 Right to Information Act 2005',
+          citizenActionSteps: [
+            'Draft a specific, question-based application referencing Section 6(1) of the RTI Act 2005.',
+            'Submit online via rtionline.gov.in (for Central ministries) or state RTI portals with Rs 10 fee.',
+            'If 30 days have elapsed without response, submit a First Appeal under Section 19(1) to the First Appellate Authority (FAA).',
+            'If FAA fails to decide within 30-45 days, file a Second Appeal before the Central/State Information Commission.',
+          ],
+          criticalDonts: [
+            'DO NOT ask vague or hypothetical questions; ask for specific records, memos, or certified file copies.',
+            'DO NOT pay arbitrary additional search fees without receiving a detailed cost calculation letter from the PIO.',
+          ],
+        ),
+        triageOptions: [
+          'Draft RTI application for municipal authority',
+          'PIO refused RTI or exceeded 30 days',
+          'File First Appeal under Sec 19(1)',
+          '48-hour emergency life/liberty RTI',
+        ],
+      );
+    }
+
+    // 32. Builder Delayed Possession & RERA Sec 18
+    if (normalized.contains('builder delay') ||
+        normalized.contains('flat possession') ||
+        normalized.contains('possession delayed') ||
+        normalized.contains('rera') ||
+        normalized.contains('builder not giving flat') ||
+        normalized.contains('delay interest') ||
+        normalized.contains('रेरा') ||
+        normalized.contains('बिल्डर')) {
+      return CivicAiMessage(
+        id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
+        text: 'Builder Delayed Possession & RERA Section 18',
+        isUser: false,
+        timestamp: DateTime.now(),
+        relatedCardId: 'traffic_stop_default',
+        verdict: CivicAiVerdict(
+          verdictTitle: 'Statutory Verdict: Statutory Compensation Guaranteed',
+          verdictColor: const Color(0xFF006A4E),
+          verdictBgColor: const Color(0xFFE8F5E9),
+          directAnswer:
+              'YES. Under Section 18 of RERA, you have the absolute legal right to demand full refund with interest OR monthly interest for every month of delay.',
+          legalReasoning:
+              'Under Section 18 of the Real Estate (Regulation and Development) Act 2016 (RERA), if a promoter fails to complete or give possession of an apartment, plot, or building in accordance with the terms of the agreement for sale, the allottee has two absolute statutory choices: (1) withdraw from the project and claim full refund of amounts paid with prescribed interest (SBI MCLR + 2%) plus compensation, or (2) stay in the project and receive monthly delay compensation interest until physical possession is handed over with an Occupancy Certificate.',
+          sourceTitle: 'Based on: Section 18 Real Estate (Regulation and Development) Act 2016',
+          statutoryCitation: 'Sec 18, 19 & 31 Real Estate (Regulation and Development) Act 2016',
+          citizenActionSteps: [
+            'Verify the possession date specified in your registered Agreement for Sale.',
+            'Send a formal legal notice to the builder claiming delay interest under Section 18 RERA.',
+            'File an online complaint before your State RERA Authority (e.g. MahaRERA, UP RERA, HRERA, TNRERA).',
+            'Demand delay compensation calculated at State Bank of India highest MCLR + 2%.',
+          ],
+          criticalDonts: [
+            'DO NOT take physical key possession without the builder providing an official Occupancy Certificate (OC).',
+            'DO NOT sign unilateral builder addendums extending possession dates without prejudice to your compensation.',
+          ],
+        ),
+        triageOptions: [
+          'Claim monthly delay interest from builder',
+          'Withdraw from project and demand 100% refund',
+          'File complaint on State RERA portal',
+          'Builder offering possession without OC',
+        ],
+      );
+    }
+
+    // 33. Railway TTE Night Inspection Rules & RailMadad
+    if (normalized.contains('tte') ||
+        normalized.contains('railway ticket check') ||
+        normalized.contains('night ticket') ||
+        normalized.contains('train sleep') ||
+        normalized.contains('railmadad') ||
+        normalized.contains('10 pm train') ||
+        normalized.contains('6 am train') ||
+        normalized.contains('टीटीई') ||
+        normalized.contains('ट्रेन टिकट')) {
+      return CivicAiMessage(
+        id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
+        text: 'Railway TTE Night Inspection Rules & RailMadad',
+        isUser: false,
+        timestamp: DateTime.now(),
+        relatedCardId: 'traffic_stop_default',
+        verdict: CivicAiVerdict(
+          verdictTitle: 'Statutory Verdict: Procedural Violation',
+          verdictColor: const Color(0xFFBA1A1A),
+          verdictBgColor: const Color(0xFFFFDAD6),
+          directAnswer:
+              'NO. Railway TTEs CANNOT wake up passengers or check tickets between 10:00 PM and 06:00 AM if you have a confirmed berth.',
+          legalReasoning:
+              'Under Indian Railways Commercial Manual Rule 2.11 and Ministry of Railways passenger directives, Travelling Ticket Examiners (TTEs) are strictly prohibited from inspecting tickets of confirmed berth passengers between 22:00 hours (10:00 PM) and 06:00 hours (06:00 AM). The only exception is for passengers who boarded the train at an intermediate station after 10 PM. Lights in sleeper/AC coaches must also be switched off for night rest.',
+          sourceTitle: 'Based on: Indian Railways Commercial Manual Rule 2.11 & Ministry Guidelines',
+          statutoryCitation: 'Rule 2.11 Indian Railways Commercial Manual; RailMadad Grievance Directives',
+          citizenActionSteps: [
+            'Politely remind the TTE: "Sir, under Railway Board rules, ticket checking for confirmed passengers is restricted between 10 PM and 6 AM."',
+            'Show your electronic IRCTC PNR SMS or ticket on your mobile without leaving your berth.',
+            'If a TTE behaves aggressively or demands bribes, dial RailMadad Helpline 139 immediately.',
+            'Log an instant complaint with coach and berth details on the RailMadad app or portal (railmadad.indianrailways.gov.in).',
+          ],
+          criticalDonts: [
+            'DO NOT surrender your phone or physical ticket to someone who refuses to display their Railway badge.',
+            'DO NOT pay excess fare penalties in cash without demanding an official Electronic Handheld Terminal (HHT) receipt.',
+          ],
+        ),
+        triageOptions: [
+          'TTE waking up confirmed passengers at night',
+          'TTE demanding cash fine on running train',
+          'File live grievance on RailMadad 139',
+          'Travel with waitlisted ticket in reserved coach',
+        ],
+      );
+    }
+
     // E. General Constitutional & Statutory Rights (Universal Synthesis)
     return CivicAiMessage(
       id: 'msg_${DateTime.now().millisecondsSinceEpoch}',

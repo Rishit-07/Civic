@@ -7,6 +7,7 @@ import 'package:civic/features/onboarding/onboarding_screen.dart';
 import 'package:civic/features/auth/sign_in_screen.dart';
 import 'package:civic/features/navigation/main_tab_scaffold.dart';
 import 'package:civic/features/scenarios/situation_list_screen.dart';
+import 'package:civic/data/repositories/content_repository.dart';
 import 'package:civic/features/tabs/home/home_screen.dart';
 
 void main() {
@@ -15,6 +16,7 @@ void main() {
   setUp(() async {
     SharedPreferences.setMockInitialValues({});
     await AppPreferences.init();
+    await ContentRepository.instance.loadCategories();
   });
 
   group('Navigation Flow Domain 1: AppPreferences Service', () {

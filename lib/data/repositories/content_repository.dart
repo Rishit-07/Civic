@@ -15,7 +15,9 @@ class ContentRepository {
   bool get isRelease => isReleaseModeOverride ?? kReleaseMode;
 
   List<Category>? _categoriesCache;
+  List<Category>? get categoriesCache => _categoriesCache;
   List<HelplineModel>? _helplinesCache;
+  List<HelplineModel>? get helplinesCache => _helplinesCache;
   final Map<String, CardModel> _cardCache = {};
 
   /// Load master categories and scenarios from assets/content/index.json

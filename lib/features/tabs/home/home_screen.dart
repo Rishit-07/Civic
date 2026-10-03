@@ -3,8 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
+import '../../../data/models/content_models.dart';
+import '../../../data/repositories/content_repository.dart';
 import '../../../data/services/app_preferences.dart';
 import '../../../data/services/location/civic_location_service.dart';
+import '../../scenarios/situation_card_screen.dart';
 import '../../scenarios/situation_list_screen.dart';
 import '../../scenarios/triage_screen.dart';
 
@@ -23,38 +26,88 @@ class _HomeScreenState extends State<HomeScreen> {
   String _selectedMode = 'now'; // 'now', 'prepare', 'after'
   String _selectedState = 'ALL';
   bool _isMicActive = false;
+  String _searchQuery = '';
+  List<Category> _allCategories = [];
 
   static const Map<String, String> _indianStates = {
     'ALL': 'All-India (National Rules)',
     'DL': 'Delhi NCT',
-    'MH': 'Maharashtra',
-    'KA': 'Karnataka',
-    'TN': 'Tamil Nadu',
-    'UP': 'Uttar Pradesh',
-    'WB': 'West Bengal',
-    'TG': 'Telangana',
+    'AP': 'Andhra Pradesh',
+    'AR': 'Arunachal Pradesh',
+    'AS': 'Assam',
+    'BR': 'Bihar',
+    'CG': 'Chhattisgarh',
+    'GA': 'Goa',
     'GJ': 'Gujarat',
-    'RJ': 'Rajasthan',
+    'HR': 'Haryana',
+    'HP': 'Himachal Pradesh',
+    'JH': 'Jharkhand',
+    'KA': 'Karnataka',
     'KL': 'Kerala',
     'MP': 'Madhya Pradesh',
-    'AP': 'Andhra Pradesh',
-    'PB': 'Punjab',
-    'HR': 'Haryana',
-    'BR': 'Bihar',
+    'MH': 'Maharashtra',
+    'MN': 'Manipur',
+    'ML': 'Meghalaya',
+    'MZ': 'Mizoram',
+    'NL': 'Nagaland',
     'OD': 'Odisha',
-    'AS': 'Assam',
-    'JH': 'Jharkhand',
+    'PB': 'Punjab',
+    'RJ': 'Rajasthan',
+    'SK': 'Sikkim',
+    'TN': 'Tamil Nadu',
+    'TG': 'Telangana',
+    'TR': 'Tripura',
+    'UP': 'Uttar Pradesh',
     'UT': 'Uttarakhand',
-    'HP': 'Himachal Pradesh',
-    'GA': 'Goa',
+    'WB': 'West Bengal',
+    // Union Territories
+    'AN': 'Andaman & Nicobar Islands',
     'CH': 'Chandigarh',
+    'DN': 'Dadra & Nagar Haveli and Daman & Diu',
     'JK': 'Jammu & Kashmir',
+    'LA': 'Ladakh',
+    'LD': 'Lakshadweep',
+    'PY': 'Puducherry',
   };
 
   @override
   void initState() {
     super.initState();
     _selectedState = AppPreferences.selectedState;
+    _loadCategories();
+  }
+
+  Future<void> _loadCategories() async {
+    try {
+      final cats = await ContentRepository.instance.loadCategories();
+      if (mounted) {
+        setState(() {
+          _allCategories = cats;
+        });
+      }
+    } catch (_) {}
+  }
+
+  List<Map<String, dynamic>> get _matchingScenarios {
+    if (_searchQuery.isEmpty) return [];
+    final q = _searchQuery.toLowerCase();
+    final results = <Map<String, dynamic>>[];
+
+    for (final cat in _allCategories) {
+      for (final sc in cat.scenarios) {
+        final matches = sc.label.toLowerCase().contains(q) ||
+            sc.description.toLowerCase().contains(q) ||
+            cat.label.toLowerCase().contains(q) ||
+            sc.id.toLowerCase().contains(q);
+        if (matches) {
+          results.add({
+            'scenario': sc,
+            'category': cat,
+          });
+        }
+      }
+    }
+    return results;
   }
 
   @override
@@ -114,9 +167,11 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _isMicActive = !_isMicActive;
       if (_isMicActive) {
-        _searchController.text = 'Police stopped my vehicle at midnight';
+        _searchController.text = 'police traffic stop';
+        _searchQuery = 'police traffic stop';
       } else {
         _searchController.clear();
+        _searchQuery = '';
       }
     });
   }
@@ -395,11 +450,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         _buildModeChipsFilter(),
                         const SizedBox(height: 22),
 
-                        // E. 2-Column Grid of 6 Situation Cards
-                        _buildScenarioGridHeader(),
-                        const SizedBox(height: 12),
-                        _buildScenarioGrid(),
-                        const SizedBox(height: 22),
+                        // E. 2-Column Grid of 6 Situation Cards or Live Search Results
+                        if (_searchQuery.isNotEmpty) ...[
+                          _buildSearchResults(),
+                          const SizedBox(height: 22),
+                        ] else ...[
+                          _buildScenarioGridHeader(),
+                          const SizedBox(height: 12),
+                          _buildScenarioGrid(),
+                          const SizedBox(height: 22),
+                        ],
 
                         // F. Interactive Quick Rights Highlight (DK Basu Verdict)
                         _buildDkBasuCard(),
@@ -997,7 +1057,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildSearchBar() {
     return Container(
       height: 52,
-      padding: const EdgeInsets.symmetric(horizontal: 14),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(28),
@@ -1011,15 +1071,22 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       child: Row(
         children: [
-          const Icon(
-            Icons.search_rounded,
-            color: Color(0xFF5B4137),
-            size: 22,
+          IconButton(
+            icon: const Icon(
+              Icons.search_rounded,
+              color: Color(0xFF5B4137),
+              size: 22,
+            ),
+            onPressed: () => _openSituationList(searchQuery: _searchController.text.trim()),
           ),
-          const SizedBox(width: 10),
           Expanded(
             child: TextField(
               controller: _searchController,
+              onChanged: (val) {
+                setState(() {
+                  _searchQuery = val.trim();
+                });
+              },
               onSubmitted: (value) => _openSituationList(searchQuery: value),
               style: GoogleFonts.plusJakartaSans(
                 fontSize: 14,
@@ -1035,13 +1102,28 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 border: InputBorder.none,
                 isDense: true,
-                contentPadding: EdgeInsets.zero,
+                contentPadding: const EdgeInsets.symmetric(vertical: 12),
               ),
             ),
           ),
+          if (_searchQuery.isNotEmpty)
+            IconButton(
+              icon: const Icon(
+                Icons.clear_rounded,
+                size: 20,
+                color: Color(0xFF5B4137),
+              ),
+              onPressed: () {
+                _searchController.clear();
+                setState(() {
+                  _searchQuery = '';
+                });
+              },
+            ),
           GestureDetector(
             onTap: _toggleMic,
             child: Container(
+              margin: const EdgeInsets.only(right: 6),
               width: 34,
               height: 34,
               decoration: BoxDecoration(
@@ -1059,6 +1141,203 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  /// Live Search Results Overlay View
+  Widget _buildSearchResults() {
+    final matches = _matchingScenarios;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'MATCHING SCENARIOS (${matches.length})',
+              style: GoogleFonts.montserrat(
+                fontSize: 11,
+                fontWeight: FontWeight.w800,
+                color: const Color(0xFF5B4137),
+                letterSpacing: 1.4,
+              ),
+            ),
+            InkWell(
+              onTap: () => _openSituationList(searchQuery: _searchQuery),
+              child: Text(
+                'Open Full Directory ➔',
+                style: GoogleFonts.montserrat(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w800,
+                  color: const Color(0xFFFF5A00),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        if (matches.isEmpty)
+          Container(
+            padding: const EdgeInsets.all(22),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: const Color(0xFFE8E8E8)),
+            ),
+            child: Column(
+              children: [
+                const Icon(Icons.search_off_rounded, size: 36, color: Color(0xFF907065)),
+                const SizedBox(height: 10),
+                Text(
+                  'No direct scenario matched "$_searchQuery"',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                    color: const Color(0xFF1A1C1C),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  'Try searching for traffic, police, rent, landlord, hospital, cheque, or browse the complete legal directory.',
+                  style: GoogleFonts.plusJakartaSans(
+                    fontSize: 12,
+                    color: const Color(0xFF5B4137),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 14),
+                ElevatedButton.icon(
+                  onPressed: () => _openSituationList(searchQuery: _searchQuery),
+                  icon: const Icon(Icons.menu_book_rounded, size: 16),
+                  label: const Text('EXPLORE ALL 65 SCENARIOS'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF101F18),
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                  ),
+                ),
+              ],
+            ),
+          )
+        else
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: matches.length > 8 ? 8 : matches.length,
+            separatorBuilder: (context, index) => const SizedBox(height: 10),
+            itemBuilder: (context, index) {
+              final item = matches[index];
+              final sc = item['scenario'] as Scenario;
+              final cat = item['category'] as Category;
+              return Material(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(14),
+                elevation: 0,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => SituationCardScreen(
+                          cardId: '${sc.id}_default',
+                        ),
+                      ),
+                    );
+                  },
+                  borderRadius: BorderRadius.circular(14),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(14),
+                      border: Border.all(color: const Color(0xFFE8E8E8)),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 38,
+                          height: 38,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFFF5A00).withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Icon(
+                            sc.urgency == 1 ? Icons.warning_rounded : Icons.gavel_rounded,
+                            color: sc.urgency == 1 ? const Color(0xFFBA1A1A) : const Color(0xFFFF5A00),
+                            size: 20,
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFFEEEEEE),
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    child: Text(
+                                      cat.label,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 9,
+                                        fontWeight: FontWeight.w800,
+                                        color: const Color(0xFF5B4137),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 6),
+                                  if (sc.urgency == 1)
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1.5),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFFFDAD6),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: Text(
+                                        'URGENT',
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 8.5,
+                                          fontWeight: FontWeight.w800,
+                                          color: const Color(0xFF93000A),
+                                        ),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                sc.label,
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 13.5,
+                                  fontWeight: FontWeight.w800,
+                                  color: const Color(0xFF1A1C1C),
+                                ),
+                              ),
+                              const SizedBox(height: 2),
+                              Text(
+                                sc.description,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.plusJakartaSans(
+                                  fontSize: 11.5,
+                                  color: const Color(0xFF5B4137),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Color(0xFF907065)),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+      ],
     );
   }
 
@@ -1126,7 +1405,11 @@ class _HomeScreenState extends State<HomeScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'SELECT SCENARIO',
+          _selectedMode == 'prepare'
+              ? 'PREVENTATIVE SAFEGUARDS'
+              : _selectedMode == 'after'
+                  ? 'POST-INCIDENT REMEDIES'
+                  : 'SELECT SCENARIO',
           style: GoogleFonts.montserrat(
             fontSize: 11,
             fontWeight: FontWeight.w800,
@@ -1146,17 +1429,259 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  /// 2-Column Grid of 6 Situation Cards matching exact HTML
+  /// 2-Column Grid of 6 Situation Cards matching exact mode
   Widget _buildScenarioGrid() {
+    if (_selectedMode == 'prepare') {
+      return Column(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: _buildSituationCard(
+                  title: 'Contract Check',
+                  description: 'Exit bonds, non-competes & notice period traps.',
+                  badgeText: 'BOND CHECK',
+                  badgeBg: const Color(0xFFFFDBCF),
+                  badgeTextCol: const Color(0xFF802900),
+                  footerText: 'SEC 27 CONTRACT',
+                  footerCol: const Color(0xFFA83900),
+                  svgIcon: '''<svg viewBox="0 0 24 24" fill="none">
+                    <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2Z" fill="#101F18"/>
+                    <path d="M14 2V8H20" fill="#FF5A00"/>
+                  </svg>''',
+                  onTap: () => _openSituationList(searchQuery: 'contract'),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _buildSituationCard(
+                  title: 'Tenant Shield',
+                  description: 'Model Tenancy rules, deposit cap & wear/tear.',
+                  badgeText: 'RENT ACT',
+                  badgeBg: const Color(0xFFD5E7DC),
+                  badgeTextCol: const Color(0xFF3B4A42),
+                  footerText: 'DEPOSIT RULES',
+                  footerCol: const Color(0xFF526259),
+                  svgIcon: '''<svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L2 9L5 11V20C5 20.5 5.5 21 6 21H18C18.5 21 19 20.5 19 20V11L22 9L12 2Z" fill="#101F18"/>
+                    <path d="M10 21V12C10 10.9 10.9 10 12 10C13.1 10 14 10.9 14 12V21H10Z" fill="#FF5A00"/>
+                  </svg>''',
+                  onTap: () => _openSituationList(searchQuery: 'deposit'),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: _buildSituationCard(
+                  title: 'Vehicle Rights',
+                  description: '11-month out-of-state rule & BH series norms.',
+                  badgeText: 'MV ACT',
+                  badgeBg: const Color(0xFFE8E8E8),
+                  badgeTextCol: const Color(0xFF5B4137),
+                  footerText: 'SEC 47 MV ACT',
+                  footerCol: const Color(0xFFA83900),
+                  svgIcon: '''<svg viewBox="0 0 24 24" fill="none">
+                    <rect fill="#101F18" height="11" rx="2" width="18" x="3" y="9"/>
+                    <circle cx="7" cy="18" fill="#FF5A00" r="2.5"/>
+                    <circle cx="17" cy="18" fill="#FF5A00" r="2.5"/>
+                  </svg>''',
+                  onTap: () => _openSituationList(searchQuery: 'interstate'),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _buildSituationCard(
+                  title: 'Fee Refund',
+                  description: 'Mandatory 100% college fee refund timelines.',
+                  badgeText: 'UGC NORMS',
+                  badgeBg: const Color(0xFFFFDAD6),
+                  badgeTextCol: const Color(0xFF93000A),
+                  footerText: '15-DAY MANDATE',
+                  footerCol: const Color(0xFFA83900),
+                  svgIcon: '''<svg viewBox="0 0 24 24" fill="none">
+                    <path d="M3 6L12 2L21 6L12 10L3 6Z" fill="#FF5A00"/>
+                    <path d="M3 8V16L12 20L21 16V8L12 12L3 8Z" fill="#101F18"/>
+                  </svg>''',
+                  onTap: () => _openSituationList(searchQuery: 'fee refund'),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: _buildSituationCard(
+                  title: 'RTI Filing',
+                  description: 'Demand delayed government files & exam sheets.',
+                  badgeText: 'RTI 2005',
+                  badgeBg: const Color(0xFFD5E7DC),
+                  badgeTextCol: const Color(0xFF3B4A42),
+                  footerText: '30-DAY DISPOSAL',
+                  footerCol: const Color(0xFF526259),
+                  svgIcon: '''<svg viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" fill="#101F18" r="10"/>
+                    <path d="M12 8V12L15 15" stroke="#FF5A00" stroke-width="2"/>
+                  </svg>''',
+                  onTap: () => _openSituationList(searchQuery: 'rti'),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _buildSituationCard(
+                  title: 'What to Sign',
+                  description: 'What to inspect before signing police/legal forms.',
+                  badgeText: 'SAFE SIGN',
+                  badgeBg: const Color(0xFFE8E8E8),
+                  badgeTextCol: const Color(0xFF5B4137),
+                  footerText: 'ART. 20(3) SAFE',
+                  footerCol: const Color(0xFFA83900),
+                  svgIcon: '''<svg viewBox="0 0 24 24" fill="none">
+                    <path d="M3 17.25V21H6.75L17.81 9.94L14.06 6.19L3 17.25Z" fill="#101F18"/>
+                    <path d="M20.71 7.04C21.1 6.65 21.1 6.02 20.71 5.63L18.37 3.29C17.98 2.9 17.35 2.9 16.96 3.29L15.13 5.12L18.88 8.87L20.71 7.04Z" fill="#FF5A00"/>
+                  </svg>''',
+                  onTap: () => _openSituationList(searchQuery: 'what to sign'),
+                ),
+              ),
+            ],
+          ),
+        ],
+      );
+    }
+
+    if (_selectedMode == 'after') {
+      return Column(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: _buildSituationCard(
+                  title: 'FIR Refused',
+                  description: 'Station refusing FIR; Zero FIR & SP petitions.',
+                  badgeText: 'ZERO FIR',
+                  badgeBg: const Color(0xFFFFDAD6),
+                  badgeTextCol: const Color(0xFF93000A),
+                  footerText: 'CRPC 154(3)',
+                  footerCol: const Color(0xFFA83900),
+                  svgIcon: '''<svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L4 5V11C4 16.5 7.4 21.6 12 23C16.6 21.6 20 16.5 20 11V5L12 2Z" fill="#101F18"/>
+                    <path d="M12 8V12M12 16H12.01" stroke="#FF5A00" stroke-width="2" stroke-linecap="round"/>
+                  </svg>''',
+                  onTap: () => _openSituationList(searchQuery: 'fir refused'),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _buildSituationCard(
+                  title: 'RERA Delay',
+                  description: 'Builder delayed flat possession monthly interest.',
+                  badgeText: 'RERA ACT',
+                  badgeBg: const Color(0xFFD5E7DC),
+                  badgeTextCol: const Color(0xFF3B4A42),
+                  footerText: 'SEC 18 RERA',
+                  footerCol: const Color(0xFF526259),
+                  svgIcon: '''<svg viewBox="0 0 24 24" fill="none">
+                    <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z" fill="#101F18"/>
+                    <path d="M7 7H17V9H7V7ZM7 11H17V13H7V11ZM7 15H13V17H7V15Z" fill="#FF5A00"/>
+                  </svg>''',
+                  onTap: () => _openSituationList(searchQuery: 'rera'),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: _buildSituationCard(
+                  title: 'Unpaid Salary',
+                  description: 'Salary withheld & FnF delay Labour recovery.',
+                  badgeText: 'LABOUR LAW',
+                  badgeBg: const Color(0xFFFFDBCF),
+                  badgeTextCol: const Color(0xFF802900),
+                  footerText: 'WAGES ACT',
+                  footerCol: const Color(0xFFA83900),
+                  svgIcon: '''<svg viewBox="0 0 24 24" fill="none">
+                    <rect fill="#101F18" height="14" rx="2" width="20" x="2" y="5"/>
+                    <circle cx="12" cy="12" fill="#FF5A00" r="3"/>
+                  </svg>''',
+                  onTap: () => _openSituationList(searchQuery: 'salary'),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _buildSituationCard(
+                  title: 'Recovery Agents',
+                  description: 'RBI ban on doorstep threats & untimely calls.',
+                  badgeText: 'RBI CODE',
+                  badgeBg: const Color(0xFFE8E8E8),
+                  badgeTextCol: const Color(0xFF5B4137),
+                  footerText: 'OMBUDSMAN 14448',
+                  footerCol: const Color(0xFFA83900),
+                  svgIcon: '''<svg viewBox="0 0 24 24" fill="none">
+                    <rect fill="#101F18" height="13" rx="3" width="16" x="4" y="9"/>
+                    <path d="M8 9V6C8 3.79 9.79 2 12 2C14.21 2 16 3.79 16 6V9" stroke="#FF5A00" stroke-width="2"/>
+                  </svg>''',
+                  onTap: () => _openSituationList(searchQuery: 'recovery'),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: _buildSituationCard(
+                  title: 'Cheque Bounce',
+                  description: 'Sec 138 notice reply within 15 statutory days.',
+                  badgeText: 'NI ACT 138',
+                  badgeBg: const Color(0xFFD5E7DC),
+                  badgeTextCol: const Color(0xFF3B4A42),
+                  footerText: '15-DAY WINDOW',
+                  footerCol: const Color(0xFF526259),
+                  svgIcon: '''<svg viewBox="0 0 24 24" fill="none">
+                    <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2Z" fill="#101F18"/>
+                    <path d="M8 12H16M8 16H13" stroke="#FF5A00" stroke-width="2"/>
+                  </svg>''',
+                  onTap: () => _openSituationList(searchQuery: 'cheque'),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _buildSituationCard(
+                  title: 'Police Misconduct',
+                  description: 'Independent Police Complaints Authority (PCA).',
+                  badgeText: 'PCA REFORM',
+                  badgeBg: const Color(0xFFFFDAD6),
+                  badgeTextCol: const Color(0xFF93000A),
+                  footerText: 'SEC 199 BNS',
+                  footerCol: const Color(0xFFA83900),
+                  svgIcon: '''<svg viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" fill="#101F18" r="10"/>
+                    <path d="M12 6V12L16 14" stroke="#FF5A00" stroke-width="2"/>
+                  </svg>''',
+                  onTap: () => _openSituationList(searchQuery: 'misconduct'),
+                ),
+              ),
+            ],
+          ),
+        ],
+      );
+    }
+
+    // Default 'now' mode
     return Column(
       children: [
-        // Row 1: Police & Campus
+        // Row 1: Police & Emergency Healthcare
         Row(
           children: [
             Expanded(
               child: _buildSituationCard(
-                title: 'Police',
-                description: 'Traffic stops, frisking, detention & 41A notices.',
+                title: 'Police & Traffic',
+                description: 'Traffic stops, vehicle keys, frisking & 41A notices.',
                 badgeText: 'URGENT',
                 badgeBg: const Color(0xFFFFDAD6),
                 badgeTextCol: const Color(0xFF93000A),
@@ -1173,20 +1698,18 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(width: 10),
             Expanded(
               child: _buildSituationCard(
-                title: 'Campus',
-                description:
-                    'Anti-ragging statutory rules, admin search, hostels.',
-                badgeText: 'UGC',
-                badgeBg: const Color(0xFFD5E7DC),
-                badgeTextCol: const Color(0xFF3B4A42),
-                footerText: 'FIR PROTOCOL',
-                footerCol: const Color(0xFF526259),
+                title: 'Emergency Care',
+                description: 'Hospital emergency denial & patient bill hostage.',
+                badgeText: 'ARTICLE 21',
+                badgeBg: const Color(0xFFFFDAD6),
+                badgeTextCol: const Color(0xFF93000A),
+                footerText: 'PARMANAND KATARA',
+                footerCol: const Color(0xFFA83900),
                 svgIcon: '''<svg viewBox="0 0 24 24" fill="none">
-                  <path d="M3 6L12 2L21 6L12 10L3 6Z" fill="#FF5A00"/>
-                  <path d="M3 8V16L12 20L21 16V8L12 12L3 8Z" fill="#101F18"/>
-                  <path d="M21 8V14" stroke="#FF5A00" stroke-linecap="round" stroke-width="1.5"/>
+                  <circle cx="12" cy="12" fill="#101F18" r="10"/>
+                  <path d="M12 6V18M6 12H18" stroke="#FF5A00" stroke-width="3" stroke-linecap="round"/>
                 </svg>''',
-                onTap: () => _openSituationList(categoryId: 'campus'),
+                onTap: () => _openSituationList(searchQuery: 'emergency'),
               ),
             ),
           ],

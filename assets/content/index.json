@@ -16,13 +16,26 @@
               "id": "stop_nature",
               "text": "What is the officer requesting?",
               "options": [
-                {"label": "Document inspection or routine check", "branch": "default"},
-                {"label": "Demanding cash or threatening seizure without challan", "branch": "dispute_seizure"},
-                {"label": "Suspecting intoxication / breathalyzer test", "branch": "sobriety_test"}
+                {
+                  "label": "Document inspection or routine check",
+                  "branch": "default"
+                },
+                {
+                  "label": "Demanding cash or threatening seizure without challan",
+                  "branch": "dispute_seizure"
+                },
+                {
+                  "label": "Suspecting intoxication / breathalyzer test",
+                  "branch": "sobriety_test"
+                }
               ]
             }
           ],
-          "branches": ["default", "dispute_seizure", "sobriety_test"]
+          "branches": [
+            "default",
+            "dispute_seizure",
+            "sobriety_test"
+          ]
         },
         {
           "id": "arrest_detention",
@@ -34,13 +47,26 @@
               "id": "arrest_phase",
               "text": "What is the current status of detention?",
               "options": [
-                {"label": "Being questioned or asked to come to station", "branch": "default"},
-                {"label": "Handcuffed or formally placed under arrest", "branch": "formal_arrest"},
-                {"label": "Detained overnight or over 24 hours", "branch": "magistrate_production"}
+                {
+                  "label": "Being questioned or asked to come to station",
+                  "branch": "default"
+                },
+                {
+                  "label": "Handcuffed or formally placed under arrest",
+                  "branch": "formal_arrest"
+                },
+                {
+                  "label": "Detained overnight or over 24 hours",
+                  "branch": "magistrate_production"
+                }
               ]
             }
           ],
-          "branches": ["default", "formal_arrest", "magistrate_production"]
+          "branches": [
+            "default",
+            "formal_arrest",
+            "magistrate_production"
+          ]
         },
         {
           "id": "police_at_door_search",
@@ -52,13 +78,26 @@
               "id": "warrant_presence",
               "text": "Do the officers present a signed search warrant?",
               "options": [
-                {"label": "No warrant shown, asking to enter", "branch": "default"},
-                {"label": "Warrant produced from magistrate", "branch": "warrant_search"},
-                {"label": "Female occupants inside after sunset", "branch": "female_resident_search"}
+                {
+                  "label": "No warrant shown, asking to enter",
+                  "branch": "default"
+                },
+                {
+                  "label": "Warrant produced from magistrate",
+                  "branch": "warrant_search"
+                },
+                {
+                  "label": "Female occupants inside after sunset",
+                  "branch": "female_resident_search"
+                }
               ]
             }
           ],
-          "branches": ["default", "warrant_search", "female_resident_search"]
+          "branches": [
+            "default",
+            "warrant_search",
+            "female_resident_search"
+          ]
         },
         {
           "id": "fir_refused",
@@ -70,13 +109,26 @@
               "id": "refusal_type",
               "text": "Why was the FIR registration declined?",
               "options": [
-                {"label": "Told it is outside jurisdiction (Zero FIR applicable)", "branch": "default"},
-                {"label": "Officer advising informal compromise instead", "branch": "informal_pressure"},
-                {"label": "Outright refusal without reason", "branch": "sp_magistrate_escalation"}
+                {
+                  "label": "Told it is outside jurisdiction (Zero FIR applicable)",
+                  "branch": "default"
+                },
+                {
+                  "label": "Officer advising informal compromise instead",
+                  "branch": "informal_pressure"
+                },
+                {
+                  "label": "Outright refusal without reason",
+                  "branch": "sp_magistrate_escalation"
+                }
               ]
             }
           ],
-          "branches": ["default", "informal_pressure", "sp_magistrate_escalation"]
+          "branches": [
+            "default",
+            "informal_pressure",
+            "sp_magistrate_escalation"
+          ]
         },
         {
           "id": "false_accusation",
@@ -88,13 +140,26 @@
               "id": "allegation_stage",
               "text": "What official stage has the complaint reached?",
               "options": [
-                {"label": "Threat of FIR made by other party", "branch": "default"},
-                {"label": "FIR officially registered; arrest imminent", "branch": "anticipatory_bail"},
-                {"label": "Seeking quashing of frivolous complaint", "branch": "quash_petition"}
+                {
+                  "label": "Threat of FIR made by other party",
+                  "branch": "default"
+                },
+                {
+                  "label": "FIR officially registered; arrest imminent",
+                  "branch": "anticipatory_bail"
+                },
+                {
+                  "label": "Seeking quashing of frivolous complaint",
+                  "branch": "quash_petition"
+                }
               ]
             }
           ],
-          "branches": ["default", "anticipatory_bail", "quash_petition"]
+          "branches": [
+            "default",
+            "anticipatory_bail",
+            "quash_petition"
+          ]
         },
         {
           "id": "summons_notice",
@@ -106,13 +171,26 @@
               "id": "summons_type",
               "text": "How was the notice delivered?",
               "options": [
-                {"label": "Formal written notice received with date", "branch": "default"},
-                {"label": "Informal phone call or WhatsApp message", "branch": "informal_summons"},
-                {"label": "Unable to attend on specified date", "branch": "adjournment_request"}
+                {
+                  "label": "Formal written notice received with date",
+                  "branch": "default"
+                },
+                {
+                  "label": "Informal phone call or WhatsApp message",
+                  "branch": "informal_summons"
+                },
+                {
+                  "label": "Unable to attend on specified date",
+                  "branch": "adjournment_request"
+                }
               ]
             }
           ],
-          "branches": ["default", "informal_summons", "adjournment_request"]
+          "branches": [
+            "default",
+            "informal_summons",
+            "adjournment_request"
+          ]
         },
         {
           "id": "asked_for_bribe",
@@ -124,13 +202,161 @@
               "id": "bribe_context",
               "text": "What is the public official withholding?",
               "options": [
-                {"label": "Withholding public document, NOC, or license", "branch": "default"},
-                {"label": "Police demanding cash to drop action", "branch": "police_extortion"},
-                {"label": "Filing formal Anti-Corruption Bureau complaint", "branch": "acb_trap"}
+                {
+                  "label": "Withholding public document, NOC, or license",
+                  "branch": "default"
+                },
+                {
+                  "label": "Police demanding cash to drop action",
+                  "branch": "police_extortion"
+                },
+                {
+                  "label": "Filing formal Anti-Corruption Bureau complaint",
+                  "branch": "acb_trap"
+                }
               ]
             }
           ],
-          "branches": ["default", "police_extortion", "acb_trap"]
+          "branches": [
+            "default",
+            "police_extortion",
+            "acb_trap"
+          ]
+        },
+        {
+          "id": "peaceful_protest_detention",
+          "label": "Detained at Peaceful Protest / Assembly",
+          "urgency": 1,
+          "description": "Constitutional right to assemble peacefully without arms under Article 19(1)(b) vs Sec 144 / 163 BNSS orders.",
+          "triage_questions": [
+            {
+              "id": "protest_action",
+              "text": "What action are police taking at the assembly?",
+              "options": [
+                {
+                  "label": "Detained for peaceful sloganeering or holding placards",
+                  "branch": "default"
+                },
+                {
+                  "label": "Police invoking Sec 144 CrPC / 163 BNSS without magistrate proclamation",
+                  "branch": "sec_144_order"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "sec_144_order"
+          ]
+        },
+        {
+          "id": "police_complaint_authority",
+          "label": "Police Misconduct & Complaints Authority (PCA)",
+          "urgency": 2,
+          "description": "Filing complaints against police brutality, threats, or refusal of duty before Police Complaints Authorities.",
+          "triage_questions": [
+            {
+              "id": "misconduct_level",
+              "text": "What level of misconduct occurred?",
+              "options": [
+                {
+                  "label": "Verbal harassment, wrongful detention, or corruption",
+                  "branch": "default"
+                },
+                {
+                  "label": "Custodial torture, grave assault, or custodial death threat",
+                  "branch": "custodial_assault"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "custodial_assault"
+          ]
+        },
+        {
+          "id": "interstate_vehicle_rto",
+          "label": "Out-of-State Vehicle (RTO / Police Harassment)",
+          "urgency": 2,
+          "description": "Police or RTO stopping vehicles registered in other Indian states (e.g. DL/HR in KA/MH); 11-month rule.",
+          "triage_questions": [
+            {
+              "id": "vehicle_stay",
+              "text": "How long has the out-of-state vehicle been in this state?",
+              "options": [
+                {
+                  "label": "Temporary stay under 11 months (Section 47 MV Act)",
+                  "branch": "default"
+                },
+                {
+                  "label": "Vehicle has BH (Bharat) series registration",
+                  "branch": "bh_series"
+                },
+                {
+                  "label": "RTO seizing vehicle demanding lifetime road tax payment",
+                  "branch": "tax_dispute"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "bh_series",
+            "tax_dispute"
+          ]
+        },
+        {
+          "id": "towing_rules",
+          "label": "Vehicle Towing / Clamping Dispute",
+          "urgency": 2,
+          "description": "Traffic police towing car with passengers inside, or towing without loudspeaker announcement from unmarked zone.",
+          "triage_questions": [
+            {
+              "id": "towing_circumstance",
+              "text": "What is the towing irregularity?",
+              "options": [
+                {
+                  "label": "Vehicle being towed while person / pet is seated inside",
+                  "branch": "default"
+                },
+                {
+                  "label": "Towed from unmarked spot without No Parking sign or public announcement",
+                  "branch": "unmarked_zone"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "unmarked_zone"
+          ]
+        },
+        {
+          "id": "digilocker_refusal",
+          "label": "Traffic Police Refusing DigiLocker / mParivahan",
+          "urgency": 2,
+          "description": "Traffic officers rejecting digital Driving License or RC shown on DigiLocker and demanding physical documents.",
+          "triage_questions": [
+            {
+              "id": "digilocker_issue",
+              "text": "Why is the officer rejecting digital documents?",
+              "options": [
+                {
+                  "label": "Claiming digital documents are not valid; demanding physical plastic/paper card",
+                  "branch": "default"
+                },
+                {
+                  "label": "Insisting on physically confiscating DL for compounding violation",
+                  "branch": "dl_impound"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "dl_impound"
+          ]
         }
       ]
     },
@@ -150,13 +376,26 @@
               "id": "ragging_severity",
               "text": "Is there immediate physical danger or ongoing violence?",
               "options": [
-                {"label": "Immediate physical assault or ongoing danger", "branch": "immediate_danger"},
-                {"label": "Verbal abuse, intimidation, or forced tasks", "branch": "default"},
-                {"label": "Institution failing to take action", "branch": "ugc_escalation"}
+                {
+                  "label": "Immediate physical assault or ongoing danger",
+                  "branch": "immediate_danger"
+                },
+                {
+                  "label": "Verbal abuse, intimidation, or forced tasks",
+                  "branch": "default"
+                },
+                {
+                  "label": "Institution failing to take action",
+                  "branch": "ugc_escalation"
+                }
               ]
             }
           ],
-          "branches": ["default", "immediate_danger", "ugc_escalation"]
+          "branches": [
+            "default",
+            "immediate_danger",
+            "ugc_escalation"
+          ]
         },
         {
           "id": "ragging_accused",
@@ -168,13 +407,26 @@
               "id": "inquiry_status",
               "text": "Has the Anti-Ragging Committee served formal notice?",
               "options": [
-                {"label": "Called for committee hearing", "branch": "default"},
-                {"label": "Police FIR registered against you", "branch": "police_complaint"},
-                {"label": "Suspension order issued without fair hearing", "branch": "natural_justice_violation"}
+                {
+                  "label": "Called for committee hearing",
+                  "branch": "default"
+                },
+                {
+                  "label": "Police FIR registered against you",
+                  "branch": "police_complaint"
+                },
+                {
+                  "label": "Suspension order issued without fair hearing",
+                  "branch": "natural_justice_violation"
+                }
               ]
             }
           ],
-          "branches": ["default", "police_complaint", "natural_justice_violation"]
+          "branches": [
+            "default",
+            "police_complaint",
+            "natural_justice_violation"
+          ]
         },
         {
           "id": "ragging_witness",
@@ -186,12 +438,21 @@
               "id": "reporting_mode",
               "text": "Do you need confidential or anonymous reporting channels?",
               "options": [
-                {"label": "Standard campus authority reporting", "branch": "default"},
-                {"label": "Anonymous reporting via National Helpline", "branch": "anonymous_channel"}
+                {
+                  "label": "Standard campus authority reporting",
+                  "branch": "default"
+                },
+                {
+                  "label": "Anonymous reporting via National Helpline",
+                  "branch": "anonymous_channel"
+                }
               ]
             }
           ],
-          "branches": ["default", "anonymous_channel"]
+          "branches": [
+            "default",
+            "anonymous_channel"
+          ]
         },
         {
           "id": "campus_harassment",
@@ -203,13 +464,26 @@
               "id": "icc_stage",
               "text": "What step do you wish to initiate?",
               "options": [
-                {"label": "Filing initial ICC written complaint", "branch": "default"},
-                {"label": "Requesting interim relief (hostel change, attendance safeguard)", "branch": "interim_relief"},
-                {"label": "Inquiry committee bias or retaliation", "branch": "retaliation_complaint"}
+                {
+                  "label": "Filing initial ICC written complaint",
+                  "branch": "default"
+                },
+                {
+                  "label": "Requesting interim relief (hostel change, attendance safeguard)",
+                  "branch": "interim_relief"
+                },
+                {
+                  "label": "Inquiry committee bias or retaliation",
+                  "branch": "retaliation_complaint"
+                }
               ]
             }
           ],
-          "branches": ["default", "interim_relief", "retaliation_complaint"]
+          "branches": [
+            "default",
+            "interim_relief",
+            "retaliation_complaint"
+          ]
         },
         {
           "id": "exam_malpractice_allegation",
@@ -221,12 +495,21 @@
               "id": "ufm_stage",
               "text": "What action did the examination flying squad take?",
               "options": [
-                {"label": "Answer sheet taken; UFM form signed", "branch": "default"},
-                {"label": "Appearing before Malpractice Disciplinary Board", "branch": "board_defense"}
+                {
+                  "label": "Answer sheet taken; UFM form signed",
+                  "branch": "default"
+                },
+                {
+                  "label": "Appearing before Malpractice Disciplinary Board",
+                  "branch": "board_defense"
+                }
               ]
             }
           ],
-          "branches": ["default", "board_defense"]
+          "branches": [
+            "default",
+            "board_defense"
+          ]
         },
         {
           "id": "certificate_withheld",
@@ -238,12 +521,21 @@
               "id": "withhold_reason",
               "text": "Why is the college retaining original documents?",
               "options": [
-                {"label": "Claiming pending fee dues or exit fine", "branch": "default"},
-                {"label": "Bond enforcement for dropped course", "branch": "bond_dispute"}
+                {
+                  "label": "Claiming pending fee dues or exit fine",
+                  "branch": "default"
+                },
+                {
+                  "label": "Bond enforcement for dropped course",
+                  "branch": "bond_dispute"
+                }
               ]
             }
           ],
-          "branches": ["default", "bond_dispute"]
+          "branches": [
+            "default",
+            "bond_dispute"
+          ]
         },
         {
           "id": "fee_refund",
@@ -255,12 +547,21 @@
               "id": "cancellation_time",
               "text": "When was the admission withdrawal requested?",
               "options": [
-                {"label": "Before or within 15 days of formal admission deadline", "branch": "default"},
-                {"label": "Institution refusing UGC mandate refund", "branch": "ugc_redressal"}
+                {
+                  "label": "Before or within 15 days of formal admission deadline",
+                  "branch": "default"
+                },
+                {
+                  "label": "Institution refusing UGC mandate refund",
+                  "branch": "ugc_redressal"
+                }
               ]
             }
           ],
-          "branches": ["default", "ugc_redressal"]
+          "branches": [
+            "default",
+            "ugc_redressal"
+          ]
         },
         {
           "id": "suspension_expulsion",
@@ -272,12 +573,21 @@
               "id": "notice_status",
               "text": "Were you issued a show cause notice before the order?",
               "options": [
-                {"label": "Show cause notice received; drafting reply", "branch": "default"},
-                {"label": "Summary suspension without hearing", "branch": "arbitrary_expulsion"}
+                {
+                  "label": "Show cause notice received; drafting reply",
+                  "branch": "default"
+                },
+                {
+                  "label": "Summary suspension without hearing",
+                  "branch": "arbitrary_expulsion"
+                }
               ]
             }
           ],
-          "branches": ["default", "arbitrary_expulsion"]
+          "branches": [
+            "default",
+            "arbitrary_expulsion"
+          ]
         },
         {
           "id": "scholarship_denied",
@@ -289,12 +599,21 @@
               "id": "scheme_type",
               "text": "What type of scholarship is withheld?",
               "options": [
-                {"label": "National / State scholarship portal scheme", "branch": "default"},
-                {"label": "College failing to verify application documents", "branch": "nodal_escalation"}
+                {
+                  "label": "National / State scholarship portal scheme",
+                  "branch": "default"
+                },
+                {
+                  "label": "College failing to verify application documents",
+                  "branch": "nodal_escalation"
+                }
               ]
             }
           ],
-          "branches": ["default", "nodal_escalation"]
+          "branches": [
+            "default",
+            "nodal_escalation"
+          ]
         }
       ]
     },
@@ -314,12 +633,21 @@
               "id": "refusal_reason",
               "text": "What ground is the hotel citing for refusal?",
               "options": [
-                {"label": "Same city / local resident ID restriction", "branch": "default"},
-                {"label": "Demanding marriage certificate", "branch": "unmarried_adult_checkin"}
+                {
+                  "label": "Same city / local resident ID restriction",
+                  "branch": "default"
+                },
+                {
+                  "label": "Demanding marriage certificate",
+                  "branch": "unmarried_adult_checkin"
+                }
               ]
             }
           ],
-          "branches": ["default", "unmarried_adult_checkin"]
+          "branches": [
+            "default",
+            "unmarried_adult_checkin"
+          ]
         },
         {
           "id": "police_detain_couple",
@@ -331,13 +659,26 @@
               "id": "threat_type",
               "text": "What is the officer threatening?",
               "options": [
-                {"label": "Demanding ID and questioning presence in public park", "branch": "default"},
-                {"label": "Threatening to contact parents", "branch": "parent_threat"},
-                {"label": "Demanding spot cash or extortion", "branch": "extortion_demand"}
+                {
+                  "label": "Demanding ID and questioning presence in public park",
+                  "branch": "default"
+                },
+                {
+                  "label": "Threatening to contact parents",
+                  "branch": "parent_threat"
+                },
+                {
+                  "label": "Demanding spot cash or extortion",
+                  "branch": "extortion_demand"
+                }
               ]
             }
           ],
-          "branches": ["default", "parent_threat", "extortion_demand"]
+          "branches": [
+            "default",
+            "parent_threat",
+            "extortion_demand"
+          ]
         },
         {
           "id": "hotel_raid",
@@ -349,12 +690,21 @@
               "id": "raid_conduct",
               "text": "What are the officers claiming?",
               "options": [
-                {"label": "Routine search / suspicious activity claim", "branch": "default"},
-                {"label": "Threatening public indecency charges", "branch": "private_space_defense"}
+                {
+                  "label": "Routine search / suspicious activity claim",
+                  "branch": "default"
+                },
+                {
+                  "label": "Threatening public indecency charges",
+                  "branch": "private_space_defense"
+                }
               ]
             }
           ],
-          "branches": ["default", "private_space_defense"]
+          "branches": [
+            "default",
+            "private_space_defense"
+          ]
         },
         {
           "id": "vigilante_harassment",
@@ -366,12 +716,21 @@
               "id": "vigilante_danger",
               "text": "Is a crowd surrounding you or threatening violence?",
               "options": [
-                {"label": "Active crowd gathering; immediate physical danger", "branch": "immediate_danger"},
-                {"label": "Individual recording video or questioning", "branch": "default"}
+                {
+                  "label": "Active crowd gathering; immediate physical danger",
+                  "branch": "immediate_danger"
+                },
+                {
+                  "label": "Individual recording video or questioning",
+                  "branch": "default"
+                }
               ]
             }
           ],
-          "branches": ["default", "immediate_danger"]
+          "branches": [
+            "default",
+            "immediate_danger"
+          ]
         },
         {
           "id": "family_missing_complaint",
@@ -383,12 +742,21 @@
               "id": "missing_status",
               "text": "Has the police station contacted you or your partner?",
               "options": [
-                {"label": "Police call received regarding missing person report", "branch": "default"},
-                {"label": "Protection petition needed in High Court", "branch": "protection_petition"}
+                {
+                  "label": "Police call received regarding missing person report",
+                  "branch": "default"
+                },
+                {
+                  "label": "Protection petition needed in High Court",
+                  "branch": "protection_petition"
+                }
               ]
             }
           ],
-          "branches": ["default", "protection_petition"]
+          "branches": [
+            "default",
+            "protection_petition"
+          ]
         },
         {
           "id": "partner_under_18",
@@ -400,12 +768,21 @@
               "id": "age_threshold",
               "text": "Is either individual strictly below 18 years of age?",
               "options": [
-                {"label": "One partner is below 18 years", "branch": "default"},
-                {"label": "Allegations of inducement or kidnapping", "branch": "statutory_safeguards"}
+                {
+                  "label": "One partner is below 18 years",
+                  "branch": "default"
+                },
+                {
+                  "label": "Allegations of inducement or kidnapping",
+                  "branch": "statutory_safeguards"
+                }
               ]
             }
           ],
-          "branches": ["default", "statutory_safeguards"]
+          "branches": [
+            "default",
+            "statutory_safeguards"
+          ]
         },
         {
           "id": "honour_threat",
@@ -417,12 +794,21 @@
               "id": "threat_imminence",
               "text": "Are there active physical threats to life or liberty?",
               "options": [
-                {"label": "Immediate physical tracking and threats", "branch": "immediate_danger"},
-                {"label": "Seeking police protection cell / safe home", "branch": "default"}
+                {
+                  "label": "Immediate physical tracking and threats",
+                  "branch": "immediate_danger"
+                },
+                {
+                  "label": "Seeking police protection cell / safe home",
+                  "branch": "default"
+                }
               ]
             }
           ],
-          "branches": ["default", "immediate_danger"]
+          "branches": [
+            "default",
+            "immediate_danger"
+          ]
         },
         {
           "id": "leaked_images_blackmail",
@@ -434,12 +820,21 @@
               "id": "blackmail_stage",
               "text": "What action has the blackmailer taken?",
               "options": [
-                {"label": "Demanding money or sexual favors with threat to leak", "branch": "default"},
-                {"label": "Images already circulated online (urgent takedown)", "branch": "takedown_action"}
+                {
+                  "label": "Demanding money or sexual favors with threat to leak",
+                  "branch": "default"
+                },
+                {
+                  "label": "Images already circulated online (urgent takedown)",
+                  "branch": "takedown_action"
+                }
               ]
             }
           ],
-          "branches": ["default", "takedown_action"]
+          "branches": [
+            "default",
+            "takedown_action"
+          ]
         }
       ]
     },
@@ -459,12 +854,21 @@
               "id": "fraud_recency",
               "text": "When did the unauthorized transaction happen?",
               "options": [
-                {"label": "Within the last 2-3 hours (Golden Hour)", "branch": "default"},
-                {"label": "More than 24 hours ago", "branch": "delayed_reporting"}
+                {
+                  "label": "Within the last 2-3 hours (Golden Hour)",
+                  "branch": "default"
+                },
+                {
+                  "label": "More than 24 hours ago",
+                  "branch": "delayed_reporting"
+                }
               ]
             }
           ],
-          "branches": ["default", "delayed_reporting"]
+          "branches": [
+            "default",
+            "delayed_reporting"
+          ]
         },
         {
           "id": "loan_app_harassment",
@@ -476,13 +880,26 @@
               "id": "loan_harassment_type",
               "text": "What harassment method is the lender using?",
               "options": [
-                {"label": "Threatening calls and messages to your phone", "branch": "default"},
-                {"label": "Calling your family and contacts from address book", "branch": "contact_harassment"},
-                {"label": "Threatening morphed photos / fake notices", "branch": "morphed_blackmail"}
+                {
+                  "label": "Threatening calls and messages to your phone",
+                  "branch": "default"
+                },
+                {
+                  "label": "Calling your family and contacts from address book",
+                  "branch": "contact_harassment"
+                },
+                {
+                  "label": "Threatening morphed photos / fake notices",
+                  "branch": "morphed_blackmail"
+                }
               ]
             }
           ],
-          "branches": ["default", "contact_harassment", "morphed_blackmail"]
+          "branches": [
+            "default",
+            "contact_harassment",
+            "morphed_blackmail"
+          ]
         },
         {
           "id": "account_frozen",
@@ -494,13 +911,26 @@
               "id": "freeze_scope",
               "text": "What information did the bank branch provide?",
               "options": [
-                {"label": "Bank provided Cyber Cell notice number and state", "branch": "default"},
-                {"label": "Bank refused to give police contact details", "branch": "bank_escalation"},
-                {"label": "Lien amount is smaller than total balance", "branch": "partial_freeze"}
+                {
+                  "label": "Bank provided Cyber Cell notice number and state",
+                  "branch": "default"
+                },
+                {
+                  "label": "Bank refused to give police contact details",
+                  "branch": "bank_escalation"
+                },
+                {
+                  "label": "Lien amount is smaller than total balance",
+                  "branch": "partial_freeze"
+                }
               ]
             }
           ],
-          "branches": ["default", "bank_escalation", "partial_freeze"]
+          "branches": [
+            "default",
+            "bank_escalation",
+            "partial_freeze"
+          ]
         },
         {
           "id": "identity_theft",
@@ -512,12 +942,21 @@
               "id": "id_breach_type",
               "text": "What indicator of identity theft was detected?",
               "options": [
-                {"label": "Unknown loans appearing on CIBIL report", "branch": "default"},
-                {"label": "SIM card suddenly deactivated / SIM swap suspected", "branch": "sim_swap"}
+                {
+                  "label": "Unknown loans appearing on CIBIL report",
+                  "branch": "default"
+                },
+                {
+                  "label": "SIM card suddenly deactivated / SIM swap suspected",
+                  "branch": "sim_swap"
+                }
               ]
             }
           ],
-          "branches": ["default", "sim_swap"]
+          "branches": [
+            "default",
+            "sim_swap"
+          ]
         },
         {
           "id": "sextortion",
@@ -529,12 +968,21 @@
               "id": "sextortion_stage",
               "text": "What is the extortionist doing?",
               "options": [
-                {"label": "Demanding immediate payment via UPI", "branch": "default"},
-                {"label": "Caller posing as Cyber Cell / CBI officer", "branch": "fake_officer_call"}
+                {
+                  "label": "Demanding immediate payment via UPI",
+                  "branch": "default"
+                },
+                {
+                  "label": "Caller posing as Cyber Cell / CBI officer",
+                  "branch": "fake_officer_call"
+                }
               ]
             }
           ],
-          "branches": ["default", "fake_officer_call"]
+          "branches": [
+            "default",
+            "fake_officer_call"
+          ]
         },
         {
           "id": "fake_job_offer",
@@ -546,12 +994,73 @@
               "id": "scam_state",
               "text": "Have funds already been transferred?",
               "options": [
-                {"label": "Money paid; now demanding more for 'tax release'", "branch": "default"},
-                {"label": "Offer received; verifying legitimacy before paying", "branch": "prevention_verification"}
+                {
+                  "label": "Money paid; now demanding more for 'tax release'",
+                  "branch": "default"
+                },
+                {
+                  "label": "Offer received; verifying legitimacy before paying",
+                  "branch": "prevention_verification"
+                }
               ]
             }
           ],
-          "branches": ["default", "prevention_verification"]
+          "branches": [
+            "default",
+            "prevention_verification"
+          ]
+        },
+        {
+          "id": "recovery_agent_threats",
+          "label": "Loan Recovery Agent Harassment & Threats",
+          "urgency": 1,
+          "description": "Bank/NBFC recovery agents shouting, visiting home before 8 AM or after 7 PM, or shaming debtor.",
+          "triage_questions": [
+            {
+              "id": "agent_conduct",
+              "text": "What illegal recovery tactic is being used?",
+              "options": [
+                {
+                  "label": "Agents visiting home/office, shouting, or threatening family",
+                  "branch": "default"
+                },
+                {
+                  "label": "Calling before 8:00 AM or after 7:00 PM in violation of RBI code",
+                  "branch": "timing_violation"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "timing_violation"
+          ]
+        },
+        {
+          "id": "cheque_bounce_notice",
+          "label": "Cheque Bounce (Sec 138 NI Act) Notice",
+          "urgency": 2,
+          "description": "Receiving or issuing a 15-day statutory demand notice for dishonoured cheque due to insufficient funds.",
+          "triage_questions": [
+            {
+              "id": "cheque_role",
+              "text": "What is your position in the cheque bounce matter?",
+              "options": [
+                {
+                  "label": "Received 15-day demand notice from creditor advocate",
+                  "branch": "default"
+                },
+                {
+                  "label": "Holding bounced cheque; need to issue statutory demand notice within 30 days",
+                  "branch": "sender_notice"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "sender_notice"
+          ]
         }
       ]
     },
@@ -571,13 +1080,26 @@
               "id": "delay_period",
               "text": "How long has the compensation been delayed?",
               "options": [
-                {"label": "Current employee; salary delayed over 15 days", "branch": "default"},
-                {"label": "Exited employee; FnF withheld past 45 days", "branch": "fnf_dispute"},
-                {"label": "Company claiming business losses or ghosting", "branch": "labor_commissioner"}
+                {
+                  "label": "Current employee; salary delayed over 15 days",
+                  "branch": "default"
+                },
+                {
+                  "label": "Exited employee; FnF withheld past 45 days",
+                  "branch": "fnf_dispute"
+                },
+                {
+                  "label": "Company claiming business losses or ghosting",
+                  "branch": "labor_commissioner"
+                }
               ]
             }
           ],
-          "branches": ["default", "fnf_dispute", "labor_commissioner"]
+          "branches": [
+            "default",
+            "fnf_dispute",
+            "labor_commissioner"
+          ]
         },
         {
           "id": "forced_resignation",
@@ -589,12 +1111,21 @@
               "id": "coercion_status",
               "text": "Have you already submitted a resignation letter?",
               "options": [
-                {"label": "Currently being pressured; have not signed", "branch": "default"},
-                {"label": "Signed under duress / immediate retraction", "branch": "retraction_under_duress"}
+                {
+                  "label": "Currently being pressured; have not signed",
+                  "branch": "default"
+                },
+                {
+                  "label": "Signed under duress / immediate retraction",
+                  "branch": "retraction_under_duress"
+                }
               ]
             }
           ],
-          "branches": ["default", "retraction_under_duress"]
+          "branches": [
+            "default",
+            "retraction_under_duress"
+          ]
         },
         {
           "id": "unpaid_internship",
@@ -606,12 +1137,21 @@
               "id": "intern_issue",
               "text": "What is the primary dispute?",
               "options": [
-                {"label": "Stipend promised in offer letter is not paid", "branch": "default"},
-                {"label": "Internship certificate withheld after completion", "branch": "certificate_withheld"}
+                {
+                  "label": "Stipend promised in offer letter is not paid",
+                  "branch": "default"
+                },
+                {
+                  "label": "Internship certificate withheld after completion",
+                  "branch": "certificate_withheld"
+                }
               ]
             }
           ],
-          "branches": ["default", "certificate_withheld"]
+          "branches": [
+            "default",
+            "certificate_withheld"
+          ]
         },
         {
           "id": "workplace_harassment",
@@ -623,12 +1163,21 @@
               "id": "posh_step",
               "text": "What step do you wish to initiate?",
               "options": [
-                {"label": "Submitting formal complaint to Internal Committee (IC)", "branch": "default"},
-                {"label": "Seeking interim relief during pendency", "branch": "interim_measures"}
+                {
+                  "label": "Submitting formal complaint to Internal Committee (IC)",
+                  "branch": "default"
+                },
+                {
+                  "label": "Seeking interim relief during pendency",
+                  "branch": "interim_measures"
+                }
               ]
             }
           ],
-          "branches": ["default", "interim_measures"]
+          "branches": [
+            "default",
+            "interim_measures"
+          ]
         },
         {
           "id": "contract_before_signing",
@@ -640,12 +1189,21 @@
               "id": "clause_concern",
               "text": "Which clause is concerning in the offer?",
               "options": [
-                {"label": "Financial bond / penalty for leaving within 1-2 years", "branch": "default"},
-                {"label": "Post-employment non-compete restriction", "branch": "non_compete_validity"}
+                {
+                  "label": "Financial bond / penalty for leaving within 1-2 years",
+                  "branch": "default"
+                },
+                {
+                  "label": "Post-employment non-compete restriction",
+                  "branch": "non_compete_validity"
+                }
               ]
             }
           ],
-          "branches": ["default", "non_compete_validity"]
+          "branches": [
+            "default",
+            "non_compete_validity"
+          ]
         },
         {
           "id": "termination",
@@ -657,12 +1215,21 @@
               "id": "term_type",
               "text": "What reason was given for termination?",
               "options": [
-                {"label": "Termination without reason or notice pay", "branch": "default"},
-                {"label": "Termination citing false misconduct allegations", "branch": "misconduct_defense"}
+                {
+                  "label": "Termination without reason or notice pay",
+                  "branch": "default"
+                },
+                {
+                  "label": "Termination citing false misconduct allegations",
+                  "branch": "misconduct_defense"
+                }
               ]
             }
           ],
-          "branches": ["default", "misconduct_defense"]
+          "branches": [
+            "default",
+            "misconduct_defense"
+          ]
         }
       ]
     },
@@ -682,12 +1249,21 @@
               "id": "eviction_nature",
               "text": "What illegal measure has the landlord taken?",
               "options": [
-                {"label": "Threatening to remove belongings without court order", "branch": "default"},
-                {"label": "Cut electricity, water, or changed door locks", "branch": "essential_services_cut"}
+                {
+                  "label": "Threatening to remove belongings without court order",
+                  "branch": "default"
+                },
+                {
+                  "label": "Cut electricity, water, or changed door locks",
+                  "branch": "essential_services_cut"
+                }
               ]
             }
           ],
-          "branches": ["default", "essential_services_cut"]
+          "branches": [
+            "default",
+            "essential_services_cut"
+          ]
         },
         {
           "id": "deposit_not_returned",
@@ -699,12 +1275,21 @@
               "id": "deposit_status",
               "text": "Have you vacated the premises and handed over keys?",
               "options": [
-                {"label": "Premises vacated; landlord delaying refund", "branch": "default"},
-                {"label": "Arbitrary painting/cleaning deductions claimed", "branch": "disputed_deductions"}
+                {
+                  "label": "Premises vacated; landlord delaying refund",
+                  "branch": "default"
+                },
+                {
+                  "label": "Arbitrary painting/cleaning deductions claimed",
+                  "branch": "disputed_deductions"
+                }
               ]
             }
           ],
-          "branches": ["default", "disputed_deductions"]
+          "branches": [
+            "default",
+            "disputed_deductions"
+          ]
         },
         {
           "id": "hostel_pg_dispute",
@@ -716,12 +1301,21 @@
               "id": "pg_issue",
               "text": "What is the nature of the PG dispute?",
               "options": [
-                {"label": "Notice given but deposit refund refused", "branch": "default"},
-                {"label": "Exorbitant arbitrary fines or early curfew penalties", "branch": "arbitrary_fines"}
+                {
+                  "label": "Notice given but deposit refund refused",
+                  "branch": "default"
+                },
+                {
+                  "label": "Exorbitant arbitrary fines or early curfew penalties",
+                  "branch": "arbitrary_fines"
+                }
               ]
             }
           ],
-          "branches": ["default", "arbitrary_fines"]
+          "branches": [
+            "default",
+            "arbitrary_fines"
+          ]
         },
         {
           "id": "landlord_objects_couple",
@@ -733,12 +1327,73 @@
               "id": "visitor_objection",
               "text": "Who is restricting your guests?",
               "options": [
-                {"label": "Landlord objecting to opposite-gender guest", "branch": "default"},
-                {"label": "RWA / Society security stopping entry", "branch": "rwa_interference"}
+                {
+                  "label": "Landlord objecting to opposite-gender guest",
+                  "branch": "default"
+                },
+                {
+                  "label": "RWA / Society security stopping entry",
+                  "branch": "rwa_interference"
+                }
               ]
             }
           ],
-          "branches": ["default", "rwa_interference"]
+          "branches": [
+            "default",
+            "rwa_interference"
+          ]
+        },
+        {
+          "id": "rera_builder_delay",
+          "label": "Builder Delayed Flat Possession (RERA)",
+          "urgency": 2,
+          "description": "Real estate developers delaying apartment possession past agreement date; mandatory interest & refund under RERA.",
+          "triage_questions": [
+            {
+              "id": "rera_relief",
+              "text": "What relief do you wish to claim from the builder?",
+              "options": [
+                {
+                  "label": "Claiming monthly delay interest while waiting for possession",
+                  "branch": "default"
+                },
+                {
+                  "label": "Exiting project & seeking full refund with interest under Sec 18 RERA",
+                  "branch": "full_refund"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "full_refund"
+          ]
+        },
+        {
+          "id": "society_rwa_pet_curfew",
+          "label": "RWA Banning Pets, Bachelors or Adult Guests",
+          "urgency": 3,
+          "description": "Apartment RWAs issuing illegal bye-laws banning pets from lifts, restricting bachelors, or visitor curfews.",
+          "triage_questions": [
+            {
+              "id": "rwa_restriction",
+              "text": "What arbitrary rule is the RWA imposing?",
+              "options": [
+                {
+                  "label": "RWA banning pets from lifts or harassing pet owners/feeders",
+                  "branch": "default"
+                },
+                {
+                  "label": "RWA restricting bachelors, unmarried tenants, or opposite-gender guests",
+                  "branch": "bachelor_ban"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "bachelor_ban"
+          ]
         }
       ]
     },
@@ -758,13 +1413,26 @@
               "id": "dv_urgency",
               "text": "Is there ongoing physical assault or imminent bodily harm?",
               "options": [
-                {"label": "Immediate physical danger / medical emergency", "branch": "immediate_danger"},
-                {"label": "Seeking protection order or residence order", "branch": "default"},
-                {"label": "Facing eviction from shared matrimonial household", "branch": "residence_protection"}
+                {
+                  "label": "Immediate physical danger / medical emergency",
+                  "branch": "immediate_danger"
+                },
+                {
+                  "label": "Seeking protection order or residence order",
+                  "branch": "default"
+                },
+                {
+                  "label": "Facing eviction from shared matrimonial household",
+                  "branch": "residence_protection"
+                }
               ]
             }
           ],
-          "branches": ["default", "immediate_danger", "residence_protection"]
+          "branches": [
+            "default",
+            "immediate_danger",
+            "residence_protection"
+          ]
         },
         {
           "id": "stalking",
@@ -776,12 +1444,21 @@
               "id": "stalking_type",
               "text": "How is the stalking occurring?",
               "options": [
-                {"label": "Digital stalking (messages, social media tracking)", "branch": "default"},
-                {"label": "Physical following / waiting near residence or college", "branch": "physical_stalking"}
+                {
+                  "label": "Digital stalking (messages, social media tracking)",
+                  "branch": "default"
+                },
+                {
+                  "label": "Physical following / waiting near residence or college",
+                  "branch": "physical_stalking"
+                }
               ]
             }
           ],
-          "branches": ["default", "physical_stalking"]
+          "branches": [
+            "default",
+            "physical_stalking"
+          ]
         },
         {
           "id": "child_in_danger",
@@ -793,12 +1470,21 @@
               "id": "child_emergency",
               "text": "What is the urgent concern?",
               "options": [
-                {"label": "Child in immediate physical danger or abuse", "branch": "immediate_danger"},
-                {"label": "Child labor or exploitation reporting", "branch": "default"}
+                {
+                  "label": "Child in immediate physical danger or abuse",
+                  "branch": "immediate_danger"
+                },
+                {
+                  "label": "Child labor or exploitation reporting",
+                  "branch": "default"
+                }
               ]
             }
           ],
-          "branches": ["default", "immediate_danger"]
+          "branches": [
+            "default",
+            "immediate_danger"
+          ]
         },
         {
           "id": "family_pressure_marriage",
@@ -810,12 +1496,104 @@
               "id": "coercion_extent",
               "text": "Are you being physically confined or your documents confiscated?",
               "options": [
-                {"label": "Physical confinement / passport or ID seized", "branch": "immediate_danger"},
-                {"label": "Intense emotional and social pressure", "branch": "default"}
+                {
+                  "label": "Physical confinement / passport or ID seized",
+                  "branch": "immediate_danger"
+                },
+                {
+                  "label": "Intense emotional and social pressure",
+                  "branch": "default"
+                }
               ]
             }
           ],
-          "branches": ["default", "immediate_danger"]
+          "branches": [
+            "default",
+            "immediate_danger"
+          ]
+        },
+        {
+          "id": "emergency_treatment_denial",
+          "label": "Hospital Denying Emergency Treatment",
+          "urgency": 1,
+          "description": "Hospitals refusing treatment or demanding upfront advance deposit before treating road accident or trauma victims.",
+          "triage_questions": [
+            {
+              "id": "emergency_condition",
+              "text": "What is the medical emergency context?",
+              "options": [
+                {
+                  "label": "Road traffic accident or trauma case",
+                  "branch": "default"
+                },
+                {
+                  "label": "Hospital demanding advance deposit before ICU admission",
+                  "branch": "advance_deposit"
+                },
+                {
+                  "label": "Private hospital claiming medico-legal case (MLC) so go to govt hospital",
+                  "branch": "mlc_refusal"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "advance_deposit",
+            "mlc_refusal"
+          ]
+        },
+        {
+          "id": "hospital_hostage_bill",
+          "label": "Hospital Detaining Patient or Body for Unpaid Bill",
+          "urgency": 1,
+          "description": "Hospital withholding discharge, detaining patient, or withholding dead body due to disputed or unpaid medical bills.",
+          "triage_questions": [
+            {
+              "id": "detention_target",
+              "text": "Who or what is being withheld by the hospital?",
+              "options": [
+                {
+                  "label": "Deceased relative's body withheld until bill payment",
+                  "branch": "default"
+                },
+                {
+                  "label": "Living patient prevented from leaving hospital",
+                  "branch": "patient_detained"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "patient_detained"
+          ]
+        },
+        {
+          "id": "blood_bank_replacement",
+          "label": "Blood Bank Demanding Mandatory Replacement Donor",
+          "urgency": 2,
+          "description": "Blood banks refusing to issue life-saving blood without forcing family to arrange replacement donors.",
+          "triage_questions": [
+            {
+              "id": "blood_urgency",
+              "text": "What did the blood bank state?",
+              "options": [
+                {
+                  "label": "Refusing issue in critical emergency without immediate replacement",
+                  "branch": "default"
+                },
+                {
+                  "label": "Overcharging above National Blood Transfusion Council ceiling rates",
+                  "branch": "overcharging"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "overcharging"
+          ]
         }
       ]
     },
@@ -835,12 +1613,21 @@
               "id": "refund_context",
               "text": "What did the seller/service provider state?",
               "options": [
-                {"label": "Citing 'no refund under any condition' policy", "branch": "default"},
-                {"label": "Paid service not delivered or cancelled by company", "branch": "service_deficiency"}
+                {
+                  "label": "Citing 'no refund under any condition' policy",
+                  "branch": "default"
+                },
+                {
+                  "label": "Paid service not delivered or cancelled by company",
+                  "branch": "service_deficiency"
+                }
               ]
             }
           ],
-          "branches": ["default", "service_deficiency"]
+          "branches": [
+            "default",
+            "service_deficiency"
+          ]
         },
         {
           "id": "defective_product",
@@ -852,12 +1639,21 @@
               "id": "warranty_status",
               "text": "Is the product within the stated warranty period?",
               "options": [
-                {"label": "Within warranty; claim rejected arbitrarily", "branch": "default"},
-                {"label": "Product caused physical or property damage", "branch": "product_liability"}
+                {
+                  "label": "Within warranty; claim rejected arbitrarily",
+                  "branch": "default"
+                },
+                {
+                  "label": "Product caused physical or property damage",
+                  "branch": "product_liability"
+                }
               ]
             }
           ],
-          "branches": ["default", "product_liability"]
+          "branches": [
+            "default",
+            "product_liability"
+          ]
         },
         {
           "id": "what_to_sign",
@@ -869,12 +1665,21 @@
               "id": "doc_type",
               "text": "What type of document are you being asked to sign?",
               "options": [
-                {"label": "Blank paper, settlement, or police statement", "branch": "default"},
-                {"label": "Commercial agreement, waiver, or bond", "branch": "commercial_waiver"}
+                {
+                  "label": "Blank paper, settlement, or police statement",
+                  "branch": "default"
+                },
+                {
+                  "label": "Commercial agreement, waiver, or bond",
+                  "branch": "commercial_waiver"
+                }
               ]
             }
           ],
-          "branches": ["default", "commercial_waiver"]
+          "branches": [
+            "default",
+            "commercial_waiver"
+          ]
         },
         {
           "id": "legal_notice_received",
@@ -886,12 +1691,161 @@
               "id": "notice_subject",
               "text": "What matter is addressed in the legal notice?",
               "options": [
-                {"label": "Demand for money, cheque bounce (Sec 138), or debt", "branch": "default"},
-                {"label": "Defamation, trademark, or employment breach claim", "branch": "civil_notice"}
+                {
+                  "label": "Demand for money, cheque bounce (Sec 138), or debt",
+                  "branch": "default"
+                },
+                {
+                  "label": "Defamation, trademark, or employment breach claim",
+                  "branch": "civil_notice"
+                }
               ]
             }
           ],
-          "branches": ["default", "civil_notice"]
+          "branches": [
+            "default",
+            "civil_notice"
+          ]
+        },
+        {
+          "id": "auto_cab_overcharging",
+          "label": "Auto / Taxi Fare Gouging & Meter Refusal",
+          "urgency": 3,
+          "description": "Drivers refusing to run by meter, charging arbitrary surge prices, or refusing short destination routes.",
+          "triage_questions": [
+            {
+              "id": "cab_issue",
+              "text": "What violation occurred?",
+              "options": [
+                {
+                  "label": "Auto driver refusing to go by meter or refusing short distance",
+                  "branch": "default"
+                },
+                {
+                  "label": "App-based cab driver demanding extra cash over in-app fare",
+                  "branch": "cash_demand"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "cash_demand"
+          ]
+        },
+        {
+          "id": "railway_tte_rules",
+          "label": "Train Travel, TTE Rights & RailMadad",
+          "urgency": 2,
+          "description": "TTE inspection rules after 10 PM, RAC/Waitlist passenger rights, and penalty rules on Indian Railways.",
+          "triage_questions": [
+            {
+              "id": "railway_issue",
+              "text": "What is the dispute on board?",
+              "options": [
+                {
+                  "label": "TTE checking tickets or disturbing sleep after 10:00 PM",
+                  "branch": "default"
+                },
+                {
+                  "label": "Traveling on waitlisted/RAC ticket or boarded without reservation",
+                  "branch": "waitlist_rac"
+                },
+                {
+                  "label": "TTE demanding bribe or unreceipted penalty cash",
+                  "branch": "penalty_dispute"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "waitlist_rac",
+            "penalty_dispute"
+          ]
+        },
+        {
+          "id": "flight_delay_cancellation",
+          "label": "Flight Delay, Cancellation & Lost Baggage (DGCA)",
+          "urgency": 2,
+          "description": "Airline passenger rights under DGCA Passenger Charter for flight delays, boarding denial, and transit baggage loss.",
+          "triage_questions": [
+            {
+              "id": "airline_issue",
+              "text": "What disruption did the airline cause?",
+              "options": [
+                {
+                  "label": "Flight delayed over 2-6 hours or cancelled without prior notice",
+                  "branch": "default"
+                },
+                {
+                  "label": "Denied boarding due to airline overbooking",
+                  "branch": "denied_boarding"
+                },
+                {
+                  "label": "Checked baggage lost or delivered damaged",
+                  "branch": "lost_baggage"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "denied_boarding",
+            "lost_baggage"
+          ]
+        },
+        {
+          "id": "rti_application",
+          "label": "Filing Right to Information (RTI Act 2005)",
+          "urgency": 3,
+          "description": "Using RTI for pending government files, passport delays, university exam re-evaluations, or civic works.",
+          "triage_questions": [
+            {
+              "id": "rti_goal",
+              "text": "What public information are you requesting?",
+              "options": [
+                {
+                  "label": "Information on delayed public service, marksheet, or pending file",
+                  "branch": "default"
+                },
+                {
+                  "label": "Filing First Appeal after PIO failed to respond within 30 days",
+                  "branch": "first_appeal"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "first_appeal"
+          ]
+        },
+        {
+          "id": "dark_patterns_subscription",
+          "label": "Dark Patterns & Deceptive Auto-Debit Traps",
+          "urgency": 3,
+          "description": "Apps tricking users into hidden recurring subscriptions, impossible cancellation funnels, and fake timers.",
+          "triage_questions": [
+            {
+              "id": "dark_pattern_type",
+              "text": "What deceptive practice was used?",
+              "options": [
+                {
+                  "label": "Hidden recurring charges without explicit monthly consent (e-mandate breach)",
+                  "branch": "default"
+                },
+                {
+                  "label": "Subscription cancellation button hidden or deliberately broken",
+                  "branch": "cancellation_trap"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "cancellation_trap"
+          ]
         }
       ]
     }
