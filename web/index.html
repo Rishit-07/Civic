@@ -1,46 +1,313 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-IN">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="$FLUTTER_BASE_HREF">
 
+  <!-- Core Meta Tags -->
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="CIVIC - Citizen Legal Rights and Constitutional Guidance.">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>CIVIC | Offline Legal First-Aid, Citizen Rights & AI Legal Help (India)</title>
+  
+  <meta name="description" content="CIVIC empowers Indian citizens with offline legal first-aid and instant AI statutory guidance under BNSS 2023, BNS 2023, the Motor Vehicles Act, and landmark Supreme Court rulings.">
+  <meta name="keywords" content="CIVIC, Indian citizen rights, legal first aid, BNSS 2023, BNS 2023, Motor Vehicles Act 1988, traffic police rules, can police take vehicle keys, DK Basu arrest guidelines, police checkpoint rights India, recording police in public, legal helpline 15100, emergency SOS India, citizen legal defense">
+  <meta name="author" content="CIVIC Intelligence Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#FF5A00">
+  <meta name="color-scheme" content="light dark">
 
-  <!-- iOS meta tags & icons -->
+  <!-- Geo & Regional Tags -->
+  <meta name="geo.region" content="IN">
+  <meta name="geo.placename" content="India">
+
+  <!-- Canonical Link -->
+  <link rel="canonical" href="https://civic.app/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CIVIC - Citizen Legal First-Aid">
+  <meta property="og:title" content="CIVIC | Offline Legal First-Aid & Statutory Intelligence">
+  <meta property="og:description" content="Know your statutory rights in seconds during traffic stops, police encounters, and civil disputes under BNSS 2023, BNS 2023, and the Constitution of India.">
+  <meta property="og:url" content="https://civic.app/">
+  <meta property="og:image" content="https://civic.app/icons/Icon-512.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="CIVIC Shield - Citizen Legal First-Aid Logo">
+  <meta property="og:locale" content="en_IN">
+  <meta property="og:locale:alternate" content="hi_IN">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@CivicLegalApp">
+  <meta name="twitter:creator" content="@CivicLegalApp">
+  <meta name="twitter:title" content="CIVIC | Offline Legal First-Aid & Citizen Rights">
+  <meta name="twitter:description" content="Instant statutory verdicts, verified citizen action steps, and offline emergency guidance for India.">
+  <meta name="twitter:image" content="https://civic.app/icons/Icon-512.png">
+
+  <!-- Mobile Web App & PWA Icons -->
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="CIVIC">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
-
-  <title>Civic - Legal help, right when you ask</title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="manifest" href="manifest.json">
+
+  <!-- Preconnect Google Fonts for Speed -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD Structured Data for Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://civic.app/#app",
+        "name": "CIVIC",
+        "headline": "Offline Legal First-Aid & Constitutional Rights Intelligence for India",
+        "url": "https://civic.app",
+        "applicationCategory": "LegalApplication",
+        "operatingSystem": "All (Web, Android, iOS)",
+        "inLanguage": ["en-IN", "hi-IN"],
+        "description": "Authoritative citizen legal intelligence platform providing real-time statutory guidance, traffic stop rights, arrest procedures, and emergency SOS services.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://civic.app/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can traffic police take the key out of my vehicle ignition in India?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "NO. Traffic police officers have no statutory authority to snatch or remove keys from your vehicle ignition during a routine check. Under the Motor Vehicles Act 1988 (Section 130/206) and Section 106 BNSS 2023, seizure powers apply only under specific warrant or suspected cognizable offense conditions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can citizens video record police officers on public duty in India?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "YES. Citizens have a protected constitutional right to record police officers performing duties in public spaces under Article 19(1)(a) of the Constitution of India, provided the citizen maintains a safe distance and does not obstruct official duties."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can police arrest a woman at night or after sunset in India?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "NO. Under Section 43 of the Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023 (formerly Section 46(4) CrPC), no woman can be arrested after sunset and before sunrise except in extraordinary circumstances with prior written permission from a Judicial Magistrate of the first class."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are my legal rights if detained by police under D.K. Basu guidelines?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Under the landmark Supreme Court ruling in D.K. Basu v. State of West Bengal, an arrested citizen has the right to: know the exact grounds of arrest, have an arrest memo prepared with an independent witness, have a relative or friend informed within 8-12 hours, be medically examined upon arrest, and consult a lawyer of choice."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* Sleek Loading Shell Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #101F18;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #FAFAFA;
+      overflow-x: hidden;
+    }
+
+    #civic-preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 30%, #1A2E25 0%, #101F18 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 999999;
+      transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+    }
+
+    .civic-preloader-content {
+      text-align: center;
+      padding: 24px;
+      max-width: 360px;
+    }
+
+    .civic-logo-badge {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      background: #FF5A00;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 32px rgba(255, 90, 0, 0.35);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 28px;
+      color: #FFFFFF;
+      letter-spacing: -1px;
+    }
+
+    .civic-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin: 0 0 6px;
+      color: #FFFFFF;
+    }
+
+    .civic-subtitle {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #8CA094;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin: 0 0 24px;
+    }
+
+    .civic-progress-bar {
+      width: 160px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .civic-progress-bar-fill {
+      width: 40%;
+      height: 100%;
+      background: #FF5A00;
+      border-radius: 2px;
+      position: absolute;
+      animation: civicProgress 1.4s ease-in-out infinite;
+    }
+
+    @keyframes civicProgress {
+      0% { left: -40%; width: 40%; }
+      50% { left: 40%; width: 50%; }
+      100% { left: 100%; width: 40%; }
+    }
+
+    /* Crawlable Semantic SEO Content Container (Accessible to bots, hidden smoothly behind Flutter canvas) */
+    .civic-seo-semantic-content {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Fallback styles when JavaScript is disabled */
+    noscript .civic-seo-semantic-content {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 0 auto;
+      padding: 32px 20px;
+      max-width: 800px;
+      clip: auto;
+      white-space: normal;
+    }
+    noscript #civic-preloader {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <!--
-    You can customize the "flutter_bootstrap.js" script.
-    This is useful to provide a custom configuration to the Flutter loader
-    or to give the user feedback during the initialization process.
 
-    For more details:
-    * https://docs.flutter.dev/platform-integration/web/initialization
-  -->
+  <!-- Branded Neo-Constructivist Preloader (Shown during initial Flutter compilation/download) -->
+  <div id="civic-preloader" aria-hidden="true">
+    <div class="civic-preloader-content">
+      <div class="civic-logo-badge">C</div>
+      <h2 class="civic-title">CIVIC</h2>
+      <p class="civic-subtitle">Legal First-Aid Engine</p>
+      <div class="civic-progress-bar">
+        <div class="civic-progress-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Semantic SEO Crawlable Content (Googlebot, Bingbot, Indexing Spiders & Screen Readers) -->
+  <div class="civic-seo-semantic-content" role="region" aria-label="CIVIC Statutory Knowledge Base">
+    <header role="banner">
+      <p>CIVIC: Citizen Legal First-Aid Platform for India</p>
+      <p>National Emergency Helpline: 112 | National Legal Services Authority (NALSA): 15100 | Women Helpline: 1091</p>
+    </header>
+
+    <main role="main">
+      <h1>CIVIC: Citizen Legal First-Aid & Statutory Rights Intelligence</h1>
+      <p>CIVIC delivers instant, authoritative plain-language legal guidance for Indian citizens under the latest legislative frameworks including the Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023, Bharatiya Nyaya Sanhita (BNS) 2023, Motor Vehicles Act 1988 (as amended 2019), and Constitutional Rights.</p>
+
+      <section aria-labelledby="section-statutory-frameworks">
+        <h2 id="section-statutory-frameworks">Current Indian Statutory Frameworks Covered</h2>
+        <ul>
+          <li><strong>Bharatiya Nagarik Suraksha Sanhita, 2023 (BNSS)</strong>: Modern procedural safeguards, arrest protocols, search and seizure rules, and digital evidence memos replacing CrPC.</li>
+          <li><strong>Bharatiya Nyaya Sanhita, 2023 (BNS)</strong>: Codified offenses, citizen protections against wrongful restraint (Sec 126), and procedural violations replacing the Indian Penal Code (IPC).</li>
+          <li><strong>Motor Vehicles Act, 1988 & Central Motor Vehicles Rules</strong>: Traffic checkpoint rules, digital document acceptance via Digilocker/mParivahan, and impoundment limitations.</li>
+          <li><strong>Constitution of India</strong>: Fundamental Rights including Article 14 (Equality), Article 19(1)(a) (Freedom of Speech & Recording in Public), Article 20(3) (Right against Self-Incrimination), Article 21 (Right to Life & Personal Liberty), and Article 22 (Protection against Arbitrary Arrest).</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="section-common-scenarios">
+        <h2 id="section-common-scenarios">Key Citizen Rights Scenarios</h2>
+        <article>
+          <h3>Traffic Stop & Vehicle Key Seizure</h3>
+          <p>Traffic police cannot arbitrarily remove vehicle ignition keys or deflate tires. Under Sections 130 and 206 of the Motor Vehicles Act, an officer can ask for documentation inspection. Confiscating keys is strictly unlawful without suspicion of an active cognizable crime.</p>
+        </article>
+
+        <article>
+          <h3>Recording Police Officers in Public</h3>
+          <p>Under Article 19(1)(a) of the Constitution of India, citizens have the recognized right to video-record public officials performing public duties in public areas. Police cannot seize mobile phones or compel citizens to delete footage.</p>
+        </article>
+
+        <article>
+          <h3>D.K. Basu Mandatory Arrest Guidelines</h3>
+          <p>Law enforcement officers must wear visible identification tags with name and designation, prepare an arrest memo countersigned by an independent witness, allow notification to a friend or relative within 8 to 12 hours, and ensure regular medical checkups.</p>
+        </article>
+
+        <article>
+          <h3>Arrest of Women Protocol</h3>
+          <p>Under Section 43 BNSS 2023 (formerly Section 46(4) CrPC), women cannot be arrested after sunset and before sunrise except with prior written order from a Judicial Magistrate. Women must only be arrested by female police officers.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer role="contentinfo">
+      <p>Educational and statutory first-aid resource. For court representation, consult a licensed advocate.</p>
+      <p>&copy; 2026 CIVIC. Built for citizen empowerment across India.</p>
+    </footer>
+  </div>
+
+  <!-- Native Speech & Geolocation JavaScript API Bridges for Flutter Web -->
   <script>
     window.civicSpeechTranscript = '';
     window.isCivicListening = false;
@@ -121,7 +388,31 @@
         );
       });
     };
+
+    // Preloader Dismissal on Flutter First Frame
+    window.addEventListener('flutter-first-frame', function() {
+      const loader = document.getElementById('civic-preloader');
+      if (loader) {
+        loader.style.opacity = '0';
+        loader.style.pointerEvents = 'none';
+        setTimeout(function() {
+          loader.remove();
+        }, 400);
+      }
+    });
+
+    // Fallback timer: dismiss preloader after 6 seconds in case event fires before listener
+    setTimeout(function() {
+      const loader = document.getElementById('civic-preloader');
+      if (loader && loader.style.opacity !== '0') {
+        loader.style.opacity = '0';
+        loader.style.pointerEvents = 'none';
+        setTimeout(function() { loader.remove(); }, 400);
+      }
+    }, 6000);
   </script>
+
+  <!-- Flutter Web Bootstrapper -->
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

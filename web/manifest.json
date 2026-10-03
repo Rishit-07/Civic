@@ -1,12 +1,21 @@
 {
-    "name": "CIVIC",
+    "name": "CIVIC - Citizen Legal First-Aid & Constitutional Rights",
     "short_name": "CIVIC",
-    "start_url": ".",
+    "id": "in.civic.app",
+    "start_url": "./",
+    "scope": "./",
     "display": "standalone",
-    "background_color": "#FAFAFA",
+    "background_color": "#101F18",
     "theme_color": "#FF5A00",
-    "description": "CIVIC - Citizen Legal Rights and Constitutional Guidance.",
+    "description": "Offline legal first-aid and AI statutory guidance for Indian citizens under BNSS 2023, BNS 2023, and the Motor Vehicles Act.",
     "orientation": "portrait-primary",
+    "lang": "en-IN",
+    "categories": [
+        "legal",
+        "utilities",
+        "education",
+        "government"
+    ],
     "prefer_related_applications": false,
     "icons": [
         {
