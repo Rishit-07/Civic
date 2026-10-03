@@ -4,12 +4,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'core/theme/app_theme.dart';
 import 'data/services/app_preferences.dart';
+import 'data/services/prepare_readiness_service.dart';
 import 'data/services/auth_service.dart';
 import 'features/splash_loading/loading_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppPreferences.init();
+  await PrepareReadinessService.init();
 
   try {
     await Firebase.initializeApp(

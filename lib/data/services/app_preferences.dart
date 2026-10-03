@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../core/config/app_config.dart';
 
 /// Centralized local persistent preferences service for CIVIC.
 /// Manages first-launch completion, app language, and jurisdiction state choice.
@@ -20,6 +21,7 @@ class AppPreferences {
     _prefs = await SharedPreferences.getInstance();
     languageNotifier.value = selectedLanguage;
     stateNotifier.value = selectedState;
+    geminiApiKeyNotifier.value = geminiApiKey.isEmpty ? null : geminiApiKey;
   }
 
   /// Whether the user has completed onboarding and sign-in.
@@ -49,6 +51,35 @@ class AppPreferences {
   static Future<void> setSelectedState(String stateCode) async {
     await _prefs?.setString(_keySelectedState, stateCode);
     stateNotifier.value = stateCode;
+  }
+
+  static const String _keyGeminiApiKey = 'gemini_api_key';
+  static const String _keyGeminiModel = 'gemini_model';
+
+  static final ValueNotifier<String?> geminiApiKeyNotifier = ValueNotifier<String?>(null);
+
+  /// Get configured Gemini API key (or build-time environment variable, or local AppConfig).
+  static String get geminiApiKey {
+    const envKey = String.fromEnvironment('GEMINI_API_KEY');
+    if (envKey.isNotEmpty) return envKey;
+    final stored = _prefs?.getString(_keyGeminiApiKey);
+    if (stored != null) return stored.trim();
+    return AppConfig.geminiApiKey;
+  }
+
+  static Future<void> setGeminiApiKey(String key) async {
+    await _prefs?.setString(_keyGeminiApiKey, key.trim());
+    geminiApiKeyNotifier.value = key.trim().isEmpty ? null : key.trim();
+  }
+
+  /// Active Gemini model name (default: gemini-3.8-flash).
+  static String get geminiModel {
+    return _prefs?.getString(_keyGeminiModel) ?? 'gemini-3.8-flash';
+  }
+
+
+  static Future<void> setGeminiModel(String model) async {
+    await _prefs?.setString(_keyGeminiModel, model.trim());
   }
 
   /// Whether the "Choose your state" banner on Home has been dismissed.

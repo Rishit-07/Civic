@@ -77,10 +77,10 @@ void main() {
         ),
       );
 
-      // Fast-forward past the 2-second splash duration + delay
-      await tester.pump(const Duration(milliseconds: 2000));
-      await tester.pump(const Duration(milliseconds: 250));
-      await tester.pumpAndSettle();
+      // Fast-forward past the 2-second splash duration + delay + transition
+      await tester.pump(const Duration(milliseconds: 2100));
+      await tester.pump(const Duration(milliseconds: 500));
+      await tester.pump(const Duration(milliseconds: 100));
 
       // Destination must be MainTabScaffold (Home)
       expect(find.byType(MainTabScaffold), findsOneWidget);
@@ -194,10 +194,10 @@ void main() {
     });
   });
 
-  group('Navigation Flow Domain 5: Home Screen First-Launch State Picker Card', () {
-    testWidgets('First-launch user sees dismissible state picker card on Home',
+  group('Navigation Flow Domain 5: Home Screen Jurisdiction State Picker', () {
+    testWidgets('Home screen displays state selector chip and allows changing state',
         (WidgetTester tester) async {
-      await AppPreferences.setStateCardDismissed(false);
+      await AppPreferences.setSelectedState('ALL');
 
       await tester.pumpWidget(
         const MaterialApp(
@@ -205,23 +205,24 @@ void main() {
         ),
       );
 
-      // Verify dismissible state card is shown
-      expect(find.text('CHOOSE YOUR STATE FOR LOCAL RULES'), findsOneWidget);
-      expect(
-        find.textContaining('Select your state to prioritize local police guidelines'),
-        findsOneWidget,
-      );
+      // Verify jurisdiction state chip is shown in header
+      expect(find.text('ALL-INDIA'), findsOneWidget);
 
-      // Tap close icon to dismiss
-      final closeButton = find.byIcon(Icons.close_rounded);
-      expect(closeButton, findsOneWidget);
-      await tester.tap(closeButton);
-      await tester.pump();
-      await tester.pump(const Duration(milliseconds: 200));
+      // Tap state chip to open bottom sheet
+      await tester.tap(find.text('ALL-INDIA'));
+      await tester.pumpAndSettle();
 
-      // Card must be dismissed and flag set locally
-      expect(find.text('CHOOSE YOUR STATE FOR LOCAL RULES'), findsNothing);
-      expect(AppPreferences.isStateCardDismissed, isTrue);
+      // Bottom sheet is shown with list of states
+      expect(find.text('SELECT JURISDICTION'), findsOneWidget);
+      expect(find.text('Delhi NCT'), findsOneWidget);
+
+      // Select Delhi NCT
+      await tester.tap(find.text('Delhi NCT'));
+      await tester.pumpAndSettle();
+
+      // State is updated to DL
+      expect(AppPreferences.selectedState, equals('DL'));
+      expect(find.text('DL'), findsOneWidget);
     });
   });
 }

@@ -29,7 +29,7 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>CIVIC</title>
+  <title>Civic - Legal help, right when you ask</title>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
@@ -41,6 +41,87 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
+  <script>
+    window.civicSpeechTranscript = '';
+    window.isCivicListening = false;
+    window.civicRec = null;
+
+    window.startCivicSpeech = function(lang) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        console.warn('SpeechRecognition not available in this browser');
+        return false;
+      }
+      try {
+        if (window.civicRec) {
+          try { window.civicRec.abort(); } catch(e) {}
+        }
+        const rec = new SpeechRecognition();
+        rec.continuous = true;
+        rec.interimResults = true;
+        rec.lang = lang || 'en-IN';
+
+        window.civicSpeechTranscript = '';
+        window.isCivicListening = true;
+
+        rec.onresult = function(event) {
+          let str = '';
+          for (let i = 0; i < event.results.length; ++i) {
+            str += event.results[i][0].transcript;
+          }
+          window.civicSpeechTranscript = str;
+        };
+
+        rec.onend = function() {
+          window.isCivicListening = false;
+        };
+
+        rec.onerror = function(event) {
+          console.warn('Speech recognition error:', event.error);
+        };
+
+        rec.start();
+        window.civicRec = rec;
+        return true;
+      } catch (e) {
+        console.warn('Could not start speech recognition:', e);
+        return false;
+      }
+    };
+
+    window.stopCivicSpeech = function() {
+      if (window.civicRec) {
+        try {
+          window.civicRec.stop();
+        } catch(e) {}
+      }
+      window.isCivicListening = false;
+      return window.civicSpeechTranscript || '';
+    };
+
+    window.getCivicLocationAsync = function() {
+      return new Promise(function(resolve) {
+        if (!navigator.geolocation) {
+          console.warn('Geolocation not supported in this browser');
+          resolve('');
+          return;
+        }
+        navigator.geolocation.getCurrentPosition(
+          function(pos) {
+            var lat = pos.coords.latitude;
+            var lng = pos.coords.longitude;
+            var acc = Math.round(pos.coords.accuracy || 10);
+            resolve(lat + ',' + lng + ',' + acc);
+          },
+          function(err) {
+            console.warn('Geolocation error:', err ? err.message : 'Unknown');
+            resolve('');
+          },
+          { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+        );
+      });
+    };
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
