@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "providers": {
+      "anonymous": true,
+      "emailPassword": true,
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "CIVIC",
+        "supportEmail": "sairishitsunku@gmail.com",
+        "authorizedRedirectUris": [
+          "https://civic-84e44.firebaseapp.com/__/auth/handler",
+          "http://localhost"
+        ]
+      }
+    }
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "civic-84e44",
+          "appId": "1:1091669817384:android:abe313bcc4859b6edf1d1d",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "civic-84e44",
+          "configurations": {
+            "android": "1:1091669817384:android:abe313bcc4859b6edf1d1d",
+            "web": "1:1091669817384:web:02998adbc67c7b41df1d1d",
+            "windows": "1:1091669817384:web:0109b9b573acfd32df1d1d"
+          }
+        }
+      }
+    }
+  }
+}

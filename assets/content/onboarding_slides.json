@@ -1,0 +1,32 @@
+[
+  {
+    "id": "know",
+    "stepNumber": "01",
+    "badge": "STEP 01 // KNOWLEDGE",
+    "title": "KNOW",
+    "headline": "KNOW YOUR CITIZEN RIGHTS",
+    "description": "Clear statutory protocols and fundamental rights organized for immediate recall during everyday encounters.",
+    "themeTag": "FOUNDATIONAL_AWARENESS",
+    "icon": "balance"
+  },
+  {
+    "id": "prepare",
+    "stepNumber": "02",
+    "badge": "STEP 02 // READINESS",
+    "title": "PREPARE",
+    "headline": "PREPARE WITH STRUCTURE",
+    "description": "Essential emergency checklists, verified contacts, and procedural safeguards ready when seconds matter.",
+    "themeTag": "PROCEDURAL_SAFETY",
+    "icon": "shield"
+  },
+  {
+    "id": "act",
+    "stepNumber": "03",
+    "badge": "STEP 03 // AGENCY",
+    "title": "ACT",
+    "headline": "ACT WITH CONFIDENCE",
+    "description": "Document encounters securely, access legal assistance channels, and exercise constitutional remedies calmly.",
+    "themeTag": "CONSTITUTIONAL_REMEDY",
+    "icon": "gavel"
+  }
+]

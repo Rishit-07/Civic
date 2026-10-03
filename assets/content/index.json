@@ -1,0 +1,899 @@
+{
+  "categories": [
+    {
+      "id": "police_criminal",
+      "label": "POLICE & CRIMINAL",
+      "icon": "shield",
+      "description": "Protocols for vehicle checks, detention, searches, and official notices.",
+      "scenarios": [
+        {
+          "id": "traffic_stop",
+          "label": "Stopped for Vehicle Check",
+          "urgency": 2,
+          "description": "Routine checkpoints, document verification, and on-spot challans.",
+          "triage_questions": [
+            {
+              "id": "stop_nature",
+              "text": "What is the officer requesting?",
+              "options": [
+                {"label": "Document inspection or routine check", "branch": "default"},
+                {"label": "Demanding cash or threatening seizure without challan", "branch": "dispute_seizure"},
+                {"label": "Suspecting intoxication / breathalyzer test", "branch": "sobriety_test"}
+              ]
+            }
+          ],
+          "branches": ["default", "dispute_seizure", "sobriety_test"]
+        },
+        {
+          "id": "arrest_detention",
+          "label": "Arrest & Police Custody",
+          "urgency": 1,
+          "description": "Formal detention, arrest memos, interrogation, and custodial rights.",
+          "triage_questions": [
+            {
+              "id": "arrest_phase",
+              "text": "What is the current status of detention?",
+              "options": [
+                {"label": "Being questioned or asked to come to station", "branch": "default"},
+                {"label": "Handcuffed or formally placed under arrest", "branch": "formal_arrest"},
+                {"label": "Detained overnight or over 24 hours", "branch": "magistrate_production"}
+              ]
+            }
+          ],
+          "branches": ["default", "formal_arrest", "magistrate_production"]
+        },
+        {
+          "id": "police_at_door_search",
+          "label": "Police at Door / Home Search",
+          "urgency": 1,
+          "description": "Police arrival at private residence, search warrants, and female resident protections.",
+          "triage_questions": [
+            {
+              "id": "warrant_presence",
+              "text": "Do the officers present a signed search warrant?",
+              "options": [
+                {"label": "No warrant shown, asking to enter", "branch": "default"},
+                {"label": "Warrant produced from magistrate", "branch": "warrant_search"},
+                {"label": "Female occupants inside after sunset", "branch": "female_resident_search"}
+              ]
+            }
+          ],
+          "branches": ["default", "warrant_search", "female_resident_search"]
+        },
+        {
+          "id": "fir_refused",
+          "label": "Police Station Refusing to File FIR",
+          "urgency": 2,
+          "description": "Remedies when station house officer declines to register a cognizable offense complaint.",
+          "triage_questions": [
+            {
+              "id": "refusal_type",
+              "text": "Why was the FIR registration declined?",
+              "options": [
+                {"label": "Told it is outside jurisdiction (Zero FIR applicable)", "branch": "default"},
+                {"label": "Officer advising informal compromise instead", "branch": "informal_pressure"},
+                {"label": "Outright refusal without reason", "branch": "sp_magistrate_escalation"}
+              ]
+            }
+          ],
+          "branches": ["default", "informal_pressure", "sp_magistrate_escalation"]
+        },
+        {
+          "id": "false_accusation",
+          "label": "False Criminal Accusation / FIR",
+          "urgency": 1,
+          "description": "Steps when named falsely in a police report or threatened with fabricated charges.",
+          "triage_questions": [
+            {
+              "id": "allegation_stage",
+              "text": "What official stage has the complaint reached?",
+              "options": [
+                {"label": "Threat of FIR made by other party", "branch": "default"},
+                {"label": "FIR officially registered; arrest imminent", "branch": "anticipatory_bail"},
+                {"label": "Seeking quashing of frivolous complaint", "branch": "quash_petition"}
+              ]
+            }
+          ],
+          "branches": ["default", "anticipatory_bail", "quash_petition"]
+        },
+        {
+          "id": "summons_notice",
+          "label": "Police Summons / Notice (Sec 41A / 35)",
+          "urgency": 2,
+          "description": "Receiving formal notice to appear for inquiry or statement recording.",
+          "triage_questions": [
+            {
+              "id": "summons_type",
+              "text": "How was the notice delivered?",
+              "options": [
+                {"label": "Formal written notice received with date", "branch": "default"},
+                {"label": "Informal phone call or WhatsApp message", "branch": "informal_summons"},
+                {"label": "Unable to attend on specified date", "branch": "adjournment_request"}
+              ]
+            }
+          ],
+          "branches": ["default", "informal_summons", "adjournment_request"]
+        },
+        {
+          "id": "asked_for_bribe",
+          "label": "Demand for Bribe by Public Servant",
+          "urgency": 2,
+          "description": "Corrupt demands for official work, vigilance reporting, and evidence safety.",
+          "triage_questions": [
+            {
+              "id": "bribe_context",
+              "text": "What is the public official withholding?",
+              "options": [
+                {"label": "Withholding public document, NOC, or license", "branch": "default"},
+                {"label": "Police demanding cash to drop action", "branch": "police_extortion"},
+                {"label": "Filing formal Anti-Corruption Bureau complaint", "branch": "acb_trap"}
+              ]
+            }
+          ],
+          "branches": ["default", "police_extortion", "acb_trap"]
+        }
+      ]
+    },
+    {
+      "id": "campus",
+      "label": "CAMPUS",
+      "icon": "school",
+      "description": "Protections for university students against ragging, harassment, academic penalties, and fee disputes.",
+      "scenarios": [
+        {
+          "id": "ragging_victim",
+          "label": "Victim of Campus Ragging",
+          "urgency": 1,
+          "description": "Physical, mental, or psychological harassment by senior students.",
+          "triage_questions": [
+            {
+              "id": "ragging_severity",
+              "text": "Is there immediate physical danger or ongoing violence?",
+              "options": [
+                {"label": "Immediate physical assault or ongoing danger", "branch": "immediate_danger"},
+                {"label": "Verbal abuse, intimidation, or forced tasks", "branch": "default"},
+                {"label": "Institution failing to take action", "branch": "ugc_escalation"}
+              ]
+            }
+          ],
+          "branches": ["default", "immediate_danger", "ugc_escalation"]
+        },
+        {
+          "id": "ragging_accused",
+          "label": "Accused of Campus Ragging",
+          "urgency": 2,
+          "description": "Named in an inquiry or facing Anti-Ragging Committee disciplinary hearings.",
+          "triage_questions": [
+            {
+              "id": "inquiry_status",
+              "text": "Has the Anti-Ragging Committee served formal notice?",
+              "options": [
+                {"label": "Called for committee hearing", "branch": "default"},
+                {"label": "Police FIR registered against you", "branch": "police_complaint"},
+                {"label": "Suspension order issued without fair hearing", "branch": "natural_justice_violation"}
+              ]
+            }
+          ],
+          "branches": ["default", "police_complaint", "natural_justice_violation"]
+        },
+        {
+          "id": "ragging_witness",
+          "label": "Witness to Campus Ragging",
+          "urgency": 2,
+          "description": "Witnessing abuse, confidential reporting options, and whistleblower protections.",
+          "triage_questions": [
+            {
+              "id": "reporting_mode",
+              "text": "Do you need confidential or anonymous reporting channels?",
+              "options": [
+                {"label": "Standard campus authority reporting", "branch": "default"},
+                {"label": "Anonymous reporting via National Helpline", "branch": "anonymous_channel"}
+              ]
+            }
+          ],
+          "branches": ["default", "anonymous_channel"]
+        },
+        {
+          "id": "campus_harassment",
+          "label": "Sexual Harassment on Campus (ICC / POSH)",
+          "urgency": 1,
+          "description": "Reporting to Internal Complaints Committee (ICC) and interim safety protections.",
+          "triage_questions": [
+            {
+              "id": "icc_stage",
+              "text": "What step do you wish to initiate?",
+              "options": [
+                {"label": "Filing initial ICC written complaint", "branch": "default"},
+                {"label": "Requesting interim relief (hostel change, attendance safeguard)", "branch": "interim_relief"},
+                {"label": "Inquiry committee bias or retaliation", "branch": "retaliation_complaint"}
+              ]
+            }
+          ],
+          "branches": ["default", "interim_relief", "retaliation_complaint"]
+        },
+        {
+          "id": "exam_malpractice_allegation",
+          "label": "Exam Malpractice Allegation",
+          "urgency": 2,
+          "description": "Booked under unfair means (UFM) or disciplinary board examination summons.",
+          "triage_questions": [
+            {
+              "id": "ufm_stage",
+              "text": "What action did the examination flying squad take?",
+              "options": [
+                {"label": "Answer sheet taken; UFM form signed", "branch": "default"},
+                {"label": "Appearing before Malpractice Disciplinary Board", "branch": "board_defense"}
+              ]
+            }
+          ],
+          "branches": ["default", "board_defense"]
+        },
+        {
+          "id": "certificate_withheld",
+          "label": "Original Certificates / Degrees Withheld",
+          "urgency": 3,
+          "description": "College illegally holding original mark sheets, transfer certificates, or diplomas.",
+          "triage_questions": [
+            {
+              "id": "withhold_reason",
+              "text": "Why is the college retaining original documents?",
+              "options": [
+                {"label": "Claiming pending fee dues or exit fine", "branch": "default"},
+                {"label": "Bond enforcement for dropped course", "branch": "bond_dispute"}
+              ]
+            }
+          ],
+          "branches": ["default", "bond_dispute"]
+        },
+        {
+          "id": "fee_refund",
+          "label": "College Fee Refund Dispute",
+          "urgency": 3,
+          "description": "Cancellation of admission within UGC refund notification timelines.",
+          "triage_questions": [
+            {
+              "id": "cancellation_time",
+              "text": "When was the admission withdrawal requested?",
+              "options": [
+                {"label": "Before or within 15 days of formal admission deadline", "branch": "default"},
+                {"label": "Institution refusing UGC mandate refund", "branch": "ugc_redressal"}
+              ]
+            }
+          ],
+          "branches": ["default", "ugc_redressal"]
+        },
+        {
+          "id": "suspension_expulsion",
+          "label": "Suspension or Expulsion Notice",
+          "urgency": 2,
+          "description": "Arbitrary rustication without show-cause notice or due disciplinary process.",
+          "triage_questions": [
+            {
+              "id": "notice_status",
+              "text": "Were you issued a show cause notice before the order?",
+              "options": [
+                {"label": "Show cause notice received; drafting reply", "branch": "default"},
+                {"label": "Summary suspension without hearing", "branch": "arbitrary_expulsion"}
+              ]
+            }
+          ],
+          "branches": ["default", "arbitrary_expulsion"]
+        },
+        {
+          "id": "scholarship_denied",
+          "label": "Scholarship or Fellowship Denied / Delayed",
+          "urgency": 3,
+          "description": "Government or institutional scholarship fund delays and non-disbursement.",
+          "triage_questions": [
+            {
+              "id": "scheme_type",
+              "text": "What type of scholarship is withheld?",
+              "options": [
+                {"label": "National / State scholarship portal scheme", "branch": "default"},
+                {"label": "College failing to verify application documents", "branch": "nodal_escalation"}
+              ]
+            }
+          ],
+          "branches": ["default", "nodal_escalation"]
+        }
+      ]
+    },
+    {
+      "id": "couples_public",
+      "label": "COUPLES & PUBLIC",
+      "icon": "favorite",
+      "description": "Rights for consenting adult couples in hotels, parks, and against moral policing.",
+      "scenarios": [
+        {
+          "id": "hotel_refusal",
+          "label": "Hotel Refusal to Adult Couple",
+          "urgency": 2,
+          "description": "Hotels denying room check-in to consenting adult couples with valid ID.",
+          "triage_questions": [
+            {
+              "id": "refusal_reason",
+              "text": "What ground is the hotel citing for refusal?",
+              "options": [
+                {"label": "Same city / local resident ID restriction", "branch": "default"},
+                {"label": "Demanding marriage certificate", "branch": "unmarried_adult_checkin"}
+              ]
+            }
+          ],
+          "branches": ["default", "unmarried_adult_checkin"]
+        },
+        {
+          "id": "police_detain_couple",
+          "label": "Police Questioning / Detaining Couple in Public",
+          "urgency": 1,
+          "description": "Interrogation, moral policing, or threats of calling parents in public spaces.",
+          "triage_questions": [
+            {
+              "id": "threat_type",
+              "text": "What is the officer threatening?",
+              "options": [
+                {"label": "Demanding ID and questioning presence in public park", "branch": "default"},
+                {"label": "Threatening to contact parents", "branch": "parent_threat"},
+                {"label": "Demanding spot cash or extortion", "branch": "extortion_demand"}
+              ]
+            }
+          ],
+          "branches": ["default", "parent_threat", "extortion_demand"]
+        },
+        {
+          "id": "hotel_raid",
+          "label": "Police Raid on Hotel Room",
+          "urgency": 1,
+          "description": "Police entering private hotel rooms occupied by consenting adults.",
+          "triage_questions": [
+            {
+              "id": "raid_conduct",
+              "text": "What are the officers claiming?",
+              "options": [
+                {"label": "Routine search / suspicious activity claim", "branch": "default"},
+                {"label": "Threatening public indecency charges", "branch": "private_space_defense"}
+              ]
+            }
+          ],
+          "branches": ["default", "private_space_defense"]
+        },
+        {
+          "id": "vigilante_harassment",
+          "label": "Moral Policing & Vigilante Harassment",
+          "urgency": 1,
+          "description": "Unlawful restraint, filming, or intimidation by public vigilante groups.",
+          "triage_questions": [
+            {
+              "id": "vigilante_danger",
+              "text": "Is a crowd surrounding you or threatening violence?",
+              "options": [
+                {"label": "Active crowd gathering; immediate physical danger", "branch": "immediate_danger"},
+                {"label": "Individual recording video or questioning", "branch": "default"}
+              ]
+            }
+          ],
+          "branches": ["default", "immediate_danger"]
+        },
+        {
+          "id": "family_missing_complaint",
+          "label": "Family Filed False Missing / Kidnapping Report",
+          "urgency": 1,
+          "description": "Adult couple facing false abduction complaints filed by non-consenting families.",
+          "triage_questions": [
+            {
+              "id": "missing_status",
+              "text": "Has the police station contacted you or your partner?",
+              "options": [
+                {"label": "Police call received regarding missing person report", "branch": "default"},
+                {"label": "Protection petition needed in High Court", "branch": "protection_petition"}
+              ]
+            }
+          ],
+          "branches": ["default", "protection_petition"]
+        },
+        {
+          "id": "partner_under_18",
+          "label": "POCSO Implications (Partner Near 18)",
+          "urgency": 1,
+          "description": "Navigating statutory consent thresholds and mandatory legal protections.",
+          "triage_questions": [
+            {
+              "id": "age_threshold",
+              "text": "Is either individual strictly below 18 years of age?",
+              "options": [
+                {"label": "One partner is below 18 years", "branch": "default"},
+                {"label": "Allegations of inducement or kidnapping", "branch": "statutory_safeguards"}
+              ]
+            }
+          ],
+          "branches": ["default", "statutory_safeguards"]
+        },
+        {
+          "id": "honour_threat",
+          "label": "Inter-Faith / Inter-Caste Marriage Threat",
+          "urgency": 1,
+          "description": "Threats to life or liberty from family members; safe house and court protection.",
+          "triage_questions": [
+            {
+              "id": "threat_imminence",
+              "text": "Are there active physical threats to life or liberty?",
+              "options": [
+                {"label": "Immediate physical tracking and threats", "branch": "immediate_danger"},
+                {"label": "Seeking police protection cell / safe home", "branch": "default"}
+              ]
+            }
+          ],
+          "branches": ["default", "immediate_danger"]
+        },
+        {
+          "id": "leaked_images_blackmail",
+          "label": "Leaked Intimate Media & Blackmail",
+          "urgency": 1,
+          "description": "Non-consensual sharing of intimate images, extortion threats, and takedown procedures.",
+          "triage_questions": [
+            {
+              "id": "blackmail_stage",
+              "text": "What action has the blackmailer taken?",
+              "options": [
+                {"label": "Demanding money or sexual favors with threat to leak", "branch": "default"},
+                {"label": "Images already circulated online (urgent takedown)", "branch": "takedown_action"}
+              ]
+            }
+          ],
+          "branches": ["default", "takedown_action"]
+        }
+      ]
+    },
+    {
+      "id": "online_money",
+      "label": "ONLINE & MONEY",
+      "icon": "payment",
+      "description": "Remedies for cyber financial fraud, predatory loan apps, frozen accounts, and digital blackmail.",
+      "scenarios": [
+        {
+          "id": "upi_fraud",
+          "label": "UPI / Bank Transfer Fraud",
+          "urgency": 1,
+          "description": "Unauthorized account debits, fraudulent payment links, and golden-hour freeze reporting.",
+          "triage_questions": [
+            {
+              "id": "fraud_recency",
+              "text": "When did the unauthorized transaction happen?",
+              "options": [
+                {"label": "Within the last 2-3 hours (Golden Hour)", "branch": "default"},
+                {"label": "More than 24 hours ago", "branch": "delayed_reporting"}
+              ]
+            }
+          ],
+          "branches": ["default", "delayed_reporting"]
+        },
+        {
+          "id": "loan_app_harassment",
+          "label": "Predatory Loan App Harassment",
+          "urgency": 1,
+          "description": "Unregistered instant loan apps accessing contact lists and sending morphed photo threats.",
+          "triage_questions": [
+            {
+              "id": "loan_harassment_type",
+              "text": "What harassment method is the lender using?",
+              "options": [
+                {"label": "Threatening calls and messages to your phone", "branch": "default"},
+                {"label": "Calling your family and contacts from address book", "branch": "contact_harassment"},
+                {"label": "Threatening morphed photos / fake notices", "branch": "morphed_blackmail"}
+              ]
+            }
+          ],
+          "branches": ["default", "contact_harassment", "morphed_blackmail"]
+        },
+        {
+          "id": "account_frozen",
+          "label": "Bank Account Frozen by Cyber Police",
+          "urgency": 2,
+          "description": "Savings account debit-freeze under Sec 102/106 CrPC/BNSS linked to third-party fraud trail.",
+          "triage_questions": [
+            {
+              "id": "freeze_scope",
+              "text": "What information did the bank branch provide?",
+              "options": [
+                {"label": "Bank provided Cyber Cell notice number and state", "branch": "default"},
+                {"label": "Bank refused to give police contact details", "branch": "bank_escalation"},
+                {"label": "Lien amount is smaller than total balance", "branch": "partial_freeze"}
+              ]
+            }
+          ],
+          "branches": ["default", "bank_escalation", "partial_freeze"]
+        },
+        {
+          "id": "identity_theft",
+          "label": "Identity Theft & SIM Swap",
+          "urgency": 1,
+          "description": "PAN/Aadhaar misuse, unauthorized loan accounts, or sudden cellular signal disconnection.",
+          "triage_questions": [
+            {
+              "id": "id_breach_type",
+              "text": "What indicator of identity theft was detected?",
+              "options": [
+                {"label": "Unknown loans appearing on CIBIL report", "branch": "default"},
+                {"label": "SIM card suddenly deactivated / SIM swap suspected", "branch": "sim_swap"}
+              ]
+            }
+          ],
+          "branches": ["default", "sim_swap"]
+        },
+        {
+          "id": "sextortion",
+          "label": "Video Call Sextortion Trap",
+          "urgency": 1,
+          "description": "WhatsApp video call recording, morphed video threats, and fake police caller extortion.",
+          "triage_questions": [
+            {
+              "id": "sextortion_stage",
+              "text": "What is the extortionist doing?",
+              "options": [
+                {"label": "Demanding immediate payment via UPI", "branch": "default"},
+                {"label": "Caller posing as Cyber Cell / CBI officer", "branch": "fake_officer_call"}
+              ]
+            }
+          ],
+          "branches": ["default", "fake_officer_call"]
+        },
+        {
+          "id": "fake_job_offer",
+          "label": "Fake Job Offer / Task Scam",
+          "urgency": 2,
+          "description": "Telegram task scams, work-from-home prepayments, and bogus recruitment fees.",
+          "triage_questions": [
+            {
+              "id": "scam_state",
+              "text": "Have funds already been transferred?",
+              "options": [
+                {"label": "Money paid; now demanding more for 'tax release'", "branch": "default"},
+                {"label": "Offer received; verifying legitimacy before paying", "branch": "prevention_verification"}
+              ]
+            }
+          ],
+          "branches": ["default", "prevention_verification"]
+        }
+      ]
+    },
+    {
+      "id": "work",
+      "label": "WORK",
+      "icon": "work",
+      "description": "Workplace protections against withheld wages, forced exits, illegal termination, and toxic contracts.",
+      "scenarios": [
+        {
+          "id": "salary_unpaid",
+          "label": "Salary / Dues Withheld by Employer",
+          "urgency": 2,
+          "description": "Non-payment of earned wages, full-and-final settlement delays, and gratuity disputes.",
+          "triage_questions": [
+            {
+              "id": "delay_period",
+              "text": "How long has the compensation been delayed?",
+              "options": [
+                {"label": "Current employee; salary delayed over 15 days", "branch": "default"},
+                {"label": "Exited employee; FnF withheld past 45 days", "branch": "fnf_dispute"},
+                {"label": "Company claiming business losses or ghosting", "branch": "labor_commissioner"}
+              ]
+            }
+          ],
+          "branches": ["default", "fnf_dispute", "labor_commissioner"]
+        },
+        {
+          "id": "forced_resignation",
+          "label": "Forced / Coerced Resignation",
+          "urgency": 2,
+          "description": "Employer coercing voluntary resignation to avoid severance or notice pay.",
+          "triage_questions": [
+            {
+              "id": "coercion_status",
+              "text": "Have you already submitted a resignation letter?",
+              "options": [
+                {"label": "Currently being pressured; have not signed", "branch": "default"},
+                {"label": "Signed under duress / immediate retraction", "branch": "retraction_under_duress"}
+              ]
+            }
+          ],
+          "branches": ["default", "retraction_under_duress"]
+        },
+        {
+          "id": "unpaid_internship",
+          "label": "Unpaid Internship & Stipend Default",
+          "urgency": 3,
+          "description": "Full-time work under the guise of an internship without promised stipend or completion certificate.",
+          "triage_questions": [
+            {
+              "id": "intern_issue",
+              "text": "What is the primary dispute?",
+              "options": [
+                {"label": "Stipend promised in offer letter is not paid", "branch": "default"},
+                {"label": "Internship certificate withheld after completion", "branch": "certificate_withheld"}
+              ]
+            }
+          ],
+          "branches": ["default", "certificate_withheld"]
+        },
+        {
+          "id": "workplace_harassment",
+          "label": "Workplace Sexual Harassment (POSH)",
+          "urgency": 1,
+          "description": "Hostile work environment, unwelcome conduct, and Internal Committee complaint procedures.",
+          "triage_questions": [
+            {
+              "id": "posh_step",
+              "text": "What step do you wish to initiate?",
+              "options": [
+                {"label": "Submitting formal complaint to Internal Committee (IC)", "branch": "default"},
+                {"label": "Seeking interim relief during pendency", "branch": "interim_measures"}
+              ]
+            }
+          ],
+          "branches": ["default", "interim_measures"]
+        },
+        {
+          "id": "contract_before_signing",
+          "label": "Employment Contract Review Before Signing",
+          "urgency": 3,
+          "description": "Checking for illegal non-compete clauses, exorbitant exit bond penalties, and notice locks.",
+          "triage_questions": [
+            {
+              "id": "clause_concern",
+              "text": "Which clause is concerning in the offer?",
+              "options": [
+                {"label": "Financial bond / penalty for leaving within 1-2 years", "branch": "default"},
+                {"label": "Post-employment non-compete restriction", "branch": "non_compete_validity"}
+              ]
+            }
+          ],
+          "branches": ["default", "non_compete_validity"]
+        },
+        {
+          "id": "termination",
+          "label": "Sudden Termination Without Notice",
+          "urgency": 2,
+          "description": "Immediate firing without cause, severance, or contractual notice period pay.",
+          "triage_questions": [
+            {
+              "id": "term_type",
+              "text": "What reason was given for termination?",
+              "options": [
+                {"label": "Termination without reason or notice pay", "branch": "default"},
+                {"label": "Termination citing false misconduct allegations", "branch": "misconduct_defense"}
+              ]
+            }
+          ],
+          "branches": ["default", "misconduct_defense"]
+        }
+      ]
+    },
+    {
+      "id": "housing",
+      "label": "HOUSING",
+      "icon": "apartment",
+      "description": "Tenant protections against unlawful eviction, deposit deductions, PG curfew fines, and moral scrutiny.",
+      "scenarios": [
+        {
+          "id": "eviction_lockout",
+          "label": "Illegal Eviction / Lockout",
+          "urgency": 1,
+          "description": "Landlord changing locks, cutting electricity/water, or threatening immediate removal.",
+          "triage_questions": [
+            {
+              "id": "eviction_nature",
+              "text": "What illegal measure has the landlord taken?",
+              "options": [
+                {"label": "Threatening to remove belongings without court order", "branch": "default"},
+                {"label": "Cut electricity, water, or changed door locks", "branch": "essential_services_cut"}
+              ]
+            }
+          ],
+          "branches": ["default", "essential_services_cut"]
+        },
+        {
+          "id": "deposit_not_returned",
+          "label": "Rental Security Deposit Not Returned",
+          "urgency": 2,
+          "description": "Arbitrary deductions for normal wear-and-tear or refusal to refund deposit upon move-out.",
+          "triage_questions": [
+            {
+              "id": "deposit_status",
+              "text": "Have you vacated the premises and handed over keys?",
+              "options": [
+                {"label": "Premises vacated; landlord delaying refund", "branch": "default"},
+                {"label": "Arbitrary painting/cleaning deductions claimed", "branch": "disputed_deductions"}
+              ]
+            }
+          ],
+          "branches": ["default", "disputed_deductions"]
+        },
+        {
+          "id": "hostel_pg_dispute",
+          "label": "Hostel / PG Rule & Deposit Disputes",
+          "urgency": 2,
+          "description": "Discriminatory curfew fines, sudden rent hikes, and non-refundable PG deposits.",
+          "triage_questions": [
+            {
+              "id": "pg_issue",
+              "text": "What is the nature of the PG dispute?",
+              "options": [
+                {"label": "Notice given but deposit refund refused", "branch": "default"},
+                {"label": "Exorbitant arbitrary fines or early curfew penalties", "branch": "arbitrary_fines"}
+              ]
+            }
+          ],
+          "branches": ["default", "arbitrary_fines"]
+        },
+        {
+          "id": "landlord_objects_couple",
+          "label": "Landlord Objections to Guests / Couples",
+          "urgency": 3,
+          "description": "Moral policing by landlords, society RWAs, or restriction on adult visitors.",
+          "triage_questions": [
+            {
+              "id": "visitor_objection",
+              "text": "Who is restricting your guests?",
+              "options": [
+                {"label": "Landlord objecting to opposite-gender guest", "branch": "default"},
+                {"label": "RWA / Society security stopping entry", "branch": "rwa_interference"}
+              ]
+            }
+          ],
+          "branches": ["default", "rwa_interference"]
+        }
+      ]
+    },
+    {
+      "id": "family_safety",
+      "label": "FAMILY & SAFETY",
+      "icon": "health_and_safety",
+      "description": "Emergency remedies for domestic abuse, stalking, child safety, and forced marriage pressure.",
+      "scenarios": [
+        {
+          "id": "domestic_violence",
+          "label": "Domestic Violence (DV Act Emergency)",
+          "urgency": 1,
+          "description": "Physical, emotional, or economic abuse within domestic relationships; protection orders.",
+          "triage_questions": [
+            {
+              "id": "dv_urgency",
+              "text": "Is there ongoing physical assault or imminent bodily harm?",
+              "options": [
+                {"label": "Immediate physical danger / medical emergency", "branch": "immediate_danger"},
+                {"label": "Seeking protection order or residence order", "branch": "default"},
+                {"label": "Facing eviction from shared matrimonial household", "branch": "residence_protection"}
+              ]
+            }
+          ],
+          "branches": ["default", "immediate_danger", "residence_protection"]
+        },
+        {
+          "id": "stalking",
+          "label": "Physical or Online Stalking",
+          "urgency": 1,
+          "description": "Repeated following, unwanted communication, or digital surveillance by an individual.",
+          "triage_questions": [
+            {
+              "id": "stalking_type",
+              "text": "How is the stalking occurring?",
+              "options": [
+                {"label": "Digital stalking (messages, social media tracking)", "branch": "default"},
+                {"label": "Physical following / waiting near residence or college", "branch": "physical_stalking"}
+              ]
+            }
+          ],
+          "branches": ["default", "physical_stalking"]
+        },
+        {
+          "id": "child_in_danger",
+          "label": "Child in Danger / POCSO",
+          "urgency": 1,
+          "description": "Protection of minors from abuse, exploitation, or hazardous environments (Childline 1098).",
+          "triage_questions": [
+            {
+              "id": "child_emergency",
+              "text": "What is the urgent concern?",
+              "options": [
+                {"label": "Child in immediate physical danger or abuse", "branch": "immediate_danger"},
+                {"label": "Child labor or exploitation reporting", "branch": "default"}
+              ]
+            }
+          ],
+          "branches": ["default", "immediate_danger"]
+        },
+        {
+          "id": "family_pressure_marriage",
+          "label": "Forced Marriage Pressure on Adult",
+          "urgency": 1,
+          "description": "Confinement, threats, or coercion to enter into marriage against adult consent.",
+          "triage_questions": [
+            {
+              "id": "coercion_extent",
+              "text": "Are you being physically confined or your documents confiscated?",
+              "options": [
+                {"label": "Physical confinement / passport or ID seized", "branch": "immediate_danger"},
+                {"label": "Intense emotional and social pressure", "branch": "default"}
+              ]
+            }
+          ],
+          "branches": ["default", "immediate_danger"]
+        }
+      ]
+    },
+    {
+      "id": "consumer_documents",
+      "label": "CONSUMER & DOCUMENTS",
+      "icon": "receipt_long",
+      "description": "Rights under Consumer Protection Act, warranty defaults, contract signing, and legal notices.",
+      "scenarios": [
+        {
+          "id": "refund_denied",
+          "label": "Consumer Refund / Service Denied",
+          "urgency": 3,
+          "description": "Unfair trade practices, 'no refund' arbitrary policies, and consumer helpline complaints.",
+          "triage_questions": [
+            {
+              "id": "refund_context",
+              "text": "What did the seller/service provider state?",
+              "options": [
+                {"label": "Citing 'no refund under any condition' policy", "branch": "default"},
+                {"label": "Paid service not delivered or cancelled by company", "branch": "service_deficiency"}
+              ]
+            }
+          ],
+          "branches": ["default", "service_deficiency"]
+        },
+        {
+          "id": "defective_product",
+          "label": "Defective Product & Warranty Refusal",
+          "urgency": 3,
+          "description": "Authorized service center refusing warranty coverage or selling hazardous goods.",
+          "triage_questions": [
+            {
+              "id": "warranty_status",
+              "text": "Is the product within the stated warranty period?",
+              "options": [
+                {"label": "Within warranty; claim rejected arbitrarily", "branch": "default"},
+                {"label": "Product caused physical or property damage", "branch": "product_liability"}
+              ]
+            }
+          ],
+          "branches": ["default", "product_liability"]
+        },
+        {
+          "id": "what_to_sign",
+          "label": "What to Check Before Signing Any Document",
+          "urgency": 3,
+          "description": "Essential safeguards before signing police memos, arbitration waivers, or indemnities.",
+          "triage_questions": [
+            {
+              "id": "doc_type",
+              "text": "What type of document are you being asked to sign?",
+              "options": [
+                {"label": "Blank paper, settlement, or police statement", "branch": "default"},
+                {"label": "Commercial agreement, waiver, or bond", "branch": "commercial_waiver"}
+              ]
+            }
+          ],
+          "branches": ["default", "commercial_waiver"]
+        },
+        {
+          "id": "legal_notice_received",
+          "label": "Received Legal Notice",
+          "urgency": 2,
+          "description": "Steps when served with an advocate's notice; response timelines and lawyer consultation.",
+          "triage_questions": [
+            {
+              "id": "notice_subject",
+              "text": "What matter is addressed in the legal notice?",
+              "options": [
+                {"label": "Demand for money, cheque bounce (Sec 138), or debt", "branch": "default"},
+                {"label": "Defamation, trademark, or employment breach claim", "branch": "civil_notice"}
+              ]
+            }
+          ],
+          "branches": ["default", "civil_notice"]
+        }
+      ]
+    }
+  ]
+}

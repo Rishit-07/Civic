@@ -1,0 +1,50 @@
+[
+  {
+    "id": "112",
+    "label": "National Emergency All-in-One",
+    "number": "112",
+    "category": "EMERGENCY",
+    "description": "Immediate police, fire, and ambulance response across all Indian States and UTs.",
+    "last_verified": "UNVERIFIED"
+  },
+  {
+    "id": "15100",
+    "label": "NALSA National Legal Aid Helpline",
+    "number": "15100",
+    "category": "LEGAL",
+    "description": "Toll-free tele-legal advisory and free legal representation for eligible citizens.",
+    "last_verified": "UNVERIFIED"
+  },
+  {
+    "id": "1098",
+    "label": "Childline 24/7 Helpline",
+    "number": "1098",
+    "category": "CHILD_SAFETY",
+    "description": "Immediate intervention, rescue, and protection for children in distress.",
+    "last_verified": "UNVERIFIED"
+  },
+  {
+    "id": "181",
+    "label": "National Women Distress Helpline",
+    "number": "181",
+    "category": "WOMEN_SAFETY",
+    "description": "Support, counseling, and rescue coordination for women facing violence or harassment.",
+    "last_verified": "UNVERIFIED"
+  },
+  {
+    "id": "1930",
+    "label": "National Cyber Crime Reporting",
+    "number": "1930",
+    "category": "CYBER_CRIME",
+    "description": "Emergency reporting for online financial fraud, UPI scams, and unauthorized transactions.",
+    "last_verified": "UNVERIFIED"
+  },
+  {
+    "id": "anti_ragging",
+    "label": "National Anti-Ragging Helpline",
+    "number": "18001805522",
+    "category": "CAMPUS",
+    "description": "UGC toll-free confidential helpline for students facing ragging or intimidation on campus.",
+    "last_verified": "UNVERIFIED"
+  }
+]

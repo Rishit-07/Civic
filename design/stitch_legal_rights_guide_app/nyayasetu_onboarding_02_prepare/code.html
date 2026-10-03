@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Nyayasetu Onboarding - Prepare</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts for Bold Geometric Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#FF5A00',
+              dark: '#17261F',
+              grey: '#8A8A8A',
+              bg: '#FAFAFA',
+              blob: '#E8E9F0',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-typography">
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background-color: #ECEEF2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    .letter-spacing-wide {
+      letter-spacing: 0.16em;
+    }
+    .letter-spacing-widest {
+      letter-spacing: 0.22em;
+    }
+  </style>
+</head>
+<body class="p-0 sm:p-4">
+<!-- BEGIN: MobileDeviceContainer -->
+<!-- Designed strictly for 390px x 844px mobile view with clean rounded boundaries -->
+<main class="relative w-[390px] h-[844px] bg-[#FAFAFA] rounded-[48px] overflow-hidden shadow-2xl flex flex-col justify-between border-[8px] border-slate-900 select-none">
+<!-- BEGIN: BackgroundDecorations -->
+<!-- Top-Right Bold Orange Accent Wedge -->
+<div class="absolute top-0 right-0 w-36 h-36 bg-[#FF5A00] rounded-bl-[120px] pointer-events-none -mr-4 -mt-4 transition-transform z-0"></div>
+<!-- Background Atmospheric Soft Grey Blob Shapes -->
+<svg class="absolute top-16 left-6 w-80 h-96 pointer-events-none opacity-90 z-0" fill="none" viewbox="0 0 320 380" xmlns="http://www.w3.org/2000/svg">
+<path d="M40,120 Q30,40 120,40 T260,80 T290,240 T180,330 T60,260 Z" fill="#E8E9F0"></path>
+<!-- Delicate constellation dots and accent crosses -->
+<circle cx="28" cy="88" fill="#17261F" r="2.5"></circle>
+<circle cx="70" cy="65" fill="#17261F" r="2.5"></circle>
+<polyline fill="none" points="28,88 50,75 70,65" stroke="#17261F" stroke-dasharray="3,3" stroke-width="1.2"></polyline>
+<path d="M 270,175 L 278,175 M 274,171 L 274,179" stroke="#17261F" stroke-linecap="round" stroke-width="1.5"></path>
+<circle cx="260" cy="72" fill="none" r="3" stroke="#17261F" stroke-width="1.5"></circle>
+</svg>
+<!-- Bottom Concentric Decorative Grey Rings around the action button -->
+<div class="absolute -bottom-10 -right-10 w-64 h-64 border-[32px] border-[#E8E9F0]/70 rounded-full pointer-events-none z-0"></div>
+<div class="absolute bottom-16 -left-12 w-40 h-40 border-[24px] border-[#E8E9F0]/40 rounded-full pointer-events-none z-0"></div>
+<!-- END: BackgroundDecorations -->
+<!-- BEGIN: TopBar -->
+<header class="relative z-10 pt-7 px-7 flex items-center justify-between w-full" data-purpose="top-navigation">
+<!-- NYAYASETU Brand Tag -->
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-white/90 backdrop-blur-md rounded-full shadow-sm border border-black/5">
+<span class="w-2 h-2 rounded-full bg-[#FF5A00]"></span>
+<span class="text-[11px] font-extrabold tracking-widest text-[#17261F] uppercase">NYAYASETU</span>
+</div>
+<!-- SKIP Button -->
+<button aria-label="Skip to end" class="text-xs font-bold text-[#8A8A8A] hover:text-[#17261F] transition-colors py-1.5 px-2 tracking-wider" type="button">
+        SKIP
+      </button>
+</header>
+<!-- END: TopBar -->
+<!-- BEGIN: HeroIllustration -->
+<!-- Isometric Head of Knowledge with floating cube, steps, and crisp line foliage -->
+<section class="relative z-10 flex-1 flex items-center justify-center px-4" data-purpose="isometric-hero">
+<div class="w-full max-w-[340px] aspect-[4/4.2] flex items-center justify-center">
+<svg class="w-full h-full drop-shadow-sm overflow-visible" fill="none" viewbox="0 0 340 370" xmlns="http://www.w3.org/2000/svg">
+<!-- Soft Ground Shadow -->
+<ellipse cx="170" cy="305" fill="#E8E9F0" rx="105" ry="32"></ellipse>
+<!-- Isometric Pedestal Base Step 1 (Dark Bottom) -->
+<path d="M 170 300 L 228 268 L 228 278 L 170 310 L 112 278 L 112 268 Z" fill="#17261F" stroke="#17261F" stroke-linejoin="round" stroke-width="2.5"></path>
+<!-- Pedestal Base Top Surface (Grey with subtle cross) -->
+<path d="M 170 262 L 232 230 L 284 258 L 222 290 Z" fill="#FFFFFF" stroke="#17261F" stroke-linejoin="round" stroke-width="2.5"></path>
+<path d="M 108 262 L 170 230 L 232 262 L 170 294 Z" fill="#E8E9F0" stroke="#17261F" stroke-linejoin="round" stroke-width="2.5"></path>
+<path d="M 170 294 L 232 262 L 232 274 L 170 306 Z" fill="#17261F" stroke="#17261F" stroke-linejoin="round" stroke-width="2.5"></path>
+<path d="M 170 294 L 108 262 L 108 274 L 170 306 Z" fill="#2E3C36" stroke="#17261F" stroke-linejoin="round" stroke-width="2.5"></path>
+<!-- Small Neck Support Pillar -->
+<ellipse cx="170" cy="228" fill="#FFFFFF" rx="28" ry="12" stroke="#17261F" stroke-width="2.5"></ellipse>
+<path d="M 142 228 L 142 242 C 142 248, 198 248, 198 242 L 198 228 Z" fill="#FAFAFA" stroke="#17261F" stroke-width="2.5"></path>
+<!-- Neck speckle dots -->
+<circle cx="162" cy="235" fill="#17261F" r="1.5"></circle>
+<circle cx="175" cy="238" fill="#17261F" r="1.5"></circle>
+<circle cx="168" cy="231" fill="#17261F" r="1.2"></circle>
+<!-- Isometric Head Profile -->
+<!-- Left Face Profile with Nose & Lips -->
+<path d="M 132 118 
+                   L 106 142 
+                   L 106 156 
+                   L 116 156 
+                   L 116 172 
+                   L 132 188 
+                   L 154 226 
+                   L 174 226 
+                   L 174 155 Z" fill="#FF5A00" stroke="#17261F" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+<!-- Right Facet of Head / Jaw -->
+<path d="M 174 155 
+                   L 174 226 
+                   L 194 220 
+                   L 214 175 
+                   C 216 166, 218 140, 218 126
+                   L 182 108 Z" fill="#FF5A00" stroke="#17261F" stroke-linejoin="round" stroke-width="3"></path>
+<!-- Open Top Head Chamber (Interior depth) -->
+<!-- Isometric Rim Top -->
+<path d="M 132 118 L 170 98 L 218 126 L 180 146 Z" fill="#17261F" stroke="#17261F" stroke-linejoin="round" stroke-width="3"></path>
+<!-- Inside Cavity -->
+<path d="M 136 122 L 170 104 L 212 128 L 178 146 Z" fill="#17261F"></path>
+<path d="M 142 126 L 142 144 L 176 162 L 176 144 Z" fill="#0C1511"></path>
+<path d="M 176 162 L 206 144 L 206 130 L 176 144 Z" fill="#24342C"></path>
+<!-- Stylized Minimal Eye on Left Orange Facet -->
+<ellipse cx="122" cy="144" fill="#FFFFFF" rx="5" ry="7" stroke="#17261F" stroke-width="2.5"></ellipse>
+<circle cx="121" cy="144" fill="#17261F" r="3"></circle>
+<line stroke="#17261F" stroke-linecap="round" stroke-width="2.5" x1="116" x2="128" y1="133" y2="133"></line>
+<!-- Stylized Ear Contour on Right -->
+<path d="M 188 146 C 182 146 180 156 186 164 C 189 168 196 166 195 158" fill="none" stroke="#17261F" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Floating Isometric Cube above Head (representing Strategy/Idea) -->
+<g transform="translate(0, -6)">
+<!-- Cube Top Face -->
+<polygon fill="#FFFFFF" points="172,48 190,38 208,48 190,58" stroke="#17261F" stroke-linejoin="round" stroke-width="2.5"></polygon>
+<!-- Cube Left Face (Solid Black) -->
+<polygon fill="#17261F" points="172,48 190,58 190,78 172,68" stroke="#17261F" stroke-linejoin="round" stroke-width="2.5"></polygon>
+<!-- Cube Right Face (Bright Orange Accent) -->
+<polygon fill="#FF5A00" points="208,48 190,58 190,78 208,68" stroke="#17261F" stroke-linejoin="round" stroke-width="2.5"></polygon>
+<!-- Micro grid dots on top of the cube -->
+<line stroke="#17261F" stroke-linecap="round" stroke-width="1.2" x1="181" x2="199" y1="43" y2="53"></line>
+<line stroke="#17261F" stroke-linecap="round" stroke-width="1.2" x1="199" x2="181" y1="43" y2="53"></line>
+</g>
+<!-- Floating Micro Rule Card / Isometric Checklist (Left Side) -->
+<polygon fill="#FFFFFF" points="62,176 88,162 96,176 70,190" stroke="#17261F" stroke-linejoin="round" stroke-width="2"></polygon>
+<line stroke="#FF5A00" stroke-linecap="round" stroke-width="2" x1="72" x2="84" y1="172" y2="166"></line>
+<line stroke="#17261F" stroke-linecap="round" stroke-width="1.8" x1="75" x2="89" y1="180" y2="173"></line>
+<!-- Elegant Foliage: Left Stems and Leaves -->
+<path d="M 88 280 C 86 240, 96 220, 102 210" fill="none" stroke="#17261F" stroke-linecap="round" stroke-width="2.2"></path>
+<path d="M 82 250 C 70 248, 64 240, 68 235 C 74 232, 82 240, 82 250 Z" fill="#FFFFFF" stroke="#17261F" stroke-width="2"></path>
+<path d="M 94 235 C 104 232, 110 224, 108 218 C 102 216, 96 225, 94 235 Z" fill="#17261F" stroke="#17261F" stroke-width="1.5"></path>
+<path d="M 99 212 C 103 205, 114 204, 114 212 C 108 217, 102 216, 99 212 Z" fill="#FFFFFF" stroke="#17261F" stroke-width="2"></path>
+<!-- Delicate Bud / Flower Tendril (Far Left) -->
+<path d="M 68 288 C 65 260, 52 252, 48 240" fill="none" stroke="#17261F" stroke-linecap="round" stroke-width="2"></path>
+<circle cx="48" cy="237" fill="#FFFFFF" r="4.5" stroke="#17261F" stroke-width="2"></circle>
+<circle cx="48" cy="237" fill="#FF5A00" r="2"></circle>
+<!-- Leaf Cluster Ground Level (Left) -->
+<path d="M 60 286 C 65 272, 78 274, 82 284 Z" fill="#FFFFFF" stroke="#17261F" stroke-width="2"></path>
+<path d="M 82 286 C 88 268, 104 270, 102 288 Z" fill="#17261F"></path>
+<!-- Right Stems and Foliage -->
+<path d="M 235 245 C 248 220, 252 195, 248 182" fill="none" stroke="#17261F" stroke-linecap="round" stroke-width="2.2"></path>
+<path d="M 248 182 C 255 174, 264 178, 262 186 C 258 192, 250 188, 248 182 Z" fill="#17261F" stroke="#17261F" stroke-width="1.5"></path>
+<path d="M 242 225 C 256 220, 264 225, 260 232 C 254 236, 244 230, 242 225 Z" fill="#FFFFFF" stroke="#17261F" stroke-width="2"></path>
+<!-- Textured Pillar on Right (Ladder/Column motif) -->
+<g transform="translate(258, 130)">
+<rect fill="#FFFFFF" height="48" rx="7" stroke="#17261F" stroke-width="2" width="14" x="0" y="0"></rect>
+<line stroke="#17261F" stroke-width="1.5" x1="2" x2="12" y1="12" y2="12"></line>
+<line stroke="#17261F" stroke-width="1.5" x1="2" x2="12" y1="24" y2="24"></line>
+<line stroke="#17261F" stroke-width="1.5" x1="2" x2="12" y1="36" y2="36"></line>
+</g>
+<!-- Floating Cross (Bottom Right) -->
+<path d="M 248 280 L 256 280 M 252 276 L 252 284" stroke="#17261F" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+</section>
+<!-- END: HeroIllustration -->
+<!-- BEGIN: BottomContentSection -->
+<footer class="relative z-10 px-8 pb-10 flex flex-col gap-8 w-full" data-purpose="onboarding-footer">
+<!-- Text Information -->
+<div class="space-y-3" data-purpose="title-group">
+<h1 class="text-[36px] font-black leading-none tracking-tight text-[#17261F] uppercase m-0">
+          PREPARE
+        </h1>
+<p class="text-[13px] font-semibold tracking-[0.18em] text-[#8A8A8A] uppercase leading-relaxed max-w-[270px] m-0">
+          LEARN CALMLY BEFORE IT MATTERS
+        </p>
+</div>
+<!-- Controls: Indicators & Next Action Button -->
+<div class="flex items-center justify-between pt-2">
+<!-- Pagination Dots: 2nd Active as Capsule -->
+<nav aria-label="Slide Indicator" class="flex items-center gap-2">
+<!-- Dot 1 -->
+<span class="w-2.5 h-2.5 rounded-full bg-[#D1D5DB] transition-all"></span>
+<!-- Dot 2: Active Capsule -->
+<span class="w-8 h-2.5 rounded-full bg-[#FF5A00] transition-all"></span>
+<!-- Dot 3 -->
+<span class="w-2.5 h-2.5 rounded-full bg-[#D1D5DB] transition-all"></span>
+</nav>
+<!-- Circular Action Button -->
+<button aria-label="Next slide" class="w-14 h-14 rounded-full bg-[#17261F] text-white flex items-center justify-center shadow-lg hover:bg-black active:scale-95 transition-all focus:outline-none focus:ring-4 focus:ring-[#FF5A00]/20" type="button">
+<!-- Modern Crisp Arrow Icon -->
+<svg class="w-6 h-6 stroke-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24">
+<line x1="5" x2="19" y1="12" y2="12"></line>
+<polyline points="12 5 19 12 12 19"></polyline>
+</svg>
+</button>
+</div>
+</footer>
+<!-- END: BottomContentSection -->
+</main>
+<!-- END: MobileDeviceContainer -->
+</body></html>

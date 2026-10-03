@@ -1,0 +1,91 @@
+{
+  "quickGuides": [
+    {
+      "id": "traffic_stop",
+      "category": "EVERYDAY CIVIC",
+      "title": "Vehicle & Traffic Encounters",
+      "subtitle": "Clear protocols for routine verification checks and official documentation requirements.",
+      "readTime": "3 MIN READ",
+      "tag": "CRITICAL"
+    },
+    {
+      "id": "workplace",
+      "category": "WORK & LABOR",
+      "title": "Workplace Rights & Fair Process",
+      "subtitle": "Standard procedural guidelines regarding agreements, working hours, and dispute reporting.",
+      "readTime": "4 MIN READ",
+      "tag": "STANDARD"
+    },
+    {
+      "id": "consumer",
+      "category": "MARKETPLACE",
+      "title": "Consumer Protections & Claims",
+      "subtitle": "Step-by-step guidance on resolving warranty disputes, billing anomalies, and claims filing.",
+      "readTime": "2 MIN READ",
+      "tag": "GUIDE"
+    }
+  ],
+  "prepareChecklists": [
+    {
+      "id": "c1",
+      "title": "Emergency Contact Readiness",
+      "itemsCount": 4,
+      "status": "Ready",
+      "description": "Designated emergency contacts, trusted counsel, and family contact points."
+    },
+    {
+      "id": "c2",
+      "title": "Official Identity Documents",
+      "itemsCount": 3,
+      "status": "In Progress",
+      "description": "Digital verified copies of government IDs and relevant vehicle licenses."
+    },
+    {
+      "id": "c3",
+      "title": "Incident Log Readiness",
+      "itemsCount": 5,
+      "status": "Template Ready",
+      "description": "Date, time, location, officer badge recording form template."
+    }
+  ],
+  "mockNotes": [
+    {
+      "id": "n1",
+      "title": "General Verification Inquiries",
+      "date": "Today, 14:30",
+      "preview": "Recorded notes on checklist completion and verification requirements."
+    },
+    {
+      "id": "n2",
+      "title": "Reference Codes & Contacts",
+      "date": "Yesterday",
+      "preview": "Helpline numbers, regional registry helpline, and duty officer hours."
+    }
+  ],
+  "helpHelplines": [
+    {
+      "title": "National Emergency Support",
+      "number": "112",
+      "badge": "24/7 TOLL-FREE",
+      "type": "emergency"
+    },
+    {
+      "title": "National Legal Services Authority",
+      "number": "15100",
+      "badge": "FREE LEGAL AID",
+      "type": "legal_aid"
+    },
+    {
+      "title": "Women Helpline",
+      "number": "1091",
+      "badge": "24/7 DEDICATED",
+      "type": "support"
+    },
+    {
+      "title": "Cyber Crime Reporting Support",
+      "number": "1930",
+      "badge": "OFFICIAL HELPLINE",
+      "type": "cyber"
+    }
+  ]
+}

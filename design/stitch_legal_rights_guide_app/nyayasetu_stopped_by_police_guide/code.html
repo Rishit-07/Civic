@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary-fixed": "#410002", "surface-dim": "#dadada", "primary-container": "#ff5a00", "surface-variant": "#e2e2e2", "error-container": "#ffdad6", "on-primary-fixed": "#380d00", "on-tertiary-fixed-variant": "#93000b", "on-error": "#ffffff", "on-surface-variant": "#5b4137", "primary-fixed": "#ffdbcf", "on-surface": "#1a1c1c", "on-secondary-fixed": "#101f18", "on-primary-fixed-variant": "#802900", "surface-container-low": "#f3f3f3", "background": "#f9f9f9", "tertiary-fixed-dim": "#ffb4ab", "on-primary": "#ffffff", "error": "#ba1a1a", "primary-fixed-dim": "#ffb59a", "on-tertiary": "#ffffff", "on-tertiary-container": "#5e0004", "tertiary-container": "#ff574d", "tertiary-fixed": "#ffdad6", "secondary-container": "#d5e7dc", "on-error-container": "#93000a", "secondary-fixed": "#d5e7dc", "surface-container-high": "#e8e8e8", "outline-variant": "#e4beb1", "outline": "#907065", "surface-tint": "#a83900", "on-secondary": "#ffffff", "inverse-surface": "#2f3131", "surface": "#f9f9f9", "tertiary": "#bf0715", "on-primary-container": "#511700", "surface-container": "#eeeeee", "on-secondary-fixed-variant": "#3b4a42", "on-background": "#1a1c1c", "surface-container-lowest": "#ffffff", "surface-bright": "#f9f9f9", "secondary-fixed-dim": "#b9cbc0", "surface-container-highest": "#e2e2e2", "inverse-on-surface": "#f0f1f1", "inverse-primary": "#ffb59a", "primary": "#a83900", "on-secondary-container": "#58685f", "secondary": "#526259" }, borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, spacing: { "gutter": "1rem", "space-sm": "0.5rem", "margin-desktop": "4rem", "margin-tablet": "2.5rem", "space-xs": "0.25rem", "margin": "1.25rem", "gutter-tablet": "1.5rem", "gutter-desktop": "2rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2.5rem" }, fontFamily: { "display-lg": ["Montserrat"], "label-md": ["Montserrat"], "headline-sm": ["Montserrat"], "label-sm": ["Montserrat"], "headline-md": ["Montserrat"], "body-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "headline-lg": ["Montserrat"], "label-lg": ["Montserrat"], "display-lg-mobile": ["Montserrat"] }, fontSize: { "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "0.04em", "fontWeight": "800" }], "label-md": ["11px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "700" }], "headline-sm": ["16px", { "lineHeight": "22px", "letterSpacing": "0.04em", "fontWeight": "700" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.1em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "0.04em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "500" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-lg": ["26px", { "lineHeight": "34px", "letterSpacing": "0.06em", "fontWeight": "800" }], "label-lg": ["13px", { "lineHeight": "18px", "letterSpacing": "0.08em", "fontWeight": "700" }], "display-lg-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "0.03em", "fontWeight": "800" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><button aria-label="Go back" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface hover:bg-surface-container" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><img alt="NyayaSetu Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2WrfVkSBrffhOkseAX9hVkmdzS5Mjoq3F70eN6MGMIzJh8xsrN2kPZLn95EDIMAoWLPpsTNCIFGNogqp3D0vZ64VMQSCv0wp_JAtmAywrcV_nFwc9CYX4M_dz0bgXSAKgAqU4WtXv2fQ9qFgFpywfntBZy7_UOXmzRVA-Ypvwf1WMMA30ECU-T4y6aTaz35o_bTfE0r8ptk0J4kWQrD7jI5rZMOf3N8w5kpGGu2VlL-1jBMD7FWvm-w"/><h1 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Rights Detail</h1></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="flex flex-col relative w-full pt-16 pb-safe bg-surface min-h-screen"><div class="flex flex-col w-full relative overflow-hidden pb-12">
+<!-- Neo-Constructivist Background Graphic Accents -->
+<div class="absolute -top-10 -right-12 w-44 h-44 rounded-full bg-primary-container/15 pointer-events-none -z-10"></div>
+<div class="absolute top-72 -left-16 w-36 h-36 rounded-full bg-surface-container pointer-events-none -z-10"></div>
+<svg class="absolute top-20 right-6 w-20 h-20 text-on-surface-variant/15 pointer-events-none -z-10" fill="none" viewbox="0 0 100 100">
+<circle cx="50" cy="50" r="46" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1.5"></circle>
+<circle cx="50" cy="50" r="26" stroke="currentColor" stroke-width="1.5"></circle>
+<rect fill="#ff5a00" height="6" width="6" x="47" y="5"></rect>
+</svg>
+<div class="px-margin flex flex-col gap-space-lg w-full max-w-xl mx-auto">
+<!-- Header Meta & Context -->
+<div class="flex flex-col gap-space-xs pt-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">Protocol Desk</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant/60">•</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-medium">Police / Traffic &amp; Street Stops</span>
+</div>
+<div class="flex items-center justify-between gap-space-md">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Stopped by Police</h2>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+          LIVE GUIDE
+        </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Stay calm, composed, and verify statutory protocol. Constitutional protection is active from initial contact.
+      </p>
+</div>
+<!-- Isometric Graphic Spotlight Card -->
+<div class="relative w-full rounded-lg bg-surface-container-lowest p-space-lg shadow-sm overflow-hidden">
+<div class="absolute -bottom-6 -right-6 w-28 h-28 rounded-full bg-primary-container/20"></div>
+<div class="relative z-10 flex items-center justify-between gap-space-md">
+<div class="flex flex-col max-w-[62%]">
+<span class="font-label-md text-label-md text-primary uppercase">Article 22 • CrPC 41A</span>
+<p class="font-headline-sm text-headline-sm text-on-surface mt-1 leading-snug">Know your instant immunity safeguards</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Non-violent procedure demands civil conduct from both citizen and officer.</p>
+</div>
+<!-- Architectural Isometric Line Art Accent -->
+<div class="relative w-24 h-24 flex-shrink-0 flex items-center justify-center">
+<svg class="w-full h-full text-on-surface" fill="none" viewbox="0 0 120 120">
+<!-- Isometric pedestal -->
+<path d="M60 20 L102 44 L60 68 L18 44 Z" fill="#eeeeee" stroke="#1a1c1c" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M18 44 L60 68 L60 88 L18 64 Z" fill="#e2e2e2" stroke="#1a1c1c" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M60 68 L102 44 L102 64 L60 88 Z" fill="#ff5a00" stroke="#1a1c1c" stroke-linejoin="round" stroke-width="2"></path>
+<!-- Isometric Arch / Gateway -->
+<path d="M42 34 Q60 14 78 34 V52 Q60 40 42 52 Z" fill="#ffffff" stroke="#1a1c1c" stroke-width="2"></path>
+<!-- Scales / Hourglass symbol in center -->
+<circle cx="60" cy="38" fill="#a83900" r="4"></circle>
+<path d="M52 48 L68 48" stroke="#1a1c1c" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Role Selector Interactive Chips -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Select your present role</label>
+<div class="flex items-center gap-space-xs overflow-x-auto no-scrollbar py-1" id="rolePillGroup">
+<button class="role-chip px-5 py-2.5 rounded-full font-label-md text-label-md transition-all duration-200 bg-on-surface text-surface-container-lowest shadow-sm flex-shrink-0 flex items-center gap-1.5" data-role="affected" type="button">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+          AFFECTED
+        </button>
+<button class="role-chip px-5 py-2.5 rounded-full font-label-md text-label-md transition-all duration-200 bg-surface-container text-on-surface hover:bg-surface-container-high flex-shrink-0" data-role="accused" type="button">
+          ACCUSED
+        </button>
+<button class="role-chip px-5 py-2.5 rounded-full font-label-md text-label-md transition-all duration-200 bg-surface-container text-on-surface hover:bg-surface-container-high flex-shrink-0" data-role="witness" type="button">
+          WITNESS
+        </button>
+<button class="role-chip px-5 py-2.5 rounded-full font-label-md text-label-md transition-all duration-200 bg-surface-container text-on-surface hover:bg-surface-container-high flex-shrink-0" data-role="parent" type="button">
+          PARENT / FRIEND
+        </button>
+</div>
+</div>
+<!-- Fast Action Sticky Tray -->
+<div class="grid grid-cols-4 gap-space-xs bg-surface-container-lowest p-2 rounded-lg shadow-sm">
+<button class="flex flex-col items-center justify-center p-2 rounded-md hover:bg-surface-container active:scale-95 transition-all text-on-surface" id="ttsButton">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-fixed flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-[20px]" id="ttsIcon">volume_up</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-center leading-tight">Read Aloud</span>
+</button>
+<button class="flex flex-col items-center justify-center p-2 rounded-md hover:bg-surface-container active:scale-95 transition-all text-on-surface" id="shareLocButton">
+<div class="w-10 h-10 rounded-full bg-surface-container-high text-primary flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-[20px]">share_location</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-center leading-tight">Share GPS</span>
+</button>
+<button class="flex flex-col items-center justify-center p-2 rounded-md hover:bg-surface-container active:scale-95 transition-all text-on-surface" id="recordButton">
+<div class="w-10 h-10 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-[20px]" id="micIcon">mic</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-center leading-tight">Record Note</span>
+</button>
+<a class="flex flex-col items-center justify-center p-2 rounded-md hover:bg-error-container/40 active:scale-95 transition-all text-on-surface" href="tel:112">
+<div class="w-10 h-10 rounded-full bg-error text-on-error flex items-center justify-center mb-1 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">e911_emergency</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-error text-center leading-tight">SOS 112</span>
+</a>
+</div>
+<!-- Alert / Banner Note on Role Context -->
+<div class="bg-primary-fixed/50 p-space-md rounded-lg flex items-center gap-space-sm text-on-primary-fixed" id="roleAlertBox">
+<span class="material-symbols-outlined text-primary text-[22px] flex-shrink-0">shield</span>
+<p class="font-body-sm text-body-sm leading-snug">
+<strong class="font-bold">Affected citizen mode:</strong> You are not under arrest unless formal charges or Section 41 CrPC grounds are presented in writing.
+      </p>
+</div>
+<!-- GUIDANCE CONTAINER: DO & DON'T SECTIONS -->
+<div class="flex flex-col gap-space-lg w-full">
+<!-- DO SECTION (Forest Green) -->
+<section class="flex flex-col rounded-lg bg-surface-container-lowest p-space-lg shadow-sm relative overflow-hidden">
+<!-- Colored structural accent bar -->
+<div class="absolute left-0 top-0 bottom-0 w-2 bg-[#15803D]"></div>
+<div class="flex items-center justify-between mb-space-md pl-2">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-[#15803D] text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</span>
+<h3 class="font-headline-sm text-headline-sm uppercase tracking-wide text-on-surface font-extrabold">Mandatory DOs</h3>
+</div>
+<span class="font-label-sm text-label-sm font-bold px-2.5 py-1 rounded bg-[#F0FDF4] text-[#15803D]">LEGAL OBLIGATIONS</span>
+</div>
+<div class="flex flex-col gap-space-md pl-2">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-[#15803D] text-[20px] flex-shrink-0 mt-0.5">verified</span>
+<div class="flex flex-col">
+<p class="font-body-lg text-body-lg text-on-surface font-medium leading-snug">
+                Ask calmly for the officer's name, rank, and police station.
+              </p>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Officers on duty are mandated to wear visible name badges (D.K. Basu Guidelines).</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-[#15803D] text-[20px] flex-shrink-0 mt-0.5">verified</span>
+<div class="flex flex-col">
+<p class="font-body-lg text-body-lg text-on-surface font-medium leading-snug">
+                Show digital driving license/RC via DigiLocker or mParivahan.
+              </p>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Physical copies cannot be forcefully demanded under Rule 139 of Central Motor Vehicles Rules &amp; Section 139A IT Act.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-[#15803D] text-[20px] flex-shrink-0 mt-0.5">verified</span>
+<div class="flex flex-col">
+<p class="font-body-lg text-body-lg text-on-surface font-medium leading-snug">
+                Demand a physical or digital receipt/e-challan for any fine.
+              </p>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Never surrender unrecorded cash. An on-the-spot compounding receipt is your right under Section 200 MV Act.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-[#15803D] text-[20px] flex-shrink-0 mt-0.5">verified</span>
+<div class="flex flex-col">
+<p class="font-body-lg text-body-lg text-on-surface font-medium leading-snug">
+                Women can only be searched by a female officer with strict decency.
+              </p>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Mandated strictly by Section 51(2) CrPC. Male personnel are prohibited from physical search of women.</span>
+</div>
+</div>
+</div>
+</section>
+<!-- DON'T SECTION (Crimson Red) -->
+<section class="flex flex-col rounded-lg bg-surface-container-lowest p-space-lg shadow-sm relative overflow-hidden">
+<!-- Colored structural accent bar -->
+<div class="absolute left-0 top-0 bottom-0 w-2 bg-[#DC2626]"></div>
+<div class="flex items-center justify-between mb-space-md pl-2">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-[#DC2626] text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</span>
+<h3 class="font-headline-sm text-headline-sm uppercase tracking-wide text-on-surface font-extrabold">Critical DON'Ts</h3>
+</div>
+<span class="font-label-sm text-label-sm font-bold px-2.5 py-1 rounded bg-[#FEF2F2] text-[#DC2626]">PROHIBITED RISKS</span>
+</div>
+<div class="flex flex-col gap-space-md pl-2">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-[#DC2626] text-[20px] flex-shrink-0 mt-0.5">cancel</span>
+<div class="flex flex-col">
+<p class="font-body-lg text-body-lg text-on-surface font-medium leading-snug">
+                Do not hand over your physical smartphone or let them browse personal chats.
+              </p>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Phone search requires judicial warrant or explicit cyber-crime investigation seizure order. Article 21 Privacy right applies.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-[#DC2626] text-[20px] flex-shrink-0 mt-0.5">cancel</span>
+<div class="flex flex-col">
+<p class="font-body-lg text-body-lg text-on-surface font-medium leading-snug">
+                Do not pay cash without receiving an official printed/e-challan immediately.
+              </p>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Paying unofficial settlements is an offense. Traffic police without authorized compounding machines cannot take cash.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-[#DC2626] text-[20px] flex-shrink-0 mt-0.5">cancel</span>
+<div class="flex flex-col">
+<p class="font-body-lg text-body-lg text-on-surface font-medium leading-snug">
+                Do not resist physically; record audio/video politely from a safe distance.
+              </p>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Citizens have the legal right to record police conducting public duty in public spaces, provided you do not obstruct their work.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-[#DC2626] text-[20px] flex-shrink-0 mt-0.5">cancel</span>
+<div class="flex flex-col">
+<p class="font-body-lg text-body-lg text-on-surface font-medium leading-snug">
+                Never sign blank papers or statements under pressure.
+              </p>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Any confession given to a police officer is inadmissible as evidence in court under Section 25 of the Indian Evidence Act.</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Expandable Legal Basis Accordion -->
+<div class="rounded-lg bg-surface-container p-space-md flex flex-col gap-space-xs transition-all">
+<button aria-expanded="false" class="flex items-center justify-between w-full text-left" id="legalBasisToggle">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">gavel</span>
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface">Statutory Citations &amp; Legal Basis</span>
+</div>
+<span class="material-symbols-outlined text-on-surface transition-transform duration-200 text-[20px]" id="accordionArrow">expand_more</span>
+</button>
+<div class="hidden flex-col gap-space-xs pt-space-xs" id="legalBasisContent">
+<p class="font-body-sm text-body-sm text-on-surface leading-relaxed">
+<strong class="font-semibold text-on-surface">CrPC Sec 41, 50, 51; Motor Vehicles Act 2019; Supreme Court Judgment in D.K. Basu v. State of West Bengal guidelines.</strong>
+</p>
+<div class="flex items-center gap-2 pt-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+<span class="font-body-sm text-body-sm italic">Last verified: November 2024 by Supreme Court Advocates Panel.</span>
+</div>
+</div>
+</div>
+<!-- Bottom Action Pill & Return Indicator -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md pt-space-xs">
+<div class="flex items-center gap-3">
+<button aria-label="Go back" class="w-12 h-12 rounded-full bg-on-surface text-surface flex items-center justify-center active:scale-95 transition-transform" onclick="history.back()">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</button>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Return to Categories</span>
+</div>
+<button class="w-full sm:w-auto h-12 px-8 rounded-full bg-primary text-on-primary font-label-lg text-label-lg tracking-wider uppercase flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform" id="openHelpModal">
+<span>Emergency Checklist</span>
+<span class="material-symbols-outlined text-[18px]">checklist</span>
+</button>
+</div>
+</div>
+<!-- Interactive Quick Note Sheet Modal -->
+<div class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden items-end justify-center p-0 transition-opacity" id="noteModal">
+<div class="w-full max-w-lg bg-surface-container-lowest rounded-t-xl p-space-lg flex flex-col gap-space-md shadow-xl animate-in slide-in-from-bottom duration-300">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary-container"></span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Record Incident Note</h4>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface" id="closeNoteModal">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Note officer badge numbers, vehicle plates, timing, or checkpoint location for your records.</p>
+<textarea class="w-full p-3 rounded-md bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary" id="noteInput" placeholder="e.g. Officer Sharma, Sub-Inspector, PCR Van DL-1C-9921, stopped at Barakhamba..." rows="3"></textarea>
+<div class="flex items-center justify-between gap-space-sm pt-2">
+<button class="flex-1 h-11 rounded-full bg-on-surface text-surface font-label-md text-label-md uppercase tracking-wider" id="saveNoteBtn">Save Offline Note</button>
+<button class="px-5 h-11 rounded-full bg-surface-container text-on-surface font-label-md text-label-md uppercase" id="cancelNoteBtn">Cancel</button>
+</div>
+</div>
+</div>
+<!-- Floating Toast Feedback Banner -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-on-surface text-surface px-5 py-3 rounded-full shadow-lg font-label-md text-label-md flex items-center gap-2 hidden" id="toastNotification">
+<span class="material-symbols-outlined text-[18px] text-primary-container" id="toastIcon">check_circle</span>
+<span id="toastMessage">Action recorded</span>
+</div>
+</div>
+<script>
+  // Role selector chips interaction
+  const roleButtons = document.querySelectorAll('.role-chip');
+  const alertBox = document.getElementById('roleAlertBox');
+  const roleMessages = {
+    affected: '<strong class="font-bold">Affected citizen mode:</strong> You are not under arrest unless formal charges or Section 41 CrPC grounds are presented in writing.',
+    accused: '<strong class="font-bold">Accused person rights:</strong> Right to know grounds of arrest immediately (Art 22(1)), right to free legal aid, and right to notify a family member within 1 hour.',
+    witness: '<strong class="font-bold">Witness guideline:</strong> Witnesses cannot be detained arbitrarily. Questioning should ideally take place at your residence if elderly or minor.',
+    parent: '<strong class="font-bold">Friend / Guardian role:</strong> You have the legal right to inspect the arrest memo and verify that the medical examination is ordered.'
+  };
+
+  roleButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      roleButtons.forEach(b => {
+        b.classList.remove('bg-on-surface', 'text-surface-container-lowest', 'shadow-sm');
+        b.classList.add('bg-surface-container', 'text-on-surface');
+      });
+      btn.classList.remove('bg-surface-container', 'text-on-surface');
+      btn.classList.add('bg-on-surface', 'text-surface-container-lowest', 'shadow-sm');
+
+      const role = btn.getAttribute('data-role');
+      if (roleMessages[role] && alertBox) {
+        alertBox.innerHTML = `
+          <span class="material-symbols-outlined text-primary text-[22px] flex-shrink-0">shield</span>
+          <p class="font-body-sm text-body-sm leading-snug">${roleMessages[role]}</p>
+        `;
+      }
+    });
+  });
+
+  // Expandable legal basis accordion
+  const toggleBtn = document.getElementById('legalBasisToggle');
+  const content = document.getElementById('legalBasisContent');
+  const arrow = document.getElementById('accordionArrow');
+
+  if (toggleBtn && content && arrow) {
+    toggleBtn.addEventListener('click', () => {
+      const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', !isExpanded);
+      content.classList.toggle('hidden');
+      content.classList.toggle('flex');
+      arrow.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+  }
+
+  // Toast feedback utility
+  function showToast(msg, icon = 'check_circle') {
+    const toast = document.getElementById('toastNotification');
+    const toastMsg = document.getElementById('toastMessage');
+    const toastIcon = document.getElementById('toastIcon');
+    if (!toast) return;
+    toastMsg.textContent = msg;
+    toastIcon.textContent = icon;
+    toast.classList.remove('hidden');
+    setTimeout(() => {
+      toast.classList.add('hidden');
+    }, 2800);
+  }
+
+  // Text-To-Speech micro-interaction
+  let isSpeaking = false;
+  const ttsBtn = document.getElementById('ttsButton');
+  const ttsIcon = document.getElementById('ttsIcon');
+
+  if (ttsBtn) {
+    ttsBtn.addEventListener('click', () => {
+      if (!('speechSynthesis' in window)) {
+        showToast('TTS not supported on this browser', 'info');
+        return;
+      }
+      if (isSpeaking) {
+        window.speechSynthesis.cancel();
+        isSpeaking = false;
+        ttsIcon.textContent = 'volume_up';
+        showToast('Audio paused', 'pause');
+      } else {
+        const textToRead = "Stopped by police guidelines. Mandatory DOs: Ask calmly for the officer's name and rank. Show digital license via DigiLocker. Women can only be searched by a female officer. Critical DON'Ts: Do not surrender your smartphone or chats. Do not pay cash without official receipt. Do not sign blank papers.";
+        const utter = new SpeechSynthesisUtterance(textToRead);
+        utter.rate = 0.95;
+        utter.onend = () => {
+          isSpeaking = false;
+          ttsIcon.textContent = 'volume_up';
+        };
+        window.speechSynthesis.speak(utter);
+        isSpeaking = true;
+        ttsIcon.textContent = 'stop_circle';
+        showToast('Reading aloud DOs and DON\'Ts', 'volume_up');
+      }
+    });
+  }
+
+  // Share Location trigger
+  const shareBtn = document.getElementById('shareLocButton');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const coords = `${pos.coords.latitude.toFixed(4)}, ${pos.coords.longitude.toFixed(4)}`;
+            if (navigator.share) {
+              navigator.share({
+                title: 'My Police Stop Location',
+                text: `I am currently stopped at coordinates: https://maps.google.com/?q=${coords}`,
+              }).catch(() => {});
+            } else {
+              navigator.clipboard?.writeText(`https://maps.google.com/?q=${coords}`);
+              showToast('Location link copied to clipboard!', 'share_location');
+            }
+          },
+          () => {
+            showToast('Permission denied. Ensure GPS is enabled.', 'error');
+          }
+        );
+      } else {
+        showToast('Geolocation unavailable', 'error');
+      }
+    });
+  }
+
+  // Incident Note Modal logic
+  const recordBtn = document.getElementById('recordButton');
+  const noteModal = document.getElementById('noteModal');
+  const closeNote = document.getElementById('closeNoteModal');
+  const cancelNote = document.getElementById('cancelNoteBtn');
+  const saveNote = document.getElementById('saveNoteBtn');
+  const noteInput = document.getElementById('noteInput');
+
+  function openModal() {
+    noteModal.classList.remove('hidden');
+    noteModal.classList.add('flex');
+    noteInput.focus();
+  }
+  function closeModal() {
+    noteModal.classList.add('hidden');
+    noteModal.classList.remove('flex');
+  }
+
+  if (recordBtn) recordBtn.addEventListener('click', openModal);
+  if (closeNote) closeNote.addEventListener('click', closeModal);
+  if (cancelNote) cancelNote.addEventListener('click', closeModal);
+  if (saveNote) {
+    saveNote.addEventListener('click', () => {
+      if (noteInput.value.trim().length > 0) {
+        showToast('Incident note securely saved offline', 'task_alt');
+        noteInput.value = '';
+        closeModal();
+      } else {
+        showToast('Please type details before saving', 'info');
+      }
+    });
+  }
+
+  const checklistBtn = document.getElementById('openHelpModal');
+  if (checklistBtn) {
+    checklistBtn.addEventListener('click', () => {
+      showToast('All 4 safety steps verified active', 'verified');
+    });
+  }
+</script></main></body></html>

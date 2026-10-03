@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>NyayaSetu - Onboarding Slide 3</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Custom Fonts: Montserrat & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#FF5A00',
+              dark: '#17261F',
+              bg: '#FAFAFA',
+              subtle: '#8A8A8A',
+              shape: '#E8E9F0'
+            }
+          },
+          fontFamily: {
+            heading: ['Montserrat', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Style Blocks -->
+<style data-purpose="base-layout">
+    body {
+      background-color: #ECEEF2;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      margin: 0;
+      padding: 0;
+    }
+    .device-screen {
+      width: 100%;
+      max-width: 390px;
+      height: 844px;
+      min-height: 844px;
+      background-color: #FAFAFA;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    }
+  </style>
+<style data-purpose="decorations">
+    /* Subtle geometric backdrop arches */
+    .bg-top-curve {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 320px;
+      height: 140px;
+      background-color: #F1F2F6;
+      border-radius: 0 0 160px 160px;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero-blob {
+      position: absolute;
+      top: 130px;
+      left: 36px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, #E8EBF2 0%, #F5F6FA 70%, transparent 100%);
+      border-radius: 50%;
+      filter: blur(14px);
+      z-index: 1;
+      pointer-events: none;
+    }
+  </style>
+<!-- END: Style Blocks -->
+</head>
+<body class="min-h-screen flex items-center justify-center p-0 md:p-6">
+<!-- BEGIN: DeviceContainer -->
+<div class="device-screen flex flex-col justify-between select-none mx-auto" data-purpose="mobile-onboarding-card">
+<!-- Top Decorative Oval Curve -->
+<div aria-hidden="true" class="bg-top-curve"></div>
+<div aria-hidden="true" class="hero-blob"></div>
+<!-- BEGIN: HeaderSection -->
+<header class="relative z-20 pt-8 px-6 flex items-center justify-between" data-purpose="screen-header">
+<!-- Brand Pill -->
+<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-gray-100 shadow-sm" data-purpose="brand-badge">
+<span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
+<span class="font-heading font-black tracking-widest text-[11px] text-brand-dark">NYAYASETU</span>
+</div>
+<!-- Skip Button -->
+<button aria-label="Skip onboarding" class="text-xs font-bold tracking-wider text-brand-subtle hover:text-brand-dark transition-colors px-2 py-1 uppercase" type="button">
+        SKIP
+      </button>
+</header>
+<!-- END: HeaderSection -->
+<!-- BEGIN: HeroIllustrationSection -->
+<section class="relative z-10 flex-1 flex items-center justify-center px-4" data-purpose="isometric-hero-illustration">
+<!-- Isometric Architectural Time Vessel Illustration -->
+<svg class="w-full max-w-[340px] h-auto max-h-[380px] drop-shadow-sm" fill="none" viewbox="0 0 340 370" xmlns="http://www.w3.org/2000/svg">
+<!-- Floating Constellation & Nodes -->
+<g opacity="0.35" stroke="#17261F" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2">
+<circle cx="95" cy="52" fill="#FAFAFA" r="3.5"></circle>
+<path d="M98 52 L 140 45 L 165 60 L 195 42" stroke-dasharray="2 3"></path>
+<circle cx="140" cy="45" fill="#17261F" r="2.5"></circle>
+<circle cx="195" cy="42" fill="#FF5A00" r="2.5" stroke="#FF5A00"></circle>
+<circle cx="270" cy="70" fill="#FAFAFA" r="3"></circle>
+<!-- Cross markers -->
+<path d="M50 145 H58 M54 141 V149" stroke-width="1.5"></path>
+<path d="M288 230 H294 M291 227 V233" opacity="0.7" stroke-width="1.2"></path>
+</g>
+<!-- Soft Gray Shadow Base under isometric pedestal -->
+<ellipse cx="170" cy="272" fill="#EAECEF" opacity="0.8" rx="100" ry="46"></ellipse>
+<!-- Orbiting Mini Saturn Planet (Left) -->
+<g transform="translate(68, 142)">
+<!-- Planet Sphere -->
+<circle cx="16" cy="16" fill="#FF5A00" r="11" stroke="#17261F" stroke-width="2"></circle>
+<!-- Inner Planet Crescent Pattern -->
+<path d="M10 8 Q 16 16 10 24" fill="none" stroke="#17261F" stroke-width="1.5"></path>
+<!-- Orbit Ring -->
+<ellipse cx="16" cy="16" fill="none" rx="20" ry="6.5" stroke="#17261F" stroke-linecap="round" stroke-width="2.2" transform="rotate(-18 16 16)"></ellipse>
+</g>
+<!-- Small decorative floating pill badge -->
+<g transform="translate(100, 228) rotate(-30)">
+<rect fill="#FFFFFF" height="8" rx="4" stroke="#17261F" stroke-width="1.5" width="16" x="0" y="0"></rect>
+<line stroke="#17261F" stroke-width="1.5" x1="8" x2="8" y1="0" y2="8"></line>
+</g>
+<!-- Botanical Plant Foliage (Left Side) -->
+<g stroke="#17261F" stroke-linecap="round" stroke-linejoin="round">
+<path d="M84 220 Q 92 188 72 165" fill="none" stroke-width="2.2"></path>
+<path d="M72 165 Q 98 178 87 210" fill="#FFFFFF" stroke-width="2.2"></path>
+<path d="M96 230 Q 112 195 98 178" fill="none" stroke-width="2"></path>
+<path d="M106 235 Q 120 205 132 208" fill="none" stroke-width="2"></path>
+<path d="M72 165 C 65 178 68 200 82 226" fill="#E8E9F0" stroke-width="2"></path>
+</g>
+<!-- Isometric Bottom Pyramid / Pedestal (Hourglass Lower Half) -->
+<!-- Center top apex of lower pyramid: (170, 185) -->
+<!-- Base vertices: Left (102, 222), Center-Front (170, 262), Right (238, 222) -->
+<!-- Left Face (Solid Black) -->
+<polygon fill="#17261F" points="170,185 102,222 170,262" stroke="#17261F" stroke-linejoin="round" stroke-width="2.5"></polygon>
+<!-- Right Face (Vivid Orange) -->
+<polygon fill="#FF5A00" points="170,185 170,262 238,222" stroke="#17261F" stroke-linejoin="round" stroke-width="2.5"></polygon>
+<!-- Isometric Base Extrusion / Thickness -->
+<polygon fill="#0C1410" points="102,222 170,262 170,272 102,232" stroke="#17261F" stroke-width="2"></polygon>
+<polygon fill="#D64800" points="170,262 238,222 238,232 170,272" stroke="#17261F" stroke-width="2"></polygon>
+<!-- Floating Glass Upper Vessel (Clear Architectural Funnel) -->
+<!-- Top Ellipse (Rim) -->
+<g>
+<!-- Back rim -->
+<path d="M104 125 C 104 100, 236 100, 236 125" fill="#FFFFFF" stroke="#17261F" stroke-width="2.4"></path>
+<!-- Translucent Body fill -->
+<path d="M104 125 Q 150 160 170 185 Q 190 160 236 125 C 236 148 104 148 104 125 Z" fill="#F4F6F9" fill-opacity="0.8"></path>
+<!-- Funnel Side Glass Contour -->
+<path d="M104 125 Q 148 160 170 185" fill="none" stroke="#17261F" stroke-width="2.5"></path>
+<path d="M236 125 Q 192 160 170 185" fill="none" stroke="#17261F" stroke-width="2.5"></path>
+<!-- Glass Inner Rim Oval -->
+<ellipse cx="170" cy="125" fill="#FFFFFF" rx="66" ry="24" stroke="#17261F" stroke-width="2.5"></ellipse>
+<ellipse cx="170" cy="125" fill="#F8F9FA" rx="55" ry="18" stroke="#17261F" stroke-dasharray="3 3" stroke-width="1.2"></ellipse>
+<!-- Core Floating Crystal Flame (Helpline / Torch Symbol inside Vessel) -->
+<g transform="translate(170, 125)">
+<!-- Diamond Flame -->
+<path d="M0 -15 L 7 0 L 0 15 L -7 0 Z" fill="#FF5A00" stroke="#17261F" stroke-width="1.8"></path>
+<path d="M0 -15 L 7 0 L 0 15 Z" fill="#FFA370"></path>
+<circle cx="0" cy="0" fill="#FFFFFF" r="1.5"></circle>
+</g>
+<!-- Star speckles / Sands of Time floating inside glass -->
+<g fill="#17261F">
+<circle cx="145" cy="140" r="1.2"></circle>
+<circle cx="158" cy="155" r="1"></circle>
+<circle cx="182" cy="145" r="1.4"></circle>
+<circle cx="196" cy="136" r="1"></circle>
+<circle cx="168" cy="168" r="1.2"></circle>
+<circle cx="175" cy="162" r="0.9"></circle>
+</g>
+</g>
+<!-- Right Side Botanical Leaves & Fern Spike -->
+<g stroke="#17261F" stroke-linecap="round" stroke-linejoin="round">
+<!-- Stylized upright sprout leaves -->
+<path d="M232 235 Q 236 200 248 185 Q 256 210 240 236" fill="#FF5A00" stroke-width="2"></path>
+<path d="M245 238 Q 255 195 264 190 Q 268 212 254 238" fill="#FFFFFF" stroke-width="2"></path>
+<path d="M248 185 L 238 232" stroke-width="1.5"></path>
+<!-- Delicate wheat/fern branch -->
+<path d="M260 215 Q 275 170 278 140" fill="none" stroke-dasharray="1 3" stroke-width="1.8"></path>
+<ellipse cx="277" cy="142" fill="#FFFFFF" rx="3.5" ry="1.5" stroke-width="1.4" transform="rotate(-30 277 142)"></ellipse>
+<ellipse cx="273" cy="154" fill="#FFFFFF" rx="3.5" ry="1.5" stroke-width="1.4" transform="rotate(-30 273 154)"></ellipse>
+<ellipse cx="270" cy="166" fill="#FFFFFF" rx="3.5" ry="1.5" stroke-width="1.4" transform="rotate(-30 270 166)"></ellipse>
+<ellipse cx="266" cy="178" fill="#FFFFFF" rx="3.5" ry="1.5" stroke-width="1.4" transform="rotate(-30 266 178)"></ellipse>
+<!-- Small floating seed -->
+<ellipse cx="266" cy="120" fill="#17261F" rx="3" ry="1.8" transform="rotate(40 266 120)"></ellipse>
+</g>
+</svg>
+</section>
+<!-- END: HeroIllustrationSection -->
+<!-- BEGIN: BottomContentSection -->
+<footer class="relative z-20 pb-7 px-6 flex flex-col items-center text-center" data-purpose="content-and-cta">
+<!-- Typography Block -->
+<div class="mb-6 max-w-xs" data-purpose="screen-copy">
+<h1 class="font-heading font-black text-4xl text-brand-dark tracking-tight leading-none mb-2.5">
+          ACT
+        </h1>
+<p class="text-[12px] font-sans font-bold text-brand-subtle tracking-[0.16em] uppercase leading-relaxed">
+          Step-By-Step Help When You Need It
+        </p>
+</div>
+<!-- Modern Pagination Indicators -->
+<div aria-label="Slide 3 of 3" class="flex items-center gap-2 mb-6" data-purpose="carousel-dots">
+<!-- Inactive Dot 1 -->
+<span class="w-2 h-2 rounded-full bg-brand-shape transition-all duration-300"></span>
+<!-- Inactive Dot 2 -->
+<span class="w-2 h-2 rounded-full bg-brand-shape transition-all duration-300"></span>
+<!-- Active Pill Capsule Dot 3 -->
+<span class="w-6 h-2 rounded-full bg-brand-orange shadow-sm transition-all duration-300"></span>
+</div>
+<!-- Main Action Pill Button -->
+<a class="w-full py-4 px-6 rounded-full bg-brand-dark hover:bg-black active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-3 shadow-lg shadow-black/15 group cursor-pointer z-30" data-purpose="primary-cta-button" href="#get-started">
+<span class="font-heading font-extrabold text-[13px] tracking-[0.18em] text-white uppercase">
+          OPEN NYAYASETU
+        </span>
+<!-- Right Arrow Icon -->
+<svg class="w-4 h-4 text-white transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<!-- Decorative Vivid Orange Bottom Arc -->
+<!-- Matches exactly the bold crescent loop peeking in mockup 3 -->
+<div aria-hidden="true" class="absolute -bottom-16 left-1/2 -translate-x-1/2 pointer-events-none z-10 w-[310px] h-[130px]">
+<svg class="w-full h-full" fill="none" viewbox="0 0 310 130" xmlns="http://www.w3.org/2000/svg">
+<path d="M15 130 C 15 50, 295 50, 295 130" stroke="#FF5A00" stroke-linecap="round" stroke-width="32"></path>
+</svg>
+</div>
+</footer>
+<!-- END: BottomContentSection -->
+</div>
+<!-- END: DeviceContainer -->
+</body></html>
