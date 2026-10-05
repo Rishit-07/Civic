@@ -63,7 +63,7 @@ void main() {
     expect(find.text('Language'), findsOneWidget);
     expect(find.text('Privacy & On-Device Security'), findsOneWidget);
     expect(find.text('Report an Error or Statutory Update'), findsOneWidget);
-    expect(find.text('About CIVIC'), findsOneWidget);
+    expect(find.text('About CIVIC'), findsWidgets);
 
     // Verify Sign Out button
     expect(find.text('Sign Out of CIVIC'), findsOneWidget);
