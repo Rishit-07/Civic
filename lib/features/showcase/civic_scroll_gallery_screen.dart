@@ -120,9 +120,17 @@ class _CivicScrollGalleryScreenState extends State<CivicScrollGalleryScreen> {
     ),
   ];
 
-  double _scrollProgress = 0.0;
-  int _activeCardIndex = 0;
+  // ─── Paint-phase ValueNotifiers (no setState, no layout thrash) ───
+  final ValueNotifier<double> _scrollProgressNotifier = ValueNotifier(0.0);
+  final ValueNotifier<int> _activeCardNotifier = ValueNotifier(0);
+  final ValueNotifier<double> _pinOffsetNotifier = ValueNotifier(0.0);
+
   int _hoveredCardIndex = -1;
+
+  // Cached layout params (recomputed only on build, not during scroll)
+  double _zoneStart = 0.0;
+  double _totalDistance = 0.0;
+  double _endDwell = 0.0;
 
   @override
   void initState() {
@@ -130,73 +138,64 @@ class _CivicScrollGalleryScreenState extends State<CivicScrollGalleryScreen> {
     _mainScrollController.addListener(_handleScroll);
   }
 
+  /// High-frequency scroll handler — ZERO setState calls.
+  /// Updates only ValueNotifiers (paint-phase) and jumpTo (paint-phase).
   void _handleScroll() {
     if (!mounted || !_mainScrollController.hasClients) return;
 
-    final double screenH = MediaQuery.of(context).size.height;
-    final double introH = math.max(screenH * 0.46, 320.0);
-    final double zoneStart = 70.0 + introH;
-
-    final bool isMobile = MediaQuery.of(context).size.width < 600;
-    final double cardW = isMobile ? _mobileCardWidth : _desktopCardWidth;
-    final double gapW = isMobile ? _mobileGap : _desktopGap;
-    final double totalDistance = (_items.length - 1) * (cardW + gapW);
-
     final double currentOffset = _mainScrollController.offset;
 
-    if (currentOffset <= zoneStart) {
-      if (_scrollProgress != 0.0) {
-        setState(() {
-          _scrollProgress = 0.0;
-          _activeCardIndex = 0;
-        });
+    if (currentOffset <= _zoneStart) {
+      // Before the pinned zone — reset everything
+      if (_scrollProgressNotifier.value != 0.0) {
+        _scrollProgressNotifier.value = 0.0;
+        _activeCardNotifier.value = 0;
+        _pinOffsetNotifier.value = 0.0;
       }
       if (_horizontalController.hasClients &&
           _horizontalController.position.hasContentDimensions &&
           _horizontalController.offset != 0.0) {
         _horizontalController.jumpTo(0.0);
       }
-    } else {
-      final double progress =
-          ((currentOffset - zoneStart) / totalDistance).clamp(0.0, 1.0);
+      return;
+    }
 
-      final int newActiveIndex =
-          (progress * (_items.length - 1)).round().clamp(0, _items.length - 1);
+    // Compute normalized progress [0..1] through the horizontal zone
+    final double progress =
+        ((_totalDistance > 0.0) ? ((currentOffset - _zoneStart) / _totalDistance) : 0.0)
+            .clamp(0.0, 1.0);
 
-      if ((progress - _scrollProgress).abs() > 0.003 ||
-          newActiveIndex != _activeCardIndex) {
-        setState(() {
-          _scrollProgress = progress;
-          _activeCardIndex = newActiveIndex;
-        });
-      }
+    // Update pin offset (paint only, no layout change)
+    final double pinOffset =
+        (currentOffset - _zoneStart).clamp(0.0, _totalDistance + _endDwell);
+    _pinOffsetNotifier.value = pinOffset;
 
-      // Synchronize horizontal gallery position directly to vertical progress
-      if (_horizontalController.hasClients &&
-          _horizontalController.position.hasContentDimensions) {
-        final double maxHorizontal =
-            _horizontalController.position.maxScrollExtent;
-        final double targetOffset = progress * maxHorizontal;
-        if ((_horizontalController.offset - targetOffset).abs() > 0.5) {
-          _horizontalController.jumpTo(targetOffset);
-        }
-      }
+    // Update scroll progress for dots / header counter
+    _scrollProgressNotifier.value = progress;
+
+    // Determine active card index
+    final int newActiveIndex =
+        (progress * (_items.length - 1)).round().clamp(0, _items.length - 1);
+    if (_activeCardNotifier.value != newActiveIndex) {
+      _activeCardNotifier.value = newActiveIndex;
+    }
+
+    // Synchronize horizontal gallery — direct jumpTo, no setState
+    if (_horizontalController.hasClients &&
+        _horizontalController.position.hasContentDimensions) {
+      final double maxH = _horizontalController.position.maxScrollExtent;
+      final double target = progress * maxH;
+      // Always sync (jumpTo is a paint-phase operation, very cheap)
+      _horizontalController.jumpTo(target);
     }
   }
 
   void _scrollToCard(int index) {
     if (!_mainScrollController.hasClients) return;
-    final double screenH = MediaQuery.of(context).size.height;
-    final double introH = math.max(screenH * 0.46, 320.0);
-    final double zoneStart = 70.0 + introH;
-
-    final bool isMobile = MediaQuery.of(context).size.width < 600;
-    final double cardW = isMobile ? _mobileCardWidth : _desktopCardWidth;
-    final double gapW = isMobile ? _mobileGap : _desktopGap;
-    final double totalDistance = (_items.length - 1) * (cardW + gapW);
 
     final double targetFraction = index / (_items.length - 1);
-    final double targetMainOffset = zoneStart + (targetFraction * totalDistance);
+    final double targetMainOffset =
+        _zoneStart + (targetFraction * _totalDistance);
 
     _mainScrollController.animateTo(
       targetMainOffset,
@@ -210,6 +209,9 @@ class _CivicScrollGalleryScreenState extends State<CivicScrollGalleryScreen> {
     _mainScrollController.removeListener(_handleScroll);
     _mainScrollController.dispose();
     _horizontalController.dispose();
+    _scrollProgressNotifier.dispose();
+    _activeCardNotifier.dispose();
+    _pinOffsetNotifier.dispose();
     super.dispose();
   }
 
@@ -230,19 +232,13 @@ class _CivicScrollGalleryScreenState extends State<CivicScrollGalleryScreen> {
     final double gapW = isMobile ? _mobileGap : _desktopGap;
 
     final double introH = math.max(screenSize.height * 0.46, 320.0);
-    final double totalDistance = (_items.length - 1) * (cardW + gapW);
-    // Extra dwell buffer so Card 5 stays comfortably in view before unlocking to Outro
-    final double endDwell = isMobile ? 160.0 : 280.0;
+    _totalDistance = (_items.length - 1) * (cardW + gapW);
+    _endDwell = isMobile ? 160.0 : 280.0;
+    _zoneStart = 70.0 + introH;
+
     // Pinned zone total vertical height: viewport + horizontal travel distance + dwell
-    final double pinnedZoneHeight = screenSize.height + totalDistance + endDwell;
-
-    final double currentScrollOffset =
-        _mainScrollController.hasClients ? _mainScrollController.offset : 0.0;
-    final double zoneStart = 70.0 + introH;
-
-    // Pinning offset: gallery visually stays stuck at top until all cards traversed + dwell
-    final double galleryPinOffset =
-        (currentScrollOffset - zoneStart).clamp(0.0, totalDistance + endDwell);
+    final double pinnedZoneHeight =
+        screenSize.height + _totalDistance + _endDwell;
 
     return Scaffold(
       backgroundColor: const Color(0xFFFAFAFA), // Matches CIVIC app theme
@@ -294,17 +290,32 @@ class _CivicScrollGalleryScreenState extends State<CivicScrollGalleryScreen> {
                   child: Stack(
                     clipBehavior: Clip.none,
                     children: [
+                      // ── Paint-phase pinning via ValueListenableBuilder ──
+                      // Instead of computing galleryPinOffset in build() and
+                      // passing it to Positioned(top:), we pin at top:0 and
+                      // apply the offset via Transform.translate driven by a
+                      // ValueNotifier. This means vertical scroll updates
+                      // only repaint this subtree, never re-layout the Column.
                       Positioned(
-                        top: galleryPinOffset,
+                        top: 0,
                         left: 0,
                         right: 0,
                         height: screenSize.height,
-                        child: _buildPinnedGalleryViewport(
-                          cardW,
-                          cardH,
-                          gapW,
-                          isMobile,
-                          screenSize,
+                        child: ValueListenableBuilder<double>(
+                          valueListenable: _pinOffsetNotifier,
+                          builder: (context, pinOffset, child) {
+                            return Transform.translate(
+                              offset: Offset(0, pinOffset),
+                              child: child,
+                            );
+                          },
+                          child: _buildPinnedGalleryViewport(
+                            cardW,
+                            cardH,
+                            gapW,
+                            isMobile,
+                            screenSize,
+                          ),
                         ),
                       ),
                     ],

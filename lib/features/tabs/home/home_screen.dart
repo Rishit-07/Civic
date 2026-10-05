@@ -2061,14 +2061,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildVisualGalleryBanner() {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFF0E1116),
+        color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFF1E2430), width: 1.2),
+        border: Border.all(color: const Color(0xFFE2E4EB), width: 1.2),
         boxShadow: const [
           BoxShadow(
-            color: Color(0x33000000),
+            color: Color(0x0A000000),
             blurRadius: 16,
-            offset: Offset(0, 6),
+            offset: Offset(0, 4),
           ),
         ],
       ),
@@ -2084,7 +2084,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 140,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: const Color(0xFFFF5A00).withValues(alpha: 0.18),
+                  color: const Color(0xFFFF5A00).withValues(alpha: 0.08),
                 ),
               ),
             ),
@@ -2099,10 +2099,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFFF5A00).withValues(alpha: 0.15),
+                          color: const Color(0xFFFF5A00).withValues(alpha: 0.10),
                           borderRadius: BorderRadius.circular(6),
                           border: Border.all(
-                            color: const Color(0xFFFF5A00).withValues(alpha: 0.35),
+                            color: const Color(0xFFFF5A00).withValues(alpha: 0.30),
                             width: 1.0,
                           ),
                         ),
@@ -2112,11 +2112,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontSize: 9.5,
                             fontWeight: FontWeight.w800,
                             letterSpacing: 1.0,
-                            color: const Color(0xFFFF8B4A),
+                            color: const Color(0xFFFF5A00),
                           ),
                         ),
                       ),
-                      const Icon(Icons.auto_awesome_rounded, color: Color(0xFFFFB800), size: 16),
+                      const Icon(Icons.auto_awesome_rounded, color: Color(0xFFFF5A00), size: 16),
                     ],
                   ),
                   const SizedBox(height: 12),
@@ -2125,7 +2125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: GoogleFonts.montserrat(
                       fontSize: 16,
                       fontWeight: FontWeight.w900,
-                      color: Colors.white,
+                      color: const Color(0xFF17261F),
                       letterSpacing: 0.8,
                     ),
                   ),
@@ -2134,7 +2134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     'Glide through real statutory defense scenarios with architectural visuals & horizontal scroll motion.',
                     style: GoogleFonts.plusJakartaSans(
                       fontSize: 12,
-                      color: const Color(0xFF94A3B8),
+                      color: const Color(0xFF6B7280),
                       height: 1.4,
                     ),
                   ),
