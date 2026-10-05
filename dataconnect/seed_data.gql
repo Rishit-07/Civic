@@ -1,0 +1,25 @@
+mutation SeedDatabase @transaction {
+  category_insertMany(data: [
+    { id: "00000000-0000-0000-0000-000000000001", name: "Development", slug: "dev", iconUrl: "https://example.com/dev.png" },
+    { id: "00000000-0000-0000-0000-000000000002", name: "Design", slug: "design", iconUrl: "https://example.com/design.png" }
+  ])
+  user_insertMany(data: [
+    { id: "11111111-1111-1111-1111-111111111111", email: "alice@example.com", createdAt: "2023-01-01T00:00:00Z", displayName: "Alice" },
+    { id: "11111111-1111-1111-1111-111111111112", email: "bob@example.com", createdAt: "2023-02-01T00:00:00Z", displayName: "Bob" }
+  ])
+  term_insertMany(data: [
+    { id: "22222222-2222-2222-2222-222222222221", term: "API", definition: "Application Programming Interface", categoryId: "00000000-0000-0000-0000-000000000001" },
+    { id: "22222222-2222-2222-2222-222222222222", term: "REST", definition: "Representational State Transfer", categoryId: "00000000-0000-0000-0000-000000000001" }
+  ])
+  workflow_insertMany(data: [
+    { id: "33333333-3333-3333-3333-333333333331", title: "Onboarding", description: "Standard user onboarding", difficultyLevel: "Easy", categoryId: "00000000-0000-0000-0000-000000000001" },
+    { id: "33333333-3333-3333-3333-333333333332", title: "Design Sprint", description: "Rapid prototyping", difficultyLevel: "Medium", categoryId: "00000000-0000-0000-0000-000000000002" }
+  ])
+  workflowStep_insertMany(data: [
+    { id: "44444444-4444-4444-4444-444444444441", stepNumber: 1, instructionText: "Sign up", workflowId: "33333333-3333-3333-3333-333333333331" },
+    { id: "44444444-4444-4444-4444-444444444442", stepNumber: 2, instructionText: "Verify email", workflowId: "33333333-3333-3333-3333-333333333331" }
+  ])
+  userBookmark_insertMany(data: [
+    { id: "55555555-5555-5555-5555-555555555551", userId: "11111111-1111-1111-1111-111111111111", targetId: "33333333-3333-3333-3333-333333333331", targetType: "Workflow" }
+  ])
+}

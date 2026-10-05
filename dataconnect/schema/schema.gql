@@ -1,0 +1,43 @@
+type User @table {
+  email: String!
+  createdAt: Timestamp!
+  displayName: String
+}
+
+type Category @table {
+  name: String!
+  slug: String!
+  iconUrl: String
+}
+
+type Term @table {
+  term: String!
+  definition: String!
+  category: Category!
+  exampleUsage: String
+  # Related terms would be handled via a join table if many-to-many, 
+  # or a self-referencing link if one-to-one/many. 
+  # Using a self-reference for simplicity:
+  relatedTerm: Term
+}
+
+type Workflow @table {
+  title: String!
+  description: String!
+  difficultyLevel: String!
+  tags: [String]
+  estimatedTimeMinutes: Int
+  category: Category
+}
+
+type WorkflowStep @table {
+  stepNumber: Int!
+  instructionText: String!
+  workflow: Workflow!
+}
+
+type UserBookmark @table {
+  user: User!
+  targetId: UUID!
+  targetType: String!
+}

@@ -1,0 +1,166 @@
+mutation CreateUser @auth(level: USER) {
+  user_insert(data: {
+    id_expr: "auth.uid",
+    email: "user@example.com",
+    createdAt_expr: "request.time",
+    displayName: "New User"
+  })
+}
+
+mutation UpdateUser @auth(level: USER) {
+  user_update(key: {id_expr: "auth.uid"}, data: {displayName: "Updated Name"})
+}
+
+mutation DeleteUser @auth(level: USER) {
+  user_delete(key: {id_expr: "auth.uid"})
+}
+
+query GetUser @auth(level: USER) {
+  user(key: {id_expr: "auth.uid"}) {
+    email
+    displayName
+    createdAt
+  }
+}
+
+query ListUsers @auth(level: PUBLIC, insecureReason: "Listing users is needed for a public directory.") {
+  users {
+    id
+    displayName
+  }
+}
+
+mutation CreateCategory @auth(level: USER) {
+  category_insert(data: {name: "Tech", slug: "tech"})
+}
+
+mutation UpdateCategory @auth(level: USER) {
+  category_update(id: "00000000-0000-0000-0000-000000000000", data: {name: "Technology"})
+}
+
+mutation DeleteCategory @auth(level: USER) {
+  category_delete(id: "00000000-0000-0000-0000-000000000000")
+}
+
+query GetCategory @auth(level: PUBLIC, insecureReason: "Categories are public data.") {
+  category(id: "00000000-0000-0000-0000-000000000000") {
+    name
+    slug
+  }
+}
+
+query ListCategories @auth(level: PUBLIC, insecureReason: "Categories are public data.") {
+  categories {
+    name
+    slug
+  }
+}
+
+mutation CreateTerm @auth(level: USER) {
+  term_insert(data: {
+    term: "Database",
+    definition: "A structured set of data.",
+    category: {id: "00000000-0000-0000-0000-000000000000"}
+  })
+}
+
+mutation UpdateTerm @auth(level: USER) {
+  term_update(id: "00000000-0000-0000-0000-000000000000", data: {definition: "New definition"})
+}
+
+mutation DeleteTerm @auth(level: USER) {
+  term_delete(id: "00000000-0000-0000-0000-000000000000")
+}
+
+query GetTerm @auth(level: PUBLIC, insecureReason: "Glossary is public.") {
+  term(id: "00000000-0000-0000-0000-000000000000") {
+    term
+    definition
+  }
+}
+
+query ListTerms @auth(level: PUBLIC, insecureReason: "Glossary is public.") {
+  terms {
+    term
+    definition
+  }
+}
+
+mutation CreateWorkflow @auth(level: USER) {
+  workflow_insert(data: {
+    title: "Setup Guide",
+    description: "Follow these steps.",
+    difficultyLevel: "Easy",
+    category: {id: "00000000-0000-0000-0000-000000000000"}
+  })
+}
+
+mutation UpdateWorkflow @auth(level: USER) {
+  workflow_update(id: "00000000-0000-0000-0000-000000000000", data: {difficultyLevel: "Medium"})
+}
+
+mutation DeleteWorkflow @auth(level: USER) {
+  workflow_delete(id: "00000000-0000-0000-0000-000000000000")
+}
+
+query GetWorkflow @auth(level: PUBLIC, insecureReason: "Workflows are public resources.") {
+  workflow(id: "00000000-0000-0000-0000-000000000000") {
+    title
+    description
+  }
+}
+
+query ListWorkflows @auth(level: PUBLIC, insecureReason: "Workflows are public resources.") {
+  workflows {
+    title
+  }
+}
+
+mutation CreateWorkflowStep @auth(level: USER) {
+  workflowStep_insert(data: {
+    stepNumber: 1,
+    instructionText: "Open settings.",
+    workflow: {id: "00000000-0000-0000-0000-000000000000"}
+  })
+}
+
+mutation UpdateWorkflowStep @auth(level: USER) {
+  workflowStep_update(id: "00000000-0000-0000-0000-000000000000", data: {instructionText: "Update settings."})
+}
+
+mutation DeleteWorkflowStep @auth(level: USER) {
+  workflowStep_delete(id: "00000000-0000-0000-0000-000000000000")
+}
+
+query GetWorkflowStep @auth(level: PUBLIC, insecureReason: "Workflows are public.") {
+  workflowStep(id: "00000000-0000-0000-0000-000000000000") {
+    stepNumber
+    instructionText
+  }
+}
+
+query ListWorkflowSteps @auth(level: PUBLIC, insecureReason: "Workflows are public.") {
+  workflowSteps {
+    stepNumber
+    instructionText
+  }
+}
+
+mutation CreateUserBookmark @auth(level: USER) {
+  userBookmark_insert(data: {
+    user: {id_expr: "auth.uid"},
+    targetId: "00000000-0000-0000-0000-000000000000",
+    targetType: "Workflow"
+  })
+}
+
+mutation DeleteUserBookmark @auth(level: USER) {
+  userBookmark_delete(id: "00000000-0000-0000-0000-000000000000")
+}
+
+query ListMyBookmarks @auth(level: USER) {
+  userBookmarks(where: {userId: {eq_expr: "auth.uid"}}) {
+    targetId
+    targetType
+  }
+}
