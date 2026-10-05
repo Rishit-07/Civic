@@ -17,6 +17,7 @@ import '../../directory/pages/privacy_policy_screen.dart';
 import '../../directory/pages/citizen_rights_screen.dart';
 import '../../directory/pages/crpc_bnss_compliance_screen.dart';
 import '../../directory/pages/terms_of_use_screen.dart';
+import '../../showcase/civic_scroll_gallery_screen.dart';
 
 /// Dynamic, animated dark footer showcase block matching the CIVIC Design System.
 /// Features smooth scroll-driven entrance animation, 4 structured columns,
@@ -264,6 +265,8 @@ class _CivicDynamicFooterState extends State<CivicDynamicFooter>
                             links: [
                               _LinkItem('Offline Legal Archive',
                                   () => _navigateTo(const OfflineArchiveScreen())),
+                              _LinkItem('Visual Scenario Gallery',
+                                  () => _navigateTo(const CivicScrollGalleryScreen())),
                               _LinkItem('Court Directories',
                                   () => _navigateTo(const CourtDirectoriesScreen())),
                               _LinkItem('Emergency 112 / NALSA',

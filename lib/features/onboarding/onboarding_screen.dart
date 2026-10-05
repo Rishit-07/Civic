@@ -5,6 +5,7 @@ import '../../data/services/app_preferences.dart';
 import '../auth/sign_in_screen.dart';
 import '../scenarios/situation_list_screen.dart';
 import 'widgets/onboarding_illustrations.dart';
+import '../showcase/civic_scroll_gallery_screen.dart';
 
 /// Pixel-perfect Onboarding / Landing Screen matching CIVIC design standards:
 /// - 3 swipeable slides (KNOW, PREPARE, ACT) with smooth continuous parallax & scaling transitions
@@ -242,6 +243,49 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ),
               ],
+            ),
+          ),
+
+          // Gallery Showcase Pill Button
+          InkWell(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const CivicScrollGalleryScreen(),
+                ),
+              );
+            },
+            borderRadius: AppRadii.pillBorder,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
+              decoration: BoxDecoration(
+                color: const Color(0xFF17261F),
+                borderRadius: AppRadii.pillBorder,
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x14000000),
+                    blurRadius: 8,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.auto_awesome_motion_rounded,
+                      color: Color(0xFFFF5A00), size: 13),
+                  const SizedBox(width: 6),
+                  Text(
+                    'GALLERY',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 10.5,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 1.2,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
 

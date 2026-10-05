@@ -23,6 +23,7 @@ import '../../features/directory/pages/privacy_policy_screen.dart';
 import '../../features/directory/pages/citizen_rights_screen.dart';
 import '../../features/directory/pages/crpc_bnss_compliance_screen.dart';
 import '../../features/directory/pages/terms_of_use_screen.dart';
+import '../../features/showcase/civic_scroll_gallery_screen.dart';
 
 /// Centralized Declarative URL Router supporting HTML5 Deep Linking & Clean Path Navigation
 class AppRouter {
@@ -223,6 +224,14 @@ class AppRouter {
       return MaterialPageRoute(
         settings: settings,
         builder: (_) => const TermsOfUseScreen(),
+      );
+    }
+
+    // Framer Motion Style Horizontal Scroll Gallery
+    if (path == '/gallery' || path == '/showcase') {
+      return MaterialPageRoute(
+        settings: settings,
+        builder: (_) => const CivicScrollGalleryScreen(),
       );
     }
 

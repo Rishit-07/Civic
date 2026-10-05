@@ -11,6 +11,7 @@ import '../../scenarios/situation_card_screen.dart';
 import '../../scenarios/situation_list_screen.dart';
 import '../../scenarios/triage_screen.dart';
 import '../../navigation/widgets/civic_dynamic_footer.dart';
+import '../../showcase/civic_scroll_gallery_screen.dart';
 
 /// Complete, pixel-perfect CIVIC Home Screen based directly on
 /// the Neo-Constructivist Stitch design system with full offline legal assistance,
@@ -464,6 +465,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         // F. Interactive Quick Rights Highlight (DK Basu Verdict)
                         _buildDkBasuCard(),
+                        const SizedBox(height: 20),
+
+                        // Visual Horizontal Scroll Gallery Showcase Banner
+                        _buildVisualGalleryBanner(),
                         const SizedBox(height: 20),
 
                         // G. Offline Assurance Guarantee Badge
@@ -2048,6 +2053,130 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  /// Interactive Architectural Showcase Banner for the Framer-motion style gallery
+  Widget _buildVisualGalleryBanner() {
+    return Container(
+      decoration: BoxDecoration(
+        color: const Color(0xFF0E1116),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: const Color(0xFF1E2430), width: 1.2),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x33000000),
+            blurRadius: 16,
+            offset: Offset(0, 6),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(19),
+        child: Stack(
+          children: [
+            Positioned(
+              right: -30,
+              top: -30,
+              child: Container(
+                width: 140,
+                height: 140,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: const Color(0xFFFF5A00).withValues(alpha: 0.18),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFFF5A00).withValues(alpha: 0.15),
+                          borderRadius: BorderRadius.circular(6),
+                          border: Border.all(
+                            color: const Color(0xFFFF5A00).withValues(alpha: 0.35),
+                            width: 1.0,
+                          ),
+                        ),
+                        child: Text(
+                          'FEATURED SHOWCASE',
+                          style: GoogleFonts.montserrat(
+                            fontSize: 9.5,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 1.0,
+                            color: const Color(0xFFFF8B4A),
+                          ),
+                        ),
+                      ),
+                      const Icon(Icons.auto_awesome_rounded, color: Color(0xFFFFB800), size: 16),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    'VISUAL PROTOCOL GALLERY',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white,
+                      letterSpacing: 0.8,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    'Glide through real statutory defense scenarios with architectural visuals & horizontal scroll motion.',
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 12,
+                      color: const Color(0xFF94A3B8),
+                      height: 1.4,
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => const CivicScrollGalleryScreen(),
+                        ),
+                      );
+                    },
+                    borderRadius: BorderRadius.circular(24),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFF5A00),
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'LAUNCH HORIZONTAL GALLERY',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: 1.0,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 14),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
