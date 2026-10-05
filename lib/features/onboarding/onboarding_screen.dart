@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/theme/app_radii.dart';
@@ -6,15 +5,10 @@ import '../../data/services/app_preferences.dart';
 import '../auth/sign_in_screen.dart';
 import '../scenarios/situation_list_screen.dart';
 import 'widgets/onboarding_illustrations.dart';
-import 'widgets/legal_safety_sheets.dart';
-import 'widgets/landing_motion_widgets.dart';
 
 /// Pixel-perfect Onboarding / Landing Screen matching CIVIC design standards:
 /// - 3 swipeable slides (KNOW, PREPARE, ACT) with smooth continuous parallax & scaling transitions
 /// - Persistent top bar with CIVIC shield badge, Language toggle chip, and SKIP button
-/// - Horizontal scroll scenario selection animation with interactive legal cards
-/// - Scroll-to-reveal statutory text block with dynamic word illumination
-/// - Comprehensive Legal, Privacy, Safety Center (SOS), Safety Blog & Cookie Governance bar
 /// - High-contrast elevated emergency help pill badge on every slide
 /// - Continuous fluid pagination dots indicator that tracks swipe progress
 /// - Last slide "GET STARTED ->" button with legal disclaimer
@@ -29,7 +23,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
   String _currentLanguage = 'en';
-  bool _isCookieConsentDismissed = false;
 
   @override
   void initState() {
@@ -197,50 +190,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               left: 0,
               right: 0,
               child: _buildHeader(isWide),
-            ),
-
-            // 3. Persistent Bottom Legal, Privacy, Safety & Cookie Governance Bar
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (kIsWeb && !_isCookieConsentDismissed)
-                    CookieConsentPill(
-                      onAccept: () {
-                        setState(() {
-                          _isCookieConsentDismissed = true;
-                        });
-                      },
-                      onManage: () =>
-                          LegalSafetySheets.showCookiePreferences(context),
-                    ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFAFAFA).withValues(alpha: 0.96),
-                      border: const Border(
-                        top: BorderSide(color: Color(0xFFECEEF2), width: 1.0),
-                      ),
-                    ),
-                    child: LegalSafetyBar(
-                      onLegalTerms: () =>
-                          LegalSafetySheets.showLegalTerms(context),
-                      onPrivacyPolicy: () =>
-                          LegalSafetySheets.showPrivacyPolicy(context),
-                      onTermsOfService: () =>
-                          LegalSafetySheets.showTermsOfService(context),
-                      onSafetyBlog: () =>
-                          LegalSafetySheets.showSafetyBlog(context),
-                      onSafetyCenter: () =>
-                          LegalSafetySheets.showSafetyCenter(context),
-                      onCookies: () =>
-                          LegalSafetySheets.showCookiePreferences(context),
-                    ),
-                  ),
-                ],
-              ),
             ),
           ],
         ),
@@ -603,47 +552,34 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               // SLIDE 1 (KNOW)
               return Padding(
                 padding: EdgeInsets.fromLTRB(
-                    20.0, 0.0, 20.0, isWide ? 24.0 : 16.0),
+                    28.0, 0.0, 28.0, isWide ? 32.0 : 24.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       _isHindi ? 'जानिए' : 'KNOW',
                       style: GoogleFonts.montserrat(
-                        fontSize: isWide ? 44 : 38,
+                        fontSize: 42,
                         fontWeight: FontWeight.w900,
                         color: const Color(0xFF17261F),
                         letterSpacing: -0.5,
                         height: 1.0,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 10),
                     Text(
                       _isHindi
                           ? 'दैनिक जीवन में अपने अधिकारों\nको पहचानें'
                           : 'KNOW YOUR RIGHTS IN\nEVERYDAY LIFE',
                       style: GoogleFonts.montserrat(
-                        fontSize: isWide ? 13 : 12,
-                        fontWeight: FontWeight.w700,
-                        color: const Color(0xFF6B7280),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w800,
+                        color: const Color(0xFF8A8A8A),
                         letterSpacing: 1.6,
                         height: 1.5,
                       ),
                     ),
-                    const SizedBox(height: 14),
-
-                    // Scroll to Reveal Text with statutory quote
-                    ScrollToRevealText(
-                      quotation: _isHindi
-                          ? 'भारतीय कानून के तहत अधिकारों की जानकारी ही हर नागरिक का सबसे मजबूत कवच है।'
-                          : 'Under Indian Law statutory awareness is every citizen fundamental protective shield.',
-                      attribution: 'CONSTITUTION OF INDIA · ARTICLE 21',
-                    ),
-                    const SizedBox(height: 14),
-
-                    // Interactive Horizontal Scenario Selection Animation
-                    const HorizontalScenarioSelector(),
-                    SizedBox(height: isWide ? 20 : 16),
+                    SizedBox(height: isWide ? 28 : 22),
 
                     // Bottom Navigation Row with Smooth Animated Dots
                     Row(
