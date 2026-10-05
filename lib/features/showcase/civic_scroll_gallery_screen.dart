@@ -414,41 +414,46 @@ class _CivicScrollGalleryScreenState extends State<CivicScrollGalleryScreen> {
               // Card Counter & SOS Direct Pill
               Row(
                 children: [
-                  // Step Indicator: "CARD 01 / 05"
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFF5A00).withValues(alpha: 0.10),
-                      borderRadius: AppRadii.pillBorder,
-                      border: Border.all(
-                        color: const Color(0xFFFF5A00).withValues(alpha: 0.30),
-                        width: 1.0,
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          width: 6,
-                          height: 6,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFFFF5A00),
-                            shape: BoxShape.circle,
+                  // Step Indicator: "CARD 01 / 05" — driven by ValueNotifier
+                  ValueListenableBuilder<int>(
+                    valueListenable: _activeCardNotifier,
+                    builder: (context, activeIdx, _) {
+                      return Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFFF5A00).withValues(alpha: 0.10),
+                          borderRadius: AppRadii.pillBorder,
+                          border: Border.all(
+                            color: const Color(0xFFFF5A00).withValues(alpha: 0.30),
+                            width: 1.0,
                           ),
                         ),
-                        const SizedBox(width: 6),
-                        Text(
-                          'CARD 0${_activeCardIndex + 1} / 0${_items.length}',
-                          style: GoogleFonts.montserrat(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w800,
-                            color: const Color(0xFFFF5A00),
-                            letterSpacing: 0.8,
-                          ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              width: 6,
+                              height: 6,
+                              decoration: const BoxDecoration(
+                                color: Color(0xFFFF5A00),
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                            const SizedBox(width: 6),
+                            Text(
+                              'CARD 0${activeIdx + 1} / 0${_items.length}',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w800,
+                                color: const Color(0xFFFF5A00),
+                                letterSpacing: 0.8,
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      );
+                    },
                   ),
                   const SizedBox(width: 10),
 
@@ -665,8 +670,11 @@ class _CivicScrollGalleryScreenState extends State<CivicScrollGalleryScreen> {
     double cardH,
     bool isMobile,
   ) {
-    final bool isActive = _activeCardIndex == index;
-    final bool isHovered = _hoveredCardIndex == index;
+    return ValueListenableBuilder<int>(
+      valueListenable: _activeCardNotifier,
+      builder: (context, activeIdx, _) {
+        final bool isActive = activeIdx == index;
+        final bool isHovered = _hoveredCardIndex == index;
 
     return MouseRegion(
       onEnter: (_) => setState(() => _hoveredCardIndex = index),
@@ -921,79 +929,86 @@ class _CivicScrollGalleryScreenState extends State<CivicScrollGalleryScreen> {
         ),
       ),
     );
+      },
+    );
   }
 
   /// Interactive Navigation Controls (Dots, Prev/Next, Status)
   Widget _buildGalleryControls(bool isMobile) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: AppRadii.pillBorder,
-        border: Border.all(color: const Color(0xFFE2E4EB), width: 1.0),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x0C000000),
-            blurRadius: 10,
-            offset: Offset(0, 3),
+    return ValueListenableBuilder<int>(
+      valueListenable: _activeCardNotifier,
+      builder: (context, activeIdx, _) {
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: AppRadii.pillBorder,
+            border: Border.all(color: const Color(0xFFE2E4EB), width: 1.0),
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0x0C000000),
+                blurRadius: 10,
+                offset: Offset(0, 3),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // Previous Card Arrow
-          IconButton(
-            icon: const Icon(Icons.arrow_back_rounded, size: 18),
-            color: _activeCardIndex > 0
-                ? const Color(0xFF17261F)
-                : const Color(0xFFCBD5E1),
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
-            onPressed: _activeCardIndex > 0
-                ? () => _scrollToCard(_activeCardIndex - 1)
-                : null,
-          ),
-          const SizedBox(width: 8),
-
-          // Fluid Animated Pagination Dots
-          Row(
+          child: Row(
             mainAxisSize: MainAxisSize.min,
-            children: List.generate(_items.length, (i) {
-              final bool isSelected = _activeCardIndex == i;
-              return GestureDetector(
-                onTap: () => _scrollToCard(i),
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 250),
-                  margin: const EdgeInsets.symmetric(horizontal: 3),
-                  width: isSelected ? 22 : 7,
-                  height: 7,
-                  decoration: BoxDecoration(
-                    color: isSelected
-                        ? const Color(0xFFFF5A00)
-                        : const Color(0xFFD1D5DB),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                ),
-              );
-            }),
-          ),
-          const SizedBox(width: 8),
+            children: [
+              // Previous Card Arrow
+              IconButton(
+                icon: const Icon(Icons.arrow_back_rounded, size: 18),
+                color: activeIdx > 0
+                    ? const Color(0xFF17261F)
+                    : const Color(0xFFCBD5E1),
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
+                onPressed: activeIdx > 0
+                    ? () => _scrollToCard(activeIdx - 1)
+                    : null,
+              ),
+              const SizedBox(width: 8),
 
-          // Next Card Arrow
-          IconButton(
-            icon: const Icon(Icons.arrow_forward_rounded, size: 18),
-            color: _activeCardIndex < _items.length - 1
-                ? const Color(0xFF17261F)
-                : const Color(0xFFCBD5E1),
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
-            onPressed: _activeCardIndex < _items.length - 1
-                ? () => _scrollToCard(_activeCardIndex + 1)
-                : null,
+              // Fluid Animated Pagination Dots
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: List.generate(_items.length, (i) {
+                  final bool isSelected = activeIdx == i;
+                  return GestureDetector(
+                    onTap: () => _scrollToCard(i),
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 250),
+                      margin: const EdgeInsets.symmetric(horizontal: 3),
+                      width: isSelected ? 22 : 7,
+                      height: 7,
+                      decoration: BoxDecoration(
+                        color: isSelected
+                            ? const Color(0xFFFF5A00)
+                            : const Color(0xFFD1D5DB),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                    ),
+                  );
+                }),
+              ),
+              const SizedBox(width: 8),
+
+              // Next Card Arrow
+              IconButton(
+                icon: const Icon(Icons.arrow_forward_rounded, size: 18),
+                color: activeIdx < _items.length - 1
+                    ? const Color(0xFF17261F)
+                    : const Color(0xFFCBD5E1),
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
+                onPressed: activeIdx < _items.length - 1
+                    ? () => _scrollToCard(activeIdx + 1)
+                    : null,
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 
