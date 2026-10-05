@@ -10,6 +10,7 @@ import '../../../data/services/location/civic_location_service.dart';
 import '../../scenarios/situation_card_screen.dart';
 import '../../scenarios/situation_list_screen.dart';
 import '../../scenarios/triage_screen.dart';
+import '../../navigation/widgets/civic_dynamic_footer.dart';
 
 /// Complete, pixel-perfect CIVIC Home Screen based directly on
 /// the Neo-Constructivist Stitch design system with full offline legal assistance,
@@ -467,6 +468,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         // G. Offline Assurance Guarantee Badge
                         _buildOfflineGuaranteeBadge(),
+                        const SizedBox(height: 16),
+
+                        // H. Dynamic Footer Showcase Block
+                        const CivicDynamicFooter(),
                       ],
                     ),
                   ),

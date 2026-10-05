@@ -1,13 +1,69 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/incident_note.dart';
 
-/// Service managing sandboxed local storage of incident notes and evidence logs
+/// Service managing sandboxed storage and optional Cloud Firestore sync of incident notes
 class IncidentNotesService {
   static const String _storageKey = 'civic_incident_notes_v1';
 
-  /// Loads all saved incident logs from local device storage
+  /// Whether cloud sync is active for the current session
+  static bool get isCloudSyncEnabled {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      return user != null && !user.isAnonymous;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  static bool get isCloudSyncActive => isCloudSyncEnabled;
+
+  /// Loads all saved incident logs from local device storage, updating from Firestore if signed in
   static Future<List<IncidentNote>> loadNotes() async {
+    final localNotes = await _loadLocalNotes();
+
+    // If authenticated, attempt to fetch latest cloud notes
+    if (isCloudSyncEnabled) {
+      try {
+        final uid = FirebaseAuth.instance.currentUser!.uid;
+        final snapshot = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(uid)
+            .collection('notes')
+            .orderBy('createdAt', descending: true)
+            .get();
+
+        if (snapshot.docs.isNotEmpty) {
+          final cloudNotes = snapshot.docs
+              .map((doc) => IncidentNote.fromJson(doc.data()))
+              .toList();
+
+          // Merge local and cloud notes
+          final mergedMap = <String, IncidentNote>{};
+          for (final n in localNotes) {
+            mergedMap[n.id] = n;
+          }
+          for (final n in cloudNotes) {
+            mergedMap[n.id] = n;
+          }
+          final merged = mergedMap.values.toList()
+            ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
+
+          await _saveLocalNotes(merged);
+          return merged;
+        }
+      } catch (e) {
+        debugPrint('IncidentNotesService: Cloud fetch fallback to local: $e');
+      }
+    }
+
+    return localNotes;
+  }
+
+  static Future<List<IncidentNote>> _loadLocalNotes() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final rawJson = prefs.getString(_storageKey);
@@ -17,19 +73,13 @@ class IncidentNotesService {
             .map((item) => IncidentNote.fromJson(item as Map<String, dynamic>))
             .toList();
       }
-    } catch (_) {
-      // In case of error reading, fallback to defaults
-    }
-
-    // Seed initial default mock notes matching the UI design
-    final defaultNotes = _getDefaultNotes();
-    await saveAllNotes(defaultNotes);
-    return defaultNotes;
+    } catch (_) {}
+    return <IncidentNote>[];
   }
 
-  /// Saves a new incident note or updates an existing one at the top of the list
+  /// Saves a new incident note or updates an existing one
   static Future<void> saveNote(IncidentNote note) async {
-    final currentNotes = await loadNotes();
+    final currentNotes = await _loadLocalNotes();
     final index = currentNotes.indexWhere((n) => n.id == note.id);
 
     if (index >= 0) {
@@ -38,18 +88,52 @@ class IncidentNotesService {
       currentNotes.insert(0, note);
     }
 
-    await saveAllNotes(currentNotes);
+    await _saveLocalNotes(currentNotes);
+
+    // Sync to Cloud Firestore if signed in
+    if (isCloudSyncEnabled) {
+      try {
+        final uid = FirebaseAuth.instance.currentUser!.uid;
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(uid)
+            .collection('notes')
+            .doc(note.id)
+            .set(note.toJson());
+      } catch (e) {
+        debugPrint('IncidentNotesService: Cloud note save error: $e');
+      }
+    }
   }
 
   /// Deletes an incident note by ID
   static Future<void> deleteNote(String noteId) async {
-    final currentNotes = await loadNotes();
+    final currentNotes = await _loadLocalNotes();
     currentNotes.removeWhere((n) => n.id == noteId);
-    await saveAllNotes(currentNotes);
+    await _saveLocalNotes(currentNotes);
+
+    // Delete from Cloud Firestore if signed in
+    if (isCloudSyncEnabled) {
+      try {
+        final uid = FirebaseAuth.instance.currentUser!.uid;
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(uid)
+            .collection('notes')
+            .doc(noteId)
+            .delete();
+      } catch (e) {
+        debugPrint('IncidentNotesService: Cloud note delete error: $e');
+      }
+    }
   }
 
-  /// Persists full list of notes to SharedPreferences
+  /// Persists full list of notes to local SharedPreferences
   static Future<void> saveAllNotes(List<IncidentNote> notes) async {
+    await _saveLocalNotes(notes);
+  }
+
+  static Future<void> _saveLocalNotes(List<IncidentNote> notes) async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final jsonList = notes.map((n) => n.toJson()).toList();
@@ -86,59 +170,5 @@ class IncidentNotesService {
     sb.writeln('Device Timestamp Verified • Saved offline on device');
     return sb.toString();
   }
-
-  static List<IncidentNote> _getDefaultNotes() {
-    return [
-      IncidentNote(
-        id: 'mock_note_1',
-        title: 'Traffic stop, Outer Ring Rd',
-        category: 'POLICE',
-        dateString: '2 Oct 2024 • 10:45 PM',
-        gps: 'GPS: 12.9352° N, 77.6245° E',
-        venue: 'Outer Ring Rd, Koramangala, Bengaluru',
-        officer: 'Sub-Inspector Sharma (Badge #4812)',
-        verbatim:
-            'Sub-Inspector Sharma (Badge #4812). Requested DigiLocker verification for vehicle registration. Refused physical seizure citing Rule 139 of Motor Vehicles Rules. Officer verified electronic document on mParivahan and allowed departure without compounding fee.',
-        witnesses: 'Co-passenger Ankit Roy (+91 98450 XXXXX)',
-        audioDuration: '0:45',
-        audioPath: 'mock_audio_sample_1.m4a',
-        attachments: const [
-          IncidentAttachment(
-            id: 'att_1',
-            name: 'pcr_van_plate.jpg',
-            path: 'mock_path_photo',
-            type: 'image',
-          ),
-          IncidentAttachment(
-            id: 'att_2',
-            name: 'checkpoint_audio.m4a',
-            path: 'mock_path_audio',
-            type: 'audio',
-          ),
-        ],
-        createdAt: DateTime(2024, 10, 2, 22, 45),
-      ),
-      IncidentNote(
-        id: 'mock_note_2',
-        title: 'Security deposit withholding',
-        category: 'HOUSING',
-        dateString: '18 Sep 2024 • 03:15 PM',
-        gps: 'GPS: 12.9716° N, 77.5946° E',
-        venue: 'Indiranagar 100ft Road, Bengaluru',
-        officer: 'Landlord M. Ramanathan / Broker S. Rao',
-        verbatim:
-            'Owner refused return of INR 45,000 security deposit without itemized repair bill. Mentioned legal notice under Model Tenancy Act provisions and photographed flat handover state. Demanded vendor bills for claimed wall repaint deduction.',
-        witnesses: 'Housemate Nikhil S.',
-        attachments: const [
-          IncidentAttachment(
-            id: 'att_3',
-            name: 'flat_handover_state.jpg',
-            path: 'mock_path_photo_2',
-            type: 'image',
-          ),
-        ],
-        createdAt: DateTime(2024, 9, 18, 15, 15),
-      ),
-    ];
-  }
 }
+

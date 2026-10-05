@@ -1,0 +1,66 @@
+{
+  "id": "domestic_worker_rights_unpaid_wages",
+  "category": "WORK",
+  "scenario": "domestic_worker_rights",
+  "branch": "unpaid_wages",
+  "language": "en",
+  "title": "Domestic Help Wage Theft & Dues Recovery",
+  "roles": [
+    "affected"
+  ],
+  "short_lines": [
+    "Step 1: Gather attendance logs, bank entry records, or employer communication detailing duties.",
+    "Step 2: Send formal demand notice via local domestic workers union or legal aid advocate.",
+    "Step 3: File wage non-payment claim before jurisdictional Assistant Labor Commissioner.",
+    "Step 4: If employer retaliates with false police complaint, file counter-complaint for criminal intimidation.",
+    "Step 5: DLSA provides 100% free legal assistance to recover unorganized sector wages."
+  ],
+  "do": [
+    "Maintain a personal daily diary noting dates worked and payments received.",
+    "Approach the District Legal Services Authority (DLSA) front desk for free legal representation.",
+    "Lodge a wage recovery petition before the local Labor Officer under unorganized worker rules."
+  ],
+  "dont": [
+    "Do not waive your right to notice pay or earned wages under verbal pressure.",
+    "Do not engage in physical altercations at the employer residence.",
+    "Do not sign blank salary vouchers or settlement slips."
+  ],
+  "legal_basis": [
+    {
+      "act": "Unorganised Workers Social Security Act 2008",
+      "section": "Section 3 & 10 (Grievance Redressal Mechanisms)",
+      "status": "Welfare Law",
+      "source_url": "https://labour.gov.in"
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "section": "Section 316 (Criminal Breach of Trust)",
+      "status": "Criminal Offense",
+      "source_url": "https://mha.gov.in"
+    }
+  ],
+  "helplines": [
+    "15100",
+    "112"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "Withholding earned wages from domestic workers violates labor laws and constitutes breach of trust under Section 316 BNS.",
+  "evidence_checklist": [
+    "Bank passbook or UPI transfer receipts showing historical wage credits",
+    "WhatsApp or SMS messages discussing tasks, working hours, and salary dues",
+    "Copy of demand notice issued through DLSA or labor advocate"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 2
+}

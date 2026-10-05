@@ -9,6 +9,7 @@ import '../../../data/services/app_preferences.dart';
 import '../../../data/services/location/civic_location_service.dart';
 import '../../../data/repositories/content_repository.dart';
 import '../../auth/sign_in_screen.dart';
+import '../../navigation/widgets/civic_dynamic_footer.dart';
 
 /// Help Screen matching the CIVIC Design System & Mobile Mockup.
 /// Completely functional: zero placeholders, tap-to-call helplines,
@@ -3329,6 +3330,8 @@ APPLICANT SIGNATURE: _______________________
             ),
           ),
         ),
+        const SizedBox(height: 20),
+        const CivicDynamicFooter(),
       ],
     );
   }

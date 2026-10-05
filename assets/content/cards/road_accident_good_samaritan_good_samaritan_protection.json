@@ -1,0 +1,67 @@
+{
+  "id": "road_accident_good_samaritan_good_samaritan_protection",
+  "category": "POLICE & CRIMINAL",
+  "scenario": "road_accident_good_samaritan",
+  "branch": "good_samaritan_protection",
+  "language": "en",
+  "title": "Good Samaritan Police Immunity & Hospital Rules",
+  "roles": [
+    "witness",
+    "affected"
+  ],
+  "short_lines": [
+    "Step 1: State firmly: I am a Good Samaritan protected under Supreme Court guidelines and Sec 134A MV Act.",
+    "Step 2: Hospital cannot force you to pay registration charges or admission deposit for the victim.",
+    "Step 3: You are free to leave immediately after delivering the injured person to casualty.",
+    "Step 4: If police threaten detention, cite MoRTH Notification No. RT-25035/101/2014-RS.",
+    "Step 5: File immediate complaint with Superintendent of Police if any officer harasses you."
+  ],
+  "do": [
+    "Assert your Good Samaritan immunity immediately upon arrival at hospital or police encounter.",
+    "Show MoRTH Good Samaritan gazette guidelines if hospital personnel demand money.",
+    "Note officer belt number and station if any coercion is attempted."
+  ],
+  "dont": [
+    "Do not surrender your phone or personal identification documents to hospital reception.",
+    "Do not wait in the police station unless you have voluntarily agreed in writing.",
+    "Do not sign admission guarantees or financial liability undertakings."
+  ],
+  "legal_basis": [
+    {
+      "act": "Ministry of Road Transport and Highways Guidelines",
+      "section": "Gazette Notification No. 25035/101/2014-RS",
+      "status": "Binding Executive Order",
+      "source_url": "https://morth.nic.in"
+    },
+    {
+      "act": "Bharatiya Nagarik Suraksha Sanhita 2023",
+      "section": "Section 35 & 47",
+      "status": "Criminal Procedure Code",
+      "source_url": "https://mha.gov.in"
+    }
+  ],
+  "helplines": [
+    "112",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "Supreme Court guidelines explicitly protect Good Samaritans from police harassment and mandatory billing. You may leave freely.",
+  "evidence_checklist": [
+    "Record hospital staff names demanding admission deposit",
+    "Retain emergency ambulance transit proof",
+    "Save audio memo of conversation if police insist on station visit"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 1
+}

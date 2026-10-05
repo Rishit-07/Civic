@@ -1,0 +1,68 @@
+{
+  "id": "gig_worker_rights_accident_compensation",
+  "category": "WORK",
+  "scenario": "gig_worker_rights",
+  "branch": "accident_compensation",
+  "language": "en",
+  "title": "Gig Worker On-Duty Accident Insurance",
+  "roles": [
+    "affected",
+    "parent"
+  ],
+  "short_lines": [
+    "Step 1: Notify platform emergency SOS helpline immediately while active order is registered.",
+    "Step 2: Secure hospital MLC (Medico-Legal Certificate) and police accident station diary entry.",
+    "Step 3: Claim benefits under platform mandatory group accidental medical and disability policy.",
+    "Step 4: If company refuses claim, submit petition to Commissioner for Employee Compensation.",
+    "Step 5: File claim petition before Motor Accident Claims Tribunal (MACT) against offending vehicle."
+  ],
+  "do": [
+    "Report the injury to the platform SOS line within 24 hours of occurrence.",
+    "Obtain certified hospital discharge summary, fracture reports, and medical bills.",
+    "Approach the Employee Compensation Commissioner in the Labor department for recovery."
+  ],
+  "dont": [
+    "Do not let the platform classify you as off-duty if the app was logged in during transit.",
+    "Do not sign waivers forfeiting accident claims in exchange for minor token relief.",
+    "Do not miss the 2-year limitation period for filing MACT accident claims."
+  ],
+  "legal_basis": [
+    {
+      "act": "Employee Compensation Act 1923",
+      "section": "Section 3 & 4 (Employer Liability for Compensation)",
+      "status": "Statutory Liability",
+      "source_url": "https://labour.gov.in"
+    },
+    {
+      "act": "Code on Social Security 2020",
+      "section": "Section 114 (Accident & Health Benefits for Gig Workers)",
+      "status": "Statutory Welfare",
+      "source_url": "https://labour.gov.in"
+    }
+  ],
+  "helplines": [
+    "112",
+    "108",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "Delivery partners injured on active duty are covered under mandatory group accidental insurance and statutory compensation provisions.",
+  "evidence_checklist": [
+    "Active order pickup/delivery screenshot at time of accident",
+    "Hospital emergency Medico-Legal Certificate (MLC)",
+    "Police Station Diary Entry or accident FIR copy"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 1
+}

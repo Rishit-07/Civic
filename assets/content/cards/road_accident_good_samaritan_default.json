@@ -1,0 +1,69 @@
+{
+  "id": "road_accident_good_samaritan_default",
+  "category": "POLICE & CRIMINAL",
+  "scenario": "road_accident_good_samaritan",
+  "branch": "default",
+  "language": "en",
+  "title": "Road Accident Good Samaritan Rights",
+  "roles": [
+    "affected",
+    "witness",
+    "parent"
+  ],
+  "short_lines": [
+    "Step 1: Ensure immediate medical transit for victim; call emergency 112 or ambulance 108.",
+    "Step 2: You are legally immune under Sec 134A MV Act from civil or criminal liability.",
+    "Step 3: Hospital must initiate emergency triage immediately without demanding advance deposit.",
+    "Step 4: Police cannot compel you to disclose identity, address, or appear as witness.",
+    "Step 5: If you voluntarily testify, your examination must be conducted at your convenience."
+  ],
+  "do": [
+    "Call 112 or 108 immediately to report the accident location and request medical transport.",
+    "State clearly to hospital staff that you are a Good Samaritan under Sec 134A MV Act.",
+    "Leave the hospital freely after handing over the victim to emergency casualty medical officers."
+  ],
+  "dont": [
+    "Do not pay advance registration or casualty admission fees for an unknown victim.",
+    "Do not submit to coercive police questioning or detention against your consent.",
+    "Do not sign witness statements under duress or without legal review."
+  ],
+  "legal_basis": [
+    {
+      "act": "Motor Vehicles Act 1988 (as amended 2019)",
+      "section": "Section 134A (Protection of Good Samaritans)",
+      "status": "Verified Statutory Safeguard",
+      "source_url": "https://morth.nic.in"
+    },
+    {
+      "act": "Supreme Court of India (SaveLIFE Foundation)",
+      "section": "WP (Civil) No. 235/2012",
+      "status": "Landmark Precedent",
+      "source_url": "https://sci.gov.in"
+    }
+  ],
+  "helplines": [
+    "112",
+    "108",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "Civic verified statutory protocol for Good Samaritans. You cannot be detained, forced to pay hospital admission charges, or compelled to act as a witness.",
+  "evidence_checklist": [
+    "Note down hospital emergency casualty registration number",
+    "Record 112 / 108 emergency call timestamp and dispatcher ID",
+    "Document vehicle registration number of involved vehicles if safe"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 1
+}

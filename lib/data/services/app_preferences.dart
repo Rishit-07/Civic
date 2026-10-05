@@ -8,6 +8,7 @@ class AppPreferences {
   static const String _keyFirstLaunchComplete = 'first_launch_complete';
   static const String _keySelectedLanguage = 'selected_language';
   static const String _keySelectedState = 'selected_state';
+  static const String _keySelectedRole = 'selected_user_role';
   static const String _keyStateCardDismissed = 'state_card_dismissed';
 
   static SharedPreferences? _prefs;
@@ -15,12 +16,14 @@ class AppPreferences {
   // Notifiers for reactive UI updates
   static final ValueNotifier<String> languageNotifier = ValueNotifier<String>('en');
   static final ValueNotifier<String> stateNotifier = ValueNotifier<String>('ALL');
+  static final ValueNotifier<String> roleNotifier = ValueNotifier<String>('all');
 
   /// Initialize SharedPreferences and load cached values into memory.
   static Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
     languageNotifier.value = selectedLanguage;
     stateNotifier.value = selectedState;
+    roleNotifier.value = selectedRole;
     geminiApiKeyNotifier.value = geminiApiKey.isEmpty ? null : geminiApiKey;
   }
 
@@ -91,10 +94,21 @@ class AppPreferences {
     await _prefs?.setBool(_keyStateCardDismissed, value);
   }
 
+  /// Selected legal capacity/role (e.g. 'all', 'affected', 'accused', 'witness', 'parent').
+  static String get selectedRole {
+    return _prefs?.getString(_keySelectedRole) ?? 'all';
+  }
+
+  static Future<void> setSelectedRole(String role) async {
+    await _prefs?.setString(_keySelectedRole, role.toLowerCase().trim());
+    roleNotifier.value = role.toLowerCase().trim();
+  }
+
   /// Reset all stored preferences (useful for tests or app reset).
   static Future<void> clear() async {
     await _prefs?.clear();
     languageNotifier.value = 'en';
     stateNotifier.value = 'ALL';
+    roleNotifier.value = 'all';
   }
 }

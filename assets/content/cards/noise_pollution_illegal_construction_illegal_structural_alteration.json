@@ -1,0 +1,66 @@
+{
+  "id": "noise_pollution_illegal_construction_illegal_structural_alteration",
+  "category": "HOUSING",
+  "scenario": "noise_pollution_illegal_construction",
+  "branch": "illegal_structural_alteration",
+  "language": "en",
+  "title": "Illegal Structural Construction & Encroachment",
+  "roles": [
+    "affected"
+  ],
+  "short_lines": [
+    "Step 1: Photograph unauthorized construction, pillar demolition, or load-bearing wall removal.",
+    "Step 2: Submit urgent stop-work notice to Municipal Ward Engineer and Town Planning department.",
+    "Step 3: File petition under Section 152 BNSS 2023 before SDM for immediate conditional stop order.",
+    "Step 4: If construction endangers building stability, approach Civil Court for an ex-parte stay injunction.",
+    "Step 5: File online grievance on municipal grievance portal and copy District Collector."
+  ],
+  "do": [
+    "Take clear date-stamped photographs of unauthorized drilling, pillar removal, or encroachment.",
+    "File an urgent written petition before the SDM under Section 152 BNSS for public safety.",
+    "Demand municipal sanctioned building plan and structural audit report from builder or neighbor."
+  ],
+  "dont": [
+    "Do not ignore cracks appearing in your walls or structural vibration during construction.",
+    "Do not wait for construction completion; obtaining demolition orders post-construction takes years.",
+    "Do not enter unauthorized construction zones without safety precautions."
+  ],
+  "legal_basis": [
+    {
+      "act": "Bharatiya Nagarik Suraksha Sanhita 2023",
+      "section": "Section 152 (Conditional Order for Removal of Nuisance or Hazard)",
+      "status": "Magistrate Injunction Power",
+      "source_url": "https://mha.gov.in"
+    },
+    {
+      "act": "State Municipal Corporation Acts",
+      "section": "Provisions on Unauthorized Construction and Demolition",
+      "status": "Municipal Law",
+      "source_url": "https://indiacode.nic.in"
+    }
+  ],
+  "helplines": [
+    "112",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "Section 152 BNSS empowers the Sub-Divisional Magistrate to issue immediate stop-work orders against dangerous unauthorized construction.",
+  "evidence_checklist": [
+    "Photographs and video of structural demolition, beam cutting, or encroachment",
+    "Written acknowledgment of complaint from Municipal Town Planning Ward Office",
+    "Copy of Section 152 BNSS petition filed before Sub-Divisional Magistrate"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 2
+}

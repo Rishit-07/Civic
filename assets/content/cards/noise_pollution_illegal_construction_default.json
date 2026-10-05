@@ -1,0 +1,66 @@
+{
+  "id": "noise_pollution_illegal_construction_default",
+  "category": "HOUSING",
+  "scenario": "noise_pollution_illegal_construction",
+  "branch": "default",
+  "language": "en",
+  "title": "Residential Noise Pollution & Loudspeakers",
+  "roles": [
+    "affected"
+  ],
+  "short_lines": [
+    "Step 1: Loudspeakers, DJs, and commercial noise are strictly banned between 10:00 PM and 6:00 AM.",
+    "Step 2: Dial 112 police emergency and specify: Violation of Noise Pollution Rules 2000 in residential zone.",
+    "Step 3: Police are legally bound to seize sound equipment and amplifiers under Rule 8.",
+    "Step 4: If local police fail to act, file written complaint before Sub-Divisional Magistrate (SDM).",
+    "Step 5: File petition before State Pollution Control Board or National Green Tribunal (NGT)."
+  ],
+  "do": [
+    "Call 112 promptly when noise continues past 10 PM and note the police dispatch ticket number.",
+    "Record decibel readings using standard smartphone sound level apps as supplementary evidence.",
+    "Submit a joint written representation to the District Magistrate or SDM signed by neighbors."
+  ],
+  "dont": [
+    "Do not engage in physical fights or confront loud party organizers alone late at night.",
+    "Do not accept verbal assurances from local police without equipment seizure or volume shutdown.",
+    "Do not allow commercial events to operate without written municipal sound permits."
+  ],
+  "legal_basis": [
+    {
+      "act": "Noise Pollution (Regulation and Control) Rules 2000",
+      "section": "Rule 5 & Rule 8 (Night Restrictions and Seizure Powers)",
+      "status": "Binding Statutory Rules",
+      "source_url": "https://cpcb.nic.in"
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "section": "Section 270 & 271 (Public Nuisance)",
+      "status": "Criminal Code",
+      "source_url": "https://mha.gov.in"
+    }
+  ],
+  "helplines": [
+    "112",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "Loudspeakers and heavy noise are banned between 10 PM and 6 AM under Noise Pollution Rules 2000. Police are legally required to shut down and seize equipment.",
+  "evidence_checklist": [
+    "Time-stamped audio/video recording from inside residence demonstrating noise level",
+    "Dial 112 police call logs and dispatch reference numbers",
+    "Copy of written complaint submitted to jurisdictional SDM and police station"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 2
+}

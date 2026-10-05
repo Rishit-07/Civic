@@ -357,6 +357,63 @@
             "default",
             "dl_impound"
           ]
+        },
+        {
+          "id": "road_accident_good_samaritan",
+          "label": "Road Accident & Good Samaritan Rights",
+          "urgency": 1,
+          "description": "Assisting accident victims without police harassment, hospital admission, and hit-and-run claims.",
+          "triage_questions": [
+            {
+              "id": "accident_role",
+              "text": "What is your role or immediate concern?",
+              "options": [
+                {
+                  "label": "Assisting an injured victim at an accident scene",
+                  "branch": "default"
+                },
+                {
+                  "label": "Police or hospital forcing me to register as witness / pay advance",
+                  "branch": "good_samaritan_protection"
+                },
+                {
+                  "label": "Victim of hit-and-run seeking statutory compensation",
+                  "branch": "hit_and_run_solatium"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "good_samaritan_protection",
+            "hit_and_run_solatium"
+          ]
+        },
+        {
+          "id": "passport_verification_delay",
+          "label": "Passport Police Verification & Bribe Demand",
+          "urgency": 2,
+          "description": "Constable demanding money, delays in Police Verification Report (PVR), or adverse report threats.",
+          "triage_questions": [
+            {
+              "id": "passport_issue",
+              "text": "What is happening during verification?",
+              "options": [
+                {
+                  "label": "Police officer demanding cash/bribe for clearance",
+                  "branch": "default"
+                },
+                {
+                  "label": "Adverse or delayed report submitted without valid reason",
+                  "branch": "adverse_pvr_remedy"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "adverse_pvr_remedy"
+          ]
         }
       ]
     },
@@ -1061,6 +1118,32 @@
             "default",
             "sender_notice"
           ]
+        },
+        {
+          "id": "crypto_trading_investment_scam",
+          "label": "Stock Trading & Investment App Scam",
+          "urgency": 1,
+          "description": "Fake WhatsApp/Telegram institutional trading groups, IPO scams, and withdrawal extortion.",
+          "triage_questions": [
+            {
+              "id": "scam_status",
+              "text": "What is the fraud stage?",
+              "options": [
+                {
+                  "label": "Deposited money and platform demanding extra fees to withdraw",
+                  "branch": "default"
+                },
+                {
+                  "label": "Secondary scammer promising to recover lost funds for fee",
+                  "branch": "recovery_scam"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "recovery_scam"
+          ]
         }
       ]
     },
@@ -1230,6 +1313,58 @@
             "default",
             "misconduct_defense"
           ]
+        },
+        {
+          "id": "gig_worker_rights",
+          "label": "Gig & Delivery Worker Rights",
+          "urgency": 2,
+          "description": "Platform ID blocking, arbitrary rating deductions, withheld payouts, and accident coverage.",
+          "triage_questions": [
+            {
+              "id": "platform_dispute",
+              "text": "What is the dispute with the aggregator?",
+              "options": [
+                {
+                  "label": "ID blocked or de-platformed without notice or hearing",
+                  "branch": "default"
+                },
+                {
+                  "label": "Injured in road accident while on active delivery order",
+                  "branch": "accident_compensation"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "accident_compensation"
+          ]
+        },
+        {
+          "id": "domestic_worker_rights",
+          "label": "Domestic Worker Allegation & Wage Default",
+          "urgency": 1,
+          "description": "False theft accusations against domestic help, confinement, and unpaid monthly wages.",
+          "triage_questions": [
+            {
+              "id": "worker_issue",
+              "text": "What is the nature of the confrontation?",
+              "options": [
+                {
+                  "label": "Employer falsely accusing worker of theft or detaining them",
+                  "branch": "default"
+                },
+                {
+                  "label": "Employer refusing to pay accrued salary or severance",
+                  "branch": "unpaid_wages"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "unpaid_wages"
+          ]
         }
       ]
     },
@@ -1393,6 +1528,58 @@
           "branches": [
             "default",
             "bachelor_ban"
+          ]
+        },
+        {
+          "id": "noise_pollution_illegal_construction",
+          "label": "Noise Pollution & Unauthorized Construction",
+          "urgency": 2,
+          "description": "Nighttime loudspeakers, industrial noise in residential zones, and structural encroachment.",
+          "triage_questions": [
+            {
+              "id": "noise_violation_type",
+              "text": "What violation is occurring?",
+              "options": [
+                {
+                  "label": "Loud music / commercial noise between 10 PM and 6 AM",
+                  "branch": "default"
+                },
+                {
+                  "label": "Dangerous illegal structural alterations endangering building",
+                  "branch": "illegal_structural_alteration"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "illegal_structural_alteration"
+          ]
+        },
+        {
+          "id": "animal_cruelty_stray_feeding",
+          "label": "Stray Animal Feeding & RWA Harassment",
+          "urgency": 2,
+          "description": "RWA bans, threats against community animal feeders, and animal cruelty.",
+          "triage_questions": [
+            {
+              "id": "animal_issue",
+              "text": "What issue are you facing?",
+              "options": [
+                {
+                  "label": "RWA or neighbors harassing / threatening animal feeder",
+                  "branch": "default"
+                },
+                {
+                  "label": "Witnessed poisoning, beating, or killing of animals",
+                  "branch": "cruelty_complaint"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "cruelty_complaint"
           ]
         }
       ]
@@ -1593,6 +1780,32 @@
           "branches": [
             "default",
             "overcharging"
+          ]
+        },
+        {
+          "id": "senior_citizen_maintenance",
+          "label": "Senior Citizen Neglect & Property Rights",
+          "urgency": 1,
+          "description": "Maintenance rights, property gift revocation under Sec 23, and protection from abuse.",
+          "triage_questions": [
+            {
+              "id": "senior_relief",
+              "text": "What relief is required?",
+              "options": [
+                {
+                  "label": "Children neglecting elderly parents or evicting them",
+                  "branch": "default"
+                },
+                {
+                  "label": "Seeking to cancel property gifted to children who refuse care",
+                  "branch": "property_transfer_revocation"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "property_transfer_revocation"
           ]
         }
       ]
@@ -1845,6 +2058,58 @@
           "branches": [
             "default",
             "cancellation_trap"
+          ]
+        },
+        {
+          "id": "health_insurance_claim_rejected",
+          "label": "Health Insurance & Cashless Rejection",
+          "urgency": 1,
+          "description": "Cashless denied at hospital discharge, 3-hour rule violation, and fraudulent claim repudiation.",
+          "triage_questions": [
+            {
+              "id": "insurance_issue",
+              "text": "What is the insurance dispute?",
+              "options": [
+                {
+                  "label": "Cashless denied at hospital desk during discharge",
+                  "branch": "default"
+                },
+                {
+                  "label": "Reimbursement claim rejected citing pre-existing illness without proof",
+                  "branch": "ombudsman_complaint"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "ombudsman_complaint"
+          ]
+        },
+        {
+          "id": "ecommerce_counterfeit_delivery_scam",
+          "label": "E-Commerce Empty Box & Counterfeit Scam",
+          "urgency": 2,
+          "description": "Wrong / empty product received, return denied, and platform customer care evasion.",
+          "triage_questions": [
+            {
+              "id": "ecommerce_fraud_type",
+              "text": "What arrived in the delivery?",
+              "options": [
+                {
+                  "label": "Empty parcel, soap bar, or fake replica delivered",
+                  "branch": "default"
+                },
+                {
+                  "label": "Platform closed return window claiming product verified",
+                  "branch": "chargeback_dispute"
+                }
+              ]
+            }
+          ],
+          "branches": [
+            "default",
+            "chargeback_dispute"
           ]
         }
       ]

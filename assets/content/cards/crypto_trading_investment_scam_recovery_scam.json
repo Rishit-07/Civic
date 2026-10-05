@@ -1,0 +1,66 @@
+{
+  "id": "crypto_trading_investment_scam_recovery_scam",
+  "category": "ONLINE & MONEY",
+  "scenario": "crypto_trading_investment_scam",
+  "branch": "recovery_scam",
+  "language": "en",
+  "title": "Fake Fund Recovery Agent Trap",
+  "roles": [
+    "affected"
+  ],
+  "short_lines": [
+    "Step 1: Never pay any retainer or fee to online recovery experts or ethical hackers.",
+    "Step 2: Only law enforcement authorities via court order or 1930 can freeze and reverse funds.",
+    "Step 3: Report recovery agency social media profiles to cyber police for impersonation.",
+    "Step 4: Follow up with your district Cyber Cell investigating officer on original 1930 FIR.",
+    "Step 5: File an application under Section 503 BNSS 2023 before magistrate for release of seized money."
+  ],
+  "do": [
+    "Deal only with official cyber police investigators assigned to your case.",
+    "File an application under Section 503 BNSS 2023 before the magistrate to unfreeze seized funds.",
+    "Verify identity of any legal counsel directly on the State Bar Council portal."
+  ],
+  "dont": [
+    "Do not pay advance fees to Instagram, Telegram, or Quora recovery agents.",
+    "Do not share your bank passwords, OTPs, or recovery phrases with anyone.",
+    "Do not allow third-party remote access software (AnyDesk, TeamViewer) on your phone."
+  ],
+  "legal_basis": [
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "section": "Section 318(4) (Cheating) & Section 338",
+      "status": "Criminal Code",
+      "source_url": "https://mha.gov.in"
+    },
+    {
+      "act": "Bharatiya Nagarik Suraksha Sanhita 2023",
+      "section": "Section 503 (Disposal of Property Seized by Police)",
+      "status": "Magistrate Court Procedure",
+      "source_url": "https://mha.gov.in"
+    }
+  ],
+  "helplines": [
+    "1930",
+    "112"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "Private fund recovery agents are secondary scammers. Only statutory cyber police and magistrates can order the return of frozen funds.",
+  "evidence_checklist": [
+    "Cyber Crime Portal acknowledgment ID",
+    "Screenshots of secondary recovery agent solicitations and payment requests",
+    "Official Investigating Officer designation and police station details"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 1
+}

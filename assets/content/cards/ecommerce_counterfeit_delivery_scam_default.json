@@ -1,0 +1,67 @@
+{
+  "id": "ecommerce_counterfeit_delivery_scam_default",
+  "category": "CONSUMER & DOCUMENTS",
+  "scenario": "ecommerce_counterfeit_delivery_scam",
+  "branch": "default",
+  "language": "en",
+  "title": "E-Commerce Empty Box & Fake Item Delivery",
+  "roles": [
+    "affected"
+  ],
+  "short_lines": [
+    "Step 1: Take unboxing video, photo of shipping label, package weight, and invoice barcode.",
+    "Step 2: Raise immediate return/refund ticket within 24 hours via platform app or customer care.",
+    "Step 3: Platforms cannot claim immunity as intermediaries under Consumer E-Commerce Rules 2020.",
+    "Step 4: Lodge formal grievance on National Consumer Helpline (NCH 1915 or consumerhelpline.gov.in).",
+    "Step 5: If platform evades refund, dispute transaction with your credit card issuer for immediate chargeback."
+  ],
+  "do": [
+    "Record complete unboxing videos showing courier label, seal integrity, and internal contents.",
+    "Register complaint on National Consumer Helpline (NCH) dialing 1915 or via WhatsApp.",
+    "Email platform grievance officer with order invoice, product weight, and unboxing clips."
+  ],
+  "dont": [
+    "Do not discard original shipping outer packaging, courier waybill, or packing slips.",
+    "Do not wait past platform return window (usually 3 to 7 days) before reporting issue.",
+    "Do not hand over returned items to courier delivery agents without a physical pickup receipt."
+  ],
+  "legal_basis": [
+    {
+      "act": "Consumer Protection (E-Commerce) Rules 2020",
+      "section": "Rule 5 & Rule 6 (Liabilities of Marketplace and Inventory Platforms)",
+      "status": "Central Statutory Regulation",
+      "source_url": "https://consumeraffairs.nic.in"
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "section": "Section 2(47) (Unfair Trade Practice) & Section 84 (Product Liability)",
+      "status": "Statutory Consumer Protection",
+      "source_url": "https://consumeraffairs.nic.in"
+    }
+  ],
+  "helplines": [
+    "1915",
+    "112",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "E-commerce platforms are liable for counterfeit goods and empty boxes under Consumer E-Commerce Rules 2020. Call NCH 1915 or request a bank chargeback.",
+  "evidence_checklist": [
+    "Unbroken unboxing video and photographs of empty/counterfeit parcel",
+    "Courier waybill shipping label showing billed package weight",
+    "NCH 1915 grievance docket number and platform support chat transcript"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 2
+}

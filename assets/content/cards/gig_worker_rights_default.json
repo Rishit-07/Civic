@@ -1,0 +1,66 @@
+{
+  "id": "gig_worker_rights_default",
+  "category": "WORK",
+  "scenario": "gig_worker_rights",
+  "branch": "default",
+  "language": "en",
+  "title": "Gig Worker Arbitrary De-Platforming",
+  "roles": [
+    "affected"
+  ],
+  "short_lines": [
+    "Step 1: Submit a formal grievance ticket on the partner portal demanding written reason for block.",
+    "Step 2: Platform cannot forfeit accrued earnings or pending weekly payouts upon ID deactivation.",
+    "Step 3: Take screenshots of customer ratings, active orders, and pending wallet balances.",
+    "Step 4: File complaint before District Labor Officer citing arbitrary livelihood termination.",
+    "Step 5: Approach State Gig Workers Welfare Board or registered gig delivery union for collective action."
+  ],
+  "do": [
+    "Capture screenshot evidence of current wallet balance, ratings, and lifetime deliveries.",
+    "Send formal written email to aggregator grievance officer requesting reinstatement.",
+    "Submit representation to the State Platform Based Gig Workers Welfare Board."
+  ],
+  "dont": [
+    "Do not accept informal customer care phone calls as final without written email documentation.",
+    "Do not delete the partner application or clear app cache before exporting payout data.",
+    "Do not surrender company-issued assets without formal written acknowledgment."
+  ],
+  "legal_basis": [
+    {
+      "act": "Code on Social Security 2020",
+      "section": "Section 114 (Schemes for Gig Workers and Platform Workers)",
+      "status": "Social Security Law",
+      "source_url": "https://labour.gov.in"
+    },
+    {
+      "act": "Constitution of India",
+      "section": "Article 19(1)(g) & Article 21 (Right to Livelihood)",
+      "status": "Constitutional Safeguard",
+      "source_url": "https://indiacode.nic.in"
+    }
+  ],
+  "helplines": [
+    "112",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "Aggregator platforms cannot arbitrarily terminate gig partner IDs or forfeit earned wages without written notice and grievance redressal.",
+  "evidence_checklist": [
+    "Partner app profile showing account blocked notification",
+    "Bank statement showing unpaid weekly delivery earnings",
+    "Copy of grievance ticket raised with aggregator grievance officer"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 2
+}

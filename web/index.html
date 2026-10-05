@@ -126,9 +126,9 @@
     body {
       margin: 0;
       padding: 0;
-      background-color: #101F18;
+      background-color: #FAFAFA;
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      color: #FAFAFA;
+      color: #17261F;
       overflow-x: hidden;
     }
 
@@ -138,79 +138,128 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at 50% 30%, #1A2E25 0%, #101F18 100%);
+      background-color: #FAFAFA;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 999999;
-      transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+      overflow: hidden;
+      transition: opacity 0.35s ease-out, visibility 0.35s ease-out;
+    }
+
+    /* Ambient architectural background accents matching Flutter LoadingScreen */
+    .civic-preloader-blob-top {
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: #E8E9F0;
+      pointer-events: none;
+    }
+
+    .civic-preloader-blob-bottom {
+      position: absolute;
+      bottom: -40px;
+      left: -40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(255, 90, 0, 0.08);
+      pointer-events: none;
     }
 
     .civic-preloader-content {
+      position: relative;
       text-align: center;
-      padding: 24px;
-      max-width: 360px;
+      padding: 24px 32px;
+      width: 100%;
+      max-width: 420px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 2;
     }
 
-    .civic-logo-badge {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 20px;
-      background: #FF5A00;
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 12px 32px rgba(255, 90, 0, 0.35);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: 28px;
-      color: #FFFFFF;
-      letter-spacing: -1px;
+    .civic-logo-img {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 24px;
+      object-fit: contain;
+      display: block;
     }
 
     .civic-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 22px;
+      font-family: 'Montserrat', 'Plus Jakarta Sans', sans-serif;
+      font-size: 26px;
       font-weight: 800;
-      letter-spacing: 2px;
-      margin: 0 0 6px;
-      color: #FFFFFF;
+      letter-spacing: 2.5px;
+      margin: 0 0 8px;
+      color: #17261F;
     }
 
     .civic-subtitle {
-      font-size: 11.5px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
       font-weight: 700;
-      color: #8CA094;
-      letter-spacing: 1.5px;
+      color: #FF5A00;
+      letter-spacing: 2.0px;
       text-transform: uppercase;
-      margin: 0 0 24px;
+      margin: 0 0 44px;
+    }
+
+    .civic-progress-wrap {
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
     }
 
     .civic-progress-bar {
-      width: 160px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 2px;
-      margin: 0 auto;
+      width: 100%;
+      height: 6px;
+      background: #E8E8E8;
+      border-radius: 999px;
       overflow: hidden;
       position: relative;
     }
 
     .civic-progress-bar-fill {
-      width: 40%;
       height: 100%;
       background: #FF5A00;
-      border-radius: 2px;
+      border-radius: 999px;
+      width: 35%;
       position: absolute;
-      animation: civicProgress 1.4s ease-in-out infinite;
+      left: 0;
+      top: 0;
+      animation: civicProgressAnimation 1.8s ease-in-out infinite;
     }
 
-    @keyframes civicProgress {
-      0% { left: -40%; width: 40%; }
-      50% { left: 40%; width: 50%; }
-      100% { left: 100%; width: 40%; }
+    @keyframes civicProgressAnimation {
+      0% { left: 0%; width: 25%; }
+      50% { left: 35%; width: 55%; }
+      100% { left: 75%; width: 25%; }
+    }
+
+    .civic-progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+    }
+
+    .civic-progress-status {
+      color: #8A8A8A;
+      font-weight: 600;
+    }
+
+    .civic-progress-value {
+      color: #17261F;
+      font-weight: 700;
     }
 
     /* Crawlable Semantic SEO Content Container (Accessible to bots, hidden smoothly behind Flutter canvas) */
@@ -244,14 +293,22 @@
 </head>
 <body>
 
-  <!-- Branded Neo-Constructivist Preloader (Shown during initial Flutter compilation/download) -->
+  <!-- Official Branded Preloader (Matches Flutter LoadingScreen pixel-for-pixel) -->
   <div id="civic-preloader" aria-hidden="true">
+    <div class="civic-preloader-blob-top"></div>
+    <div class="civic-preloader-blob-bottom"></div>
     <div class="civic-preloader-content">
-      <div class="civic-logo-badge">C</div>
-      <h2 class="civic-title">CIVIC</h2>
-      <p class="civic-subtitle">Legal First-Aid Engine</p>
-      <div class="civic-progress-bar">
-        <div class="civic-progress-bar-fill"></div>
+      <img src="icons/Icon-192.png" alt="CIVIC" class="civic-logo-img" />
+      <h1 class="civic-title">CIVIC</h1>
+      <p class="civic-subtitle">CIVIC LEGAL EMPOWERMENT</p>
+      <div class="civic-progress-wrap">
+        <div class="civic-progress-bar">
+          <div class="civic-progress-bar-fill"></div>
+        </div>
+        <div class="civic-progress-meta">
+          <span class="civic-progress-status">INITIALIZING GUIDES...</span>
+          <span id="civic-progress-pct" class="civic-progress-value">99%</span>
+        </div>
       </div>
     </div>
   </div>

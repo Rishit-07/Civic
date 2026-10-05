@@ -1,0 +1,67 @@
+{
+  "id": "road_accident_good_samaritan_hit_and_run_solatium",
+  "category": "POLICE & CRIMINAL",
+  "scenario": "road_accident_good_samaritan",
+  "branch": "hit_and_run_solatium",
+  "language": "en",
+  "title": "Hit & Run Solatium Fund Compensation",
+  "roles": [
+    "affected",
+    "parent"
+  ],
+  "short_lines": [
+    "Step 1: Register immediate FIR at nearest police station noting unidentified vehicle hit-and-run.",
+    "Step 2: Obtain Medico-Legal Certificate (MLC) and post-mortem report if casualty occurred.",
+    "Step 3: Apply to Sub-Divisional Magistrate (SDM) / Claims Enquiry Officer under Section 161 MV Act.",
+    "Step 4: Solatium scheme mandates ₹2,00,000 in case of death and ₹50,000 for grievous injury.",
+    "Step 5: SDM must sanction payment through General Insurance Council within 15 days of enquiry."
+  ],
+  "do": [
+    "Register an FIR under Section 106(2) and Section 125(b) BNS 2023 without delay.",
+    "Collect certified copies of MLC, discharge summary, and treatment receipts.",
+    "Submit Form I application to the Sub-Divisional Magistrate within statutory timelines."
+  ],
+  "dont": [
+    "Do not accept informal settlements from unidentified parties without court recording.",
+    "Do not delay FIR registration beyond 24 hours of the incident.",
+    "Do not compromise on statutory compensation amounts fixed by parliament."
+  ],
+  "legal_basis": [
+    {
+      "act": "Motor Vehicles Act 1988 (as amended 2019)",
+      "section": "Section 161 (Compensation Scheme for Hit and Run Motor Accidents)",
+      "status": "Statutory Compensation Guarantee",
+      "source_url": "https://morth.nic.in"
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "section": "Section 106(2) (Hit and Run Offense)",
+      "status": "Criminal Penal Code",
+      "source_url": "https://mha.gov.in"
+    }
+  ],
+  "helplines": [
+    "112",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "Section 161 of the Motor Vehicles Act provides guaranteed statutory compensation of ₹2 lakh for death and ₹50,000 for grievous injury in hit and run accidents.",
+  "evidence_checklist": [
+    "Certified police FIR copy with hit-and-run designation",
+    "Hospital Medico-Legal Certificate (MLC) and medical bills",
+    "Death certificate and post-mortem report where applicable"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 1
+}

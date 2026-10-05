@@ -1,0 +1,67 @@
+{
+  "id": "ecommerce_counterfeit_delivery_scam_chargeback_dispute",
+  "category": "CONSUMER & DOCUMENTS",
+  "scenario": "ecommerce_counterfeit_delivery_scam",
+  "branch": "chargeback_dispute",
+  "language": "en",
+  "title": "Bank Card Chargeback for Merchant Fraud",
+  "roles": [
+    "affected"
+  ],
+  "short_lines": [
+    "Step 1: Contact card-issuing bank customer care within 60 days of transaction.",
+    "Step 2: Request a formal Chargeback under Goods Not Received or Defective/Counterfeit Product.",
+    "Step 3: Submit proof of platform refusal, order invoice, and photo/video evidence to bank.",
+    "Step 4: Bank puts transaction on provisional dispute credit while investigating merchant bank.",
+    "Step 5: If bank fails to process chargeback, escalate to RBI Banking Ombudsman (cms.rbi.org.in)."
+  ],
+  "do": [
+    "Initiate chargeback request in writing via official netbanking dispute portal or registered email.",
+    "Attach platform written refusal to refund alongside invoice and delivery tracking evidence.",
+    "Cite Visa/Mastercard/RuPay dispute reason code for defective/counterfeit merchandise."
+  ],
+  "dont": [
+    "Do not delay beyond the 60 to 120 day card scheme dispute filing window.",
+    "Do not accept closed chargeback tickets without written reasons from your bank dispute team.",
+    "Do not cancel dispute until provisional credit is confirmed permanent."
+  ],
+  "legal_basis": [
+    {
+      "act": "Reserve Bank of India Master Directions on Credit Card and Debit Card Operations 2022",
+      "section": "Section 16 (Grievance Redressal and Customer Protection)",
+      "status": "Binding Central Bank Direction",
+      "source_url": "https://rbi.org.in"
+    },
+    {
+      "act": "Reserve Bank - Integrated Ombudsman Scheme 2021",
+      "section": "Clause 8 (Grounds of Complaint for Deficiency in Banking Services)",
+      "status": "Statutory Banking Ombudsman",
+      "source_url": "https://cms.rbi.org.in"
+    }
+  ],
+  "helplines": [
+    "1915",
+    "14448",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "Under RBI and card network rules, you have the right to file a bank chargeback if an online merchant delivers counterfeit or empty goods.",
+  "evidence_checklist": [
+    "Bank account statement showing transaction debit line item",
+    "Official chargeback dispute form submitted to issuing bank",
+    "Written proof of platform refusing refund or closing grievance ticket"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 2
+}

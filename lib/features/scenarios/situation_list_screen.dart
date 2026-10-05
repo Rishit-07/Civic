@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/content_models.dart';
 import '../../data/repositories/content_repository.dart';
+import '../../data/services/app_preferences.dart';
 import 'triage_screen.dart';
 
 /// Premium Legal Encounters screen based on CIVIC Neo-Constructivist design system.
@@ -29,6 +31,9 @@ class _SituationListScreenState extends State<SituationListScreen> {
   String _selectedCategoryId = 'all';
   String _searchQuery = '';
   bool _isLoading = true;
+  int _currentPage = 1;
+  static const int _scenariosPerPage = 5;
+  String _selectedRole = 'all'; // 'all', 'affected', 'accused', 'witness', 'parent'
 
   @override
   void initState() {
@@ -44,6 +49,7 @@ class _SituationListScreenState extends State<SituationListScreen> {
       _searchController.text = _searchQuery;
     }
     _selectedCategoryId = widget.initialCategoryId ?? 'all';
+    _selectedRole = AppPreferences.selectedRole;
     _loadData();
   }
 
@@ -134,8 +140,80 @@ class _SituationListScreenState extends State<SituationListScreen> {
     return 'all';
   }
 
+  bool _scenarioMatchesRole(Scenario sc, String role) {
+    if (role == 'all') return true;
+    final r = role.toLowerCase().trim();
+    final text = '${sc.id} ${sc.label} ${sc.description}'.toLowerCase();
+
+    switch (r) {
+      case 'accused':
+        return text.contains('arrest') ||
+            text.contains('detention') ||
+            text.contains('traffic') ||
+            text.contains('stop') ||
+            text.contains('41a') ||
+            text.contains('notice') ||
+            text.contains('cheque') ||
+            text.contains('fir') ||
+            text.contains('custody') ||
+            text.contains('search') ||
+            text.contains('alcohol') ||
+            text.contains('challan') ||
+            text.contains('phone') ||
+            text.contains('device') ||
+            text.contains('seizure') ||
+            text.contains('interrogation') ||
+            text.contains('suspect') ||
+            text.contains('accused') ||
+            text.contains('bribe') ||
+            text.contains('bail') ||
+            text.contains('warrant') ||
+            text.contains('summon');
+
+      case 'witness':
+        return text.contains('good samaritan') ||
+            text.contains('samaritan') ||
+            text.contains('accident') ||
+            text.contains('witness') ||
+            text.contains('bystander') ||
+            text.contains('helpless') ||
+            text.contains('bribe') ||
+            text.contains('noise') ||
+            text.contains('animal') ||
+            text.contains('feeder') ||
+            text.contains('stray') ||
+            text.contains('statement') ||
+            text.contains('cyber') ||
+            text.contains('fraud') ||
+            text.contains('1930') ||
+            text.contains('helpline') ||
+            text.contains('evidence');
+
+      case 'parent':
+        return text.contains('ragging') ||
+            text.contains('campus') ||
+            text.contains('hostel') ||
+            text.contains('student') ||
+            text.contains('college') ||
+            text.contains('school') ||
+            text.contains('minor') ||
+            text.contains('child') ||
+            text.contains('pocso') ||
+            text.contains('cyberbullying') ||
+            text.contains('maintenance') ||
+            text.contains('senior citizen') ||
+            text.contains('parents') ||
+            text.contains('family') ||
+            text.contains('custody');
+
+      case 'affected':
+      default:
+        return true;
+    }
+  }
+
   List<Category> get _filteredCategories {
-    if (_searchQuery.isEmpty && _selectedCategoryId == 'all') {
+    if (_searchQuery.isEmpty && _selectedCategoryId == 'all' && _selectedRole == 'all') {
       return _categories;
     }
 
@@ -145,23 +223,35 @@ class _SituationListScreenState extends State<SituationListScreen> {
       if (_selectedCategoryId != 'all' && cat.id != _selectedCategoryId) {
         return false;
       }
-      // Search filter: match category label/desc OR any scenario label/desc
+
+      final matchingScenarios = cat.scenarios.where((sc) {
+        final matchesRole = _scenarioMatchesRole(sc, _selectedRole);
+        if (!matchesRole) return false;
+        if (query.isEmpty) return true;
+        return sc.label.toLowerCase().contains(query) ||
+            sc.description.toLowerCase().contains(query) ||
+            sc.id.toLowerCase().contains(query);
+      }).toList();
+
       if (query.isNotEmpty) {
         final catMatch = cat.label.toLowerCase().contains(query) ||
             cat.description.toLowerCase().contains(query);
-        final scenarioMatch = cat.scenarios.any((sc) =>
-            sc.label.toLowerCase().contains(query) ||
-            sc.description.toLowerCase().contains(query));
-        return catMatch || scenarioMatch;
+        return catMatch || matchingScenarios.isNotEmpty;
       }
+
+      if (_selectedRole != 'all') {
+        return matchingScenarios.isNotEmpty;
+      }
+
       return true;
     }).toList();
   }
 
   List<Scenario> _filteredScenariosFor(Category cat) {
-    if (_searchQuery.isEmpty) return cat.scenarios;
     final query = _searchQuery.toLowerCase();
     return cat.scenarios.where((sc) {
+      if (!_scenarioMatchesRole(sc, _selectedRole)) return false;
+      if (query.isEmpty) return true;
       return sc.label.toLowerCase().contains(query) ||
           sc.description.toLowerCase().contains(query);
     }).toList();
@@ -169,13 +259,17 @@ class _SituationListScreenState extends State<SituationListScreen> {
 
   /// Live matching scenarios across all loaded categories
   List<({Scenario scenario, Category category})> get _matchingScenarios {
-    if (_searchQuery.isEmpty) return const [];
     final q = _searchQuery.toLowerCase();
     final results = <({Scenario scenario, Category category})>[];
     for (final cat in _categories) {
       if (_selectedCategoryId != 'all' && cat.id != _selectedCategoryId) continue;
       for (final sc in cat.scenarios) {
-        if (sc.label.toLowerCase().contains(q) ||
+        if (!_scenarioMatchesRole(sc, _selectedRole)) continue;
+        if (q.isEmpty) {
+          if (_selectedCategoryId != 'all') {
+            results.add((scenario: sc, category: cat));
+          }
+        } else if (sc.label.toLowerCase().contains(q) ||
             sc.description.toLowerCase().contains(q) ||
             sc.id.toLowerCase().contains(q) ||
             cat.label.toLowerCase().contains(q)) {
@@ -380,6 +474,37 @@ class _SituationListScreenState extends State<SituationListScreen> {
     );
   }
 
+  bool get _isUserSignedIn {
+    try {
+      return FirebaseAuth.instance.currentUser != null;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  String get _userEmail {
+    try {
+      return FirebaseAuth.instance.currentUser?.email ?? 'Guest Citizen';
+    } catch (_) {
+      return 'Guest Citizen';
+    }
+  }
+
+  String _getRoleDisplayName(String role) {
+    switch (role.toLowerCase().trim()) {
+      case 'accused':
+        return 'Accused / Suspect';
+      case 'witness':
+        return 'Witness / Bystander';
+      case 'parent':
+        return 'Parent / Guardian';
+      case 'affected':
+        return 'Victim / Affected';
+      default:
+        return 'All Roles';
+    }
+  }
+
   Widget _buildAppBar() {
     return Container(
       height: 58,
@@ -439,17 +564,49 @@ class _SituationListScreenState extends State<SituationListScreen> {
               ),
             ],
           ),
-          Container(
-            width: 32,
-            height: 32,
-            decoration: const BoxDecoration(
-              color: AppColors.primary,
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(
-              Icons.person_rounded,
-              color: Colors.white,
-              size: 17,
+          GestureDetector(
+            onTap: _showAccountRoleSheet,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              decoration: BoxDecoration(
+                color: _isUserSignedIn
+                    ? const Color(0xFF15803D).withValues(alpha: 0.12)
+                    : AppColors.primary.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(
+                  color: _isUserSignedIn
+                      ? const Color(0xFF15803D).withValues(alpha: 0.3)
+                      : AppColors.primary.withValues(alpha: 0.3),
+                ),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    _isUserSignedIn
+                        ? Icons.verified_user_rounded
+                        : Icons.shield_outlined,
+                    color: _isUserSignedIn
+                        ? const Color(0xFF15803D)
+                        : AppColors.primary,
+                    size: 15,
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    _selectedRole == 'all'
+                        ? (_isUserSignedIn ? 'Vault Active' : 'Guest Mode')
+                        : _selectedRole.toUpperCase(),
+                    style: GoogleFonts.montserrat(
+                      fontSize: 10.5,
+                      fontWeight: FontWeight.w800,
+                      color: _isUserSignedIn
+                          ? const Color(0xFF15803D)
+                          : AppColors.primaryDark,
+                      letterSpacing: 0.6,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -460,6 +617,7 @@ class _SituationListScreenState extends State<SituationListScreen> {
   Widget _buildBody() {
     final filtered = _filteredCategories;
     final isSearching = _searchQuery.isNotEmpty;
+    final isSingleCategory = _selectedCategoryId != 'all' && !isSearching;
     final matchingScenarios = _matchingScenarios;
 
     return SingleChildScrollView(
@@ -478,9 +636,13 @@ class _SituationListScreenState extends State<SituationListScreen> {
 
           // Quick Category Filter Chips
           _buildCategoryFilterChips(),
+          const SizedBox(height: 10),
+
+          // Role Perspective Filter Chips
+          _buildRoleFilterChips(),
           const SizedBox(height: 16),
 
-          // Search Results or Category Section Header
+          // Search Results or Single Category View or Category Section Header
           if (isSearching) ...[
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -499,6 +661,7 @@ class _SituationListScreenState extends State<SituationListScreen> {
                     setState(() {
                       _searchQuery = '';
                       _searchController.clear();
+                      _currentPage = 1;
                     });
                   },
                   child: Text(
@@ -516,8 +679,50 @@ class _SituationListScreenState extends State<SituationListScreen> {
             const SizedBox(height: 12),
             if (matchingScenarios.isEmpty)
               _buildEmptyState()
-            else
-              _buildMatchingScenariosList(matchingScenarios),
+            else ...[
+              _buildPaginatedScenarios(matchingScenarios),
+            ],
+          ] else if (isSingleCategory) ...[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    '${_getCategoryShortTitle(_selectedCategoryId, _selectedCategoryId).toUpperCase()} PROTOCOLS (${matchingScenarios.length})',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w800,
+                      color: const Color(0xFF5B4137),
+                      letterSpacing: 1.4,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _selectedCategoryId = 'all';
+                      _currentPage = 1;
+                    });
+                  },
+                  child: Text(
+                    'Show All Categories',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.primary,
+                      letterSpacing: 0.3,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            if (matchingScenarios.isEmpty)
+              _buildEmptyState()
+            else ...[
+              _buildPaginatedScenarios(matchingScenarios),
+            ],
           ] else ...[
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -532,7 +737,9 @@ class _SituationListScreenState extends State<SituationListScreen> {
                   ),
                 ),
                 Text(
-                  'CrPC & BNS Verified',
+                  _selectedRole == 'all'
+                      ? 'CrPC & BNS Verified'
+                      : 'Role: ${_getRoleDisplayName(_selectedRole)}',
                   style: GoogleFonts.montserrat(
                     fontSize: 10.5,
                     fontWeight: FontWeight.w700,
@@ -550,6 +757,137 @@ class _SituationListScreenState extends State<SituationListScreen> {
 
           // Legal Compliance Footer
           _buildLegalComplianceFooter(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPaginatedScenarios(List<({Scenario scenario, Category category})> scenarios) {
+    final totalPages = (scenarios.length / _scenariosPerPage).ceil();
+    final safePage = _currentPage.clamp(1, totalPages > 0 ? totalPages : 1);
+    final startIndex = (safePage - 1) * _scenariosPerPage;
+    final paginatedItems = scenarios.skip(startIndex).take(_scenariosPerPage).toList();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildMatchingScenariosList(paginatedItems),
+        if (totalPages > 1)
+          _buildPaginationControls(
+            currentPage: safePage,
+            totalPages: totalPages,
+            totalItems: scenarios.length,
+            onPageChanged: (newPage) {
+              setState(() {
+                _currentPage = newPage;
+              });
+            },
+          ),
+      ],
+    );
+  }
+
+  Widget _buildPaginationControls({
+    required int currentPage,
+    required int totalPages,
+    required int totalItems,
+    required ValueChanged<int> onPageChanged,
+  }) {
+    return Container(
+      margin: const EdgeInsets.only(top: 14),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: const Color(0xFFE8E8E8)),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x06000000),
+            blurRadius: 6,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          OutlinedButton.icon(
+            onPressed: currentPage > 1
+                ? () => onPageChanged(currentPage - 1)
+                : null,
+            icon: const Icon(Icons.arrow_back_rounded, size: 15),
+            label: Text(
+              'PREV',
+              style: GoogleFonts.montserrat(
+                fontSize: 11,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 0.8,
+              ),
+            ),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: AppColors.primary,
+              disabledForegroundColor: const Color(0xFFC4B5AE),
+              side: BorderSide(
+                color: currentPage > 1
+                    ? AppColors.primary
+                    : const Color(0xFFE8E8E8),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'PAGE $currentPage OF $totalPages',
+                style: GoogleFonts.montserrat(
+                  fontSize: 11.5,
+                  fontWeight: FontWeight.w800,
+                  color: const Color(0xFF1A1C1C),
+                  letterSpacing: 0.5,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                '$totalItems protocols total',
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 10.5,
+                  color: const Color(0xFF907065),
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+          OutlinedButton.icon(
+            onPressed: currentPage < totalPages
+                ? () => onPageChanged(currentPage + 1)
+                : null,
+            icon: const Icon(Icons.arrow_forward_rounded, size: 15),
+            label: Text(
+              'NEXT',
+              style: GoogleFonts.montserrat(
+                fontSize: 11,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 0.8,
+              ),
+            ),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: AppColors.primary,
+              disabledForegroundColor: const Color(0xFFC4B5AE),
+              side: BorderSide(
+                color: currentPage < totalPages
+                    ? AppColors.primary
+                    : const Color(0xFFE8E8E8),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -584,6 +922,7 @@ class _SituationListScreenState extends State<SituationListScreen> {
               onTap: () {
                 setState(() {
                   _selectedCategoryId = item.id;
+                  _currentPage = 1;
                 });
               },
               borderRadius: BorderRadius.circular(10),
@@ -631,6 +970,377 @@ class _SituationListScreenState extends State<SituationListScreen> {
           );
         },
       ),
+    );
+  }
+
+  Widget _buildRoleFilterChips() {
+    final roles = [
+      (id: 'all', label: 'All Roles', icon: Icons.public_rounded),
+      (id: 'affected', label: 'Victim / Affected', icon: Icons.shield_rounded),
+      (id: 'accused', label: 'Accused / Suspect', icon: Icons.gavel_rounded),
+      (id: 'witness', label: 'Witness / Bystander', icon: Icons.visibility_rounded),
+      (id: 'parent', label: 'Parent / Guardian', icon: Icons.family_restroom_rounded),
+    ];
+
+    return SizedBox(
+      height: 32,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
+        itemCount: roles.length,
+        separatorBuilder: (context, index) => const SizedBox(width: 6),
+        itemBuilder: (context, index) {
+          final item = roles[index];
+          final isSelected = _selectedRole == item.id;
+          return Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () {
+                setState(() {
+                  _selectedRole = item.id;
+                  _currentPage = 1;
+                });
+                AppPreferences.setSelectedRole(item.id);
+              },
+              borderRadius: BorderRadius.circular(16),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                decoration: BoxDecoration(
+                  color: isSelected
+                      ? const Color(0xFF101F18)
+                      : const Color(0xFFEEEEEE),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      item.icon,
+                      size: 13,
+                      color: isSelected ? Colors.white : const Color(0xFF5B4137),
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      item.label,
+                      style: GoogleFonts.montserrat(
+                        fontSize: 10.5,
+                        fontWeight: isSelected ? FontWeight.w800 : FontWeight.w600,
+                        color: isSelected ? Colors.white : const Color(0xFF5B4137),
+                        letterSpacing: 0.3,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  void _showAccountRoleSheet() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (ctx) {
+        return StatefulBuilder(
+          builder: (modalCtx, setModalState) {
+            final isSignedIn = _isUserSignedIn;
+            final email = _userEmail;
+
+            return Container(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height * 0.85,
+              ),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+              ),
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Container(
+                        width: 40,
+                        height: 4,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFE2E2E2),
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'CITIZEN IDENTITY & PERSPECTIVE',
+                          style: GoogleFonts.montserrat(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w800,
+                            color: AppColors.primary,
+                            letterSpacing: 1.2,
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 3),
+                          decoration: BoxDecoration(
+                            color: isSignedIn
+                                ? const Color(0xFF15803D).withValues(alpha: 0.12)
+                                : const Color(0xFFD97706).withValues(alpha: 0.12),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Text(
+                            isSignedIn ? 'AUTHENTICATED' : 'GUEST MODE',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 9.5,
+                              fontWeight: FontWeight.w800,
+                              color: isSignedIn
+                                  ? const Color(0xFF15803D)
+                                  : const Color(0xFFD97706),
+                              letterSpacing: 0.6,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                      padding: const EdgeInsets.all(14),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFF9F9F9),
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(color: const Color(0xFFE8E8E8)),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(
+                                isSignedIn
+                                    ? Icons.cloud_done_rounded
+                                    : Icons.cloud_off_rounded,
+                                color: isSignedIn
+                                    ? const Color(0xFF15803D)
+                                    : const Color(0xFF907065),
+                                size: 20,
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  isSignedIn ? email : 'Guest Citizen (Unauthenticated)',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 13.5,
+                                    fontWeight: FontWeight.w800,
+                                    color: const Color(0xFF1A1C1C),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            isSignedIn
+                                ? '✓ Cloud Evidence Vault active with real-time Firestore encryption.\n✓ Tamper-evident timestamping enabled for legal affidavit submission.\n✓ Incident logs synced across all authorized devices.'
+                                : '• Immediate emergency access is unrestricted (police, SOS, public rights).\n• Local volatile storage: Notes remain on this device only.\n• To enable Cloud Evidence Vault and Section 65B certified legal dossier export, sign in with your account.',
+                            style: GoogleFonts.plusJakartaSans(
+                              fontSize: 11.5,
+                              color: const Color(0xFF5B4137),
+                              height: 1.4,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      'SELECT YOUR LEGAL ROLE PERSPECTIVE',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w800,
+                        color: const Color(0xFF5B4137),
+                        letterSpacing: 1.2,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      'Different legal rights, duties, and statutory protections apply depending on your role in an encounter.',
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 12,
+                        color: const Color(0xFF907065),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    ...[
+                      (
+                        id: 'all',
+                        title: 'All Roles (Overview)',
+                        desc: 'Shows all statutory scenarios across victims, suspects, and witnesses without filtering.',
+                        icon: Icons.public_rounded,
+                        tag: 'GENERAL',
+                      ),
+                      (
+                        id: 'affected',
+                        title: 'Affected Victim / Aggrieved Person',
+                        desc: 'Focuses on Zero FIR registration, DLSA free legal aid, victim compensation, and restraining orders.',
+                        icon: Icons.shield_rounded,
+                        tag: 'PROTECTION',
+                      ),
+                      (
+                        id: 'accused',
+                        title: 'Accused / Suspect / Named Citizen',
+                        desc: 'Focuses on Section 35(3) Notice instead of arrest, Right to Silence (Art 20(3)), bail safeguards (Sec 479 BNSS).',
+                        icon: Icons.gavel_rounded,
+                        tag: 'DEFENSE',
+                      ),
+                      (
+                        id: 'witness',
+                        title: 'Witness / Good Samaritan / Bystander',
+                        desc: 'Focuses on Good Samaritan immunity (Sec 134A Motor Vehicles Act), exemption from police harassment or coercion.',
+                        icon: Icons.visibility_rounded,
+                        tag: 'IMMUNITY',
+                      ),
+                      (
+                        id: 'parent',
+                        title: 'Parent / Legal Guardian / Caregiver',
+                        desc: 'Focuses on Juvenile Justice safeguards, anti-ragging UGC statutory regulations, and POCSO reporting protocols.',
+                        icon: Icons.family_restroom_rounded,
+                        tag: 'GUARDIAN',
+                      ),
+                    ].map((roleItem) {
+                      final isSelected = _selectedRole == roleItem.id;
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () {
+                              setModalState(() {
+                                _selectedRole = roleItem.id;
+                              });
+                              setState(() {
+                                _selectedRole = roleItem.id;
+                                _currentPage = 1;
+                              });
+                              AppPreferences.setSelectedRole(roleItem.id);
+                              Navigator.pop(ctx);
+                            },
+                            borderRadius: BorderRadius.circular(14),
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 200),
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: isSelected
+                                    ? AppColors.primary.withValues(alpha: 0.06)
+                                    : Colors.white,
+                                borderRadius: BorderRadius.circular(14),
+                                border: Border.all(
+                                  color: isSelected
+                                      ? AppColors.primary
+                                      : const Color(0xFFE8E8E8),
+                                  width: isSelected ? 1.5 : 1.0,
+                                ),
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 34,
+                                    height: 34,
+                                    decoration: BoxDecoration(
+                                      color: isSelected
+                                          ? AppColors.primary
+                                          : const Color(0xFFF3F3F3),
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Icon(
+                                      roleItem.icon,
+                                      size: 18,
+                                      color: isSelected
+                                          ? Colors.white
+                                          : const Color(0xFF5B4137),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                roleItem.title,
+                                                style: GoogleFonts.montserrat(
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w800,
+                                                  color: isSelected
+                                                      ? AppColors.primary
+                                                      : const Color(0xFF1A1C1C),
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(width: 8),
+                                            Container(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 6, vertical: 2),
+                                              decoration: BoxDecoration(
+                                                color: const Color(0xFFF0F0F0),
+                                                borderRadius:
+                                                    BorderRadius.circular(4),
+                                              ),
+                                              child: Text(
+                                                roleItem.tag,
+                                                style: GoogleFonts.montserrat(
+                                                  fontSize: 8.5,
+                                                  fontWeight: FontWeight.w800,
+                                                  color: const Color(0xFF5B4137),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 3),
+                                        Text(
+                                          roleItem.desc,
+                                          style: GoogleFonts.plusJakartaSans(
+                                            fontSize: 11.5,
+                                            color: const Color(0xFF5B4137),
+                                            height: 1.3,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  if (isSelected) ...[
+                                    const SizedBox(width: 8),
+                                    const Icon(
+                                      Icons.check_circle_rounded,
+                                      color: AppColors.primary,
+                                      size: 18,
+                                    ),
+                                  ],
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 
@@ -1083,91 +1793,124 @@ class _SituationListScreenState extends State<SituationListScreen> {
       return;
     }
 
-    // Multiple scenarios: show bottom sheet
+    int modalPage = 1;
+    const int modalPerPage = 5;
+
+    // Multiple scenarios: show bottom sheet with pagination
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (ctx) {
-        return Container(
-          constraints: BoxConstraints(
-            maxHeight: MediaQuery.of(context).size.height * 0.75,
-          ),
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Handle bar
-              Padding(
-                padding: const EdgeInsets.only(top: 12, bottom: 8),
-                child: Container(
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFE2E2E2),
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                ),
+        return StatefulBuilder(
+          builder: (modalCtx, setModalState) {
+            final totalPages = (scenarios.length / modalPerPage).ceil();
+            final safePage = modalPage.clamp(1, totalPages > 0 ? totalPages : 1);
+            final startIndex = (safePage - 1) * modalPerPage;
+            final pageScenarios = scenarios.skip(startIndex).take(modalPerPage).toList();
+
+            return Container(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height * 0.82,
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 4, 20, 14),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Handle bar
+                  Padding(
+                    padding: const EdgeInsets.only(top: 12, bottom: 8),
+                    child: Container(
+                      width: 40,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFE2E2E2),
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 4, 20, 12),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          _getCategoryShortTitle(cat.id, cat.label)
-                              .toUpperCase(),
-                          style: GoogleFonts.montserrat(
-                            fontSize: 10.5,
-                            fontWeight: FontWeight.w800,
-                            color: AppColors.primary,
-                            letterSpacing: 1.2,
-                          ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              _getCategoryShortTitle(cat.id, cat.label)
+                                  .toUpperCase(),
+                              style: GoogleFonts.montserrat(
+                                fontSize: 10.5,
+                                fontWeight: FontWeight.w800,
+                                color: AppColors.primary,
+                                letterSpacing: 1.2,
+                              ),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              'Select Your Scenario',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w800,
+                                color: const Color(0xFF1A1C1C),
+                              ),
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 2),
-                        Text(
-                          'Select Your Scenario',
-                          style: GoogleFonts.montserrat(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w800,
-                            color: const Color(0xFF1A1C1C),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: AppColors.primary.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Text(
+                            '${scenarios.length} PROTOCOLS',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 9.5,
+                              fontWeight: FontWeight.w800,
+                              color: AppColors.primary,
+                              letterSpacing: 0.5,
+                            ),
                           ),
                         ),
                       ],
                     ),
-                    Text(
-                      '${scenarios.length} PROTOCOLS',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w700,
-                        color: const Color(0xFF907065),
-                        letterSpacing: 0.5,
+                  ),
+                  const Divider(height: 1, color: Color(0xFFE8E8E8)),
+                  Flexible(
+                    child: ListView.separated(
+                      padding: const EdgeInsets.fromLTRB(20, 14, 20, 14),
+                      itemCount: pageScenarios.length,
+                      shrinkWrap: true,
+                      separatorBuilder: (context, i) => const SizedBox(height: 10),
+                      itemBuilder: (_, index) {
+                        final sc = pageScenarios[index];
+                        return _buildScenarioTile(sc, ctx);
+                      },
+                    ),
+                  ),
+                  if (totalPages > 1)
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                      child: _buildPaginationControls(
+                        currentPage: safePage,
+                        totalPages: totalPages,
+                        totalItems: scenarios.length,
+                        onPageChanged: (newPage) {
+                          setModalState(() {
+                            modalPage = newPage;
+                          });
+                        },
                       ),
                     ),
-                  ],
-                ),
+                ],
               ),
-              const Divider(height: 1, color: Color(0xFFE8E8E8)),
-              Flexible(
-                child: ListView.separated(
-                  padding: const EdgeInsets.fromLTRB(20, 14, 20, 28),
-                  itemCount: scenarios.length,
-                  shrinkWrap: true,
-                  separatorBuilder: (context, i) => const SizedBox(height: 10),
-                  itemBuilder: (_, index) {
-                    final sc = scenarios[index];
-                    return _buildScenarioTile(sc, ctx);
-                  },
-                ),
-              ),
-            ],
-          ),
+            );
+          },
         );
       },
     );

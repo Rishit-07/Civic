@@ -1,0 +1,68 @@
+{
+  "id": "senior_citizen_maintenance_default",
+  "category": "FAMILY & SAFETY",
+  "scenario": "senior_citizen_maintenance",
+  "branch": "default",
+  "language": "en",
+  "title": "Senior Citizen Maintenance & Eviction Protection",
+  "roles": [
+    "affected",
+    "parent"
+  ],
+  "short_lines": [
+    "Step 1: Senior citizens are entitled to monthly maintenance up to ₹10,000 from adult children/heirs.",
+    "Step 2: File summary petition before the Maintenance Tribunal presided over by the SDM.",
+    "Step 3: Senior citizens can seek summary eviction of abusive children from self-acquired property.",
+    "Step 4: Section 24 makes intentional abandonment of senior citizens punishable with imprisonment.",
+    "Step 5: Call national elderline helpline 14567 for free administrative and legal intervention."
+  ],
+  "do": [
+    "Dial National Elderline Helpline 14567 for free counseling, rescue, and legal filing support.",
+    "File an application under Section 4 and 5 of the Senior Citizens Act before the SDM Tribunal.",
+    "Produce title deeds proving self-acquired ownership if seeking eviction of abusive relatives."
+  ],
+  "dont": [
+    "Do not suffer domestic violence or abandonment in silence; abandonment is a criminal offense.",
+    "Do not let relatives coerce you into signing powers of attorney or sale deeds.",
+    "Do not engage in expensive civil litigation when summary tribunal proceedings are available."
+  ],
+  "legal_basis": [
+    {
+      "act": "Maintenance and Welfare of Parents and Senior Citizens Act 2007",
+      "section": "Section 4, 9, & 24 (Maintenance Orders and Penalty for Abandonment)",
+      "status": "Special Protective Statute",
+      "source_url": "https://socialjustice.gov.in"
+    },
+    {
+      "act": "Supreme Court of India (S. Vanitha v. Deputy Commissioner)",
+      "section": "Civil Appeal No. 3822/2020",
+      "status": "Landmark Supreme Court Precedent",
+      "source_url": "https://sci.gov.in"
+    }
+  ],
+  "helplines": [
+    "14567",
+    "112",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 60,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "The Maintenance of Senior Citizens Act empowers SDMs to order monthly maintenance and evict abusive children from a senior citizen home.",
+  "evidence_checklist": [
+    "Proof of age establishing senior citizen status (Aadhaar/PAN/Voter ID)",
+    "Property title deed proving self-acquired ownership of residence",
+    "Bank statements, medical bills, and maintenance petition copy filed before SDM"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 1
+}

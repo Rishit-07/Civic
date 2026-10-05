@@ -1,0 +1,68 @@
+{
+  "id": "health_insurance_claim_rejected_default",
+  "category": "CONSUMER & DOCUMENTS",
+  "scenario": "health_insurance_claim_rejected",
+  "branch": "default",
+  "language": "en",
+  "title": "Hospital Cashless Denial at Discharge",
+  "roles": [
+    "affected",
+    "parent"
+  ],
+  "short_lines": [
+    "Step 1: IRDAI Master Circular mandates insurers must grant final cashless decision within 3 hours.",
+    "Step 2: Hospital cannot detain patient or withhold discharge summary past the 3-hour period.",
+    "Step 3: If insurer delays past 3 hours, hospital must release patient; insurer pays extra hospital charges.",
+    "Step 4: Demand written repudiation letter specifying exact clause from policy document.",
+    "Step 5: File complaint on IRDAI Bima Bharosa portal (bimabharosa.irdai.gov.in) with TPA pre-auth ID."
+  ],
+  "do": [
+    "Show hospital TPA desk the IRDAI Master Circular 2024 clause mandating 3-hour discharge decisions.",
+    "Demand a written rejection letter clearly stating the clinical reason and policy exclusion clause.",
+    "Lodge an immediate ticket on IRDAI Bima Bharosa portal (bimabharosa.irdai.gov.in)."
+  ],
+  "dont": [
+    "Do not allow hospital billing desks to hold patient physically hostage for insurance delays.",
+    "Do not pay inflated cash charges without an itemized bill signed by the medical superintendent.",
+    "Do not accept vague verbal denials from TPA coordinators."
+  ],
+  "legal_basis": [
+    {
+      "act": "Insurance Regulatory and Development Authority of India (IRDAI) Act 1999",
+      "section": "IRDAI Master Circular on Operations and Allied Matters of Health Insurance 2024",
+      "status": "Binding Statutory Regulation",
+      "source_url": "https://irdai.gov.in"
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "section": "Section 2(11) (Deficiency in Service)",
+      "status": "Consumer Rights Law",
+      "source_url": "https://consumeraffairs.nic.in"
+    }
+  ],
+  "helplines": [
+    "1915",
+    "155255",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "Under IRDAI 2024 regulations, insurers must process cashless discharge within 3 hours. Detaining patients for billing delays is prohibited.",
+  "evidence_checklist": [
+    "Hospital discharge summary and TPA final billing submission timestamp",
+    "Copy of insurer pre-authorization letter and policy schedule",
+    "IRDAI Bima Bharosa complaint token number"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 1
+}

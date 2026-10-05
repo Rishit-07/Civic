@@ -1,0 +1,66 @@
+{
+  "id": "passport_verification_delay_adverse_pvr_remedy",
+  "category": "POLICE & CRIMINAL",
+  "scenario": "passport_verification_delay",
+  "branch": "adverse_pvr_remedy",
+  "language": "en",
+  "title": "Adverse PVR Report & Delayed Clearance",
+  "roles": [
+    "affected"
+  ],
+  "short_lines": [
+    "Step 1: Check online portal status; adverse report requires specific grounds under Section 6(2).",
+    "Step 2: Only pending criminal court summons or conviction can justify passport denial.",
+    "Step 3: File written representation to Regional Passport Officer (RPO) contesting adverse remarks.",
+    "Step 4: Submit CPGRAMS grievance (pgportal.gov.in) against jurisdictional SP/Commissioner.",
+    "Step 5: File RTI application under RTI Act 2005 to inspect exact adverse police report filed."
+  ],
+  "do": [
+    "Obtain a certified copy of your clean criminal record / police clearance certificate.",
+    "Submit a formal representation to the Regional Passport Officer seeking a personal hearing.",
+    "Use CPGRAMS and the Chief Minister grievance cell for rapid administrative escalation."
+  ],
+  "dont": [
+    "Do not conceal criminal trials or pending charge sheets on your passport application.",
+    "Do not rely on verbal assurances from local beat constables.",
+    "Do not let adverse status persist beyond 30 days without filing a formal objection."
+  ],
+  "legal_basis": [
+    {
+      "act": "Passports Act 1967",
+      "section": "Section 6 (Refusal of Passports) & Section 11 (Appeals)",
+      "status": "Statutory Safeguard",
+      "source_url": "https://passportindia.gov.in"
+    },
+    {
+      "act": "Right to Information Act 2005",
+      "section": "Section 6 (Request for Obtaining Information)",
+      "status": "Transparency Law",
+      "source_url": "https://rti.gov.in"
+    }
+  ],
+  "helplines": [
+    "112",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "Section 6 of the Passports Act outlines narrow grounds for refusal. An arbitrary adverse police report can be contested before the Regional Passport Officer.",
+  "evidence_checklist": [
+    "Passport Seva online tracking status screenshot",
+    "Copy of written representation submitted to RPO",
+    "Court certified order proving absence of pending criminal charge sheets"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 2
+}

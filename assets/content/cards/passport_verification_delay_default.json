@@ -1,0 +1,67 @@
+{
+  "id": "passport_verification_delay_default",
+  "category": "POLICE & CRIMINAL",
+  "scenario": "passport_verification_delay",
+  "branch": "default",
+  "language": "en",
+  "title": "Passport Police Verification Bribe Demand",
+  "roles": [
+    "affected"
+  ],
+  "short_lines": [
+    "Step 1: Never pay any speed money or verification charge; police verification is 100% free.",
+    "Step 2: Ensure standard documents (Aadhaar, address proof, educational certificates) are ready.",
+    "Step 3: Demand formal receipt if officer insists on any administrative fee.",
+    "Step 4: Record interaction audio/video or note visiting officer name, buckle number, and station.",
+    "Step 5: Escalate bribe extortion to State Anti-Corruption Bureau (ACB 1064) or Vigilance Helpline."
+  ],
+  "do": [
+    "Keep original identity and residential proofs ready for physical inspection.",
+    "Ask the officer for their name, designation, and police station jurisdiction.",
+    "Report bribe demands immediately to the Vigilance department and District SP."
+  ],
+  "dont": [
+    "Do not pay cash under any circumstances; police verification has zero fee.",
+    "Do not visit police stations at odd hours without official written notice.",
+    "Do not sign blank verification acknowledgement forms."
+  ],
+  "legal_basis": [
+    {
+      "act": "Prevention of Corruption Act 1988",
+      "section": "Section 7 (Public Servant Taking Bribe)",
+      "status": "Anti-Corruption Statute",
+      "source_url": "https://cbi.gov.in"
+    },
+    {
+      "act": "Passports Act 1967",
+      "section": "Section 5 (Applications for Passports)",
+      "status": "Statutory Right",
+      "source_url": "https://passportindia.gov.in"
+    }
+  ],
+  "helplines": [
+    "1064",
+    "112",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "Passport police verification is completely free of charge. Bribe demands are punishable with imprisonment under Section 7 of the Prevention of Corruption Act.",
+  "evidence_checklist": [
+    "Passport Seva Kendra application ARN number",
+    "Officer name, buckle number, and mobile number",
+    "Audio/video recording or written complaint draft"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 2
+}

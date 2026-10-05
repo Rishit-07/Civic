@@ -84,10 +84,10 @@ class _NotesScreenState extends State<NotesScreen> {
   void _initControllers() {
     final draft = widget.initialDraft;
     _venueController = TextEditingController(
-      text: draft?.venue ?? 'Location: Koramangala 4th Block, Bengaluru',
+      text: draft?.venue ?? '',
     );
     _officerController = TextEditingController(
-      text: draft?.officer ?? 'Name & Badge number: SI R. Verma, DL-8291',
+      text: draft?.officer ?? '',
     );
     _statementController = TextEditingController(text: draft?.verbatim ?? '');
     _witnessesController = TextEditingController(text: draft?.witnesses ?? '');
@@ -976,7 +976,10 @@ class _NotesScreenState extends State<NotesScreen> {
                   children: [
                     // Notes Title Section
                     _buildNotesHeader(),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 12),
+
+                    // Evidence Vault Sync Banner (Cloud vs Guest)
+                    _buildEvidenceVaultSyncBanner(),
 
                     // Active Incident Form Container (Interactive Toggle)
                     if (_isFormExpanded) ...[
@@ -1966,6 +1969,72 @@ class _NotesScreenState extends State<NotesScreen> {
             style: GoogleFonts.plusJakartaSans(
               fontSize: 12,
               color: const Color(0xFF907065),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildEvidenceVaultSyncBanner() {
+    final isCloudActive = IncidentNotesService.isCloudSyncActive;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      decoration: BoxDecoration(
+        color: isCloudActive
+            ? const Color(0xFF15803D).withValues(alpha: 0.08)
+            : const Color(0xFFD97706).withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          color: isCloudActive
+              ? const Color(0xFF15803D).withValues(alpha: 0.25)
+              : const Color(0xFFD97706).withValues(alpha: 0.25),
+        ),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(
+            isCloudActive
+                ? Icons.lock_clock_rounded
+                : Icons.phone_android_rounded,
+            color: isCloudActive
+                ? const Color(0xFF15803D)
+                : const Color(0xFFD97706),
+            size: 20,
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  isCloudActive
+                      ? 'CLOUD EVIDENCE VAULT ACTIVE'
+                      : 'GUEST VAULT • DEVICE-ONLY STORAGE',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 10.5,
+                    fontWeight: FontWeight.w800,
+                    color: isCloudActive
+                        ? const Color(0xFF15803D)
+                        : const Color(0xFFD97706),
+                    letterSpacing: 0.8,
+                  ),
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  isCloudActive
+                      ? 'Encrypted Firestore backup active with Section 65B tamper-evident timestamping.'
+                      : 'Incident logs are stored in local volatile memory. Sign in with an account to enable cloud backup & lawyer dossier export.',
+                  style: GoogleFonts.plusJakartaSans(
+                    fontSize: 11.5,
+                    color: const Color(0xFF5B4137),
+                    height: 1.35,
+                  ),
+                ),
+              ],
             ),
           ),
         ],

@@ -1,0 +1,67 @@
+{
+  "id": "health_insurance_claim_rejected_ombudsman_complaint",
+  "category": "CONSUMER & DOCUMENTS",
+  "scenario": "health_insurance_claim_rejected",
+  "branch": "ombudsman_complaint",
+  "language": "en",
+  "title": "Insurance Ombudsman Fast-Track Complaint",
+  "roles": [
+    "affected"
+  ],
+  "short_lines": [
+    "Step 1: Submit formal written representation to Insurer Internal Grievance Redressal Officer (GRO).",
+    "Step 2: If rejected or unresolved after 30 days, approach Insurance Ombudsman within 1 year.",
+    "Step 3: Ombudsman service is 100% free; no court fees or advocate required for filing.",
+    "Step 4: Insurer bears the strict burden of proof to demonstrate non-disclosure of pre-existing illness.",
+    "Step 5: Ombudsman award must be executed by the insurance company within 30 days of passing."
+  ],
+  "do": [
+    "File representation before the Insurer Grievance Redressal Officer (GRO) first.",
+    "Submit complaint online at cioins.co.in to the territorial Insurance Ombudsman within 1 year.",
+    "Attach treating doctor certificate proving the ailment was not pre-existing before policy inception."
+  ],
+  "dont": [
+    "Do not engage third-party claim settlement agents taking hefty commissions.",
+    "Do not miss the 1-year deadline following the insurer repudiation letter.",
+    "Do not file simultaneously in Consumer Forum; choose Ombudsman for faster 30-day resolution."
+  ],
+  "legal_basis": [
+    {
+      "act": "Insurance Ombudsman Rules 2017",
+      "section": "Rule 13 (Manner in which Complaint is to be Made) & Rule 17 (Award)",
+      "status": "Statutory Dispute Redressal",
+      "source_url": "https://cioins.co.in"
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "section": "Section 35 (Filing of Consumer Complaint)",
+      "status": "Consumer Rights",
+      "source_url": "https://consumeraffairs.nic.in"
+    }
+  ],
+  "helplines": [
+    "1915",
+    "155255",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "The Insurance Ombudsman offers free, binding dispute resolution up to ₹50 lakh. Insurers must implement awards within 30 days.",
+  "evidence_checklist": [
+    "Insurer claim repudiation letter with GRO rejection confirmation",
+    "Treating physician certificate clarifying medical history",
+    "Online complaint acknowledgment from Insurance Ombudsman portal (cioins.co.in)"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 2
+}

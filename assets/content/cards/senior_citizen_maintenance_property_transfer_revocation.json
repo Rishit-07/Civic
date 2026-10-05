@@ -1,0 +1,68 @@
+{
+  "id": "senior_citizen_maintenance_property_transfer_revocation",
+  "category": "FAMILY & SAFETY",
+  "scenario": "senior_citizen_maintenance",
+  "branch": "property_transfer_revocation",
+  "language": "en",
+  "title": "Revocation of Property Gift Deed (Sec 23)",
+  "roles": [
+    "affected",
+    "parent"
+  ],
+  "short_lines": [
+    "Step 1: If property was gifted on condition of basic amenities and care, Section 23 applies.",
+    "Step 2: If children fail or refuse to provide care, transfer is deemed made by fraud or coercion.",
+    "Step 3: File application before Maintenance Tribunal (SDM) declaring gift deed null and void.",
+    "Step 4: Tribunal has statutory authority to cancel registration and restore title to the senior.",
+    "Step 5: Local police are mandated to enforce peaceful possession back to the senior citizen."
+  ],
+  "do": [
+    "Submit a copy of the registered gift deed or settlement deed to the Maintenance Tribunal.",
+    "Demonstrate that the transferee failed to provide basic medical care, food, and emotional support.",
+    "Seek an interim order restraining children from creating third-party rights on the property."
+  ],
+  "dont": [
+    "Do not wait if children attempt to sell or mortgage the gifted residential property.",
+    "Do not sign subsequent affidavits affirming the gift deed while dispute is pending.",
+    "Do not vacate the house; retain physical possession with police support."
+  ],
+  "legal_basis": [
+    {
+      "act": "Maintenance and Welfare of Parents and Senior Citizens Act 2007",
+      "section": "Section 23 (Transfer of Property to be Void in Certain Circumstances)",
+      "status": "Statutory Revocation Power",
+      "source_url": "https://socialjustice.gov.in"
+    },
+    {
+      "act": "Constitution of India",
+      "section": "Article 21 (Right to Dignified Life)",
+      "status": "Fundamental Right",
+      "source_url": "https://indiacode.nic.in"
+    }
+  ],
+  "helplines": [
+    "14567",
+    "112",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 60,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "Under Section 23 of the Senior Citizens Act, a gifted property can be declared void by the Maintenance Tribunal if children fail to provide basic care.",
+  "evidence_checklist": [
+    "Copy of the registered gift deed / settlement deed",
+    "Medical prescriptions and hospital bills demonstrating lack of support",
+    "Section 23 application acknowledgment from SDM Maintenance Tribunal"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 1
+}

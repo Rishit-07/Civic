@@ -1,0 +1,66 @@
+{
+  "id": "animal_cruelty_stray_feeding_default",
+  "category": "HOUSING",
+  "scenario": "animal_cruelty_stray_feeding",
+  "branch": "default",
+  "language": "en",
+  "title": "Stray Animal Feeder Rights & RWA Protection",
+  "roles": [
+    "affected"
+  ],
+  "short_lines": [
+    "Step 1: High Court guidelines confirm citizens have the constitutional right to feed community animals.",
+    "Step 2: RWAs have zero statutory authority to levy fines, issue bans, or harass animal feeders.",
+    "Step 3: Coordinate with RWA to designate designated feeding spots away from children play areas.",
+    "Step 4: If residents threaten or assault you, file FIR under Section 115 and 351 BNS 2023 for intimidation.",
+    "Step 5: Forward formal complaint to Animal Welfare Board of India (AWBI) and local police station."
+  ],
+  "do": [
+    "Feed community animals in designated, hygienic areas away from common walkways.",
+    "Keep copies of Animal Welfare Board of India (AWBI) feeder advisories and High Court rulings.",
+    "Dial 112 immediately if aggressive residents or RWA members physically block or assault you."
+  ],
+  "dont": [
+    "Do not pay illegal fines or penalties imposed by RWAs for feeding stray dogs.",
+    "Do not permit unauthorized relocation or displacement of sterilized community dogs.",
+    "Do not enter into violent arguments; document harassment on video."
+  ],
+  "legal_basis": [
+    {
+      "act": "Constitution of India",
+      "section": "Article 51A(g) (Fundamental Duty to have Compassion for Living Creatures)",
+      "status": "Constitutional Duty & Right",
+      "source_url": "https://indiacode.nic.in"
+    },
+    {
+      "act": "Animal Birth Control Rules 2023",
+      "section": "Rule 20 (Feeding of Community Animals and Dispute Resolution)",
+      "status": "Central Statutory Rules",
+      "source_url": "https://awbi.gov.in"
+    }
+  ],
+  "helplines": [
+    "112",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "Feeding community animals is protected under Article 51A(g) and ABC Rules 2023. RWAs cannot ban feeding or fine citizens.",
+  "evidence_checklist": [
+    "Copy of RWA notice, resolution, or fine demand letter",
+    "Video recording of verbal abuse, threats, or physical obstruction",
+    "AWBI registered feeder card or colony dog sterilization records"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 2
+}

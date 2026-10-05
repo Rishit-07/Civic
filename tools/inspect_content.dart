@@ -8,19 +8,40 @@ void main() {
 
   int totalScenarios = 0;
   int totalBranches = 0;
+  final missingCards = <String>[];
+  final unreviewedCards = <String>[];
 
   for (final cat in categories) {
     final scenarios = cat['scenarios'] as List<dynamic>;
     totalScenarios += scenarios.length;
-    int branchesCount = 0;
     for (final sc in scenarios) {
-      branchesCount += (sc['branches'] as List<dynamic>).length;
-    }
-    totalBranches += branchesCount;
-    print('${cat['id']} | ${cat['label']} -> ${scenarios.length} scenarios, $branchesCount branches');
-    for (final sc in scenarios) {
-      print('   - ${sc['id']}: ${sc['label']} (${(sc['branches'] as List).join(', ')})');
+      for (final branch in sc['branches'] as List<dynamic>) {
+        totalBranches++;
+        final cardId = '${sc['id']}_$branch';
+        final cardFile = File('assets/content/cards/$cardId.json');
+        if (!cardFile.existsSync()) {
+          missingCards.add(cardId);
+        } else {
+          final cardData = jsonDecode(cardFile.readAsStringSync()) as Map<String, dynamic>;
+          final reviewedBy = (cardData['reviewed_by'] as String? ?? '').trim();
+          if (reviewedBy.isEmpty) {
+            unreviewedCards.add(cardId);
+          }
+        }
+      }
     }
   }
-  print('\nTOTAL: ${categories.length} categories, $totalScenarios scenarios, $totalBranches card branches');
+
+  print('AUDIT SUMMARY:');
+  print('Categories: ${categories.length}');
+  print('Total Scenarios: $totalScenarios');
+  print('Total Card Branches: $totalBranches');
+  print('Missing Card Files: ${missingCards.length}');
+  if (missingCards.isNotEmpty) {
+    print('Missing: $missingCards');
+  }
+  print('Unreviewed Cards: ${unreviewedCards.length}');
+  if (unreviewedCards.isNotEmpty) {
+    print('Unreviewed: $unreviewedCards');
+  }
 }

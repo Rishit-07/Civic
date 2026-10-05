@@ -1,0 +1,67 @@
+{
+  "id": "crypto_trading_investment_scam_default",
+  "category": "ONLINE & MONEY",
+  "scenario": "crypto_trading_investment_scam",
+  "branch": "default",
+  "language": "en",
+  "title": "Investment App & Stock Group Scam",
+  "roles": [
+    "affected"
+  ],
+  "short_lines": [
+    "Step 1: Stop all money transfers immediately; fake platforms never release funds upon extra payment.",
+    "Step 2: Dial national cyber helpline 1930 within golden hour to freeze beneficiary bank accounts.",
+    "Step 3: Log in to cybercrime.gov.in and file formal financial cyber fraud complaint with UTR numbers.",
+    "Step 4: Preserve chat logs, deposit receipts, website URLs, and recipient bank account details.",
+    "Step 5: Notify your bank manager in writing requesting lien marking on fraud destination accounts."
+  ],
+  "do": [
+    "Call 1930 within minutes of realizing fraud to maximize account freeze chances.",
+    "Save entire Telegram/WhatsApp conversation history and export chat as text.",
+    "Note down exact transaction UTRs, timestamps, and beneficiary account numbers."
+  ],
+  "dont": [
+    "Do not pay additional tax, gas fees, or processing charges to unlock frozen profits.",
+    "Do not delete scammer chat threads or clear transaction histories.",
+    "Do not trust unverified private online hackers claiming to recover your funds."
+  ],
+  "legal_basis": [
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "section": "Section 316 & 318 (Cheating & Criminal Breach of Trust)",
+      "status": "Criminal Offense",
+      "source_url": "https://mha.gov.in"
+    },
+    {
+      "act": "Information Technology Act 2000",
+      "section": "Section 66D (Cheating by Impersonation using Computer Resource)",
+      "status": "Cybercrime Statute",
+      "source_url": "https://meity.gov.in"
+    }
+  ],
+  "helplines": [
+    "1930",
+    "112",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "Stop transfers immediately. Demanding tax or unfreeze fees is a cyber fraud under Section 318 BNS. Call 1930 immediately to freeze stolen funds.",
+  "evidence_checklist": [
+    "Bank account statement showing debit UTR numbers",
+    "Screenshots of fake trading dashboard and WhatsApp/Telegram groups",
+    "National Cyber Crime Reporting Portal acknowledgment slip"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 1
+}

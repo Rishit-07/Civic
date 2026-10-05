@@ -1,0 +1,67 @@
+{
+  "id": "animal_cruelty_stray_feeding_cruelty_complaint",
+  "category": "HOUSING",
+  "scenario": "animal_cruelty_stray_feeding",
+  "branch": "cruelty_complaint",
+  "language": "en",
+  "title": "Animal Cruelty & Poisoning Enforcement",
+  "roles": [
+    "witness",
+    "affected"
+  ],
+  "short_lines": [
+    "Step 1: Secure CCTV footage, photos, and post-mortem or veterinary treatment certificates.",
+    "Step 2: Section 325 BNS makes killing, poisoning, or maiming animals punishable up to 5 years prison.",
+    "Step 3: Demand immediate FIR registration under Section 11 PCA Act and Section 325 BNS.",
+    "Step 4: Relocation of community dogs is strictly prohibited under Rule 11 ABC Rules 2023.",
+    "Step 5: Contact Society for the Prevention of Cruelty to Animals (SPCA) to ensure police prosecution."
+  ],
+  "do": [
+    "Call 112 immediately and preserve the scene if you discover injured or poisoned animals.",
+    "Get an immediate autopsy/post-mortem done by a registered Government Veterinary Doctor.",
+    "Demand registration of a cognizable FIR under Section 325 Bharatiya Nyaya Sanhita."
+  ],
+  "dont": [
+    "Do not dispose of poisoned food or animal bodies before forensic collection and post-mortem.",
+    "Do not permit police officers to treat animal cruelty as a simple non-cognizable complaint.",
+    "Do not allow perpetrators to displace other animals in the pack."
+  ],
+  "legal_basis": [
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "section": "Section 325 (Mischief by Killing or Maiming Animal)",
+      "status": "Cognizable Penal Offense",
+      "source_url": "https://mha.gov.in"
+    },
+    {
+      "act": "Prevention of Cruelty to Animals Act 1960",
+      "section": "Section 11 (Treating Animals Cruelly)",
+      "status": "Statutory Offense",
+      "source_url": "https://awbi.gov.in"
+    }
+  ],
+  "helplines": [
+    "112",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "Poisoning or maiming animals is a cognizable criminal offense punishable up to 5 years imprisonment under Section 325 of the Bharatiya Nyaya Sanhita.",
+  "evidence_checklist": [
+    "Government veterinary doctor post-mortem / viscera report",
+    "CCTV footage of poisoning, beating, or cruel confinement",
+    "Copy of FIR registered under Section 325 BNS and Section 11 PCA"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 1
+}

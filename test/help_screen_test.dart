@@ -32,7 +32,7 @@ void main() {
     expect(find.text('15100'), findsWidgets);
 
     // Verify Header and Hero
-    expect(find.text('CIVIC'), findsOneWidget);
+    expect(find.text('CIVIC'), findsWidgets);
     expect(find.text('Help'), findsOneWidget);
     expect(find.text('HELP'), findsOneWidget);
     expect(find.text('WHO TO CALL, WHAT TO DO NEXT'), findsOneWidget);

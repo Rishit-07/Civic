@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
@@ -34,7 +35,9 @@ class _LoadingScreenState extends State<LoadingScreen>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 2000),
+      duration: kIsWeb
+          ? const Duration(milliseconds: 300)
+          : const Duration(milliseconds: 2000),
     );
 
     _progressAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(

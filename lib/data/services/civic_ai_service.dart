@@ -865,6 +865,279 @@ class CivicAiService {
       );
     }
 
+    // 17B. Road Accident & Good Samaritan Rights
+    if (normalized.contains('accident') ||
+        normalized.contains('good samaritan') ||
+        normalized.contains('hit and run') ||
+        normalized.contains('solatium') ||
+        normalized.contains('injured person') ||
+        normalized.contains('सड़क दुर्घटना') ||
+        normalized.contains('एक्सीडेंट')) {
+      return CivicAiMessage(
+        id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
+        text: 'Road Accident Good Samaritan Protection',
+        isUser: false,
+        timestamp: DateTime.now(),
+        relatedCardId: 'road_accident_good_samaritan_default',
+        isEmergency: true,
+        verdict: CivicAiVerdict(
+          verdictTitle: 'Statutory Verdict: Absolute Legal Immunity',
+          verdictColor: const Color(0xFF1B6B38),
+          verdictBgColor: const Color(0xFFD4F5DE),
+          directAnswer:
+              'Under Section 134A of the Motor Vehicles Act 1988, Good Samaritans helping accident victims are immune from civil or criminal liability. Hospitals and police cannot detain or charge you.',
+          legalReasoning:
+              'In SaveLIFE Foundation vs. Union of India, the Supreme Court mandated that bystanders taking accident victims to hospitals cannot be compelled to disclose identity, pay advance fees, or testify as witnesses. Section 161 MV Act also guarantees ₹2,00,000 solatium for hit-and-run fatalities.',
+          sourceTitle: 'Based on: Section 134A & 161 Motor Vehicles Act 1988',
+          statutoryCitation: 'Sec 134A & 161 MV Act 1988; SaveLIFE Foundation Supreme Court Guidelines',
+          citizenActionSteps: [
+            'Dial 112 / 108 emergency services immediately to report the crash location.',
+            'State to hospital casualty staff: "I am a Good Samaritan under Sec 134A MV Act."',
+            'You are legally free to leave hospital immediately after delivering the injured victim.',
+            'If hit-and-run occurred, file an application with the SDM for statutory solatium compensation.',
+          ],
+          criticalDonts: [
+            'DO NOT pay hospital casualty admission deposits for an unknown injured victim.',
+            'DO NOT submit to coercive police station detention or involuntary testimony.',
+            'DO NOT move victims with suspected spinal injuries unless trained or in immediate hazard.',
+          ],
+        ),
+        triageOptions: [
+          'Assisting accident victim at scene',
+          'Hospital demanding admission fee',
+          'Police insisting on station testimony',
+          'Hit and run solatium fund claim',
+        ],
+      );
+    }
+
+    // 17C. Senior Citizen Maintenance & Property Revocation
+    if (normalized.contains('senior citizen') ||
+        normalized.contains('elderly') ||
+        normalized.contains('parents maintenance') ||
+        normalized.contains('gift deed cancel') ||
+        normalized.contains('elder abuse') ||
+        normalized.contains('बुजुर्ग') ||
+        normalized.contains('माता-पिता')) {
+      return CivicAiMessage(
+        id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
+        text: 'Senior Citizen Maintenance & Property Rights',
+        isUser: false,
+        timestamp: DateTime.now(),
+        relatedCardId: 'senior_citizen_maintenance_default',
+        verdict: CivicAiVerdict(
+          verdictTitle: 'Statutory Verdict: Protected Senior Rights',
+          verdictColor: const Color(0xFFBA1A1A),
+          verdictBgColor: const Color(0xFFFFDAD6),
+          directAnswer:
+              'Under the Maintenance of Senior Citizens Act 2007, senior citizens can claim monthly maintenance from children and revoke property gift deeds under Section 23 if children fail to care for them.',
+          legalReasoning:
+              'The Sub-Divisional Magistrate (SDM) heads the summary Maintenance Tribunal. Under Section 23, any property transferred by a senior on condition of care can be declared void if children neglect basic amenities. Section 24 also criminalizes abandonment of elderly parents.',
+          sourceTitle: 'Based on: Maintenance and Welfare of Parents and Senior Citizens Act 2007',
+          statutoryCitation: 'Sec 4, 9, 23 & 24 Senior Citizens Act 2007; S. Vanitha vs DC (Supreme Court 2020)',
+          citizenActionSteps: [
+            'Call the National Elderline Helpline 14567 for free counseling and rescue assistance.',
+            'File a summary petition before the SDM Maintenance Tribunal for monthly maintenance.',
+            'Apply under Section 23 to declare conditional gift deeds null and void if neglected.',
+            'Seek summary eviction of abusive children from your self-acquired residential property.',
+          ],
+          criticalDonts: [
+            'DO NOT suffer physical abuse or abandonment in silence.',
+            'DO NOT sign general powers of attorney or sale deeds under duress from relatives.',
+            'DO NOT file complex civil suits when the summary SDM tribunal provides fast 90-day relief.',
+          ],
+        ),
+        triageOptions: [
+          'Monthly maintenance from children',
+          'Cancel gifted property (Section 23)',
+          'Evict abusive relatives from home',
+          'Dial National Elderline (14567)',
+        ],
+      );
+    }
+
+    // 17D. Health Insurance Cashless Denial
+    if (normalized.contains('cashless') ||
+        normalized.contains('health insurance') ||
+        normalized.contains('mediclaim') ||
+        normalized.contains('insurance rejected') ||
+        normalized.contains('tpa') ||
+        normalized.contains('बीमा') ||
+        normalized.contains('कैशलेस')) {
+      return CivicAiMessage(
+        id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
+        text: 'Health Insurance & Cashless Discharge Mandate',
+        isUser: false,
+        timestamp: DateTime.now(),
+        relatedCardId: 'health_insurance_claim_rejected_default',
+        verdict: CivicAiVerdict(
+          verdictTitle: 'Statutory Verdict: 3-Hour Decision Mandate',
+          verdictColor: const Color(0xFFA83900),
+          verdictBgColor: const Color(0xFFFFDBCF),
+          directAnswer:
+              'Under IRDAI 2024 regulations, insurers must provide final cashless discharge clearance within 3 hours. Hospitals cannot detain patients or withhold discharge summaries.',
+          legalReasoning:
+              'The IRDAI Master Circular 2024 requires insurance companies to approve cashless claims within 3 hours of hospital submission. For wrongful repudiations, the Insurance Ombudsman provides free, binding dispute resolution up to ₹50 lakh within 30 days without advocate fees.',
+          sourceTitle: 'Based on: IRDAI Master Circular on Health Insurance 2024',
+          statutoryCitation: 'IRDAI Master Circular 2024; Rule 13 & 17 Insurance Ombudsman Rules 2017',
+          citizenActionSteps: [
+            'Show hospital TPA desk the IRDAI Master Circular mandating 3-hour discharge decisions.',
+            'Demand an itemized bill and formal written rejection letter specifying the exact exclusion clause.',
+            'Lodge an urgent ticket on IRDAI Bima Bharosa portal (bimabharosa.irdai.gov.in).',
+            'File a free complaint before the Insurance Ombudsman (cioins.co.in) within 1 year.',
+          ],
+          criticalDonts: [
+            'DO NOT allow hospital billing desks to hold patient physically hostage for billing delays.',
+            'DO NOT pay disputed charges without an official signed receipt from medical superintendent.',
+            'DO NOT accept verbal denials without citing specific policy clauses.',
+          ],
+        ),
+        triageOptions: [
+          'Cashless delayed past 3 hours',
+          'Claim rejected citing pre-existing condition',
+          'File on IRDAI Bima Bharosa',
+          'Insurance Ombudsman complaint',
+        ],
+      );
+    }
+
+    // 17E. Noise Pollution & Loudspeakers
+    if (normalized.contains('noise') ||
+        normalized.contains('loudspeaker') ||
+        normalized.contains('dj') ||
+        normalized.contains('night noise') ||
+        normalized.contains('sound pollution') ||
+        normalized.contains('शोर') ||
+        normalized.contains('लाउडस्पीकर')) {
+      return CivicAiMessage(
+        id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
+        text: 'Noise Pollution & Loudspeaker Regulation',
+        isUser: false,
+        timestamp: DateTime.now(),
+        relatedCardId: 'noise_pollution_illegal_construction_default',
+        verdict: CivicAiVerdict(
+          verdictTitle: 'Statutory Verdict: 10 PM Silence Mandate',
+          verdictColor: const Color(0xFFBA1A1A),
+          verdictBgColor: const Color(0xFFFFDAD6),
+          directAnswer:
+              'Loudspeakers, DJ sound systems, and commercial noise are strictly banned in residential areas between 10:00 PM and 6:00 AM under Noise Pollution Rules 2000.',
+          legalReasoning:
+              'Rule 5 of the Noise Pollution (Regulation and Control) Rules 2000 and Section 270 BNS make operating public address systems past 10 PM a punishable nuisance. Under Rule 8, police officers are legally mandated to seize and impound sound equipment upon citizen complaint.',
+          sourceTitle: 'Based on: Noise Pollution Rules 2000 & Section 270 BNS 2023',
+          statutoryCitation: 'Rule 5 & 8 Noise Pollution Rules 2000; Sec 270 BNS 2023 (Public Nuisance)',
+          citizenActionSteps: [
+            'Dial 112 police emergency and state: "Violation of Noise Pollution Rules 2000 after 10 PM."',
+            'Record the dispatch call reference number and time of complaint.',
+            'Demand immediate equipment seizure under Rule 8 of the Noise Rules.',
+            'If police fail to act, submit written representation to the Sub-Divisional Magistrate (SDM).',
+          ],
+          criticalDonts: [
+            'DO NOT enter into direct physical confrontations with event organizers late at night.',
+            'DO NOT allow organizers to continue without displaying written municipal sound permits.',
+            'DO NOT accept verbal assurances from police without equipment volume shutdown.',
+          ],
+        ),
+        triageOptions: [
+          'Loudspeakers blasting past 10 PM',
+          'Commercial DJ in residential zone',
+          'Report on Police 112',
+          'SDM written nuisance complaint',
+        ],
+      );
+    }
+
+    // 17F. Stray Animal Feeding & RWA Protection
+    if (normalized.contains('stray dog') ||
+        normalized.contains('feed dogs') ||
+        normalized.contains('animal feeder') ||
+        normalized.contains('rwa dog') ||
+        normalized.contains('animal cruelty') ||
+        normalized.contains('कुत्ता') ||
+        normalized.contains('जानवर')) {
+      return CivicAiMessage(
+        id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
+        text: 'Community Animal Feeder Constitutional Rights',
+        isUser: false,
+        timestamp: DateTime.now(),
+        relatedCardId: 'animal_cruelty_stray_feeding_default',
+        verdict: CivicAiVerdict(
+          verdictTitle: 'Statutory Verdict: Constitutional Right Protected',
+          verdictColor: const Color(0xFF1B6B38),
+          verdictBgColor: const Color(0xFFD4F5DE),
+          directAnswer:
+              'Feeding community animals is a protected constitutional right under Article 51A(g) and ABC Rules 2023. RWAs have NO legal authority to ban feeding or fine citizens.',
+          legalReasoning:
+              'High Court rulings and Rule 20 of the Animal Birth Control Rules 2023 confirm that citizens have the right to feed community animals. RWAs cannot impose arbitrary fines or prohibit feeding. Furthermore, Section 325 BNS makes poisoning or killing community animals punishable with up to 5 years imprisonment.',
+          sourceTitle: 'Based on: Article 51A(g) & Animal Birth Control Rules 2023',
+          statutoryCitation: 'Article 51A(g) Constitution; Rule 20 ABC Rules 2023; Sec 325 BNS 2023',
+          citizenActionSteps: [
+            'Designate community feeding points away from children play areas in coordination with RWA.',
+            'Carry official guidelines from the Animal Welfare Board of India (AWBI).',
+            'If residents physically threaten or assault you, dial 112 and file an FIR under Sec 115/351 BNS.',
+            'Report cruelty or dog relocation attempts to the local police and SPCA.',
+          ],
+          criticalDonts: [
+            'DO NOT pay unlawful fines or penalties imposed by residential welfare associations.',
+            'DO NOT allow unauthorized relocation or displacement of sterilized community dogs.',
+            'DO NOT engage in violent arguments; capture video evidence of threats or harassment.',
+          ],
+        ),
+        triageOptions: [
+          'RWA harassing animal feeder',
+          'Illegal fines imposed by society',
+          'Animal cruelty or poisoning incident',
+          'AWBI feeder guidelines',
+        ],
+      );
+    }
+
+    // 17G. Gig Worker Rights & ID Blocking
+    if (normalized.contains('gig worker') ||
+        normalized.contains('delivery boy') ||
+        normalized.contains('zomato') ||
+        normalized.contains('swiggy') ||
+        normalized.contains('uber') ||
+        normalized.contains('ola') ||
+        normalized.contains('deplatform') ||
+        normalized.contains('id block') ||
+        normalized.contains('डिलीवरी')) {
+      return CivicAiMessage(
+        id: 'msg_${DateTime.now().millisecondsSinceEpoch}',
+        text: 'Gig Worker Protections & Platform Rights',
+        isUser: false,
+        timestamp: DateTime.now(),
+        relatedCardId: 'gig_worker_rights_default',
+        verdict: CivicAiVerdict(
+          verdictTitle: 'Statutory Verdict: Protected Livelihood Rights',
+          verdictColor: const Color(0xFFA83900),
+          verdictBgColor: const Color(0xFFFFDBCF),
+          directAnswer:
+              'Platforms cannot arbitrarily deactivate gig worker IDs or forfeit earned weekly payouts without written notice, grievance redressal, and fair procedure.',
+          legalReasoning:
+              'Under Section 114 of the Code on Social Security 2020 and State Gig Worker Acts, gig partners are recognized workers entitled to social security, grievance redressal, and mandatory accidental insurance. Unilateral de-platforming without hearing violates Article 21 livelihood rights.',
+          sourceTitle: 'Based on: Code on Social Security 2020 & Gig Worker Welfare Acts',
+          statutoryCitation: 'Section 114 Social Security Code 2020; Article 21 & 19(1)(g) Constitution',
+          citizenActionSteps: [
+            'Submit a formal written ticket to the aggregator grievance officer demanding written reasons.',
+            'Capture screenshot proof of wallet balances, lifetime delivery counts, and customer ratings.',
+            'Lodge a petition before the District Labor Officer citing unlawful livelihood termination.',
+            'If injured on active delivery, claim mandatory group accidental coverage and medical bills.',
+          ],
+          criticalDonts: [
+            'DO NOT accept oral customer support brush-offs; demand written correspondence.',
+            'DO NOT delete the partner app before exporting transaction records and payout history.',
+            'DO NOT waive accident claims in exchange for token ex-gratia relief.',
+          ],
+        ),
+        triageOptions: [
+          'Partner ID blocked without notice',
+          'Withheld weekly payouts / wallet balance',
+          'Accident on duty while delivering',
+          'Lodge labor commissioner grievance',
+        ],
+      );
+    }
+
     // 18. Cyber Blackmail / Leaked Private Photos / Sextortion
     if (normalized.contains('blackmail') ||
         normalized.contains('leaked') ||

@@ -1,0 +1,68 @@
+{
+  "id": "domestic_worker_rights_default",
+  "category": "WORK",
+  "scenario": "domestic_worker_rights",
+  "branch": "default",
+  "language": "en",
+  "title": "Domestic Worker False Theft Allegation",
+  "roles": [
+    "accused",
+    "affected"
+  ],
+  "short_lines": [
+    "Step 1: Employer has zero power of search or detention; physical confinement is a crime under Sec 127 BNS.",
+    "Step 2: Only female police officers can conduct physical search of female workers under Sec 47 BNSS.",
+    "Step 3: If employer threatens physical harm, immediately dial women emergency helpline 1090 or 112.",
+    "Step 4: Demand presence of legal aid counsel or trusted family member before answering questions.",
+    "Step 5: Approach District Legal Services Authority (DLSA) for free defense representation."
+  ],
+  "do": [
+    "Call 112 or Women Helpline 1090 immediately if employer locks the door or threatens violence.",
+    "Insist on being accompanied by female police officers and DLSA legal aid counsel.",
+    "State calmly that false accusation is punishable under Section 248 BNS 2023."
+  ],
+  "dont": [
+    "Do not allow employer or building security guards to conduct bodily strip searches.",
+    "Do not sign confessions or promissory notes admitting to theft under intimidation.",
+    "Do not remain isolated without informing family or local domestic worker union."
+  ],
+  "legal_basis": [
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "section": "Section 127 (Wrongful Confinement) & Section 351 (Criminal Intimidation)",
+      "status": "Penal Safeguard",
+      "source_url": "https://mha.gov.in"
+    },
+    {
+      "act": "Bharatiya Nagarik Suraksha Sanhita 2023",
+      "section": "Section 47 (Search of Female Arrestee by Female Officer Only)",
+      "status": "Procedural Protection",
+      "source_url": "https://mha.gov.in"
+    }
+  ],
+  "helplines": [
+    "112",
+    "1090",
+    "15100"
+  ],
+  "applies_to": {
+    "states": [
+      "ALL"
+    ],
+    "age_min": 0,
+    "user_types": [
+      "all"
+    ]
+  },
+  "next_branch": null,
+  "voice_script": "Employers have no legal authority to detain or strip-search domestic workers. Wrongful confinement is a serious offense under Section 127 BNS.",
+  "evidence_checklist": [
+    "Call log to 112 / 1090 emergency helplines",
+    "Audio/video recording of employer threats or unlawful confinement",
+    "DLSA legal aid assignment reference number"
+  ],
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
+  "risk_tier": 1
+}
