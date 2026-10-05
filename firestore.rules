@@ -12,12 +12,12 @@ service cloud.firestore {
       return isAuthenticated() && request.auth.uid == userId;
     }
 
-    // User Profile Documents (users/{userId})
+    // User Profile Documents & all subcollections (notes, readiness progress, etc.)
     match /users/{userId} {
       allow read, write: if isOwner(userId);
 
-      // User Legal & Incident Notes (users/{userId}/notes/{noteId})
-      match /notes/{noteId} {
+      // Protect all nested user subcollections strictly for the owner
+      match /{allSubcollections=**} {
         allow read, write: if isOwner(userId);
       }
     }

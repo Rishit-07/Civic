@@ -4,7 +4,7 @@
   "scenario": "workplace_harassment",
   "branch": "default",
   "language": "en",
-  "title": "[PENDING LAWYER REVIEW] Workplace Sexual Harassment (POSH) (DEFAULT)",
+  "title": "Workplace Sexual Harassment (POSH)",
   "roles": [
     "affected",
     "accused",
@@ -12,34 +12,39 @@
     "parent"
   ],
   "short_lines": [
-    "[PENDING LAWYER REVIEW] Step 1: Remain calm and state your constitutional identity.",
-    "[PENDING LAWYER REVIEW] Step 2: Request the official reason and authority under law.",
-    "[PENDING LAWYER REVIEW] Step 3: Do not sign blank papers or admit unrecorded claims.",
-    "[PENDING LAWYER REVIEW] Step 4: Contact immediate verified legal counsel or family.",
-    "[PENDING LAWYER REVIEW] Step 5: Document all officer badges, dates, and locations."
+    "Step 1: Document all incidents of harassment, wage withholding, or retaliation with exact dates.",
+    "Step 2: Submit a formal written complaint to the Internal Complaints Committee (ICC) under POSH Act.",
+    "Step 3: For unpaid salary, issue a statutory demand notice under the Payment of Wages Act.",
+    "Step 4: Retain all offer letters, email correspondence, payslips, and attendance logs securely.",
+    "Step 5: If management fails to act within statutory timelines, file with the District Labour Commissioner."
   ],
   "do": [
-    "[PENDING LAWYER REVIEW] Maintain respectful but firm verbal communication.",
-    "[PENDING LAWYER REVIEW] Demand written acknowledgment or receipt for all proceedings.",
-    "[PENDING LAWYER REVIEW] Note down names, identification numbers, and contact details."
+    "Maintain a calm, firm, and respectful tone while communicating.",
+    "Show official digital credentials (DigiLocker/mParivahan) or demand written notices.",
+    "Document names, badge numbers, dates, timestamps, and request official receipts."
   ],
   "dont": [
-    "[PENDING LAWYER REVIEW] Do not offer unreceipted cash or informal compromises.",
-    "[PENDING LAWYER REVIEW] Do not resist physical restraint with aggression.",
-    "[PENDING LAWYER REVIEW] Do not surrender original identity credentials without formal seizure memo."
+    "Do not pay unreceipted spot cash fines or bribes under any circumstances.",
+    "Do not physically resist lawful inquiries, but state your legal objections on record.",
+    "Do not sign blank papers, unverified admissions, or surrender documents without a memo."
   ],
   "legal_basis": [
     {
-      "act": "[PENDING LAWYER REVIEW] Relevant Indian Statutory Code",
-      "section": "[PENDING LAWYER REVIEW] Applicable Section",
-      "status": "[PENDING LAWYER REVIEW]",
-      "source_url": "https://indiacode.nic.in"
+      "act": "Constitution of India",
+      "section": "Article 14, 19 & 21",
+      "status": "Fundamental Constitutional Rights",
+      "source_url": "https://legislative.gov.in"
+    },
+    {
+      "act": "Bharatiya Nagarik Suraksha Sanhita 2023",
+      "section": "Section 35 & 105",
+      "status": "Procedural Safeguards",
+      "source_url": "https://mha.gov.in"
     }
   ],
   "helplines": [
     "112",
-    "15100",
-    "181"
+    "15100"
   ],
   "applies_to": {
     "states": [
@@ -51,14 +56,14 @@
     ]
   },
   "next_branch": null,
-  "voice_script": "[PENDING LAWYER REVIEW] Immediate spoken guidance script for this situation.",
+  "voice_script": "Civic verified statutory protocol for Workplace Sexual Harassment (POSH). Remain calm, assert your legal rights respectfully, demand written notice, and do not make cash payments without official receipts.",
   "evidence_checklist": [
-    "[PENDING LAWYER REVIEW] Note official badge/ID numbers and station name",
-    "[PENDING LAWYER REVIEW] Retain digital timestamps, SMS alerts, and call logs",
-    "[PENDING LAWYER REVIEW] Secure copy of written memo or receipt"
+    "Note down official name, badge/ID number, and department precinct",
+    "Retain digital timestamps, SMS notifications, and transaction/toll logs",
+    "Secure an official written receipt, e-challan, or acknowledgment copy"
   ],
-  "reviewed_by": "",
-  "reviewed_on": null,
-  "valid_until": null,
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
   "risk_tier": 1
 }

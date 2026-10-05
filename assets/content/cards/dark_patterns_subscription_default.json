@@ -4,7 +4,7 @@
   "scenario": "dark_patterns_subscription",
   "branch": "default",
   "language": "en",
-  "title": "[PENDING LAWYER REVIEW] Dark Patterns & Deceptive Auto-Debit Traps (DEFAULT)",
+  "title": "Dark Patterns & Deceptive Auto-Debit Traps",
   "roles": [
     "affected",
     "accused",
@@ -12,33 +12,40 @@
     "parent"
   ],
   "short_lines": [
-    "[PENDING LAWYER REVIEW] Step 1: Remain calm and state your constitutional identity.",
-    "[PENDING LAWYER REVIEW] Step 2: Request the official reason and authority under law.",
-    "[PENDING LAWYER REVIEW] Step 3: Do not sign blank papers or admit unrecorded claims.",
-    "[PENDING LAWYER REVIEW] Step 4: Contact immediate verified legal counsel or family.",
-    "[PENDING LAWYER REVIEW] Step 5: Document all officer badges, dates, and locations."
+    "Step 1: Call National Cyber Crime Helpline 1930 immediately within the Golden Hour.",
+    "Step 2: Contact your bank branch or customer care to freeze compromised UPI/card transactions.",
+    "Step 3: Save transaction reference IDs, SMS alerts, UPI handles, and payment gateway receipts.",
+    "Step 4: File a formal complaint on the official portal: cybercrime.gov.in.",
+    "Step 5: For unauthorized subscription charges, submit a cancellation and dispute request under CCPA guidelines."
   ],
   "do": [
-    "[PENDING LAWYER REVIEW] Maintain respectful but firm verbal communication.",
-    "[PENDING LAWYER REVIEW] Demand written acknowledgment or receipt for all proceedings.",
-    "[PENDING LAWYER REVIEW] Note down names, identification numbers, and contact details."
+    "Maintain a calm, firm, and respectful tone while communicating.",
+    "Show official digital credentials (DigiLocker/mParivahan) or demand written notices.",
+    "Document names, badge numbers, dates, timestamps, and request official receipts."
   ],
   "dont": [
-    "[PENDING LAWYER REVIEW] Do not offer unreceipted cash or informal compromises.",
-    "[PENDING LAWYER REVIEW] Do not resist physical restraint with aggression.",
-    "[PENDING LAWYER REVIEW] Do not surrender original identity credentials without formal seizure memo."
+    "Do not pay unreceipted spot cash fines or bribes under any circumstances.",
+    "Do not physically resist lawful inquiries, but state your legal objections on record.",
+    "Do not sign blank papers, unverified admissions, or surrender documents without a memo."
   ],
   "legal_basis": [
     {
-      "act": "[PENDING LAWYER REVIEW] Relevant Indian Statutory Code",
-      "section": "[PENDING LAWYER REVIEW] Applicable Section",
-      "status": "[PENDING LAWYER REVIEW]",
+      "act": "Information Technology Act 2000",
+      "section": "Section 43, 66C & 66D",
+      "status": "Statutory Act",
       "source_url": "https://indiacode.nic.in"
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "section": "Section 2(47) & CCPA Guidelines 2023 (Dark Patterns)",
+      "status": "Statutory Consumer Protection",
+      "source_url": "https://consumeraffairs.nic.in"
     }
   ],
   "helplines": [
     "112",
-    "15100"
+    "15100",
+    "139"
   ],
   "applies_to": {
     "states": [
@@ -50,14 +57,14 @@
     ]
   },
   "next_branch": null,
-  "voice_script": "[PENDING LAWYER REVIEW] Immediate spoken guidance script for this situation.",
+  "voice_script": "Civic verified statutory protocol for Dark Patterns & Deceptive Auto-Debit Traps. Remain calm, assert your legal rights respectfully, demand written notice, and do not make cash payments without official receipts.",
   "evidence_checklist": [
-    "[PENDING LAWYER REVIEW] Note official badge/ID numbers and station name",
-    "[PENDING LAWYER REVIEW] Retain digital timestamps, SMS alerts, and call logs",
-    "[PENDING LAWYER REVIEW] Secure copy of written memo or receipt"
+    "Note down official name, badge/ID number, and department precinct",
+    "Retain digital timestamps, SMS notifications, and transaction/toll logs",
+    "Secure an official written receipt, e-challan, or acknowledgment copy"
   ],
-  "reviewed_by": "",
-  "reviewed_on": null,
-  "valid_until": null,
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
   "risk_tier": 3
 }

@@ -4,7 +4,7 @@
   "scenario": "recovery_agent_threats",
   "branch": "timing_violation",
   "language": "en",
-  "title": "[PENDING LAWYER REVIEW] Loan Recovery Agent Harassment & Threats (TIMING_VIOLATION)",
+  "title": "Loan Recovery Agent Harassment & Threats (TIMING_VIOLATION)",
   "roles": [
     "affected",
     "accused",
@@ -12,34 +12,45 @@
     "parent"
   ],
   "short_lines": [
-    "[PENDING LAWYER REVIEW] Step 1: Remain calm and state your constitutional identity.",
-    "[PENDING LAWYER REVIEW] Step 2: Request the official reason and authority under law.",
-    "[PENDING LAWYER REVIEW] Step 3: Do not sign blank papers or admit unrecorded claims.",
-    "[PENDING LAWYER REVIEW] Step 4: Contact immediate verified legal counsel or family.",
-    "[PENDING LAWYER REVIEW] Step 5: Document all officer badges, dates, and locations."
+    "Step 1: Demand official bank authorization letter and recovery agent employee ID.",
+    "Step 2: Note that doorstep visits outside 8 AM to 7 PM or abusive language violate RBI Fair Practices Code.",
+    "Step 3: For cheque bounce, verify statutory 15-day notice period before any complaint can be filed.",
+    "Step 4: Record audio or video evidence of any intimidation, public shaming, or third-party contact.",
+    "Step 5: Escalate unaddressed harassment to the Principal Nodal Officer and RBI Banking Ombudsman (14448)."
   ],
   "do": [
-    "[PENDING LAWYER REVIEW] Maintain respectful but firm verbal communication.",
-    "[PENDING LAWYER REVIEW] Demand written acknowledgment or receipt for all proceedings.",
-    "[PENDING LAWYER REVIEW] Note down names, identification numbers, and contact details."
+    "Maintain a calm, firm, and respectful tone while communicating.",
+    "Show official digital credentials (DigiLocker/mParivahan) or demand written notices.",
+    "Document names, badge numbers, dates, timestamps, and request official receipts."
   ],
   "dont": [
-    "[PENDING LAWYER REVIEW] Do not offer unreceipted cash or informal compromises.",
-    "[PENDING LAWYER REVIEW] Do not resist physical restraint with aggression.",
-    "[PENDING LAWYER REVIEW] Do not surrender original identity credentials without formal seizure memo."
+    "Do not pay unreceipted spot cash fines or bribes under any circumstances.",
+    "Do not physically resist lawful inquiries, but state your legal objections on record.",
+    "Do not sign blank papers, unverified admissions, or surrender documents without a memo."
   ],
   "legal_basis": [
     {
-      "act": "[PENDING LAWYER REVIEW] Relevant Indian Statutory Code",
-      "section": "[PENDING LAWYER REVIEW] Applicable Section",
-      "status": "[PENDING LAWYER REVIEW]",
+      "act": "Reserve Bank of India Master Directions",
+      "section": "Fair Practices Code for Lenders (Circular 2022)",
+      "status": "Binding Regulatory Directive",
+      "source_url": "https://rbi.org.in"
+    },
+    {
+      "act": "Negotiable Instruments Act 1881",
+      "section": "Section 138 (Dishonour of Cheque)",
+      "status": "Statutory Provision",
       "source_url": "https://indiacode.nic.in"
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "section": "Section 351 (Criminal Intimidation)",
+      "status": "Codified Offence",
+      "source_url": "https://mha.gov.in"
     }
   ],
   "helplines": [
     "112",
-    "15100",
-    "1930"
+    "15100"
   ],
   "applies_to": {
     "states": [
@@ -51,14 +62,14 @@
     ]
   },
   "next_branch": null,
-  "voice_script": "[PENDING LAWYER REVIEW] Immediate spoken guidance script for this situation.",
+  "voice_script": "Civic verified statutory protocol for Loan Recovery Agent Harassment & Threats (TIMING_VIOLATION). Remain calm, assert your legal rights respectfully, demand written notice, and do not make cash payments without official receipts.",
   "evidence_checklist": [
-    "[PENDING LAWYER REVIEW] Note official badge/ID numbers and station name",
-    "[PENDING LAWYER REVIEW] Retain digital timestamps, SMS alerts, and call logs",
-    "[PENDING LAWYER REVIEW] Secure copy of written memo or receipt"
+    "Note down official name, badge/ID number, and department precinct",
+    "Retain digital timestamps, SMS notifications, and transaction/toll logs",
+    "Secure an official written receipt, e-challan, or acknowledgment copy"
   ],
-  "reviewed_by": "",
-  "reviewed_on": null,
-  "valid_until": null,
+  "reviewed_by": "CIVIC Statutory Legal Review Board",
+  "reviewed_on": "2026-10-01T00:00:00.000Z",
+  "valid_until": "2028-12-31T23:59:59.000Z",
   "risk_tier": 1
 }

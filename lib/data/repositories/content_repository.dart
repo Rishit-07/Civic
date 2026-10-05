@@ -20,6 +20,8 @@ class ContentRepository {
   List<HelplineModel>? get helplinesCache => _helplinesCache;
   final Map<String, CardModel> _cardCache = {};
 
+  bool _isPreloading = false;
+
   /// Load master categories and scenarios from assets/content/index.json
   Future<List<Category>> loadCategories() async {
     if (_categoriesCache != null) return _categoriesCache!;
@@ -31,7 +33,32 @@ class ContentRepository {
         .toList();
 
     _categoriesCache = list;
+    _warmUpCardCache(list);
     return list;
+  }
+
+  /// Asynchronously warm up the card cache in the background so cards render with zero latency.
+  void _warmUpCardCache(List<Category> categories) {
+    if (_isPreloading) return;
+    _isPreloading = true;
+    Future.microtask(() async {
+      try {
+        for (final cat in categories) {
+          for (final sc in cat.scenarios) {
+            for (final branch in sc.branches) {
+              final cardId = '${sc.id}_$branch';
+              if (!_cardCache.containsKey(cardId)) {
+                await loadCard(cardId);
+              }
+            }
+          }
+        }
+      } catch (e) {
+        debugPrint('ContentRepository: Warmup background preload error: $e');
+      } finally {
+        _isPreloading = false;
+      }
+    });
   }
 
   /// Load universal helpline registry from assets/content/helplines.json
@@ -145,6 +172,7 @@ class ContentRepository {
 
   /// Clear in-memory caches
   void clearCache() {
+    _isPreloading = false;
     _categoriesCache = null;
     _helplinesCache = null;
     _cardCache.clear();

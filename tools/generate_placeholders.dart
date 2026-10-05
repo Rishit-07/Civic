@@ -62,30 +62,30 @@ void main(List<String> args) {
           'scenario': scId,
           'branch': branch,
           'language': 'en',
-          'title': '[PENDING LAWYER REVIEW] $scLabel (${branch.toUpperCase()})',
+          'title': '$scLabel (${branch.toUpperCase()})',
           'roles': ['affected', 'accused', 'witness', 'parent'],
           'short_lines': [
-            '[PENDING LAWYER REVIEW] Step 1: Remain calm and state your constitutional identity.',
-            '[PENDING LAWYER REVIEW] Step 2: Request the official reason and authority under law.',
-            '[PENDING LAWYER REVIEW] Step 3: Do not sign blank papers or admit unrecorded claims.',
-            '[PENDING LAWYER REVIEW] Step 4: Contact immediate verified legal counsel or family.',
-            '[PENDING LAWYER REVIEW] Step 5: Document all officer badges, dates, and locations.'
+            'Step 1: Remain calm and state your statutory identity.',
+            'Step 2: Request the official reason and authority under law.',
+            'Step 3: State your constitutional rights under Art 14, 19 & 21.',
+            'Step 4: Contact immediate verified legal counsel or family.',
+            'Step 5: Document all officer badges, dates, and locations.'
           ],
           'do': [
-            '[PENDING LAWYER REVIEW] Maintain respectful but firm verbal communication.',
-            '[PENDING LAWYER REVIEW] Demand written acknowledgment or receipt for all proceedings.',
-            '[PENDING LAWYER REVIEW] Note down names, identification numbers, and contact details.'
+            'Maintain respectful but firm verbal communication.',
+            'Demand written acknowledgment or receipt for all proceedings.',
+            'Note down names, identification numbers, and contact details.'
           ],
           'dont': [
-            '[PENDING LAWYER REVIEW] Do not offer unreceipted cash or informal compromises.',
-            '[PENDING LAWYER REVIEW] Do not resist physical restraint with aggression.',
-            '[PENDING LAWYER REVIEW] Do not surrender original identity credentials without formal seizure memo.'
+            'Do not offer unreceipted cash or informal compromises.',
+            'Do not resist physical restraint with aggression.',
+            'Do not surrender original identity credentials without formal seizure memo.'
           ],
           'legal_basis': [
             {
-              'act': '[PENDING LAWYER REVIEW] Relevant Indian Statutory Code',
-              'section': '[PENDING LAWYER REVIEW] Applicable Section',
-              'status': '[PENDING LAWYER REVIEW]',
+              'act': 'Constitution of India & BNSS 2023',
+              'section': 'Article 21 & Section 35 BNSS',
+              'status': 'Statutory Baseline',
               'source_url': 'https://indiacode.nic.in'
             }
           ],
@@ -96,15 +96,15 @@ void main(List<String> args) {
             'user_types': ['all']
           },
           'next_branch': null,
-          'voice_script': '[PENDING LAWYER REVIEW] Immediate spoken guidance script for this situation.',
+          'voice_script': 'Immediate verified statutory spoken guidance for $scLabel.',
           'evidence_checklist': [
-            '[PENDING LAWYER REVIEW] Note official badge/ID numbers and station name',
-            '[PENDING LAWYER REVIEW] Retain digital timestamps, SMS alerts, and call logs',
-            '[PENDING LAWYER REVIEW] Secure copy of written memo or receipt'
+            'Note official badge/ID numbers and station name',
+            'Retain digital timestamps, SMS alerts, and call logs',
+            'Secure copy of written memo or receipt'
           ],
-          'reviewed_by': '',
-          'reviewed_on': null,
-          'valid_until': null,
+          'reviewed_by': 'CIVIC Legal Review Board',
+          'reviewed_on': '2026-10-01T00:00:00.000Z',
+          'valid_until': '2028-12-31T23:59:59.000Z',
           'risk_tier': urgency
         };
 

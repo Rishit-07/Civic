@@ -3,13 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'core/theme/app_theme.dart';
+import 'core/routing/configure_url.dart'
+    if (dart.library.js_interop) 'core/routing/configure_url_web.dart';
+import 'core/routing/app_router.dart';
 import 'data/services/app_preferences.dart';
 import 'data/services/prepare_readiness_service.dart';
 import 'data/services/auth_service.dart';
-import 'features/splash_loading/loading_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  configureUrlStrategy();
   await AppPreferences.init();
   await PrepareReadinessService.init();
 
@@ -40,7 +43,8 @@ class CivicApp extends StatelessWidget {
       title: 'CIVIC',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home: const LoadingScreen(),
+      initialRoute: AppRouter.initial,
+      onGenerateRoute: AppRouter.onGenerateRoute,
     );
   }
 }

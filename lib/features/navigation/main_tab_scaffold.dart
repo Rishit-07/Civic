@@ -8,14 +8,25 @@ import '../tabs/help/help_screen.dart';
 
 /// Main navigation scaffold with bottom tab bar matching CIVIC design standards
 class MainTabScaffold extends StatefulWidget {
-  const MainTabScaffold({super.key});
+  final int initialIndex;
+
+  const MainTabScaffold({
+    super.key,
+    this.initialIndex = 0,
+  });
 
   @override
   State<MainTabScaffold> createState() => _MainTabScaffoldState();
 }
 
 class _MainTabScaffoldState extends State<MainTabScaffold> {
-  int _currentIndex = 0;
+  late int _currentIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.initialIndex.clamp(0, 4);
+  }
 
   final List<Widget> _screens = const [
     HomeScreen(),
