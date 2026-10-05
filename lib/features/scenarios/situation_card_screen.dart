@@ -1934,6 +1934,7 @@ class _SituationCardScreenState extends State<SituationCardScreen> {
                     icon: Icons.menu_book_rounded,
                     label: 'PRIMARY GOVERNING ACT',
                     value: data.primaryAct,
+                    url: data.primaryActUrl,
                     isHighlight: true,
                   ),
                   const SizedBox(height: 8),
@@ -1943,6 +1944,7 @@ class _SituationCardScreenState extends State<SituationCardScreen> {
                     icon: Icons.article_outlined,
                     label: 'ENACTED SECTIONS & PROVISIONS',
                     value: data.enactedSections,
+                    url: data.enactedSectionsUrl,
                   ),
                   const SizedBox(height: 8),
 
@@ -1951,6 +1953,7 @@ class _SituationCardScreenState extends State<SituationCardScreen> {
                     icon: Icons.published_with_changes_rounded,
                     label: '2024 BNS / BNSS / BSA EQUIVALENT',
                     value: data.newCriminalCodes,
+                    url: data.newCriminalCodesUrl,
                     badgeColor: const Color(0xFF15803D),
                   ),
                   const SizedBox(height: 8),
@@ -1960,6 +1963,7 @@ class _SituationCardScreenState extends State<SituationCardScreen> {
                     icon: Icons.account_balance_rounded,
                     label: 'LANDMARK JUDICIAL PRECEDENT',
                     value: data.landmarkPrecedent,
+                    url: data.landmarkPrecedentUrl,
                   ),
                   const SizedBox(height: 8),
 
@@ -1981,14 +1985,49 @@ class _SituationCardScreenState extends State<SituationCardScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                'STATUTORY CITIZEN SAFEGUARD',
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 9,
-                                  fontWeight: FontWeight.w800,
-                                  color: const Color(0xFF15803D),
-                                  letterSpacing: 0.4,
-                                ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'STATUTORY CITIZEN SAFEGUARD',
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 9,
+                                      fontWeight: FontWeight.w800,
+                                      color: const Color(0xFF15803D),
+                                      letterSpacing: 0.4,
+                                    ),
+                                  ),
+                                  if (data.keyStatutorySafeguardUrl != null || _resolveLegalUrl('SAFEGUARD', data.keyStatutorySafeguard) != null)
+                                    MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: InkWell(
+                                        onTap: () => _openLegalUrl(
+                                          data.keyStatutorySafeguardUrl ?? _resolveLegalUrl('SAFEGUARD', data.keyStatutorySafeguard),
+                                          'STATUTORY CITIZEN SAFEGUARD',
+                                        ),
+                                        borderRadius: BorderRadius.circular(4),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text(
+                                                'OFFICIAL DIRECTIVE',
+                                                style: GoogleFonts.montserrat(
+                                                  fontSize: 8.5,
+                                                  fontWeight: FontWeight.w700,
+                                                  color: const Color(0xFF15803D),
+                                                  decoration: TextDecoration.underline,
+                                                ),
+                                              ),
+                                              const SizedBox(width: 3),
+                                              const Icon(Icons.open_in_new_rounded, size: 10, color: Color(0xFF15803D)),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                ],
                               ),
                               const SizedBox(height: 3),
                               Text(
@@ -2015,15 +2054,45 @@ class _SituationCardScreenState extends State<SituationCardScreen> {
                           color: Color(0xFF526259), size: 14),
                       const SizedBox(width: 5),
                       Expanded(
-                        child: Text(
-                          '${data.lastVerified} • Source: ${data.officialSource}',
-                          style: GoogleFonts.plusJakartaSans(
-                            fontSize: 10.5,
-                            fontStyle: FontStyle.italic,
-                            color: const Color(0xFF5B4137),
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: InkWell(
+                            onTap: () {
+                              final sourceUrl = data.officialSourceUrl ??
+                                  _resolveLegalUrl('SOURCE', data.officialSource, officialSource: data.officialSource);
+                              if (sourceUrl != null) {
+                                _openLegalUrl(sourceUrl, 'Official Source (${data.officialSource})');
+                              }
+                            },
+                            child: Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: '${data.lastVerified} • Source: ',
+                                    style: GoogleFonts.plusJakartaSans(
+                                      fontSize: 10.5,
+                                      fontStyle: FontStyle.italic,
+                                      color: const Color(0xFF5B4137),
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: data.officialSource,
+                                    style: GoogleFonts.plusJakartaSans(
+                                      fontSize: 10.5,
+                                      fontStyle: FontStyle.italic,
+                                      fontWeight: FontWeight.w700,
+                                      color: const Color(0xFFA83900),
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                       ),
+                      const SizedBox(width: 4),
+                      const Icon(Icons.open_in_new_rounded, size: 12, color: Color(0xFFA83900)),
                     ],
                   ),
                 ],
@@ -2035,45 +2104,202 @@ class _SituationCardScreenState extends State<SituationCardScreen> {
     );
   }
 
+  /// Launch external legal repository link in browser
+  Future<void> _openLegalUrl(String? rawUrl, String label) async {
+    if (rawUrl == null || rawUrl.trim().isEmpty) return;
+    String url = rawUrl.trim();
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+      url = 'https://$url';
+    }
+    final uri = Uri.tryParse(url);
+    if (uri != null) {
+      try {
+        final launched = await launchUrl(
+          uri,
+          mode: LaunchMode.externalApplication,
+        );
+        if (!launched) {
+          _showToast('Could not open external resource: $url', icon: Icons.link_off_rounded);
+        } else {
+          _showToast('Opening verified legal resource: $label', icon: Icons.open_in_new_rounded);
+        }
+      } catch (e) {
+        _showToast('Opening $label: $url', icon: Icons.open_in_new_rounded);
+      }
+    }
+  }
+
+  /// Automatic fallback legal URL resolver for statutes, notifications, judgments, and ministries
+  String? _resolveLegalUrl(String label, String value, {String? explicitUrl, String? officialSource}) {
+    if (explicitUrl != null && explicitUrl.trim().isNotEmpty) {
+      return explicitUrl.trim();
+    }
+    final lower = value.toLowerCase();
+    final sourceLower = (officialSource ?? '').toLowerCase();
+
+    // Check embedded domains in text or official source
+    final domainRegex = RegExp(r'([a-zA-Z0-9-]+\.(?:nic\.in|gov\.in|org\.in|sci\.gov\.in|rbi\.org\.in|morth\.nic\.in|antiragging\.in|cybercrime\.gov\.in|ncw\.nic\.in|ncpcr\.gov\.in|labour\.gov\.in|mohua\.gov\.in))');
+    final match = domainRegex.firstMatch(lower) ?? domainRegex.firstMatch(sourceLower);
+    if (match != null) {
+      return 'https://${match.group(1)}';
+    }
+
+    // Known judicial landmarks
+    if (lower.contains('d.k. basu') || lower.contains('dk basu')) {
+      return 'https://indiankanoon.org/doc/501198/';
+    }
+    if (lower.contains('arnesh kumar')) {
+      return 'https://indiankanoon.org/doc/2982624/';
+    }
+    if (lower.contains('lalita kumari')) {
+      return 'https://indiankanoon.org/doc/102852/';
+    }
+    if (lower.contains('puttaswamy')) {
+      return 'https://indiankanoon.org/doc/91938676/';
+    }
+    if (lower.contains('shreya singhal')) {
+      return 'https://indiankanoon.org/doc/110813550/';
+    }
+    if (lower.contains('neeraj dutta')) {
+      return 'https://indiankanoon.org/doc/86461947/';
+    }
+    if (lower.contains('vishaka')) {
+      return 'https://indiankanoon.org/doc/1031794/';
+    }
+    if (lower.contains('navtej singh johar')) {
+      return 'https://indiankanoon.org/doc/168671544/';
+    }
+    if (lower.contains('shafin jahan')) {
+      return 'https://indiankanoon.org/doc/178964722/';
+    }
+
+    // Specific statutes and ministries
+    if (lower.contains('motor vehicles act') || lower.contains('cmvr')) {
+      return 'https://www.indiacode.nic.in/handle/123456789/1798';
+    }
+    if (lower.contains('bharatiya nagarik suraksha') || lower.contains('bnss')) {
+      return 'https://www.mha.gov.in/en/commoncontent/bharatiya-nagarik-suraksha-sanhita-2023';
+    }
+    if (lower.contains('bharatiya nyaya sanhita') || lower.contains('bns')) {
+      return 'https://www.mha.gov.in/en/commoncontent/bharatiya-nyaya-sanhita-2023';
+    }
+    if (lower.contains('constitution of india')) {
+      return 'https://www.india.gov.in/my-government/constitution-india';
+    }
+    if (lower.contains('code of criminal procedure') || lower.contains('crpc')) {
+      return 'https://www.indiacode.nic.in/handle/123456789/1611';
+    }
+    if (lower.contains('information technology act') || lower.contains('it act')) {
+      return 'https://www.meity.gov.in/content/information-technology-act-2000';
+    }
+    if (lower.contains('prevention of corruption')) {
+      return 'https://www.cvc.gov.in/';
+    }
+    if (lower.contains('posh') || lower.contains('sexual harassment')) {
+      return 'https://shebox.wcd.gov.in/';
+    }
+    if (lower.contains('model tenancy act')) {
+      return 'https://mohua.gov.in/cms/model-tenancy-act.php';
+    }
+
+    // General fallback by label
+    if (label.contains('JUDICIAL') || label.contains('PRECEDENT')) {
+      return 'https://indiankanoon.org/search/?formInput=${Uri.encodeComponent(value)}';
+    }
+    if (label.contains('ACT') || label.contains('PROVISIONS') || label.contains('SECTIONS')) {
+      return 'https://www.indiacode.nic.in';
+    }
+
+    return null;
+  }
+
   Widget _buildLegalBasisRow({
     required IconData icon,
     required String label,
     required String value,
+    String? url,
     bool isHighlight = false,
     Color? badgeColor,
   }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Icon(icon, color: badgeColor ?? const Color(0xFF526259), size: 13),
-            const SizedBox(width: 5),
-            Text(
-              label,
-              style: GoogleFonts.montserrat(
-                fontSize: 9,
-                fontWeight: FontWeight.w800,
-                color: badgeColor ?? const Color(0xFF526259),
-                letterSpacing: 0.4,
+    final effectiveUrl = _resolveLegalUrl(label, value, explicitUrl: url);
+    final hasLink = effectiveUrl != null && effectiveUrl.isNotEmpty;
+
+    return MouseRegion(
+      cursor: hasLink ? SystemMouseCursors.click : SystemMouseCursors.basic,
+      child: InkWell(
+        onTap: hasLink ? () => _openLegalUrl(effectiveUrl, label) : null,
+        borderRadius: BorderRadius.circular(8),
+        hoverColor: const Color(0xFFA83900).withValues(alpha: 0.05),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 2),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(icon, color: badgeColor ?? const Color(0xFF526259), size: 13),
+                  const SizedBox(width: 5),
+                  Text(
+                    label,
+                    style: GoogleFonts.montserrat(
+                      fontSize: 9,
+                      fontWeight: FontWeight.w800,
+                      color: badgeColor ?? const Color(0xFF526259),
+                      letterSpacing: 0.4,
+                    ),
+                  ),
+                  if (hasLink) ...[
+                    const SizedBox(width: 6),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1.5),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFA83900).withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'OFFICIAL RESOURCE',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 7.5,
+                              fontWeight: FontWeight.w700,
+                              color: const Color(0xFFA83900),
+                              letterSpacing: 0.3,
+                            ),
+                          ),
+                          const SizedBox(width: 2.5),
+                          const Icon(
+                            Icons.open_in_new_rounded,
+                            size: 9,
+                            color: Color(0xFFA83900),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ],
               ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 2),
-        Padding(
-          padding: const EdgeInsets.only(left: 18),
-          child: Text(
-            value,
-            style: GoogleFonts.plusJakartaSans(
-              fontSize: 12,
-              fontWeight: isHighlight ? FontWeight.w700 : FontWeight.w500,
-              color: const Color(0xFF101F18),
-              height: 1.35,
-            ),
+              const SizedBox(height: 2),
+              Padding(
+                padding: const EdgeInsets.only(left: 18),
+                child: Text(
+                  value,
+                  style: GoogleFonts.plusJakartaSans(
+                    fontSize: 12,
+                    fontWeight: isHighlight ? FontWeight.w700 : FontWeight.w500,
+                    color: const Color(0xFF101F18),
+                    height: 1.35,
+                    decoration: hasLink ? TextDecoration.underline : TextDecoration.none,
+                    decorationColor: const Color(0xFFA83900).withValues(alpha: 0.45),
+                    decorationStyle: TextDecorationStyle.dotted,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
-      ],
+      ),
     );
   }
 

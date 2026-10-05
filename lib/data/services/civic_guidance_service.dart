@@ -43,21 +43,33 @@ class EmergencyChecklistData {
 class StatutoryLegalBasisData {
   final String categoryTag;
   final String primaryAct;
+  final String? primaryActUrl;
   final String enactedSections;
+  final String? enactedSectionsUrl;
   final String newCriminalCodes;
+  final String? newCriminalCodesUrl;
   final String landmarkPrecedent;
+  final String? landmarkPrecedentUrl;
   final String keyStatutorySafeguard;
+  final String? keyStatutorySafeguardUrl;
   final String officialSource;
+  final String? officialSourceUrl;
   final String lastVerified;
 
   const StatutoryLegalBasisData({
     required this.categoryTag,
     required this.primaryAct,
+    this.primaryActUrl,
     required this.enactedSections,
+    this.enactedSectionsUrl,
     required this.newCriminalCodes,
+    this.newCriminalCodesUrl,
     required this.landmarkPrecedent,
+    this.landmarkPrecedentUrl,
     required this.keyStatutorySafeguard,
+    this.keyStatutorySafeguardUrl,
     required this.officialSource,
+    this.officialSourceUrl,
     this.lastVerified = 'November 2024 by Supreme Court Bar Advocates Panel',
   });
 
@@ -354,121 +366,187 @@ class CivicGuidanceService {
         return const StatutoryLegalBasisData(
           categoryTag: 'MOTOR VEHICLES & ROAD ENFORCEMENT',
           primaryAct: 'Motor Vehicles Act 1988 (Amended 2019) & Central Motor Vehicles Rules 1989',
+          primaryActUrl: 'https://www.indiacode.nic.in/handle/123456789/1798',
           enactedSections: 'MV Act Sec 130 (Production of documents), Sec 132, Sec 185 (Blood alcohol limit >30mg/100ml), Sec 200 (Compounding fees), Sec 207 (Vehicle seizure); Rule 139 CMVR',
+          enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/1798',
           newCriminalCodes: 'MoRTH Notification RT-11036/64/2017 & Rule 139 CMVR',
+          newCriminalCodesUrl: 'https://morth.nic.in/standard-operating-procedure-validation-driving-license-and-registration-certificate-through',
           landmarkPrecedent: 'Supreme Court in D.K. Basu v. State of West Bengal (1997) 1 SCC 416 & MoRTH Electronic Document Validity Directives',
+          landmarkPrecedentUrl: 'https://indiankanoon.org/doc/501198/',
           keyStatutorySafeguard: 'Digital documents in DigiLocker or mParivahan are legally binding under Rule 139 CMVR. Police officers have no statutory power to seize car keys or demand cash without an official compounding receipt.',
+          keyStatutorySafeguardUrl: 'https://parivahan.gov.in/parivahan/',
           officialSource: 'Ministry of Road Transport & Highways (morth.nic.in)',
+          officialSourceUrl: 'https://morth.nic.in',
         );
 
       case 'arrest_detention':
         return const StatutoryLegalBasisData(
           categoryTag: 'CUSTODIAL SAFEGUARDS & ARREST DIRECTIVES',
           primaryAct: 'Constitution of India (Art 21, 22) & Code of Criminal Procedure 1973',
+          primaryActUrl: 'https://www.indiacode.nic.in/handle/123456789/1611',
           enactedSections: 'CrPC Sec 41, 41A (Notice of appearance), Sec 50 (Right to grounds of arrest), Sec 50A (Mandatory notice to friend/relative), Sec 54 (Medical exam), Sec 57 (Max 24 hours)',
+          enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/1611',
           newCriminalCodes: 'Bharatiya Nagarik Suraksha Sanhita 2023 Sec 35, 36, 47, 48, 53, 58',
+          newCriminalCodesUrl: 'https://www.mha.gov.in/en/commoncontent/bharatiya-nagarik-suraksha-sanhita-2023',
           landmarkPrecedent: 'Supreme Court in D.K. Basu v. State of West Bengal (1997) 1 SCC 416 (11 mandatory directives) & Arnesh Kumar v. State of Bihar (2014) 8 SCC 273',
+          landmarkPrecedentUrl: 'https://indiankanoon.org/doc/501198/',
           keyStatutorySafeguard: 'Arrest memo must be signed by at least one family member or local witness. Detainee has non-negotiable right to inform family within 1 hour, have medical examination every 48 hours, and receive free legal aid from DLSA.',
+          keyStatutorySafeguardUrl: 'https://nalsa.gov.in/',
           officialSource: 'Supreme Court of India / NALSA (15100)',
+          officialSourceUrl: 'https://sci.gov.in',
         );
 
       case 'asked_for_bribe':
         return const StatutoryLegalBasisData(
           categoryTag: 'ANTI-CORRUPTION & WHISTLEBLOWER PROTECTION',
           primaryAct: 'Prevention of Corruption Act 1988 (amended 2018) & Indian Penal Code 1860',
+          primaryActUrl: 'https://www.indiacode.nic.in/handle/123456789/1908',
           enactedSections: 'PC Act Sec 7 (Public servant accepting bribe), Sec 7A, Sec 8 Proviso (Statutory immunity on 7-day reporting); IPC Sec 383, 384 (Extortion)',
+          enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/1908',
           newCriminalCodes: 'BNS 2023 Sec 308 (Extortion), Sec 201; BNSS Sec 173',
+          newCriminalCodesUrl: 'https://www.mha.gov.in/en/commoncontent/bharatiya-nyaya-sanhita-2023',
           landmarkPrecedent: 'Supreme Court Constitution Bench in Neeraj Dutta v. State (NCT of Delhi) (2023) 4 SCC 731; P. Satyanarayana Murthy (2015)',
+          landmarkPrecedentUrl: 'https://indiankanoon.org/doc/86461947/',
           keyStatutorySafeguard: 'Section 8 Proviso of the PC Act gives complete statutory immunity from prosecution to any citizen coerced into paying a bribe if reported to Anti-Corruption Bureau (1064) or CBI within 7 days.',
+          keyStatutorySafeguardUrl: 'https://cbi.gov.in/',
           officialSource: 'Central Vigilance Commission (cvc.gov.in) & Anti-Corruption Bureau',
+          officialSourceUrl: 'https://www.cvc.gov.in',
         );
 
       case 'fir_refused':
         return const StatutoryLegalBasisData(
           categoryTag: 'MANDATORY FIR REGISTRATION',
           primaryAct: 'Code of Criminal Procedure 1973 (CrPC) & Indian Penal Code 1860',
+          primaryActUrl: 'https://www.indiacode.nic.in/handle/123456789/1611',
           enactedSections: 'CrPC Sec 154(1) (Duty to register cognizable offense), Sec 154(2) (Free copy), Sec 154(3) (Report to SP), Sec 156(3) (Magistrate inquiry); IPC Sec 166A(c) (Penalty for refusing FIR)',
+          enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/1611',
           newCriminalCodes: 'BNSS 2023 Sec 173(1), 173(2), 173(3), 175(3); BNS 2023 Sec 199',
+          newCriminalCodesUrl: 'https://www.mha.gov.in/en/commoncontent/bharatiya-nagarik-suraksha-sanhita-2023',
           landmarkPrecedent: 'Supreme Court Constitution Bench in Lalita Kumari v. Govt of UP (2014) 2 SCC 1; Youth Bar Association of India (2016)',
+          landmarkPrecedentUrl: 'https://indiankanoon.org/doc/102852/',
           keyStatutorySafeguard: 'Police are statutorily required to register an FIR immediately for all cognizable offenses without preliminary inquiry. Registration is 100% free, and refusing officers face 2 years imprisonment under Sec 166A(c) IPC.',
+          keyStatutorySafeguardUrl: 'https://digitalpolice.gov.in/',
           officialSource: 'Supreme Court of India (sci.gov.in)',
+          officialSourceUrl: 'https://sci.gov.in',
         );
 
       case 'police_at_door_search':
         return const StatutoryLegalBasisData(
           categoryTag: 'SEARCH & RESIDENTIAL SANCTITY',
           primaryAct: 'Code of Criminal Procedure 1973 (CrPC) & Constitution of India Art 21',
+          primaryActUrl: 'https://www.indiacode.nic.in/handle/123456789/1611',
           enactedSections: 'CrPC Sec 47, 93 (Search warrant), Sec 100(4) (Mandatory independent local witnesses), Sec 100(5) (Panchnama seizure memo), Sec 165 (Grounds recorded in GD)',
+          enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/1611',
           newCriminalCodes: 'BNSS 2023 Sec 103, 107, 185; BSA 2023 Sec 63',
+          newCriminalCodesUrl: 'https://www.mha.gov.in/en/commoncontent/bharatiya-nagarik-suraksha-sanhita-2023',
           landmarkPrecedent: 'Supreme Court in Justice K.S. Puttaswamy v. Union of India (2017) 10 SCC 1; State of Punjab v. Baldev Singh (1999)',
+          landmarkPrecedentUrl: 'https://indiankanoon.org/doc/91938676/',
           keyStatutorySafeguard: 'Police cannot conduct search without recording grounds in General Diary or obtaining warrant, and MUST summon two independent local witnesses to sign the Panchnama seizure memo. Women searched only by female officers (Sec 51(2) CrPC).',
+          keyStatutorySafeguardUrl: 'https://www.indiacode.nic.in/handle/123456789/1611',
           officialSource: 'Supreme Court of India / indiacode.nic.in',
+          officialSourceUrl: 'https://sci.gov.in',
         );
 
       case 'digital_cyber':
         return const StatutoryLegalBasisData(
           categoryTag: 'DIGITAL CRIMES & CYBER PROTECTION',
           primaryAct: 'Information Technology Act 2000 & RBI Master Directions 2017',
+          primaryActUrl: 'https://www.meity.gov.in/content/information-technology-act-2000',
           enactedSections: 'IT Act Sec 43, 66C, 66D, 66E, 67; IPC Sec 419, 420, 384, 506; RBI Customer Protection Circular 2017',
+          enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/1999',
           newCriminalCodes: 'BNS 2023 Sec 318(4), 319, 308, 351; BNSS Sec 107',
+          newCriminalCodesUrl: 'https://www.mha.gov.in/en/commoncontent/bharatiya-nyaya-sanhita-2023',
           landmarkPrecedent: 'Supreme Court in Shreya Singhal v. Union of India (2015) 5 SCC 1 & RBI Zero-Liability Mandate',
+          landmarkPrecedentUrl: 'https://indiankanoon.org/doc/110813550/',
           keyStatutorySafeguard: 'Zero customer liability if unauthorized transaction is notified to bank within 3 working days; dialing Helpline 1930 connects to CFCFRMS for automated inter-bank lien/freeze on recipient accounts.',
+          keyStatutorySafeguardUrl: 'https://cybercrime.gov.in/',
           officialSource: 'Indian Cyber Crime Coordination Centre (cybercrime.gov.in)',
+          officialSourceUrl: 'https://cybercrime.gov.in',
         );
 
       case 'campus':
         return const StatutoryLegalBasisData(
           categoryTag: 'CAMPUS RIGHTS & NATURAL JUSTICE',
           primaryAct: 'UGC Regulations 2009 & Constitution of India (Art 14, 21)',
+          primaryActUrl: 'https://www.antiragging.in/assets/pdf/annexure/Annexure-I.pdf',
           enactedSections: 'UGC Anti-Ragging Regulations Reg 3, 7, 9; IPC Sec 294, 323, 341, 506; Principles of Natural Justice',
+          enactedSectionsUrl: 'https://www.antiragging.in/',
           newCriminalCodes: 'BNS 2023 Sec 115, 126, 351',
+          newCriminalCodesUrl: 'https://www.mha.gov.in/en/commoncontent/bharatiya-nyaya-sanhita-2023',
           landmarkPrecedent: 'Supreme Court in Vishwa Jagriti Mission v. Central Govt (AIR 2001 SC 2793) & University of Kerala (2009)',
+          landmarkPrecedentUrl: 'https://indiankanoon.org/doc/1715421/',
           keyStatutorySafeguard: 'College Head of Institution is legally mandated under Regulation 7 to lodge an FIR with police within 24 hours of receiving a ragging report. Disciplinary penalties require written show-cause notice and fair hearing.',
+          keyStatutorySafeguardUrl: 'https://www.antiragging.in/',
           officialSource: 'University Grants Commission (antiragging.in)',
+          officialSourceUrl: 'https://www.antiragging.in',
         );
 
       case 'women_couples':
         return const StatutoryLegalBasisData(
           categoryTag: 'WOMEN & CONSENSUAL ADULT SAFEGUARDS',
           primaryAct: 'Protection of Women from Domestic Violence Act 2005 & Constitution Art 21',
+          primaryActUrl: 'https://www.indiacode.nic.in/handle/123456789/2021',
           enactedSections: 'PWDVA Sec 12, 18, 19; IPC Sec 354A, 354D, 509; CrPC Sec 46(4), 51(2), 160(1) proviso',
+          enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/2021',
           newCriminalCodes: 'BNS 2023 Sec 75, 78, 79; BNSS Sec 35(1), 179(1) proviso',
+          newCriminalCodesUrl: 'https://www.mha.gov.in/en/commoncontent/bharatiya-nyaya-sanhita-2023',
           landmarkPrecedent: 'Supreme Court in Navtej Singh Johar v. Union of India (2018) & Shafin Jahan v. Asokan K.M. (2018)',
+          landmarkPrecedentUrl: 'https://indiankanoon.org/doc/168671544/',
           keyStatutorySafeguard: 'Consenting adults holding valid photo ID have complete constitutional freedom to stay together. No woman can be arrested after sunset (Sec 46(4) CrPC) or summoned to police station for questioning (Sec 160(1) CrPC).',
+          keyStatutorySafeguardUrl: 'https://ncw.nic.in/',
           officialSource: 'National Commission for Women / Supreme Court of India',
+          officialSourceUrl: 'https://ncw.nic.in',
         );
 
       case 'workplace':
         return const StatutoryLegalBasisData(
           categoryTag: 'WORKPLACE STATUTES & LABOUR LAWS',
           primaryAct: 'POSH Act 2013, Payment of Wages Act 1936 & Industrial Disputes Act 1947',
+          primaryActUrl: 'https://www.indiacode.nic.in/handle/123456789/2104',
           enactedSections: 'POSH Act Sec 4, 9, 11, 12; Payment of Wages Act Sec 5, 15; Code on Wages 2019 Sec 17, 18; Industrial Disputes Act Sec 25F',
+          enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/2104',
           newCriminalCodes: 'Code on Wages 2019 & Industrial Relations Code 2020',
+          newCriminalCodesUrl: 'https://labour.gov.in/',
           landmarkPrecedent: 'Supreme Court in Vishaka v. State of Rajasthan (1997) & Central Inland Water Transport Corp (1986)',
+          landmarkPrecedentUrl: 'https://indiankanoon.org/doc/1031794/',
           keyStatutorySafeguard: 'Employers cannot withhold wages or statutory dues (EPF, Gratuity). Retrenchment requires statutory notice and compensation. POSH IC has civil court powers to order interim transfer and paid leave.',
+          keyStatutorySafeguardUrl: 'https://shebox.wcd.gov.in/',
           officialSource: 'Ministry of Labour & Employment (labour.gov.in)',
+          officialSourceUrl: 'https://labour.gov.in',
         );
 
       case 'housing':
         return const StatutoryLegalBasisData(
           categoryTag: 'TENANT RIGHTS & MODEL TENANCY ACT',
           primaryAct: 'Model Tenancy Act 2021, Transfer of Property Act 1882 & State Rent Control Acts',
+          primaryActUrl: 'https://mohua.gov.in/cms/model-tenancy-act.php',
           enactedSections: 'Transfer of Property Act Sec 106, 108(q), 111; Model Tenancy Act Sec 13, 20, 21, 22; IPC Sec 430, 441, 448',
+          enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/2338',
           newCriminalCodes: 'BNS 2023 Sec 324 (Mischief to utilities), Sec 329 (Criminal trespass)',
+          newCriminalCodesUrl: 'https://www.mha.gov.in/en/commoncontent/bharatiya-nyaya-sanhita-2023',
           landmarkPrecedent: 'Supreme Court in Bishan Das v. State of Punjab (AIR 1961 SC 1570) & Ramesh Chand Ardawatiya v. Anil Panjwani (2003)',
+          landmarkPrecedentUrl: 'https://indiankanoon.org/doc/1647413/',
           keyStatutorySafeguard: 'Landlords cannot cut electricity, water, or lock premises without a court decree; doing so is a criminal offense under Sec 430 IPC. Security deposit must be refunded with written receipts for valid repairs.',
+          keyStatutorySafeguardUrl: 'https://mohua.gov.in/',
           officialSource: 'Ministry of Housing and Urban Affairs (mohua.gov.in)',
+          officialSourceUrl: 'https://mohua.gov.in',
         );
 
       default:
         return const StatutoryLegalBasisData(
           categoryTag: 'CRIMINAL PROCEDURE & CITIZEN RIGHTS',
           primaryAct: 'Constitution of India (Art 20(3), 22(1)) & Code of Criminal Procedure 1973',
+          primaryActUrl: 'https://www.india.gov.in/my-government/constitution-india',
           enactedSections: 'CrPC Sec 41A, 50, 91, 100, 160, 161, 162; Indian Evidence Act 1872 Sec 24, 25, 26, 27',
+          enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/1611',
           newCriminalCodes: 'BNSS 2023 Sec 35, 47, 94, 103, 179, 180, 181; BSA 2023 Sec 22, 23',
+          newCriminalCodesUrl: 'https://www.mha.gov.in/en/commoncontent/bharatiya-nagarik-suraksha-sanhita-2023',
           landmarkPrecedent: 'Supreme Court in Nandini Satpathy v. P.L. Dani (1978) 2 SCC 424 & D.K. Basu v. State of West Bengal (1997) 1 SCC 416',
+          landmarkPrecedentUrl: 'https://indiankanoon.org/doc/501198/',
           keyStatutorySafeguard: 'Citizens cannot be forced to sign witness statements (Sec 162 CrPC / Sec 181 BNSS). Confessions made to police in custody are inadmissible in court under Sec 25 Evidence Act / Sec 23 BSA.',
+          keyStatutorySafeguardUrl: 'https://nalsa.gov.in/',
           officialSource: 'Supreme Court of India / indiacode.nic.in',
+          officialSourceUrl: 'https://sci.gov.in',
         );
     }
   }
