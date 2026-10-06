@@ -1,18 +1,24 @@
 part of 'generated.dart';
 
 class ListUsersVariablesBuilder {
-  
   final FirebaseDataConnect _dataConnect;
-  ListUsersVariablesBuilder(this._dataConnect, );
-  Deserializer<ListUsersData> dataDeserializer = (dynamic json)  => ListUsersData.fromJson(jsonDecode(json));
-  
-  Future<QueryResult<ListUsersData, void>> execute({QueryFetchPolicy fetchPolicy = QueryFetchPolicy.preferCache}) {
+  ListUsersVariablesBuilder(this._dataConnect);
+  Deserializer<ListUsersData> dataDeserializer = (dynamic json) =>
+      ListUsersData.fromJson(jsonDecode(json));
+
+  Future<QueryResult<ListUsersData, void>> execute({
+    QueryFetchPolicy fetchPolicy = QueryFetchPolicy.preferCache,
+  }) {
     return ref().execute(fetchPolicy: fetchPolicy);
   }
 
   QueryRef<ListUsersData, void> ref() {
-    
-    return _dataConnect.query("ListUsers", dataDeserializer, emptySerializer, null);
+    return _dataConnect.query(
+      "ListUsers",
+      dataDeserializer,
+      emptySerializer,
+      null,
+    );
   }
 }
 
@@ -20,27 +26,26 @@ class ListUsersVariablesBuilder {
 class ListUsersUsers {
   final String id;
   final String? displayName;
-  ListUsersUsers.fromJson(dynamic json):
-  
-  id = nativeFromJson<String>(json['id']),
-  displayName = json['displayName'] == null ? null : nativeFromJson<String>(json['displayName']);
+  ListUsersUsers.fromJson(dynamic json)
+    : id = nativeFromJson<String>(json['id']),
+      displayName = json['displayName'] == null
+          ? null
+          : nativeFromJson<String>(json['displayName']);
   @override
   bool operator ==(Object other) {
-    if(identical(this, other)) {
+    if (identical(this, other)) {
       return true;
     }
-    if(other.runtimeType != runtimeType) {
+    if (other.runtimeType != runtimeType) {
       return false;
     }
 
     final ListUsersUsers otherTyped = other as ListUsersUsers;
-    return id == otherTyped.id && 
-    displayName == otherTyped.displayName;
-    
+    return id == otherTyped.id && displayName == otherTyped.displayName;
   }
+
   @override
   int get hashCode => Object.hashAll([id.hashCode, displayName.hashCode]);
-  
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> json = {};
@@ -51,36 +56,31 @@ class ListUsersUsers {
     return json;
   }
 
-  ListUsersUsers({
-    required this.id,
-    this.displayName,
-  });
+  const ListUsersUsers({required this.id, this.displayName});
 }
 
 @immutable
 class ListUsersData {
   final List<ListUsersUsers> users;
-  ListUsersData.fromJson(dynamic json):
-  
-  users = (json['users'] as List<dynamic>)
-        .map((e) => ListUsersUsers.fromJson(e))
-        .toList();
+  ListUsersData.fromJson(dynamic json)
+    : users = (json['users'] as List<dynamic>)
+          .map((e) => ListUsersUsers.fromJson(e))
+          .toList();
   @override
   bool operator ==(Object other) {
-    if(identical(this, other)) {
+    if (identical(this, other)) {
       return true;
     }
-    if(other.runtimeType != runtimeType) {
+    if (other.runtimeType != runtimeType) {
       return false;
     }
 
     final ListUsersData otherTyped = other as ListUsersData;
     return users == otherTyped.users;
-    
   }
+
   @override
   int get hashCode => users.hashCode;
-  
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> json = {};
@@ -88,8 +88,5 @@ class ListUsersData {
     return json;
   }
 
-  ListUsersData({
-    required this.users,
-  });
+  const ListUsersData({required this.users});
 }
-

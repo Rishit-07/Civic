@@ -12,6 +12,8 @@ import '../../scenarios/situation_list_screen.dart';
 import '../../scenarios/triage_screen.dart';
 import '../../navigation/widgets/civic_dynamic_footer.dart';
 import '../../showcase/civic_scroll_gallery_screen.dart';
+import '../../profile/profile_screen.dart';
+import '../../alerts/civic_alerts_screen.dart';
 
 /// Complete, pixel-perfect CIVIC Home Screen based directly on
 /// the Neo-Constructivist Stitch design system with full offline legal assistance,
@@ -729,32 +731,82 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Color(0xFFEEEEEE),
                   shape: BoxShape.circle,
                 ),
-                child: IconButton(
-                  padding: EdgeInsets.zero,
-                  icon: const Icon(
-                    Icons.notifications_none_rounded,
-                    color: Color(0xFF1A1C1C),
-                    size: 19,
-                  ),
-                  onPressed: () {
-                    _showToast('No new notifications');
-                  },
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    IconButton(
+                      padding: EdgeInsets.zero,
+                      icon: const Icon(
+                        Icons.notifications_none_rounded,
+                        color: Color(0xFF1A1C1C),
+                        size: 19,
+                      ),
+                      tooltip: 'Civic Alerts & Notices',
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const CivicAlertsScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    Positioned(
+                      top: 7,
+                      right: 7,
+                      child: Container(
+                        width: 7,
+                        height: 7,
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFFF5A00),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(width: 8),
 
               // Profile Avatar Circle
-              Container(
-                width: 32,
-                height: 32,
-                decoration: const BoxDecoration(
-                  color: Color(0xFFA83900),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(
-                  Icons.person_rounded,
-                  color: Colors.white,
-                  size: 18,
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const ProfileScreen(),
+                      ),
+                    ).then((_) {
+                      if (mounted) setState(() {});
+                    });
+                  },
+                  child: Container(
+                    width: 34,
+                    height: 34,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFA83900),
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x14000000),
+                          blurRadius: 4,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    clipBehavior: Clip.antiAlias,
+                    child: Image.network(
+                      AppPreferences.profileAvatarUrl,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Icon(
+                          Icons.person_rounded,
+                          color: Colors.white,
+                          size: 19,
+                        );
+                      },
+                    ),
+                  ),
                 ),
               ),
             ],

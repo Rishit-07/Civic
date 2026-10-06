@@ -15,6 +15,7 @@ import '../../../data/services/location/civic_location_service.dart';
 import '../../../data/services/speech/speech_recognition_service.dart';
 import '../../scenarios/situation_card_screen.dart';
 import '../../scenarios/situation_list_screen.dart';
+import '../../alerts/civic_alerts_screen.dart';
 
 /// Ask Screen matching the CIVIC Design System & Mobile Mockup.
 /// Completely functional AI Law & Order Legal Assistant:
@@ -934,10 +935,14 @@ class _AskScreenState extends State<AskScreen> with SingleTickerProviderStateMix
                         ),
                         IconButton(
                           onPressed: () {
-                            _showToast('BNSS 2023 Statutory Verification Active');
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const CivicAlertsScreen(),
+                              ),
+                            );
                           },
                           icon: const Icon(Icons.notifications_none_rounded, size: 22, color: onSurfaceVariant),
-                          tooltip: 'Statutory notifications',
+                          tooltip: 'Civic Alerts & Notices',
                         ),
                         Container(
                           width: 32,

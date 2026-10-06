@@ -1,6 +1,8 @@
-library dataconnect_generated;
+library;
+
 import 'package:firebase_data_connect/firebase_data_connect.dart';
 import 'package:flutter/foundation.dart';
+
 import 'dart:convert';
 
 part 'create_user.dart';
@@ -59,154 +61,118 @@ part 'delete_user_bookmark.dart';
 
 part 'list_my_bookmarks.dart';
 
-
-
-
-
-
-
 class ExampleConnector {
-  
-  
-  CreateUserVariablesBuilder createUser () {
-    return CreateUserVariablesBuilder(dataConnect, );
+  CreateUserVariablesBuilder createUser() {
+    return CreateUserVariablesBuilder(dataConnect);
   }
-  
-  
-  UpdateUserVariablesBuilder updateUser () {
-    return UpdateUserVariablesBuilder(dataConnect, );
+
+  UpdateUserVariablesBuilder updateUser() {
+    return UpdateUserVariablesBuilder(dataConnect);
   }
-  
-  
-  DeleteUserVariablesBuilder deleteUser () {
-    return DeleteUserVariablesBuilder(dataConnect, );
+
+  DeleteUserVariablesBuilder deleteUser() {
+    return DeleteUserVariablesBuilder(dataConnect);
   }
-  
-  
-  GetUserVariablesBuilder getUser () {
-    return GetUserVariablesBuilder(dataConnect, );
+
+  GetUserVariablesBuilder getUser() {
+    return GetUserVariablesBuilder(dataConnect);
   }
-  
-  
-  ListUsersVariablesBuilder listUsers () {
-    return ListUsersVariablesBuilder(dataConnect, );
+
+  ListUsersVariablesBuilder listUsers() {
+    return ListUsersVariablesBuilder(dataConnect);
   }
-  
-  
-  CreateCategoryVariablesBuilder createCategory () {
-    return CreateCategoryVariablesBuilder(dataConnect, );
+
+  CreateCategoryVariablesBuilder createCategory() {
+    return CreateCategoryVariablesBuilder(dataConnect);
   }
-  
-  
-  UpdateCategoryVariablesBuilder updateCategory () {
-    return UpdateCategoryVariablesBuilder(dataConnect, );
+
+  UpdateCategoryVariablesBuilder updateCategory() {
+    return UpdateCategoryVariablesBuilder(dataConnect);
   }
-  
-  
-  DeleteCategoryVariablesBuilder deleteCategory () {
-    return DeleteCategoryVariablesBuilder(dataConnect, );
+
+  DeleteCategoryVariablesBuilder deleteCategory() {
+    return DeleteCategoryVariablesBuilder(dataConnect);
   }
-  
-  
-  GetCategoryVariablesBuilder getCategory () {
-    return GetCategoryVariablesBuilder(dataConnect, );
+
+  GetCategoryVariablesBuilder getCategory() {
+    return GetCategoryVariablesBuilder(dataConnect);
   }
-  
-  
-  ListCategoriesVariablesBuilder listCategories () {
-    return ListCategoriesVariablesBuilder(dataConnect, );
+
+  ListCategoriesVariablesBuilder listCategories() {
+    return ListCategoriesVariablesBuilder(dataConnect);
   }
-  
-  
-  CreateTermVariablesBuilder createTerm () {
-    return CreateTermVariablesBuilder(dataConnect, );
+
+  CreateTermVariablesBuilder createTerm() {
+    return CreateTermVariablesBuilder(dataConnect);
   }
-  
-  
-  UpdateTermVariablesBuilder updateTerm () {
-    return UpdateTermVariablesBuilder(dataConnect, );
+
+  UpdateTermVariablesBuilder updateTerm() {
+    return UpdateTermVariablesBuilder(dataConnect);
   }
-  
-  
-  DeleteTermVariablesBuilder deleteTerm () {
-    return DeleteTermVariablesBuilder(dataConnect, );
+
+  DeleteTermVariablesBuilder deleteTerm() {
+    return DeleteTermVariablesBuilder(dataConnect);
   }
-  
-  
-  GetTermVariablesBuilder getTerm () {
-    return GetTermVariablesBuilder(dataConnect, );
+
+  GetTermVariablesBuilder getTerm() {
+    return GetTermVariablesBuilder(dataConnect);
   }
-  
-  
-  ListTermsVariablesBuilder listTerms () {
-    return ListTermsVariablesBuilder(dataConnect, );
+
+  ListTermsVariablesBuilder listTerms() {
+    return ListTermsVariablesBuilder(dataConnect);
   }
-  
-  
-  CreateWorkflowVariablesBuilder createWorkflow () {
-    return CreateWorkflowVariablesBuilder(dataConnect, );
+
+  CreateWorkflowVariablesBuilder createWorkflow() {
+    return CreateWorkflowVariablesBuilder(dataConnect);
   }
-  
-  
-  UpdateWorkflowVariablesBuilder updateWorkflow () {
-    return UpdateWorkflowVariablesBuilder(dataConnect, );
+
+  UpdateWorkflowVariablesBuilder updateWorkflow() {
+    return UpdateWorkflowVariablesBuilder(dataConnect);
   }
-  
-  
-  DeleteWorkflowVariablesBuilder deleteWorkflow () {
-    return DeleteWorkflowVariablesBuilder(dataConnect, );
+
+  DeleteWorkflowVariablesBuilder deleteWorkflow() {
+    return DeleteWorkflowVariablesBuilder(dataConnect);
   }
-  
-  
-  GetWorkflowVariablesBuilder getWorkflow () {
-    return GetWorkflowVariablesBuilder(dataConnect, );
+
+  GetWorkflowVariablesBuilder getWorkflow() {
+    return GetWorkflowVariablesBuilder(dataConnect);
   }
-  
-  
-  ListWorkflowsVariablesBuilder listWorkflows () {
-    return ListWorkflowsVariablesBuilder(dataConnect, );
+
+  ListWorkflowsVariablesBuilder listWorkflows() {
+    return ListWorkflowsVariablesBuilder(dataConnect);
   }
-  
-  
-  CreateWorkflowStepVariablesBuilder createWorkflowStep () {
-    return CreateWorkflowStepVariablesBuilder(dataConnect, );
+
+  CreateWorkflowStepVariablesBuilder createWorkflowStep() {
+    return CreateWorkflowStepVariablesBuilder(dataConnect);
   }
-  
-  
-  UpdateWorkflowStepVariablesBuilder updateWorkflowStep () {
-    return UpdateWorkflowStepVariablesBuilder(dataConnect, );
+
+  UpdateWorkflowStepVariablesBuilder updateWorkflowStep() {
+    return UpdateWorkflowStepVariablesBuilder(dataConnect);
   }
-  
-  
-  DeleteWorkflowStepVariablesBuilder deleteWorkflowStep () {
-    return DeleteWorkflowStepVariablesBuilder(dataConnect, );
+
+  DeleteWorkflowStepVariablesBuilder deleteWorkflowStep() {
+    return DeleteWorkflowStepVariablesBuilder(dataConnect);
   }
-  
-  
-  GetWorkflowStepVariablesBuilder getWorkflowStep () {
-    return GetWorkflowStepVariablesBuilder(dataConnect, );
+
+  GetWorkflowStepVariablesBuilder getWorkflowStep() {
+    return GetWorkflowStepVariablesBuilder(dataConnect);
   }
-  
-  
-  ListWorkflowStepsVariablesBuilder listWorkflowSteps () {
-    return ListWorkflowStepsVariablesBuilder(dataConnect, );
+
+  ListWorkflowStepsVariablesBuilder listWorkflowSteps() {
+    return ListWorkflowStepsVariablesBuilder(dataConnect);
   }
-  
-  
-  CreateUserBookmarkVariablesBuilder createUserBookmark () {
-    return CreateUserBookmarkVariablesBuilder(dataConnect, );
+
+  CreateUserBookmarkVariablesBuilder createUserBookmark() {
+    return CreateUserBookmarkVariablesBuilder(dataConnect);
   }
-  
-  
-  DeleteUserBookmarkVariablesBuilder deleteUserBookmark () {
-    return DeleteUserBookmarkVariablesBuilder(dataConnect, );
+
+  DeleteUserBookmarkVariablesBuilder deleteUserBookmark() {
+    return DeleteUserBookmarkVariablesBuilder(dataConnect);
   }
-  
-  
-  ListMyBookmarksVariablesBuilder listMyBookmarks () {
-    return ListMyBookmarksVariablesBuilder(dataConnect, );
+
+  ListMyBookmarksVariablesBuilder listMyBookmarks() {
+    return ListMyBookmarksVariablesBuilder(dataConnect);
   }
-  
 
   static ConnectorConfig connectorConfig = ConnectorConfig(
     'asia-south1',
@@ -216,19 +182,20 @@ class ExampleConnector {
 
   ExampleConnector({required this.dataConnect});
   static ExampleConnector get instance {
-    
     CacheSettings cacheSettings = CacheSettings(
-      maxAge: Duration(milliseconds:0),
+      maxAge: Duration(milliseconds: 0),
       storage: CacheStorage.persistent,
     );
-    
+
     return ExampleConnector(
-        dataConnect: FirebaseDataConnect.instanceFor(
-            connectorConfig: connectorConfig,
-            
-            cacheSettings: cacheSettings,
-            
-            sdkType: CallerSDKType.generated));
+      dataConnect: FirebaseDataConnect.instanceFor(
+        connectorConfig: connectorConfig,
+
+        cacheSettings: cacheSettings,
+
+        sdkType: CallerSDKType.generated,
+      ),
+    );
   }
 
   FirebaseDataConnect dataConnect;

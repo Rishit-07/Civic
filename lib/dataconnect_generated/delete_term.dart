@@ -1,43 +1,45 @@
 part of 'generated.dart';
 
 class DeleteTermVariablesBuilder {
-  
   final FirebaseDataConnect _dataConnect;
-  DeleteTermVariablesBuilder(this._dataConnect, );
-  Deserializer<DeleteTermData> dataDeserializer = (dynamic json)  => DeleteTermData.fromJson(jsonDecode(json));
-  
+  DeleteTermVariablesBuilder(this._dataConnect);
+  Deserializer<DeleteTermData> dataDeserializer = (dynamic json) =>
+      DeleteTermData.fromJson(jsonDecode(json));
+
   Future<OperationResult<DeleteTermData, void>> execute() {
     return ref().execute();
   }
 
   MutationRef<DeleteTermData, void> ref() {
-    
-    return _dataConnect.mutation("DeleteTerm", dataDeserializer, emptySerializer, null);
+    return _dataConnect.mutation(
+      "DeleteTerm",
+      dataDeserializer,
+      emptySerializer,
+      null,
+    );
   }
 }
 
 @immutable
 class DeleteTermTermDelete {
   final String id;
-  DeleteTermTermDelete.fromJson(dynamic json):
-  
-  id = nativeFromJson<String>(json['id']);
+  DeleteTermTermDelete.fromJson(dynamic json)
+    : id = nativeFromJson<String>(json['id']);
   @override
   bool operator ==(Object other) {
-    if(identical(this, other)) {
+    if (identical(this, other)) {
       return true;
     }
-    if(other.runtimeType != runtimeType) {
+    if (other.runtimeType != runtimeType) {
       return false;
     }
 
     final DeleteTermTermDelete otherTyped = other as DeleteTermTermDelete;
     return id == otherTyped.id;
-    
   }
+
   @override
   int get hashCode => id.hashCode;
-  
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> json = {};
@@ -45,33 +47,31 @@ class DeleteTermTermDelete {
     return json;
   }
 
-  DeleteTermTermDelete({
-    required this.id,
-  });
+  const DeleteTermTermDelete({required this.id});
 }
 
 @immutable
 class DeleteTermData {
   final DeleteTermTermDelete? term_delete;
-  DeleteTermData.fromJson(dynamic json):
-  
-  term_delete = json['term_delete'] == null ? null : DeleteTermTermDelete.fromJson(json['term_delete']);
+  DeleteTermData.fromJson(dynamic json)
+    : term_delete = json['term_delete'] == null
+          ? null
+          : DeleteTermTermDelete.fromJson(json['term_delete']);
   @override
   bool operator ==(Object other) {
-    if(identical(this, other)) {
+    if (identical(this, other)) {
       return true;
     }
-    if(other.runtimeType != runtimeType) {
+    if (other.runtimeType != runtimeType) {
       return false;
     }
 
     final DeleteTermData otherTyped = other as DeleteTermData;
     return term_delete == otherTyped.term_delete;
-    
   }
+
   @override
   int get hashCode => term_delete.hashCode;
-  
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> json = {};
@@ -81,8 +81,5 @@ class DeleteTermData {
     return json;
   }
 
-  DeleteTermData({
-    this.term_delete,
-  });
+  const DeleteTermData({this.term_delete});
 }
-

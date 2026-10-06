@@ -9,6 +9,7 @@ import '../../../data/services/app_preferences.dart';
 import '../../../data/services/location/civic_location_service.dart';
 import '../../../data/repositories/content_repository.dart';
 import '../../auth/sign_in_screen.dart';
+import '../../alerts/civic_alerts_screen.dart';
 
 /// Help Screen matching the CIVIC Design System & Mobile Mockup.
 /// Completely functional: zero placeholders, tap-to-call helplines,
@@ -311,141 +312,6 @@ class _HelpScreenState extends State<HelpScreen> with SingleTickerProviderStateM
             style: IconButton.styleFrom(
               backgroundColor: surfaceContainerLowest,
               padding: const EdgeInsets.all(8),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showNotificationsSheet() {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => Container(
-        decoration: const BoxDecoration(
-          color: surfaceContainerLowest,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
-        ),
-        padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
-        child: SafeArea(
-          top: false,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Container(
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: surfaceContainerHigh,
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Row(
-                children: [
-                  const Icon(Icons.notifications_active_rounded, color: primary, size: 22),
-                  const SizedBox(width: 10),
-                  Text(
-                    'LEGAL & STATUTORY UPDATES',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 0.8,
-                      color: onSurface,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              _buildNotificationCard(
-                title: 'BNSS 2023 Implementation',
-                desc: 'Bharatiya Nagarik Suraksha Sanhita 2023 is in effect across all police stations in India. Sec 173 mandates zero FIR registration.',
-                date: 'Updated • Gazette of India',
-              ),
-              _buildNotificationCard(
-                title: 'Rule 139 CMVR Electronic Documents',
-                desc: 'Digital Locker & mParivahan verification is legally equivalent to physical licenses under MoRTH notification RT-11036/64/2017-MVL.',
-                date: 'National Traffic Advisory',
-              ),
-              _buildNotificationCard(
-                title: 'Free Legal Aid Income Thresholds',
-                desc: 'State Legal Services Authorities revised annual income threshold criteria for economically weaker sections under Section 12 LSA Act.',
-                date: 'NALSA Directive',
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNotificationCard({
-    required String title,
-    required String desc,
-    required String date,
-  }) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: surfaceContainerLow,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: surfaceContainerHigh),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Text(
-                  title,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                    color: onSurface,
-                  ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                decoration: BoxDecoration(
-                  color: secondaryContainer,
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Text(
-                  'Active',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 9,
-                    fontWeight: FontWeight.w700,
-                    color: onSecondaryContainer,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 4),
-          Text(
-            desc,
-            style: GoogleFonts.plusJakartaSans(
-              fontSize: 12,
-              color: onSurfaceVariant,
-              height: 1.4,
-            ),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            date,
-            style: GoogleFonts.montserrat(
-              fontSize: 10,
-              fontWeight: FontWeight.w600,
-              color: primary,
             ),
           ),
         ],
@@ -2455,13 +2321,19 @@ APPLICANT SIGNATURE: _______________________
                     Row(
                       children: [
                         IconButton(
-                          onPressed: _showNotificationsSheet,
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const CivicAlertsScreen(),
+                              ),
+                            );
+                          },
                           icon: const Icon(Icons.notifications_none_rounded, size: 20, color: onSurface),
                           style: IconButton.styleFrom(
                             backgroundColor: surfaceContainerLow,
                             padding: const EdgeInsets.all(8),
                           ),
-                          tooltip: 'Statutory Notifications',
+                          tooltip: 'Civic Alerts & Notices',
                         ),
                         const SizedBox(width: 8),
                         GestureDetector(

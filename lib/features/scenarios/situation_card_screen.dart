@@ -2035,7 +2035,6 @@ class _SituationCardScreenState extends State<SituationCardScreen> {
                                 style: GoogleFonts.plusJakartaSans(
                                   fontSize: 11.5,
                                   fontWeight: FontWeight.w500,
-                                  color: const Color(0xFF101F18),
                                   height: 1.35,
                                 ),
                               ),
@@ -2045,6 +2044,120 @@ class _SituationCardScreenState extends State<SituationCardScreen> {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 10),
+
+                  // Individual Statutory Provisions from Card Model
+                  if (_card?.legalBasis != null && _card!.legalBasis.isNotEmpty) ...[
+                    const SizedBox(height: 12),
+                    const Divider(color: Color(0xFFE2E2E2), height: 1),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        const Icon(Icons.verified_outlined, color: Color(0xFFA83900), size: 14),
+                        const SizedBox(width: 6),
+                        Text(
+                          'SCENARIO STATUTES & PROVISIONS',
+                          style: GoogleFonts.montserrat(
+                            fontSize: 9,
+                            fontWeight: FontWeight.w800,
+                            color: const Color(0xFFA83900),
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    ..._card!.legalBasis.map((item) {
+                      final itemUrl = (item.sourceUrl.isNotEmpty && !item.sourceUrl.contains('example'))
+                          ? item.sourceUrl
+                          : _resolveLegalUrl(item.status, '${item.act} ${item.section}');
+                      final hasUrl = itemUrl != null && itemUrl.isNotEmpty;
+
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 7),
+                        child: MouseRegion(
+                          cursor: hasUrl ? SystemMouseCursors.click : SystemMouseCursors.basic,
+                          child: InkWell(
+                            onTap: hasUrl ? () => _openLegalUrl(itemUrl, '${item.act} - ${item.section}') : null,
+                            borderRadius: BorderRadius.circular(8),
+                            hoverColor: const Color(0xFFA83900).withValues(alpha: 0.05),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(color: const Color(0xFFE2E2E2)),
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Icon(Icons.menu_book_rounded, size: 14, color: Color(0xFF526259)),
+                                  const SizedBox(width: 8),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          '${item.act} — ${item.section}',
+                                          style: GoogleFonts.plusJakartaSans(
+                                            fontSize: 11.5,
+                                            fontWeight: FontWeight.w700,
+                                            color: const Color(0xFF101F18),
+                                            decoration: hasUrl ? TextDecoration.underline : TextDecoration.none,
+                                            decorationStyle: TextDecorationStyle.dotted,
+                                            decorationColor: const Color(0xFFA83900).withValues(alpha: 0.5),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 2),
+                                        Text(
+                                          item.status,
+                                          style: GoogleFonts.plusJakartaSans(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w500,
+                                            color: const Color(0xFF526259),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  if (hasUrl) ...[
+                                    const SizedBox(width: 6),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFA83900).withValues(alpha: 0.1),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            'OFFICIAL ACT',
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 7.5,
+                                              fontWeight: FontWeight.w700,
+                                              color: const Color(0xFFA83900),
+                                              letterSpacing: 0.3,
+                                            ),
+                                          ),
+                                          const SizedBox(width: 2.5),
+                                          const Icon(
+                                            Icons.open_in_new_rounded,
+                                            size: 9,
+                                            color: Color(0xFFA83900),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+                  ],
                   const SizedBox(height: 10),
 
                   // Verification Badge & Official Source

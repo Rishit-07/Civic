@@ -104,11 +104,137 @@ class AppPreferences {
     roleNotifier.value = role.toLowerCase().trim();
   }
 
+  // Citizen Profile Preferences
+  static const String _keyProfileFullName = 'profile_full_name';
+  static const String _keyProfileHandle = 'profile_handle';
+  static const String _keyProfileJurisdiction = 'profile_jurisdiction';
+  static const String _keyProfileDistrict = 'profile_district';
+  static const String _keyProfileAvatarVariant = 'profile_avatar_variant';
+  static const String _keyProfileAvatarUrl = 'profile_avatar_url';
+  static const String _keyProfileLanguages = 'profile_languages';
+  static const String _keyProfileSosKin = 'profile_sos_kin';
+  static const String _keyProfileSosCounsel = 'profile_sos_counsel';
+  static const String _keyProfileZeroKnowledgeVault = 'profile_zero_knowledge_vault';
+  static const String _keyProfileVaultLocked = 'profile_vault_locked';
+
+  static const String _keyProfileCitizenRegId = 'civic_profile_citizen_reg_id';
+  static final ValueNotifier<int> profileRevisionNotifier = ValueNotifier<int>(0);
+
+  static String get profileCitizenRegId {
+    return _prefs?.getString(_keyProfileCitizenRegId) ?? '#8841-IN';
+  }
+
+  static Future<void> setProfileCitizenRegId(String regId) async {
+    await _prefs?.setString(_keyProfileCitizenRegId, regId.trim());
+    profileRevisionNotifier.value++;
+  }
+
+  static String get profileFullName {
+    return _prefs?.getString(_keyProfileFullName) ?? 'Arjun Verma';
+  }
+
+  static Future<void> setProfileFullName(String name) async {
+    await _prefs?.setString(_keyProfileFullName, name.trim());
+    profileRevisionNotifier.value++;
+  }
+
+  static String get profileHandle {
+    return _prefs?.getString(_keyProfileHandle) ?? 'arjun.civic';
+  }
+
+  static Future<void> setProfileHandle(String handle) async {
+    await _prefs?.setString(_keyProfileHandle, handle.trim());
+    profileRevisionNotifier.value++;
+  }
+
+  static String get profileJurisdiction {
+    return _prefs?.getString(_keyProfileJurisdiction) ?? 'Delhi NCR (BNS & CrPC 2024 active)';
+  }
+
+  static Future<void> setProfileJurisdiction(String jurisdiction) async {
+    await _prefs?.setString(_keyProfileJurisdiction, jurisdiction);
+    profileRevisionNotifier.value++;
+  }
+
+  static String get profileDistrict {
+    return _prefs?.getString(_keyProfileDistrict) ?? 'South Delhi • 110017';
+  }
+
+  static Future<void> setProfileDistrict(String district) async {
+    await _prefs?.setString(_keyProfileDistrict, district.trim());
+    profileRevisionNotifier.value++;
+  }
+
+  static String get profileAvatarVariant {
+    return _prefs?.getString(_keyProfileAvatarVariant) ?? 'orange';
+  }
+
+  static Future<void> setProfileAvatarVariant(String variant) async {
+    await _prefs?.setString(_keyProfileAvatarVariant, variant);
+    profileRevisionNotifier.value++;
+  }
+
+  static String get profileAvatarUrl {
+    return _prefs?.getString(_keyProfileAvatarUrl) ??
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuDERKRSFZHHzh_rdRyeBkuQAjngOvev0MbbGQYR0HDPp5omKS1Z_g2_6wVPpzZldG0ZgjNi7thX-C6i4SnV-LaEJEocfTNB5rMNCdLTisxZVXs71nlD8VBwJmEvH9xHoLf-4CRum4xXM1rE41l7Zzu3ppeING_0CSBLQsbP7S2WGhrLvJs10PjfgR_lJ7htljvMAj9IfvWHcyft7eB-zxK8yi3clvEAMTW6NRcKE5IcOZuobg95Il-Ggg';
+  }
+
+  static Future<void> setProfileAvatarUrl(String url) async {
+    await _prefs?.setString(_keyProfileAvatarUrl, url);
+    profileRevisionNotifier.value++;
+  }
+
+  static List<String> get profileLanguages {
+    return _prefs?.getStringList(_keyProfileLanguages) ?? ['en', 'hi'];
+  }
+
+  static Future<void> setProfileLanguages(List<String> langs) async {
+    await _prefs?.setStringList(_keyProfileLanguages, langs);
+    profileRevisionNotifier.value++;
+  }
+
+  static String get profileSosKin {
+    return _prefs?.getString(_keyProfileSosKin) ?? '+91 98765 43210 (Sister - Priya)';
+  }
+
+  static Future<void> setProfileSosKin(String contact) async {
+    await _prefs?.setString(_keyProfileSosKin, contact.trim());
+    profileRevisionNotifier.value++;
+  }
+
+  static String get profileSosCounsel {
+    return _prefs?.getString(_keyProfileSosCounsel) ?? '+91 91234 56789 (Advocate R. Sharma)';
+  }
+
+  static Future<void> setProfileSosCounsel(String contact) async {
+    await _prefs?.setString(_keyProfileSosCounsel, contact.trim());
+    profileRevisionNotifier.value++;
+  }
+
+  static bool get profileZeroKnowledgeVault {
+    return _prefs?.getBool(_keyProfileZeroKnowledgeVault) ?? true;
+  }
+
+  static Future<void> setProfileZeroKnowledgeVault(bool enabled) async {
+    await _prefs?.setBool(_keyProfileZeroKnowledgeVault, enabled);
+    profileRevisionNotifier.value++;
+  }
+
+  static bool get profileVaultLocked {
+    return _prefs?.getBool(_keyProfileVaultLocked) ?? false;
+  }
+
+  static Future<void> setProfileVaultLocked(bool locked) async {
+    await _prefs?.setBool(_keyProfileVaultLocked, locked);
+    profileRevisionNotifier.value++;
+  }
+
   /// Reset all stored preferences (useful for tests or app reset).
   static Future<void> clear() async {
     await _prefs?.clear();
     languageNotifier.value = 'en';
     stateNotifier.value = 'ALL';
     roleNotifier.value = 'all';
+    profileRevisionNotifier.value++;
   }
 }

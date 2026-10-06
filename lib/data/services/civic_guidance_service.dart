@@ -218,11 +218,17 @@ class CivicGuidanceService {
       return const StatutoryLegalBasisData(
         categoryTag: 'DIGITAL PAYMENTS & CYBER FRAUD',
         primaryAct: 'Information Technology Act 2000 & RBI Master Directions 2017',
+        primaryActUrl: 'https://www.meity.gov.in/content/information-technology-act-2000',
         enactedSections: 'IT Act Sec 43, 66C (Identity Theft), 66D (Cheating by Impersonation); IPC Sec 420; RBI Circular DBR.No.Leg.BC.78/09.07.005/2017-18',
+        enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/1999',
         newCriminalCodes: 'BNS 2023 Sec 318(4) (Cheating) & Sec 319; BNSS Sec 107',
+        newCriminalCodesUrl: 'https://www.mha.gov.in/en/commoncontent/bharatiya-nyaya-sanhita-2023',
         landmarkPrecedent: 'RBI Master Direction on Customer Protection — Limiting Liability in Unauthorized Electronic Banking Transactions (Zero liability if reported within 3 days)',
+        landmarkPrecedentUrl: 'https://rbi.org.in/scripts/BS_CircularIndexDisplay.aspx?Id=11040',
         keyStatutorySafeguard: 'Zero customer liability if unauthorized transaction is notified to bank within 3 working days. Dialing Helpline 1930 / cybercrime.gov.in connects to CFCFRMS for automated inter-bank lien/freeze on mule accounts.',
+        keyStatutorySafeguardUrl: 'https://cybercrime.gov.in/',
         officialSource: 'Indian Cyber Crime Coordination Centre (I4C, cybercrime.gov.in) & RBI',
+        officialSourceUrl: 'https://cybercrime.gov.in',
       );
     }
 
@@ -230,11 +236,17 @@ class CivicGuidanceService {
       return const StatutoryLegalBasisData(
         categoryTag: 'CYBER EXTORTION & DIGITAL IMPERSONATION',
         primaryAct: 'Information Technology Act 2000 & Indian Penal Code 1860',
+        primaryActUrl: 'https://www.meity.gov.in/content/information-technology-act-2000',
         enactedSections: 'IT Act Sec 66E (Privacy Violation), Sec 67 & 67A (Transmitting Obscene Content); IPC Sec 384 (Extortion), Sec 419 (Impersonation of Public Servant), Sec 506',
+        enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/1999',
         newCriminalCodes: 'BNS 2023 Sec 308 (Extortion), Sec 204 (Impersonating Public Servant), Sec 351',
+        newCriminalCodesUrl: 'https://www.mha.gov.in/en/commoncontent/bharatiya-nyaya-sanhita-2023',
         landmarkPrecedent: 'Supreme Court in Shreya Singhal v. Union of India (2015) 5 SCC 1 & MHA Cyber Crime SOPs',
+        landmarkPrecedentUrl: 'https://indiankanoon.org/doc/110813550/',
         keyStatutorySafeguard: 'Law enforcement agencies never conduct "digital arrests", video interrogations, or demand financial settlements over WhatsApp/Skype. Victims have complete right to submit digital evidence without self-incrimination.',
+        keyStatutorySafeguardUrl: 'https://cybercrime.gov.in/',
         officialSource: 'Ministry of Home Affairs Cyber Crime Division / cybercrime.gov.in',
+        officialSourceUrl: 'https://cybercrime.gov.in',
       );
     }
 
@@ -242,11 +254,17 @@ class CivicGuidanceService {
       return const StatutoryLegalBasisData(
         categoryTag: 'UNREGULATED DIGITAL LENDING & HARASSMENT',
         primaryAct: 'RBI Digital Lending Guidelines 2022 & Information Technology Act 2000',
+        primaryActUrl: 'https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=54187',
         enactedSections: 'RBI Guidelines on Digital Lending (Sept 2022); IT Act Sec 43, 66E; IPC Sec 384 (Extortion), Sec 503, Sec 506, Sec 509 (Insulting Modesty)',
+        enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/1999',
         newCriminalCodes: 'BNS 2023 Sec 308 (Extortion), Sec 351, Sec 79; BNSS Sec 173',
+        newCriminalCodesUrl: 'https://www.mha.gov.in/en/commoncontent/bharatiya-nyaya-sanhita-2023',
         landmarkPrecedent: 'Reserve Bank of India Fair Practices Code for NBFCs & Delhi High Court Directives on predatory lending apps',
+        landmarkPrecedentUrl: 'https://sachet.rbi.org.in/',
         keyStatutorySafeguard: 'Digital lending apps are strictly barred from accessing borrower contacts, photo gallery, or device media. Harassment, morphing, and shaming by recovery agents constitutes criminal extortion.',
+        keyStatutorySafeguardUrl: 'https://sachet.rbi.org.in/',
         officialSource: 'Reserve Bank of India (sachet.rbi.org.in)',
+        officialSourceUrl: 'https://sachet.rbi.org.in',
       );
     }
 
@@ -254,11 +272,17 @@ class CivicGuidanceService {
       return const StatutoryLegalBasisData(
         categoryTag: 'WORKPLACE SAFETY & POSH ACT',
         primaryAct: 'Sexual Harassment of Women at Workplace (Prevention, Prohibition & Redressal) Act 2013',
+        primaryActUrl: 'https://www.indiacode.nic.in/handle/123456789/2104',
         enactedSections: 'POSH Act Sec 4 (Constitution of Internal Committee), Sec 9 (Complaint window), Sec 11 (Inquiry procedure), Sec 12 (Interim relief & 3-month paid leave), Sec 13; IPC Sec 354A',
+        enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/2104',
         newCriminalCodes: 'BNS 2023 Sec 75 (Sexual Harassment); BNSS Sec 173',
+        newCriminalCodesUrl: 'https://www.mha.gov.in/en/commoncontent/bharatiya-nyaya-sanhita-2023',
         landmarkPrecedent: 'Supreme Court in Vishaka v. State of Rajasthan (1997) 6 SCC 241; Aureliano Fernandes v. State of Goa (2023) (Mandatory adherence to inquiry timelines & natural justice)',
+        landmarkPrecedentUrl: 'https://indiankanoon.org/doc/1031794/',
         keyStatutorySafeguard: 'Internal Committee (IC) has statutory powers of a Civil Court. Employer is prohibited from retaliating or altering service conditions during inquiry; complainant has statutory right to interim transfer or paid leave.',
+        keyStatutorySafeguardUrl: 'https://shebox.wcd.gov.in/',
         officialSource: 'Ministry of Women and Child Development (shebox.nic.in)',
+        officialSourceUrl: 'https://shebox.wcd.gov.in',
       );
     }
 
@@ -266,11 +290,17 @@ class CivicGuidanceService {
       return const StatutoryLegalBasisData(
         categoryTag: 'WAGES & LABOUR STATUTES',
         primaryAct: 'Payment of Wages Act 1936, Code on Wages 2019 & Industrial Disputes Act 1947',
+        primaryActUrl: 'https://www.indiacode.nic.in/handle/123456789/2361',
         enactedSections: 'Payment of Wages Act Sec 5 (Time of payment), Sec 15 (Claims for deductions/delay); Code on Wages 2019 Sec 17 (Full & Final settlement within 2 working days), Sec 18; Industrial Disputes Act Sec 33C(2)',
+        enactedSectionsUrl: 'https://labour.gov.in/wage-division',
         newCriminalCodes: 'Code on Wages 2019 & Industrial Relations Code 2020',
+        newCriminalCodesUrl: 'https://labour.gov.in/sites/default/files/the_code_on_wages_2019_no._29_of_2019.pdf',
         landmarkPrecedent: 'Supreme Court in People’s Union for Democratic Rights v. Union of India (1982) (Non-payment of lawful wages violates Article 23 constitutional prohibition on forced labor)',
+        landmarkPrecedentUrl: 'https://indiankanoon.org/doc/1097034/',
         keyStatutorySafeguard: 'Wages cannot be withheld beyond statutory timelines. Employers cannot withhold experience letters or statutory entitlements (EPF, Gratuity) against disputed employment bonds or clawbacks.',
+        keyStatutorySafeguardUrl: 'https://labour.gov.in/',
         officialSource: 'Ministry of Labour & Employment / State Labour Commissioner',
+        officialSourceUrl: 'https://labour.gov.in',
       );
     }
 
@@ -278,11 +308,17 @@ class CivicGuidanceService {
       return const StatutoryLegalBasisData(
         categoryTag: 'TERMINATION & RETRENCHMENT PROTECTION',
         primaryAct: 'Industrial Disputes Act 1947 & Payment of Gratuity Act 1972',
+        primaryActUrl: 'https://www.indiacode.nic.in/handle/123456789/1711',
         enactedSections: 'Industrial Disputes Act Sec 25F (Conditions precedent to retrenchment), Sec 25G, Sec 25H; Contract Act 1872 Sec 23 & 27 (Void restrictive covenants); Payment of Gratuity Act Sec 7',
+        enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/1711',
         newCriminalCodes: 'Industrial Relations Code 2020 Sec 70; Code on Wages 2019',
+        newCriminalCodesUrl: 'https://labour.gov.in/',
         landmarkPrecedent: 'Supreme Court in Central Inland Water Transport Corp v. Brojo Nath Ganguly (1986) 3 SCC 156 (Arbitrary termination clauses in contracts are unconstitutional and void)',
+        landmarkPrecedentUrl: 'https://indiankanoon.org/doc/1083995/',
         keyStatutorySafeguard: 'Lawful termination mandates written notice or pay in lieu thereof plus 15 days severance pay for every completed year of service. Forced resignations coerced under threat are legally invalid.',
+        keyStatutorySafeguardUrl: 'https://labour.gov.in/',
         officialSource: 'Ministry of Labour & Employment (labour.gov.in)',
+        officialSourceUrl: 'https://labour.gov.in',
       );
     }
 
@@ -290,11 +326,17 @@ class CivicGuidanceService {
       return const StatutoryLegalBasisData(
         categoryTag: 'CAMPUS ANTI-RAGGING STATUTE',
         primaryAct: 'UGC Regulations on Curbing the Menace of Ragging in Higher Educational Institutions 2009',
+        primaryActUrl: 'https://www.antiragging.in/assets/pdf/annexure/Annexure-I.pdf',
         enactedSections: 'UGC Regulations Reg 3, 7 (Mandatory Police FIR within 24 hours), Reg 9; IPC Sec 294, 323, 341, 342, 506',
+        enactedSectionsUrl: 'https://www.antiragging.in/',
         newCriminalCodes: 'BNS 2023 Sec 115 (Voluntarily causing hurt), Sec 126 (Wrongful restraint), Sec 351 (Criminal intimidation)',
+        newCriminalCodesUrl: 'https://www.mha.gov.in/en/commoncontent/bharatiya-nyaya-sanhita-2023',
         landmarkPrecedent: 'Supreme Court in Vishwa Jagriti Mission v. Central Govt (AIR 2001 SC 2793) & University of Kerala v. Council of Principals (2009)',
+        landmarkPrecedentUrl: 'https://indiankanoon.org/doc/1715421/',
         keyStatutorySafeguard: 'Under Regulation 7 of UGC Regulations, College Head of Institution MUST file an FIR with local police within 24 hours of receiving a ragging report. Failure to report attracts criminal liability under Sec 176 IPC.',
+        keyStatutorySafeguardUrl: 'https://www.antiragging.in/',
         officialSource: 'UGC National Anti-Ragging Cell (antiragging.in, Helpline 1800-180-5522)',
+        officialSourceUrl: 'https://www.antiragging.in',
       );
     }
 
@@ -302,11 +344,17 @@ class CivicGuidanceService {
       return const StatutoryLegalBasisData(
         categoryTag: 'STUDENT DISCIPLINARY JURISPRUDENCE',
         primaryAct: 'Constitution of India (Art 14 & 21) & UGC Disciplinary Guidelines',
+        primaryActUrl: 'https://www.india.gov.in/my-government/constitution-india',
         enactedSections: 'Principles of Natural Justice (Nemo Judex In Causa Sua & Audi Alteram Partem); State Universities Acts',
+        enactedSectionsUrl: 'https://www.ugc.gov.in/',
         newCriminalCodes: 'Constitution of India Fundamental Rights Articles 14, 19(1)(a), 21',
+        newCriminalCodesUrl: 'https://www.india.gov.in/my-government/constitution-india',
         landmarkPrecedent: 'Supreme Court in Board of High School & Intermediate Education UP v. Ghanshyam Das Gupta (AIR 1962 SC 1110) & Maneka Gandhi v. UOI (1978)',
+        landmarkPrecedentUrl: 'https://indiankanoon.org/doc/1766147/',
         keyStatutorySafeguard: 'No student can be arbitrarily suspended or expelled without a written show-cause notice, access to alleged evidence, and a fair opportunity of hearing before an unbiased committee.',
+        keyStatutorySafeguardUrl: 'https://www.ugc.gov.in/',
         officialSource: 'Ministry of Education & University Grants Commission',
+        officialSourceUrl: 'https://www.ugc.gov.in',
       );
     }
 
@@ -314,11 +362,17 @@ class CivicGuidanceService {
       return const StatutoryLegalBasisData(
         categoryTag: 'CONSENSUAL ADULT LIBERTY & PRIVACY',
         primaryAct: 'Constitution of India (Art 19, 21) & Code of Criminal Procedure 1973',
+        primaryActUrl: 'https://www.india.gov.in/my-government/constitution-india',
         enactedSections: 'Constitution Art 21 (Personal Liberty & Privacy); CrPC Sec 46(4) (No arrest of woman after sunset), Sec 160(1) proviso; Special Marriage Act 1954',
+        enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/1611',
         newCriminalCodes: 'Bharatiya Nagarik Suraksha Sanhita 2023 Sec 35(1), Sec 179(1) proviso',
+        newCriminalCodesUrl: 'https://www.mha.gov.in/en/commoncontent/bharatiya-nagarik-suraksha-sanhita-2023',
         landmarkPrecedent: 'Supreme Court in Shafin Jahan v. Asokan K.M. (2018) 16 SCC 368 & Navtej Singh Johar v. Union of India (2018) 10 SCC 1; Lata Singh v. State of UP (2006)',
+        landmarkPrecedentUrl: 'https://indiankanoon.org/doc/178964722/',
         keyStatutorySafeguard: 'Consenting adults holding valid photo ID have complete constitutional freedom to associate and book accommodation. Police and hotel staff have zero legal authority to moral-police or contact parents.',
+        keyStatutorySafeguardUrl: 'https://sci.gov.in/',
         officialSource: 'Supreme Court of India (sci.gov.in) & Law Commission of India',
+        officialSourceUrl: 'https://sci.gov.in',
       );
     }
 
@@ -326,11 +380,17 @@ class CivicGuidanceService {
       return const StatutoryLegalBasisData(
         categoryTag: 'ANTI-STALKING & CYBER PRIVACY',
         primaryAct: 'Indian Penal Code 1860 & Information Technology Act 2000',
+        primaryActUrl: 'https://www.indiacode.nic.in/handle/123456789/1544',
         enactedSections: 'IPC Sec 354D (Stalking — physical & electronic), Sec 509 (Insulting modesty of woman); IT Act Sec 66E (Privacy violation); CrPC Sec 154',
+        enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/1544',
         newCriminalCodes: 'BNS 2023 Sec 78 (Stalking), Sec 79; BNSS Sec 173',
+        newCriminalCodesUrl: 'https://www.mha.gov.in/en/commoncontent/bharatiya-nyaya-sanhita-2023',
         landmarkPrecedent: 'Supreme Court in Lalita Kumari v. Govt of UP (2014) (Mandatory immediate FIR for offenses under Sec 354 IPC)',
+        landmarkPrecedentUrl: 'https://indiankanoon.org/doc/102852/',
         keyStatutorySafeguard: 'Stalking is a cognizable offense; police are statutorily required to register an FIR without demanding informal reconciliation or compromises.',
+        keyStatutorySafeguardUrl: 'https://ncw.nic.in/',
         officialSource: 'National Commission for Women (ncw.nic.in) / indiacode.nic.in',
+        officialSourceUrl: 'https://ncw.nic.in',
       );
     }
 
@@ -338,11 +398,17 @@ class CivicGuidanceService {
       return const StatutoryLegalBasisData(
         categoryTag: 'JUVENILE JUSTICE & POCSO SAFEGUARDS',
         primaryAct: 'Protection of Children from Sexual Offences (POCSO) Act 2012 & Juvenile Justice Act 2015',
+        primaryActUrl: 'https://www.indiacode.nic.in/handle/123456789/2079',
         enactedSections: 'POCSO Act Sec 19 (Reporting of offenses), Sec 21 (Failure to report), Sec 24 (Child statement recorded at residence by female officer); JJ Act 2015 Sec 10, 12',
+        enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/2148',
         newCriminalCodes: 'Bharatiya Nagarik Suraksha Sanhita 2023 & POCSO Statutory Framework',
+        newCriminalCodesUrl: 'https://www.mha.gov.in/en/commoncontent/bharatiya-nagarik-suraksha-sanhita-2023',
         landmarkPrecedent: 'Supreme Court in Independent Thought v. Union of India (2017) 10 SCC 800; Delhi High Court Juvenile Bail Guidelines',
+        landmarkPrecedentUrl: 'https://indiankanoon.org/doc/180637156/',
         keyStatutorySafeguard: 'Any minor in conflict with law cannot be placed in a police lockup or jail under any circumstances (Sec 10 JJ Act); must be placed under care of Special Juvenile Police Unit (SJPU).',
+        keyStatutorySafeguardUrl: 'https://ncpcr.gov.in/',
         officialSource: 'National Commission for Protection of Child Rights (ncpcr.gov.in)',
+        officialSourceUrl: 'https://ncpcr.gov.in',
       );
     }
 
@@ -350,11 +416,17 @@ class CivicGuidanceService {
       return const StatutoryLegalBasisData(
         categoryTag: 'PROTECTION FROM MOB VIOLENCE & VIGILANTISM',
         primaryAct: 'Constitution of India (Art 14, 21) & Indian Penal Code 1860',
+        primaryActUrl: 'https://www.india.gov.in/my-government/constitution-india',
         enactedSections: 'IPC Sec 141, 143 (Unlawful assembly), Sec 323, Sec 341 (Wrongful restraint), Sec 506 (Criminal intimidation); CrPC Sec 154',
+        enactedSectionsUrl: 'https://www.indiacode.nic.in/handle/123456789/1544',
         newCriminalCodes: 'BNS 2023 Sec 189, 191, 115, 126, 351; BNSS Sec 173',
+        newCriminalCodesUrl: 'https://www.mha.gov.in/en/commoncontent/bharatiya-nyaya-sanhita-2023',
         landmarkPrecedent: 'Supreme Court landmark in Tehseen S. Poonawalla v. Union of India (2018) 9 SCC 501 (Mandatory preventive, remedial, and punitive guidelines on mob vigilantism)',
+        landmarkPrecedentUrl: 'https://indiankanoon.org/doc/145899818/',
         keyStatutorySafeguard: 'Vigilante groups have zero legal authority to stop, interrogate, search, or harass citizens. Police officers failing to disperse vigilantes face departmental action under Supreme Court directives.',
+        keyStatutorySafeguardUrl: 'https://sci.gov.in/',
         officialSource: 'Supreme Court of India (sci.gov.in)',
+        officialSourceUrl: 'https://sci.gov.in',
       );
     }
 

@@ -24,15 +24,20 @@ import '../../features/directory/pages/citizen_rights_screen.dart';
 import '../../features/directory/pages/crpc_bnss_compliance_screen.dart';
 import '../../features/directory/pages/terms_of_use_screen.dart';
 import '../../features/showcase/civic_scroll_gallery_screen.dart';
+import '../../features/alerts/civic_alerts_screen.dart';
+import '../../features/profile/citizen_verification_screen.dart';
 
 /// Centralized Declarative URL Router supporting HTML5 Deep Linking & Clean Path Navigation
 class AppRouter {
   static const String initial = '/';
   static const String home = '/home';
+  static const String verify = '/verify';
   static const String prepare = '/prepare';
   static const String notes = '/notes';
   static const String ask = '/ask';
   static const String help = '/help';
+  static const String alerts = '/alerts';
+  static const String notifications = '/notifications';
   static const String situations = '/situations';
   static const String scenarios = '/scenarios';
   static const String onboarding = '/onboarding';
@@ -199,6 +204,13 @@ class AppRouter {
       );
     }
 
+    if (path == '/alerts' || path == '/notifications') {
+      return MaterialPageRoute(
+        settings: settings,
+        builder: (_) => const CivicAlertsScreen(),
+      );
+    }
+
     if (path == '/privacy') {
       return MaterialPageRoute(
         settings: settings,
@@ -224,6 +236,19 @@ class AppRouter {
       return MaterialPageRoute(
         settings: settings,
         builder: (_) => const TermsOfUseScreen(),
+      );
+    }
+
+    // Citizen Verification Deep Link: /verify or /#/verify
+    if (path == '/verify' || path.startsWith('/verify') || uri.fragment.startsWith('/verify') || uri.fragment.startsWith('verify')) {
+      final params = Map<String, String>.from(uri.queryParameters);
+      if (uri.fragment.contains('?')) {
+        final fragUri = Uri.parse('dummy://${uri.fragment}');
+        params.addAll(fragUri.queryParameters);
+      }
+      return MaterialPageRoute(
+        settings: settings,
+        builder: (_) => CitizenVerificationScreen.fromQueryParams(params),
       );
     }
 

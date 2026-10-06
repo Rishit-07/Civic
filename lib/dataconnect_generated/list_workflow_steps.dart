@@ -1,18 +1,24 @@
 part of 'generated.dart';
 
 class ListWorkflowStepsVariablesBuilder {
-  
   final FirebaseDataConnect _dataConnect;
-  ListWorkflowStepsVariablesBuilder(this._dataConnect, );
-  Deserializer<ListWorkflowStepsData> dataDeserializer = (dynamic json)  => ListWorkflowStepsData.fromJson(jsonDecode(json));
-  
-  Future<QueryResult<ListWorkflowStepsData, void>> execute({QueryFetchPolicy fetchPolicy = QueryFetchPolicy.preferCache}) {
+  ListWorkflowStepsVariablesBuilder(this._dataConnect);
+  Deserializer<ListWorkflowStepsData> dataDeserializer = (dynamic json) =>
+      ListWorkflowStepsData.fromJson(jsonDecode(json));
+
+  Future<QueryResult<ListWorkflowStepsData, void>> execute({
+    QueryFetchPolicy fetchPolicy = QueryFetchPolicy.preferCache,
+  }) {
     return ref().execute(fetchPolicy: fetchPolicy);
   }
 
   QueryRef<ListWorkflowStepsData, void> ref() {
-    
-    return _dataConnect.query("ListWorkflowSteps", dataDeserializer, emptySerializer, null);
+    return _dataConnect.query(
+      "ListWorkflowSteps",
+      dataDeserializer,
+      emptySerializer,
+      null,
+    );
   }
 }
 
@@ -20,27 +26,27 @@ class ListWorkflowStepsVariablesBuilder {
 class ListWorkflowStepsWorkflowSteps {
   final int stepNumber;
   final String instructionText;
-  ListWorkflowStepsWorkflowSteps.fromJson(dynamic json):
-  
-  stepNumber = nativeFromJson<int>(json['stepNumber']),
-  instructionText = nativeFromJson<String>(json['instructionText']);
+  ListWorkflowStepsWorkflowSteps.fromJson(dynamic json)
+    : stepNumber = nativeFromJson<int>(json['stepNumber']),
+      instructionText = nativeFromJson<String>(json['instructionText']);
   @override
   bool operator ==(Object other) {
-    if(identical(this, other)) {
+    if (identical(this, other)) {
       return true;
     }
-    if(other.runtimeType != runtimeType) {
+    if (other.runtimeType != runtimeType) {
       return false;
     }
 
-    final ListWorkflowStepsWorkflowSteps otherTyped = other as ListWorkflowStepsWorkflowSteps;
-    return stepNumber == otherTyped.stepNumber && 
-    instructionText == otherTyped.instructionText;
-    
+    final ListWorkflowStepsWorkflowSteps otherTyped =
+        other as ListWorkflowStepsWorkflowSteps;
+    return stepNumber == otherTyped.stepNumber &&
+        instructionText == otherTyped.instructionText;
   }
+
   @override
-  int get hashCode => Object.hashAll([stepNumber.hashCode, instructionText.hashCode]);
-  
+  int get hashCode =>
+      Object.hashAll([stepNumber.hashCode, instructionText.hashCode]);
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> json = {};
@@ -49,7 +55,7 @@ class ListWorkflowStepsWorkflowSteps {
     return json;
   }
 
-  ListWorkflowStepsWorkflowSteps({
+  const ListWorkflowStepsWorkflowSteps({
     required this.stepNumber,
     required this.instructionText,
   });
@@ -58,27 +64,25 @@ class ListWorkflowStepsWorkflowSteps {
 @immutable
 class ListWorkflowStepsData {
   final List<ListWorkflowStepsWorkflowSteps> workflowSteps;
-  ListWorkflowStepsData.fromJson(dynamic json):
-  
-  workflowSteps = (json['workflowSteps'] as List<dynamic>)
-        .map((e) => ListWorkflowStepsWorkflowSteps.fromJson(e))
-        .toList();
+  ListWorkflowStepsData.fromJson(dynamic json)
+    : workflowSteps = (json['workflowSteps'] as List<dynamic>)
+          .map((e) => ListWorkflowStepsWorkflowSteps.fromJson(e))
+          .toList();
   @override
   bool operator ==(Object other) {
-    if(identical(this, other)) {
+    if (identical(this, other)) {
       return true;
     }
-    if(other.runtimeType != runtimeType) {
+    if (other.runtimeType != runtimeType) {
       return false;
     }
 
     final ListWorkflowStepsData otherTyped = other as ListWorkflowStepsData;
     return workflowSteps == otherTyped.workflowSteps;
-    
   }
+
   @override
   int get hashCode => workflowSteps.hashCode;
-  
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> json = {};
@@ -86,8 +90,5 @@ class ListWorkflowStepsData {
     return json;
   }
 
-  ListWorkflowStepsData({
-    required this.workflowSteps,
-  });
+  const ListWorkflowStepsData({required this.workflowSteps});
 }
-
