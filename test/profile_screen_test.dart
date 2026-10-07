@@ -151,9 +151,9 @@ void main() {
       expect(find.text('ON-DEVICE SECURE'), findsOneWidget);
       expect(find.text('OFFLINE VERIFIED CITIZEN'), findsOneWidget);
 
-      // Default user name & handle
-      expect(find.text('Arjun Verma'), findsOneWidget);
-      expect(find.text('@arjun.civic'), findsOneWidget);
+      // Default clean user name & handle
+      expect(find.text('Citizen'), findsOneWidget);
+      expect(find.text('@citizen.civic'), findsOneWidget);
 
       // Action buttons
       expect(find.text('EDIT PROFILE'), findsOneWidget);
@@ -253,8 +253,8 @@ void main() {
       expect(find.text('PREFERRED STATUTORY LANGUAGE'), findsOneWidget);
       expect(find.text('EMERGENCY SAFEGUARDS'), findsOneWidget);
 
-      // Verify prefilled name
-      final nameField = find.widgetWithText(TextField, 'Arjun Verma');
+      // Verify initial name
+      final nameField = find.widgetWithText(TextField, 'Citizen');
       expect(nameField, findsOneWidget);
 
       // Change name

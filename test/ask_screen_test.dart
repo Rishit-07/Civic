@@ -51,22 +51,10 @@ void main() {
     expect(find.text('Hotel refused us a room'), findsOneWidget);
     expect(find.text('I lost money on UPI'), findsOneWidget);
 
-    // Verify Conversation Feed
-    expect(find.text('A traffic cop took my phone and is reading my WhatsApp chats. Is this legal?'), findsOneWidget);
-    expect(find.text('EMERGENCY SAFEGUARD'), findsOneWidget);
-    expect(find.text('CALL 112'), findsOneWidget);
-    expect(find.text('SHARE GPS'), findsOneWidget);
-
-    // Verify AI Verdict Bubble
-    expect(find.text('CIVIC STATUTORY AI'), findsOneWidget);
-    expect(find.text('Statutory Verdict: Strictly Unlawful'), findsOneWidget);
-    expect(find.text('OPEN FULL GUIDE'), findsOneWidget);
-    expect(find.text('COPY ADVICE'), findsOneWidget);
-
-    // Verify Clarifying Triage Options
-    expect(find.text('CONTEXT CLARIFICATION'), findsOneWidget);
-    expect(find.text('🚗 Stopped in personal car'), findsOneWidget);
-    expect(find.text('🛵 Riding two-wheeler'), findsOneWidget);
+    // Verify Clean Conversation Initial State (No test chats preloaded)
+    expect(find.text('Ready for Your Legal Query'), findsOneWidget);
+    expect(find.text('A traffic cop took my phone and is reading my WhatsApp chats. Is this legal?'), findsNothing);
+    expect(find.text('EMERGENCY SAFEGUARD'), findsNothing);
 
     // Verify Floating Bottom Input
     expect(find.text('⚖️ Legal information, not legal advice. Chats aren\'t saved.'), findsOneWidget);

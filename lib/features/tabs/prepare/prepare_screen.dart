@@ -19,7 +19,7 @@ class PrepareScreen extends StatefulWidget {
 class _PrepareScreenState extends State<PrepareScreen> {
   String _selectedCategory = 'All';
   int _currentDrillIndex = 0;
-  String? _selectedOptionId = 'b'; // Default selected option matching mockup
+  String? _selectedOptionId;
   bool _isAnswerChecked = false;
 
   final List<String> _categories = [

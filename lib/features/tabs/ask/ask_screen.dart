@@ -99,82 +99,6 @@ class _AskScreenState extends State<AskScreen> with SingleTickerProviderStateMix
     _pulseAnimation = Tween<double>(begin: 0.4, end: 1.0).animate(
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
-
-    _initSampleConversation();
-  }
-
-  void _initSampleConversation() {
-    // Initial preloaded benchmark scenario matching user HTML mockup
-    final now = DateTime.now();
-
-    // 1. Initial User Message
-    _messages.add(
-      CivicAiMessage(
-        id: 'init_user_1',
-        text: 'A traffic cop took my phone and is reading my WhatsApp chats. Is this legal?',
-        isUser: true,
-        timestamp: now.subtract(const Duration(minutes: 8)),
-      ),
-    );
-
-    // 2. High-Urgency Emergency Callout Message
-    _messages.add(
-      CivicAiMessage(
-        id: 'init_emergency_1',
-        text: 'Emergency Safeguard Notice',
-        isUser: false,
-        timestamp: now.subtract(const Duration(minutes: 7)),
-        isEmergency: true,
-      ),
-    );
-
-    // 3. AI Statutory Response Message
-    _messages.add(
-      CivicAiMessage(
-        id: 'init_ai_1',
-        text: 'Digital Privacy & Phone Seizure Law',
-        isUser: false,
-        timestamp: now.subtract(const Duration(minutes: 7)),
-        relatedCardId: 'traffic_stop_dispute_seizure',
-        verdict: CivicAiVerdict(
-          verdictTitle: 'Statutory Verdict: Strictly Unlawful',
-          verdictColor: error,
-          verdictBgColor: errorContainer,
-          directAnswer:
-              'No. An officer cannot seize or browse your private smartphone without a formal judicial search warrant or an explicit cyber-forensics seizure memo under Section 102/100 CrPC.',
-          legalReasoning:
-              'Your digital privacy is protected under Article 21 of the Constitution (Justice K.S. Puttaswamy benchmark verdict). You have the right to request the officer’s name, badge number, and demand a signed memo before unlocking any personal device.',
-          sourceTitle: 'Based on: Traffic Stop Card & Article 21 Privacy (Reviewed Oct 2026)',
-          statutoryCitation: 'Article 21 & 20(3) Constitution of India; Sec 100 & 102 CrPC',
-          citizenActionSteps: [
-            'Politely refuse to unlock: "Officer, my personal chats are protected under Article 21 privacy."',
-            'Ask for badge number and station jurisdiction.',
-            'Demand an official seizure memo if the phone is confiscated.',
-          ],
-          criticalDonts: [
-            'DO NOT unlock and hand over your open device to the officer.',
-            'DO NOT allow police to read private personal messages or photos without a judicial warrant.',
-            'DO NOT delete files or chats in panic, which can be misconstrued as tampering with evidence.',
-          ],
-        ),
-      ),
-    );
-
-    // 4. Clarifying Triage Question Bubble
-    _messages.add(
-      CivicAiMessage(
-        id: 'init_triage_1',
-        text: 'Context Clarification',
-        isUser: false,
-        timestamp: now.subtract(const Duration(minutes: 6)),
-        triageOptions: [
-          '🚗 Stopped in personal car',
-          '🛵 Riding two-wheeler',
-          '🚶 Pedestrian check',
-          'Are you above 18? (Yes / No)',
-        ],
-      ),
-    );
   }
 
   @override
@@ -1253,23 +1177,113 @@ class _AskScreenState extends State<AskScreen> with SingleTickerProviderStateMix
   // ==========================================
 
   Widget _buildConversationFeed() {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: _messages.length,
-      itemBuilder: (context, index) {
-        final message = _messages[index];
+    if (_messages.isEmpty) {
+      return _buildEmptyConversationPlaceholder();
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'ACTIVE LEGAL QUERY',
+              style: GoogleFonts.montserrat(
+                fontSize: 11,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 0.8,
+                color: secondary,
+              ),
+            ),
+            TextButton.icon(
+              onPressed: () {
+                setState(() {
+                  _messages.clear();
+                });
+              },
+              icon: const Icon(Icons.refresh_rounded, size: 14, color: onSurfaceVariant),
+              label: Text(
+                'New Query',
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 11.5,
+                  fontWeight: FontWeight.w700,
+                  color: onSurfaceVariant,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: _messages.length,
+          itemBuilder: (context, index) {
+            final message = _messages[index];
 
-        if (message.isUser) {
-          return _buildUserBubble(message);
-        } else if (message.isEmergency) {
-          return _buildEmergencyCalloutBubble();
-        } else if (message.triageOptions != null && message.verdict == null) {
-          return _buildTriageBubble(message);
-        } else {
-          return _buildAiBubble(message);
-        }
-      },
+            if (message.isUser) {
+              return _buildUserBubble(message);
+            } else if (message.isEmergency) {
+              return _buildEmergencyCalloutBubble();
+            } else if (message.triageOptions != null && message.verdict == null) {
+              return _buildTriageBubble(message);
+            } else {
+              return _buildAiBubble(message);
+            }
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _buildEmptyConversationPlaceholder() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 22),
+      decoration: BoxDecoration(
+        color: surfaceContainerLowest,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: surfaceContainerHigh),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x04000000),
+            blurRadius: 8,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Container(
+            width: 44,
+            height: 44,
+            decoration: const BoxDecoration(
+              color: primaryFixed,
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(Icons.chat_bubble_outline_rounded, color: primary, size: 22),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            'Ready for Your Legal Query',
+            style: GoogleFonts.montserrat(
+              fontSize: 14.5,
+              fontWeight: FontWeight.w800,
+              color: onSurface,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            'Ask a question below, tap any suggested prompt above, or attach a police notice / challan for instant statutory analysis grounded in BNS & BNSS.',
+            textAlign: TextAlign.center,
+            style: GoogleFonts.plusJakartaSans(
+              fontSize: 12,
+              color: secondary,
+              height: 1.45,
+            ),
+          ),
+        ],
+      ),
     );
   }
 

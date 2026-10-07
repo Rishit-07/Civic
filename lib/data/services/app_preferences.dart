@@ -130,7 +130,7 @@ class AppPreferences {
   }
 
   static String get profileFullName {
-    return _prefs?.getString(_keyProfileFullName) ?? 'Arjun Verma';
+    return _prefs?.getString(_keyProfileFullName) ?? 'Citizen';
   }
 
   static Future<void> setProfileFullName(String name) async {
@@ -139,7 +139,11 @@ class AppPreferences {
   }
 
   static String get profileHandle {
-    return _prefs?.getString(_keyProfileHandle) ?? 'arjun.civic';
+    final stored = _prefs?.getString(_keyProfileHandle);
+    if (stored != null && stored.trim().isNotEmpty) return stored.trim();
+    final name = profileFullName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]'), '_');
+    if (name.isNotEmpty && name != 'citizen') return '$name.civic';
+    return 'citizen.civic';
   }
 
   static Future<void> setProfileHandle(String handle) async {
@@ -148,7 +152,7 @@ class AppPreferences {
   }
 
   static String get profileJurisdiction {
-    return _prefs?.getString(_keyProfileJurisdiction) ?? 'Delhi NCR (BNS & CrPC 2024 active)';
+    return _prefs?.getString(_keyProfileJurisdiction) ?? 'Pan-India (BNS & BNSS 2024 active)';
   }
 
   static Future<void> setProfileJurisdiction(String jurisdiction) async {
@@ -157,7 +161,7 @@ class AppPreferences {
   }
 
   static String get profileDistrict {
-    return _prefs?.getString(_keyProfileDistrict) ?? 'South Delhi • 110017';
+    return _prefs?.getString(_keyProfileDistrict) ?? 'All Districts';
   }
 
   static Future<void> setProfileDistrict(String district) async {
@@ -175,8 +179,7 @@ class AppPreferences {
   }
 
   static String get profileAvatarUrl {
-    return _prefs?.getString(_keyProfileAvatarUrl) ??
-        'https://lh3.googleusercontent.com/aida-public/AB6AXuDERKRSFZHHzh_rdRyeBkuQAjngOvev0MbbGQYR0HDPp5omKS1Z_g2_6wVPpzZldG0ZgjNi7thX-C6i4SnV-LaEJEocfTNB5rMNCdLTisxZVXs71nlD8VBwJmEvH9xHoLf-4CRum4xXM1rE41l7Zzu3ppeING_0CSBLQsbP7S2WGhrLvJs10PjfgR_lJ7htljvMAj9IfvWHcyft7eB-zxK8yi3clvEAMTW6NRcKE5IcOZuobg95Il-Ggg';
+    return _prefs?.getString(_keyProfileAvatarUrl) ?? '';
   }
 
   static Future<void> setProfileAvatarUrl(String url) async {
@@ -194,7 +197,7 @@ class AppPreferences {
   }
 
   static String get profileSosKin {
-    return _prefs?.getString(_keyProfileSosKin) ?? '+91 98765 43210 (Sister - Priya)';
+    return _prefs?.getString(_keyProfileSosKin) ?? '';
   }
 
   static Future<void> setProfileSosKin(String contact) async {
@@ -203,7 +206,7 @@ class AppPreferences {
   }
 
   static String get profileSosCounsel {
-    return _prefs?.getString(_keyProfileSosCounsel) ?? '+91 91234 56789 (Advocate R. Sharma)';
+    return _prefs?.getString(_keyProfileSosCounsel) ?? '';
   }
 
   static Future<void> setProfileSosCounsel(String contact) async {

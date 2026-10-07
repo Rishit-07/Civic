@@ -329,14 +329,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const SizedBox(height: 14),
               _buildSosContactTile(
                 title: 'Primary Kin',
-                subtitle: AppPreferences.profileSosKin,
+                subtitle: AppPreferences.profileSosKin.isNotEmpty
+                    ? AppPreferences.profileSosKin
+                    : 'Not configured (Tap below to add)',
                 icon: Icons.contact_emergency_rounded,
                 color: const Color(0xFFBF0715),
               ),
               const SizedBox(height: 8),
               _buildSosContactTile(
                 title: 'Legal Counsel SOS',
-                subtitle: AppPreferences.profileSosCounsel,
+                subtitle: AppPreferences.profileSosCounsel.isNotEmpty
+                    ? AppPreferences.profileSosCounsel
+                    : 'Not configured (Tap below to add)',
                 icon: Icons.support_agent_rounded,
                 color: const Color(0xFFA83900),
               ),
@@ -429,6 +433,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               final phoneMatch = RegExp(r'(\+?\d[\d\s-]{8,})').firstMatch(subtitle);
               if (phoneMatch != null) {
                 _callHelpline(phoneMatch.group(1)!.replaceAll(RegExp(r'\s+'), ''));
+              } else {
+                Navigator.pop(context);
+                _navigateToEditProfile();
               }
             },
           ),

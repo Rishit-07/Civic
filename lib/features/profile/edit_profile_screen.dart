@@ -960,6 +960,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: surfaceContainerLow,
+                              hintText: 'Enter your legal full name',
+                              hintStyle: GoogleFonts.plusJakartaSans(
+                                fontSize: 13,
+                                color: onSurfaceVariant.withValues(alpha: 0.5),
+                              ),
                               prefixIcon: const Icon(Icons.badge_outlined,
                                   size: 19, color: onSurfaceVariant),
                               border: OutlineInputBorder(
@@ -1285,6 +1290,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: surfaceContainerLow,
+                              hintText: '+91 98765 43210 (Kin Name / Relationship)',
+                              hintStyle: GoogleFonts.plusJakartaSans(
+                                fontSize: 12,
+                                color: onSurfaceVariant.withValues(alpha: 0.5),
+                              ),
                               prefixIcon: const Icon(
                                   Icons.contact_emergency_rounded,
                                   size: 19,
@@ -1333,6 +1343,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: surfaceContainerLow,
+                              hintText: '+91 91234 56789 (Advocate Name)',
+                              hintStyle: GoogleFonts.plusJakartaSans(
+                                fontSize: 12,
+                                color: onSurfaceVariant.withValues(alpha: 0.5),
+                              ),
                               prefixIcon: const Icon(Icons.support_agent_rounded,
                                   size: 19, color: primaryOrange),
                               border: OutlineInputBorder(
